@@ -2118,9 +2118,9 @@ a {
   .logo {
     padding: 13px 0;
   }
-  .logo img {
-    height: 40px;
-  }
+  max-height: 65px;
+    width: auto;
+}
   /* Navigation breakpoint */
   .navbar-toggle {
     display: block;
