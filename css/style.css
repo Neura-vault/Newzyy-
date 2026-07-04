@@ -2331,5 +2331,16 @@ a {
   .category-style2 .post-thumbnail {
     margin-bottom: 20px;
   }
+
+  /* Logo Size Fix */
+  .logo img {
+    max-height: 50px !important;
+    width: auto !important;
+  }
+
+  .footer-main .img-fluid {
+    max-width: 160px !important;
+    height: auto !important;
+  }
 }
 /*# sourceMappingURL=style.css.map */
