@@ -511,7 +511,7 @@ a[href^=tel] {
 }
 
 .header-navigation {
-  padding: 10px 0;
+  padding: 5px 0;
   background: #fff;
 }
 
@@ -557,7 +557,7 @@ a[href^=tel] {
 @media (max-width: 991px) {
   .navbar-nav .nav-item .nav-link {
     display: block;
-    padding: 10px 0;
+    padding: 8px 0;
   }
 }
 .navbar-nav .nav-item .nav-link:hover:before, .navbar-nav .nav-item .nav-link.active .navbar-nav .nav-item .nav-link:before {
@@ -2116,7 +2116,8 @@ a {
     box-shadow: none;
   }
   .logo {
-    padding: 13px 0;
+    padding: 10px 0;  /* 28px se kam karo */
+    line-height: 0;   /* Extra space hatao */
   }
   max-height: 65px;
     width: auto;
@@ -2256,8 +2257,8 @@ a {
     padding: 13px 0 25px;
     text-align: center;
   }
-  .logo img {
-    height: 40px;
+   max-height: 45px;  /* 65 se kam karo */
+    width: auto;
   }
   /* Navigation */
   /* Search */
@@ -2332,15 +2333,43 @@ a {
     margin-bottom: 20px;
   }
 
-  /* Logo Size Fix */
-  .logo img {
-    max-height: 50px !important;
-    width: auto !important;
-  }
-
   .footer-main .img-fluid {
     max-width: 160px !important;
     height: auto !important;
   }
+  /* ===== HEADER HEIGHT FIX ===== */
+.logo {
+    padding: 8px 0 !important;
+    line-height: 0 !important;
+}
+
+.logo img {
+    max-height: 42px !important;
+    width: auto !important;
+}
+
+.header-navigation {
+    padding: 4px 0 !important;
+}
+
+.main-navbar .navbar-nav .nav-link {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
+    font-size: 13px !important;
+}
+
+.trending-bar-dark {
+    padding: 4px 0 !important;
+}
+
+.trending-bar-title {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+}
+
+.trending-news-slider .post-title.title-sm {
+    font-size: 11px !important;
+    line-height: 18px !important;
+}
 }
 /*# sourceMappingURL=style.css.map */
