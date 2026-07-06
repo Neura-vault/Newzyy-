@@ -1045,5 +1045,34 @@
 <script src="plugins/google-map/gmap.js"></script>
 <script src="js/custom.js"></script>
 
+// ===== UPDATE NAVBAR WITH LOGIN STATUS =====
+function updateNavbar() {
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    const accountLink = document.querySelector('.nav-item.dropdown a[href="account.html"]');
+    const accountDropdown = document.querySelector('.nav-item.dropdown .dropdown-menu');
+    
+    if (loggedIn && accountLink) {
+        // Change "Account" to user name
+        accountLink.textContent = loggedIn.name + ' ▼';
+        
+        // Update dropdown
+        if (accountDropdown) {
+            accountDropdown.innerHTML = `
+                <a class="dropdown-item" href="#" onclick="logoutUser(); return false;">🚪 Logout</a>
+            `;
+        }
+    }
+}
+
+// ===== LOGOUT FUNCTION =====
+function logoutUser() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('newzyy_logged_in');
+        location.reload();
+    }
+}
+
+// Call on page load
+document.addEventListener('DOMContentLoaded', updateNavbar);
 </body>
 </html>
