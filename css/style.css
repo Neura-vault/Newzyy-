@@ -598,10 +598,10 @@ a { transition: all 0.35s ease; }
 
 /* Header container height bhi kam karo */
 .header-navigation {
-    padding: 10px 0 !important;
+    padding: 16px 0 !important;
 }
 
 .logo {
-    padding: 5px 0 !important;
+    padding: 7px 0 !important;
     line-height: 0 !important;
 }
