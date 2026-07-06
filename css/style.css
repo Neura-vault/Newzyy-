@@ -143,7 +143,7 @@ a[href^=tel] { color: inherit; text-decoration: none; }
 
 /* ===== 2. HEADER ===== */
 .navigation { padding: 10px 0; }
-.header-navigation { padding: 4px 0 !important; background: #fff; }
+.header-navigation { padding: 8px 0 !important; background: #fff; }
 .logo { padding: 8px 0 !important; line-height: 0 !important; }
 .logo img { max-height: 45px !important; width: auto !important; }
 .navbar-collapse { padding-left: 0; }
@@ -498,8 +498,8 @@ a { transition: all 0.35s ease; }
 
 /* ===== 11. HEADER HEIGHT FIX (OVERRIDE) ===== */
 .main-navbar .navbar-nav .nav-link {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
     font-size: 13px !important;
 }
 
