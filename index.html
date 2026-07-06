@@ -1045,12 +1045,12 @@
 <script src="plugins/google-map/gmap.js"></script>
 <script src="js/custom.js"></script>
 
-// ===== UPDATE NAVBAR =====
+// ===== LOGIN/LOGOUT NAVBAR UPDATE =====
 function updateNavbar() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
     const accountLink = document.getElementById('accountLink');
     const accountDropdown = document.getElementById('accountDropdown');
-    
+
     if (loggedIn && accountLink) {
         accountLink.textContent = loggedIn.name + ' ▼';
         if (accountDropdown) {
@@ -1069,10 +1069,77 @@ function updateNavbar() {
     }
 }
 
-// Ensure it runs on page load
+// ===== LOGOUT FUNCTION =====
+function logoutUser() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('newzyy_logged_in');
+        location.reload();
+    }
+}
+
+// ===== BACKEND API =====
+const API_BASE = 'https://newzyy.onrender.com';
+let allNews = [];
+let currentFilter = 'all';
+let displayCount = 6;
+
+async function fetchNews() {
+    try {
+        const res = await fetch(`${API_BASE}/api/all-news`);
+        const data = await res.json();
+        if (data.success && data.news) {
+            allNews = data.news;
+        }
+    } catch(e) {
+        console.log('Fetch error:', e);
+    }
+    renderAll();
+}
+
+function renderAll() {
+    let f = currentFilter === 'all' ? allNews : allNews.filter(n => n.category === currentFilter);
+    const container = document.getElementById('newsContainer');
+    if (!container) return;
+    
+    if (!f.length) {
+        container.innerHTML = '<div style="text-align:center;padding:60px;">No news found</div>';
+        return;
+    }
+    
+    const html = f.slice(0, displayCount).map(a => `
+        <div class="post-block-wrapper clearfix mb-4">
+            <div class="post-thumbnail">
+                <a href="single-post.html?id=${a.id}">
+                    <img class="img-fluid" src="${a.image}" alt="${a.title}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'">
+                </a>
+            </div>
+            <div class="post-content">
+                <h2 class="post-title">
+                    <a href="single-post.html?id=${a.id}">${a.title}</a>
+                </h2>
+                <div class="post-meta">
+                    <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>${a.time || 'Just now'}</span>
+                    <span class="post-author">by <a href="author.html">${a.author || 'Newzyy'}</a></span>
+                </div>
+                <p>${(a.excerpt || a.description || '').substring(0, 150)}...</p>
+            </div>
+        </div>
+    `).join('');
+    
+    container.innerHTML = html;
+}
+
+// ===== RUN ON PAGE LOAD =====
 document.addEventListener('DOMContentLoaded', function() {
     updateNavbar();
+    fetchNews();
 });
 
+// Make functions global
+window.updateNavbar = updateNavbar;
+window.logoutUser = logoutUser;
+window.fetchNews = fetchNews;
+window.renderAll = renderAll;
+</script>
 </body>
 </html>
