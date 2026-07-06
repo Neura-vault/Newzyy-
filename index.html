@@ -126,9 +126,9 @@
                                     <a class="dropdown-item" href="author.html">Author</a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-                                <div class="dropdown-menu">
+                            <li class="nav-item dropdown" id="accountNav">
+                                 <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
+                                <div class="dropdown-menu" id="accountDropdown">
                                     <a class="dropdown-item" href="account.html">Log In</a>
                                     <a class="dropdown-item" href="signup.html">Register</a>
                                 </div>
@@ -1048,20 +1048,8 @@
 // ===== UPDATE NAVBAR =====
 function updateNavbar() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
-    
-    const accountLinks = document.querySelectorAll('.navbar-nav .nav-item.dropdown .nav-link');
-    let accountLink = null;
-    let accountDropdown = null;
-    
-    accountLinks.forEach(link => {
-        if (link.textContent.includes('Account') || link.textContent.includes('▼')) {
-            accountLink = link;
-            const parentLi = link.closest('.nav-item.dropdown');
-            if (parentLi) {
-                accountDropdown = parentLi.querySelector('.dropdown-menu');
-            }
-        }
-    });
+    const accountLink = document.getElementById('accountLink');
+    const accountDropdown = document.getElementById('accountDropdown');
     
     if (loggedIn && accountLink) {
         accountLink.textContent = loggedIn.name + ' ▼';
@@ -1081,22 +1069,9 @@ function updateNavbar() {
     }
 }
 
-// ===== LOGOUT =====
-function logoutUser() {
-    if (confirm('Are you sure you want to logout?')) {
-        localStorage.removeItem('newzyy_logged_in');
-        location.reload();
-    }
-}
-
-// ===== RUN ON PAGE LOAD =====
+// Ensure it runs on page load
 document.addEventListener('DOMContentLoaded', function() {
     updateNavbar();
-    
-    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
-    if (loggedIn) {
-        console.log('👋 Welcome back, ' + loggedIn.name + '!');
-    }
 });
 
 </body>
