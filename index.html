@@ -1045,26 +1045,43 @@
 <script src="plugins/google-map/gmap.js"></script>
 <script src="js/custom.js"></script>
 
-// ===== UPDATE NAVBAR WITH LOGIN STATUS =====
+// ===== UPDATE NAVBAR =====
 function updateNavbar() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
-    const accountLink = document.querySelector('.nav-item.dropdown a[href="account.html"]');
-    const accountDropdown = document.querySelector('.nav-item.dropdown .dropdown-menu');
+    
+    const accountLinks = document.querySelectorAll('.navbar-nav .nav-item.dropdown .nav-link');
+    let accountLink = null;
+    let accountDropdown = null;
+    
+    accountLinks.forEach(link => {
+        if (link.textContent.includes('Account') || link.textContent.includes('▼')) {
+            accountLink = link;
+            const parentLi = link.closest('.nav-item.dropdown');
+            if (parentLi) {
+                accountDropdown = parentLi.querySelector('.dropdown-menu');
+            }
+        }
+    });
     
     if (loggedIn && accountLink) {
-        // Change "Account" to user name
         accountLink.textContent = loggedIn.name + ' ▼';
-        
-        // Update dropdown
         if (accountDropdown) {
             accountDropdown.innerHTML = `
                 <a class="dropdown-item" href="#" onclick="logoutUser(); return false;">🚪 Logout</a>
             `;
         }
+    } else if (!loggedIn && accountLink) {
+        accountLink.textContent = 'Account ▼';
+        if (accountDropdown) {
+            accountDropdown.innerHTML = `
+                <a class="dropdown-item" href="account.html">Log In</a>
+                <a class="dropdown-item" href="signup.html">Register</a>
+            `;
+        }
     }
 }
 
-// ===== LOGOUT FUNCTION =====
+// ===== LOGOUT =====
 function logoutUser() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('newzyy_logged_in');
@@ -1072,7 +1089,15 @@ function logoutUser() {
     }
 }
 
-// Call on page load
-document.addEventListener('DOMContentLoaded', updateNavbar);
+// ===== RUN ON PAGE LOAD =====
+document.addEventListener('DOMContentLoaded', function() {
+    updateNavbar();
+    
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    if (loggedIn) {
+        console.log('👋 Welcome back, ' + loggedIn.name + '!');
+    }
+});
+
 </body>
 </html>
