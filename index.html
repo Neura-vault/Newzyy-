@@ -1045,6 +1045,50 @@
 <script src="plugins/google-map/gmap.js"></script>
 <script src="js/custom.js"></script>
 
+<script>
+// ===== NEWZYY COMPLETE SCRIPT =====
+
+// ===== LOGIN/LOGOUT NAVBAR UPDATE =====
+function updateNavbar() {
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    const accountLink = document.getElementById('accountLink');
+    const accountDropdown = document.getElementById('accountDropdown');
+
+    if (loggedIn && accountLink) {
+        accountLink.textContent = loggedIn.name + ' ▼';
+        if (accountDropdown) {
+            accountDropdown.innerHTML = `
+                <a class="dropdown-item" href="#" onclick="logoutUser(); return false;">🚪 Logout</a>
+            `;
+        }
+    } else if (!loggedIn && accountLink) {
+        accountLink.textContent = 'Account ▼';
+        if (accountDropdown) {
+            accountDropdown.innerHTML = `
+                <a class="dropdown-item" href="account.html">Log In</a>
+                <a class="dropdown-item" href="signup.html">Register</a>
+            `;
+        }
+    }
+}
+
+// ===== LOGOUT FUNCTION =====
+function logoutUser() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('newzyy_logged_in');
+        location.reload();
+    }
+}
+
+// ===== RUN ON PAGE LOAD =====
+document.addEventListener('DOMContentLoaded', function() {
+    updateNavbar();
+});
+
+// Make functions global
+window.updateNavbar = updateNavbar;
+window.logoutUser = logoutUser;
 </script>
+
 </body>
 </html>
