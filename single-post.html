@@ -1,743 +1,518 @@
 <!DOCTYPE html>
-
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en">
-
+ 
 <head>
     <meta charset="utf-8">
-    <title>Newzyy - Top World News</title>
+    <title id="pageTitle">Newzyy — Article</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-    <!-- theme meta -->
     <meta name="theme-name" content="Newzyy" />
-
-    <!--Favicon-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
-    <!-- THEME CSS
-	================================================== -->
-    <!-- Bootstrap -->
+ 
+    <!-- ===== SEO / SOCIAL PREVIEW META (filled dynamically once the article loads) ===== -->
+    <meta id="metaDescription" name="description" content="Newzyy — breaking news, politics, technology, sport and business.">
+    <link id="canonicalLink" rel="canonical" href="">
+    <meta id="ogType" property="og:type" content="article">
+    <meta id="ogTitle" property="og:title" content="Newzyy — Article">
+    <meta id="ogDescription" property="og:description" content="Newzyy — breaking news, politics, technology, sport and business.">
+    <meta id="ogImage" property="og:image" content="">
+    <meta id="ogUrl" property="og:url" content="">
+    <meta property="og:site_name" content="Newzyy">
+    <meta id="twitterCard" name="twitter:card" content="summary_large_image">
+    <meta id="twitterTitle" name="twitter:title" content="Newzyy — Article">
+    <meta id="twitterDescription" name="twitter:description" content="Newzyy — breaking news.">
+    <meta id="twitterImage" name="twitter:image" content="">
+    <script id="newsArticleSchema" type="application/ld+json"></script>
+ 
+    <!-- THEME CSS -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <!-- Slick Carousel -->
-    <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
-    <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <!-- manin stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=2">
+ 
+    <!-- Sans for chrome/nav/meta, Serif for the actual editorial content -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+ 
+    <style>
+        :root {
+            --red: #b80000;
+            --ink: #141414;
+            --paper: #ffffff;
+            --canvas: #f7f6f2;
+            --hairline: #e3ded3;
+            --muted: #6e6a62;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--sans); background: var(--canvas); color: var(--ink); -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; color: inherit; }
+ 
+        /* progress rail */
+        #readProgress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 999; transition: width 0.1s linear; }
+ 
+        /* ===== TRENDING BAR ===== */
+        .bbc-trending { background: var(--ink); color: #fff; padding: 8px 0; border-bottom: 2px solid var(--red); font-size: 0.85rem; }
+        .bbc-trending .label { background: var(--red); padding: 2px 16px; font-weight: 600; font-size: 0.62rem; text-transform: uppercase; display: inline-block; margin-right: 16px; letter-spacing: 0.6px; }
+        .bbc-trending .track { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: middle; max-width: 80%; }
+        .bbc-trending .track .item { display: inline-block; padding: 0 24px; font-size: 0.8rem; }
+        .bbc-trending .track .item a:hover { text-decoration: underline; }
+ 
+        /* ===== HEADER / NAV (kept consistent with index.html) ===== */
+        .bbc-header { background: #fff; border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        .bbc-header .logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; }
+        .bbc-header .logo span { color: var(--red); }
+        .bbc-header .logo small { font-size: 0.55rem; font-weight: 400; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
+        .bbc-header .search-input { background: var(--canvas); border: 1px solid var(--hairline); padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--sans); }
+        .bbc-header .search-input:focus { border-color: var(--red); }
+        .bbc-header .search-wrapper { position: relative; }
+        .bbc-header .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999; font-size: 0.85rem; }
+        .bbc-header .btn-login { background: transparent; border: 1px solid var(--hairline); color: var(--ink); padding: 6px 20px; font-size: 0.8rem; font-weight: 600; }
+        .bbc-header .btn-signup { background: var(--red); border: 1px solid var(--red); color: #fff; padding: 6px 20px; font-size: 0.8rem; font-weight: 600; }
+        .bbc-nav { background: #fff; border-bottom: 1px solid var(--hairline); }
+        .bbc-nav .nav-link { color: #4a4a4a !important; font-size: 0.72rem; font-weight: 600; padding: 12px 16px !important; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 2px solid transparent; }
+        .bbc-nav .nav-link:hover { color: var(--red) !important; border-bottom-color: var(--red); }
+ 
+        /* ===== READING LAYOUT ===== */
+        .bbc-article-wrap { padding: 36px 0 60px; }
+        .bbc-breadcrumb { max-width: 700px; margin: 0 auto 22px; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.2px; }
+        .bbc-breadcrumb a:hover { color: var(--red); }
+ 
+        .bbc-article-header { max-width: 700px; margin: 0 auto; }
+        .kicker-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .kicker { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.6px; }
+        .live-kicker { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--red); }
+        .live-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); display: inline-block; animation: pulse 1.2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(0.75);} }
+ 
+        .article-title { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; line-height: 1.18; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.3px; }
+        .article-excerpt { font-family: var(--serif); font-size: 1.28rem; font-weight: 400; color: #3a3a3a; line-height: 1.5; margin-bottom: 22px; }
+ 
+        .byline-row { display: flex; align-items: center; gap: 12px; padding: 18px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); margin-bottom: 26px; }
+        .byline-row .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+        .byline-row .byline-text { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+        .byline-row .byline-text strong { color: var(--ink); font-weight: 700; }
+        .byline-row .byline-meta { margin-left: auto; display: flex; gap: 14px; align-items: center; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap; text-align: right; }
+ 
+        .bbc-article-image { max-width: 900px; margin: 0 auto 8px; }
+        .bbc-article-image img { width: 100%; max-height: 520px; object-fit: cover; display: block; }
+        .bbc-article-image .caption { max-width: 700px; margin: 0 auto; font-family: var(--sans); font-size: 0.74rem; font-style: italic; color: var(--muted); padding: 8px 0 0; }
+ 
+        .bbc-article-body { max-width: 700px; margin: 30px auto 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.85; color: #1e1e1e; }
+        .bbc-article-body p { margin-bottom: 24px; }
+        .bbc-article-body p:first-of-type::first-letter {
+            font-family: var(--serif); font-size: 4.4rem; font-weight: 700; float: left; line-height: 0.82;
+            padding: 6px 10px 0 0; color: var(--red);
+        }
+ 
+        .bbc-source-line { max-width: 700px; margin: 30px auto; padding: 16px 20px; background: #fff; border-left: 3px solid var(--red); font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
+        .bbc-source-line a { color: var(--red); font-weight: 700; }
+ 
+        .bbc-share-row { max-width: 700px; margin: 30px auto 46px; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); flex-wrap: wrap; gap: 14px; font-family: var(--sans); }
+        .bbc-share-row .tags span { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.4px; margin-right: 10px; }
+        .bbc-share-row .tags a { font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-right: 14px; }
+        .bbc-share-row .tags a:hover { color: var(--red); }
+        .bbc-share-row .share-icons { display: flex; gap: 10px; list-style: none; }
+        .bbc-share-row .share-icons a { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--hairline); border-radius: 50%; color: var(--ink); font-size: 0.85rem; }
+        .bbc-share-row .share-icons a:hover { border-color: var(--red); color: var(--red); }
+ 
+        /* ===== RELATED (understated, hairline dividers, not boxed cards) ===== */
+        .bbc-related { max-width: 900px; margin: 0 auto 50px; }
+        .section-label { font-family: var(--sans); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink); padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 22px; }
+        .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+        .related-item { cursor: pointer; }
+        .related-item img { width: 100%; height: 120px; object-fit: cover; margin-bottom: 10px; }
+        .related-item .cat { font-family: var(--sans); font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; }
+        .related-item .title { font-family: var(--serif); font-size: 0.98rem; font-weight: 600; line-height: 1.3; margin-top: 4px; }
+        .related-item:hover .title { color: var(--red); }
+        .related-item .meta { font-family: var(--sans); font-size: 0.68rem; color: var(--muted); margin-top: 8px; }
+ 
+        /* ===== SIDEBAR — real Most Read, ranked list ===== */
+        .bbc-sidebar { max-width: 700px; margin: 0 auto; }
+        .sidebar-widget { margin-bottom: 30px; }
+        .most-read-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--hairline); cursor: pointer; }
+        .most-read-item:last-child { border-bottom: none; }
+        .most-read-item .rank { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--hairline); line-height: 1; width: 30px; flex-shrink: 0; }
+        .most-read-item:hover .rank { color: var(--red); }
+        .most-read-item .title { font-family: var(--sans); font-size: 0.88rem; font-weight: 600; line-height: 1.35; }
+        .most-read-item:hover .title { color: var(--red); }
+ 
+        /* ===== FOOTER ===== */
+        .bbc-footer { background: var(--ink); color: #ccc; padding: 40px 0 20px; margin-top: 0; border-top: 3px solid var(--red); font-family: var(--sans); }
+        .bbc-footer a { color: #ccc; font-size: 0.85rem; }
+        .bbc-footer a:hover { color: #fff; }
+        .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+        .bbc-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
+ 
+        .bbc-state-msg { max-width: 700px; margin: 0 auto; text-align: center; padding: 90px 20px; font-family: var(--sans); }
+        .bbc-state-msg h4 { font-weight: 700; margin-bottom: 10px; }
+        .bbc-state-msg a { color: var(--red); font-weight: 700; }
+ 
+        @media (max-width: 992px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) {
+            .article-title { font-size: 1.7rem; }
+            .article-excerpt { font-size: 1.05rem; }
+            .bbc-share-row { flex-direction: column; align-items: flex-start; }
+            .byline-row { flex-wrap: wrap; }
+            .byline-row .byline-meta { margin-left: 0; text-align: left; }
+            .related-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-
-
-
-
-
-
-<div class="trending-bar-dark hidden-xs">
+ 
+<div id="readProgress"></div>
+ 
+<div class="bbc-trending">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h3 class="trending-bar-title">Trending News</h3>
-                <div class="trending-news-slider">
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html" >Here's How To Get Free Pizza On 2 hour</a>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-12 col-sm-12 col-xs-12 top-nav-social-lists text-lg-right col-lg-4 ml-lg-auto">
-                <ul class="list-unstyled mt-4 mt-lg-0">
-                    <li>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-facebook-f"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-twitter"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-youtube"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-linkedin"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-pinterest-p"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-rss"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-reddit-alien"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
+        <span class="label">Trending</span>
+        <div class="track" id="trendingTrack"><span class="item">Loading news...</span></div>
     </div>
 </div>
-
-<header class="header-navigation d-none d-lg-block">
+ 
+<header class="bbc-header">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logos/logo.png" alt=""> <!-- Replace Logo Here -->
-                    </a>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <a href="index.html" class="logo">Newzy<span>y</span><small>News</small></a>
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <div class="search-wrapper">
+                    <i class="fa fa-search"></i>
+                    <input type="text" class="search-input" placeholder="Search"
+                           onkeydown="if(event.key==='Enter'){window.location.href='index.html?search='+encodeURIComponent(this.value)}">
                 </div>
-                <!-- End Logo -->
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-9">
-                    <a href="#">
-                    </a>
-                </div>
+                <div class="account-section"><span id="accountLinks"></span></div>
             </div>
         </div>
     </div>
 </header>
-
-<div class="main-navbar clearfix bg-dark ">
+ 
+<nav class="bbc-nav">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                      <a class="navbar-brand d-lg-none" href="index.html">
-                        <img src="images/logos/footer-logo.png" alt=""> 
-                     </a>
-  
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span>
-                  </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                           
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 Home
-                                </a>
-                                <div class="dropdown-menu" >
-                                  <a class="dropdown-item" href="index.html" >Home 1</a>
-                                  <a class="dropdown-item" href="index-2.html">Home 2</a>
-                                </div>
-                            </li>
-                           
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Post
-                                </a>
-                                <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="post-left-sidebar.html">Post Left Sidebar</a>
-                                  <a class="dropdown-item" href="post-full-width.html">Post Full Width</a>
-                                  <a class="dropdown-item" href="single-post.html">Single Post</a>
-                                  <a class="dropdown-item" href="post-category-1.html">Category 1</a>
-                                  <a class="dropdown-item" href="post-category-2.html">Category 2</a>
-                                  <a class="dropdown-item" href="author.html">Author</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Account
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="account.html">Log In</a>
-                                  <a class="dropdown-item" href="signup.html">Register</a>
-                                </div>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  About
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="about.html">About</a>
-                                  <a class="dropdown-item" href="terms.html">Terms</a>
-                                  <a class="dropdown-item" href="privacy.html">Privacy Policy</a>
-                                  <a class="dropdown-item" href="job.html">Career</a>
-                                </div>
-                            </li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Pages
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="404.html">404 Page</a>
-                                  <a class="dropdown-item" href="search.html">Search Page</a>
-                                </div>
-                            </li>
-
-                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-
-                        </ul>
-                        <div class="nav-search ml-auto d-none d-lg-block">
-                            <span id="search">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </nav>
-                
-            </div>
+        <div class="d-flex flex-wrap">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.html?cat=politics">Politics</a>
+            <a class="nav-link" href="index.html?cat=technology">Tech</a>
+            <a class="nav-link" href="index.html?cat=sports">Sports</a>
+            <a class="nav-link" href="index.html?cat=business">Business</a>
+            <a class="nav-link" href="index.html?cat=health">Health</a>
+            <a class="nav-link" href="index.html?cat=science">Science</a>
+            <a class="nav-link" href="index.html?cat=entertainment">Entertainment</a>
+            <a class="nav-link" href="index.html?cat=world">World</a>
         </div>
-    </div>
-    <form class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-        <div class="search-close">
-            <span class="close-search">
-                <i class="fa fa-times"></i>
-            </span>
-        </div>
-    </form>
-</div>
-
-<section class="single-block-wrapper section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-				<div class="single-post">
-    <div class="post-header mb-5">
-        <a class="post-category" href="post-category-1.html">Health</a>
-        <h2 class="post-title">
-            First Look At Self-Portrait's Autumn Collection
-        </h2>
-        <p>It was a cheerful prospect. I asked Perry what he thought about it; but he only shrugged his shoulders and continued a longwinded prayer he had been at for some time. He was wont to say that the only redeeming feature of our captivity was the ample time it gave him for the improvisation of prayers</p>
-    </div>
-    <div class="post-body">
-        <div class="post-featured-image">
-            <img src="images/news/img-2.jpg" class="img-fluid" alt="featured-image">
-        </div>
-        <div class="entry-content">
-            <p>
-                It was a cheerful prospect. I asked Perry what he thought about it; but he only shrugged his shoulders and continued a longwinded prayer he had been at for some time. He was wont to say that the only redeeming feature of our captivity was the ample time it gave him for the improvisation of prayers—it was becoming an obsession with him. The Sagoths had begun to take notice of his habit of declaiming throughout entire marches. One of them asked him what he was saying—to whom he was talking. The question gave me an idea, so I answered quickly before Perry could say anything.
-            </p>
-          <h2>Perfect design & code delivered to you</h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                Repellat sapiente neque iusto praesentium adipisci itaque error, commodi laborum doloremque. Esse?
-            </p>
-            <div class="media mb-4 single-media">
-                <img src="images/news/img-1.jpg" alt="post-ads" class="img-fluid mr-4">
-               <div class="media-body">
-                    <p>
-                        Oblique facilisi vix ei, quo ignota appetere lucilius at. Apeirian voluptatibus ius ei, an periculis imperdiet consequat sea. His ea everti placerat. Ad mea utroque convenire, an quo reque aperiam, has et unum cibo adipiscing. Brute instructior te vix, consequat definitiones conclusionemque et usu, et per idque quaerendum. Id pro ridens appareat, vim in verear pertinacia.
-                    </p>
-                </div>
-            </div>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde cum delectus exercitationem 
-                natus quidem enim error suscipit. Iure cupiditate nobis quaerat consectetur! Vero aliquam, 
-                amet ipsum ullam reiciendis nostrum voluptate accusantium provident ut blanditiis incidunt.
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates ab ratione animi nobis in et consequatur 
-                earum modi repellendus, qui, non debitis pariatur tempora consequuntur!
-            </p>
-        </div>
-        
-        <div class="share-block  d-flex justify-content-between align-items-center border-top border-bottom mt-5">
-            <div class="post-tags">
-                <span>Tags</span>
-                <a href="post-category-2.html">Health</a>
-                <a href="post-category-2.html">Game</a>
-                <a href="post-category-2.html">Tour</a>
-            </div>
-
-            <ul class="share-icons list-unstyled ">
-                <li class="facebook">
-                    <a href="#">
-                        <i class="fa fa-facebook"></i>
-                    </a>
-                </li>
-                <li class="twitter">
-                    <a href="#">
-                        <i class="fa fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="gplus">
-                    <a href="#">
-                        <i class="fa fa-google-plus"></i>
-                    </a>
-                </li>
-                <li class="pinterest">
-                    <a href="#">
-                        <i class="fa fa-pinterest"></i>
-                    </a>
-                </li>
-                <li class="reddit">
-                    <a href="#">
-                        <i class="fa fa-reddit-alien"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</div>
-				
-				<nav class="post-navigation clearfix">
-    <div class="previous-post">
-        <a href="single-post.html">
-            <h6 class="text-uppercase">Next</h6>
-            <h3>
-                 Intel’s new smart glasses actually look good
-            </h3>
-        </a>
-    </div>
-    <div class="next-post">
-        <a href="single-post.html">
-            <h6 class="text-uppercase">Previous</h6>
-
-            <h3>
-                 Free Two-Hour Delivery From Whole Foods
-            </h3>
-        </a>
     </div>
 </nav>
-				<div class="author-block">
-    <div class="author-thumb">
-        <img src="images/news/author-02.jpg" alt="author-image">
-    </div>
-    <div class="author-content">
-        <h3><a href="author.html">Lint Handson</a></h3>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sit quod molestias delectus illum quisquam. 
-            Quasi iure perferendis suscipit officiis dicta!
-        </p>
-        
-        <div class="authors-social">
-            <a href="#">
-                <i class="fa fa-facebook"></i>
-            </a>
-            <a href="#">
-                <i class="fa fa-twitter"></i>
-            </a>
-            <a href="#">
-                <i class="fa fa-google-plus"></i>
-            </a>
-            <a href="#">
-                <i class="fa fa-pinterest-p"></i>
-            </a>
-            <a href="#">
-                <i class="fa fa-dribbble"></i>
-            </a>
+ 
+<main class="container bbc-article-wrap">
+    <div id="articleRoot">
+        <div class="bbc-state-msg">
+            <div class="spinner-border text-danger" role="status"></div>
+            <p class="mt-3 text-muted">Loading article...</p>
         </div>
     </div>
-</div>
-				<div class="related-posts-block">
-    <h3 class="news-title">
-        <span>Related Posts</span>
-    </h3>
-    <div class="news-style-two-slide">
-        <div class="item">
-            <div class="post-block-wrapper clearfix">
-                <div class="post-thumbnail mb-0">
-                    <a href="single-post.html">
-                        <img class="img-fluid" src="images/news/news-04.jpg" alt="post-thumbnail"/>
-                    </a>
-                </div>
-                <a class="post-category" href="post-category-1.html">Tech</a>
-                <div class="post-content">
-                    <h2 class="post-title title-sm">
-                        <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                    </h2>
-                  
-                     
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="post-block-wrapper clearfix">
-                <div class="post-thumbnail mb-0">
-                    <a href="single-post.html">
-                        <img class="img-fluid" src="images/news/news-10.jpg" alt="post-thumbnail"/>
-                    </a>
-                </div>
-                <a class="post-category" href="post-category-1.html">Food</a>
-                <div class="post-content">
-                    <h2 class="post-title title-sm">
-                        <a href="single-post.html">Free Two-Hour Delivery From Whole Foods</a>
-                    </h2>
-                   
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="post-block-wrapper clearfix">
-                <div class="post-thumbnail mb-0">
-                    <a href="single-post.html">
-                        <img class="img-fluid" src="images/news/news-11.jpg" alt="post-thumbnail"/>
-                    </a>
-                </div>
-                <a class="post-category" href="post-category-1.html">Tour</a>
-                <div class="post-content">
-                    <h2 class="post-title title-sm">
-                        <a href="single-post.html">Snow and Freezing Rain in Paris Forces the</a>
-                    </h2>
-                  
-                </div>
-            </div>
-        </div>
-        <div class="item">
-            <div class="post-block-wrapper clearfix">
-                <div class="post-thumbnail mb-0">
-                    <a href="single-post.html">
-                        <img class="img-fluid" src="images/news/news-18.jpg" alt="post-thumbnail"/>
-                    </a>
-                </div>
-                <a class="post-category" href="post-category-1.html">Beauty</a>
-                <div class="post-content">
-                    <h2 class="post-title title-sm">
-                        <a href="single-post.html">The Best Eye Makeup Tutorials for all</a>
-                    </h2>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-				<div id="comments" class="comments-block block">
-    <h3 class="news-title">
-        <span>02 Comments</span>
-    </h3>
-    <ul class="all-comments">
-        <li>
-            <div class="comment">
-                <img class="commented-person" alt="" src="images/news/author-01.jpg">
-                <div class="comment-body">
-                    <div class="meta-data">
-                        <span class="commented-person-name">Jack Anderson</span>
-                        <span class="comment-hour d-block"><i class="fa fa-clock-o mr-2"></i>February 6, 2019 at 12:20 pm</span>
-                    </div>
-                    <div class="comment-content">
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta perferendis asperiores
-                             voluptatum saepe repellat atque obcaecati dolores nulla, explicabo harum inventore 
-                             sed corrupti molestiae aspernatur.
-                        </p>
-                    </div>
-                    <div class="text-left">
-                        <a class="comment-reply" href="#"><i class="fa fa-reply"></i> Reply</a>
-                    </div>
-                </div>
-            </div>
-            <ul class="comments-reply">
-                <li>
-                    <div class="comment">
-                        <img class="commented-person" alt="" src="images/news/author-02.jpg">
-                        <div class="comment-body">
-                            <div class="meta-data">
-                                <span class="commented-person-name">Jhonny American</span>
-                                <span class="comment-hour d-block"><i class="fa fa-clock-o mr-2"></i>March 9, 2019 at 12:20 pm</span>
-                            </div>
-                            <div class="comment-content">
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Qui expedita magnam ea 
-                                    tempora consectetur fugit dolorum numquam at obcaecati voluptatibus.
-                                </p>
-                            </div>
-                            <div class="text-left">
-                                <a class="comment-reply" href="#"><i class="fa fa-reply"></i> Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                </li>
-            </ul>
-            <div class="comment last">
-                <img class="commented-person" alt="" src="images/news/author-03.jpg">
-                <div class="comment-body">
-                    <div class="meta-data">
-                        <span class="commented-person-name">Vicky Fong</span>
-                        <span class="comment-hour d-block"><i class="fa fa-clock-o mr-2"></i>June 6, 2019 at 12:20 pm</span>
-                    </div>
-                    <div class="comment-content">
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, ipsa dolor exercitationem 
-                            culpa obcaecati illo veniam voluptatem perferendis hic nisi tempora omnis, mollitia unde doloribus.
-                        </p>
-                    </div>
-                    <div class="text-left">
-                        <a class="comment-reply" href="#"><i class="fa fa-reply"></i> Reply</a>
-                    </div>
-                </div>
-            </div>
-        </li>
-    </ul>
-</div>
-
-<div class="comment-form ">
-    <h3 class="title-normal">Leave a Reply </h3>
-    <p class="mb-4">Your email address will not be published. Required fields are marked *</p>
-    <form role="form">
-        <div class="row">
-             <div class="col-md-12">
-                <div class="form-group">
-                    <textarea class="form-control required-field" id="message" placeholder="Messege" rows="8" required></textarea>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input class="form-control" name="name" id="name" placeholder="Name" type="text" required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input class="form-control" name="email" id="email" placeholder="Email" type="email" required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <input class="form-control" type="text" placeholder="Website" required>
-                </div>
-            </div>
-           
-            <div class="col-md-12">
-                <button class="comments-btn btn btn-primary " type="submit">Post Comment</button>
-            </div>
-        </div>
-    </form>
-</div>
-
-			</div>
-			<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-				<div class="sidebar sidebar-right">
-					<div class="widget">
-    <h3 class="news-title">
-        <span>Stay in touch</span>
-    </h3>
-
-    <ul class="list-inline social-widget">
-        <li class="list-inline-item">
-              <a class="social-page youtube" href="#">
-                <i class="fa fa-play"></i>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a class="social-page facebook" href="#">
-               <i class="fa fa-facebook"></i>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a class="social-page twitter" href="#">
-                <i class="fa fa-twitter"></i>
-            </a>
-        </li>
-        <li class="list-inline-item">
-            <a class="social-page pinterest" href="#">
-                <i class="fa fa-pinterest"></i>
-            </a>
-        </li>
-         <li class="list-inline-item">
-            <a class="social-page linkedin" href="#">
-                <i class="fa fa-linkedin"></i>
-            </a>
-        </li>
-       
-        <li class="list-inline-item">
-            <a class="social-page youtube" href="#">
-                <i class="fa fa-youtube"></i>
-            </a>
-        </li>
-
-    </ul>
-
-</div>
-					<div class="widget">
-    <h3 class="news-title">
-        <span>Hot News</span>
-    </h3>
-
-    <div class="post-overlay-wrapper">
-        <div class="post-thumbnail">
-            <img class="img-fluid" src="images/news/news-15.jpg" alt="post-thumbnail"/>
-        </div>
-        <div class="post-content">
-            <a class="post-category white" href="post-category-1.html">Fashion</a>
-            <h2 class="post-title">
-                <a href="single-post.html">First Look At Self-Portrait's Autumn Collection...</a>
-            </h2>
-            <div class="post-meta white">
-                <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>17 jun,2019</span>
-                <span> by </span>
-                <span class="post-author">
-                    <a href="author.html">Jammy Anderson</a>
-                </span>
-            </div>
-        </div>
-    </div>
-    <div class="post-list-block">
-        <div class="post-block-wrapper post-float ">
-            <div class="post-thumbnail">
-                <a href="single-post.html">
-                    <img class="img-fluid" src="images/news/news-03.jpg" alt="post-thumbnail"/>
-                </a>
-            </div>
-            <div class="post-content">
-                <h2 class="post-title title-sm">
-                    <a href="single-post.html">Apple HomePod review: locked in</a>
-                </h2>
-                <div class="post-meta">
-                    <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>2 hours ago</span>
-                </div>
-            </div>
-        </div>
-        <div class="post-block-wrapper post-float">
-            <div class="post-thumbnail">
-                <a href="single-post.html">
-                    <img class="img-fluid" src="images/news/news-05.jpg" alt="post-thumbnail"/>
-                </a>
-            </div>
-            <div class="post-content">
-                <h2 class="post-title title-sm">
-                    <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                </h2>
-                <div class="post-meta">
-                    <span class="posted-time"><i class="fa fa-clock-o mr-1"></i> 15 March , 2019</span>
-                </div>
-            </div>
-        </div>
-        <div class="post-block-wrapper post-float">
-            <div class="post-thumbnail">
-                <a href="single-post.html">
-                    <img class="img-fluid" src="images/news/news-11.jpg" alt="post-thumbnail"/>
-                </a>
-            </div>
-
-            <div class="post-content">
-                <h2 class="post-title title-sm">
-                    <a href="single-post.html">Free Two-Hour Delivery From Whole Foods</a>
-                </h2>
-                <div class="post-meta">
-                    <span class="posted-time"><i class="fa fa-clock-o mr-1"></i> 5 hours ago</span>
-                </div>
-            </div>
-        </div>
-        <div class="post-block-wrapper post-float">
-            <div class="post-thumbnail">
-                <a href="single-post.html">
-                    <img class="img-fluid" src="images/news/news-06.jpg" alt="post-thumbnail"/>
-                </a>
-            </div>
-
-            <div class="post-content">
-                <h2 class="post-title title-sm">
-                    <a href="single-post.html">Here's How To Get Free Pizza On</a>
-                </h2>
-                <div class="post-meta">
-                    <span class="posted-time"><i class="fa fa-clock-o mr-1"></i> 17 June, 2019</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-					<div class="widget">
-    <img class="banner img-fluid" src="images/banner-ads/ad-sidebar.png" alt="300x300 ads"/>
-</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-
-<footer class="footer footer-main ">
+</main>
+ 
+<footer class="bbc-footer">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-12 col-lg-6 text-center">
-                <a href="index.html"><img src="images/logos/footer-logo.png" alt="" class="img-fluid"></a>
-                <p class="mt-4">We perfectly balances the simplicity of a clean, eye-catching blog with the flexibility to create unique page layouts.</p>
-
-                <ul class="list-inline footer-social">
-                    <li class="li list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="fa fa-facebook"></i></a></li>
-                    <li class="li list-inline-item"><a href="https://twitter.com/themefisher"><i class="fa fa-twitter"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-youtube"></i></a></li>
-                </ul>
-
-                <div class="copyright-text text-center">
-                    <p class="mb-0">© All Copyright Reserved to - Newzyy</a></p>
-                </div>
-            </div>
-
-            <div class="scroll-to-top">
-                <button class="btn btn-primary" title="Back to Top">
-                    <i class="fa fa-angle-up"></i>
-                </button>
-            </div>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
         </div>
+        <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
-
-
-<!-- THEME JAVASCRIPT FILES
-================================================== -->
-<!-- initialize jQuery Library -->
+ 
 <script src="plugins/jquery/jquery.js"></script>
-<!-- Bootstrap jQuery -->
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- Slick Slider -->
-<script src="plugins/slick-carousel/slick.min.js"></script>
-<!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="plugins/google-map/gmap.js"></script>
-<!-- main js -->
 <script src="js/custom.js"></script>
-
+ 
+<script>
+const API_BASE = 'https://newzyy.onrender.com';
+let currentArticle = null;
+ 
+const CATEGORY_COLORS = {
+    politics: '#b80000', technology: '#2563eb', sports: '#16a34a', business: '#7c3aed',
+    health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
+    environment: '#22c55e', culture: '#8b5cf6', world: '#3b82f6', economy: '#f59e0e'
+};
+const CATEGORY_NAMES = {
+    politics: 'Politics', technology: 'Technology', sports: 'Sports', business: 'Business',
+    health: 'Health', science: 'Science', entertainment: 'Entertainment', travel: 'Travel',
+    environment: 'Earth', culture: 'Culture', world: 'World', economy: 'Economy'
+};
+ 
+function getReadingTime(text) {
+    const words = (text || '').split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200));
+}
+function formatViews(n) {
+    n = n || 0;
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+    return String(n);
+}
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+ 
+function updateAccountLinks() {
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    const container = document.getElementById('accountLinks');
+    if (!container) return;
+    if (loggedIn) {
+        const initials = loggedIn.name.charAt(0).toUpperCase();
+        container.innerHTML = `<span style="font-weight:600;font-size:0.85rem">${initials} · ${loggedIn.name}</span>`;
+    } else {
+        container.innerHTML = `<a href="account.html" class="btn-login">Log In</a> <a href="signup.html" class="btn-signup">Register</a>`;
+    }
+}
+ 
+// Body comes back as one text blob — split into readable paragraphs.
+function renderBody(bodyText) {
+    if (!bodyText) return '<p>Full article text is not available for this story yet.</p>';
+    let paras = bodyText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+    if (paras.length <= 1) {
+        const sentences = bodyText.match(/[^.!?]+[.!?]+/g) || [bodyText];
+        paras = [];
+        let chunk = '';
+        sentences.forEach((s, i) => {
+            chunk += s.trim() + ' ';
+            if ((i + 1) % 4 === 0) { paras.push(chunk.trim()); chunk = ''; }
+        });
+        if (chunk.trim()) paras.push(chunk.trim());
+    }
+    return paras.map(p => `<p>${escapeHtml(p)}</p>`).join('');
+}
+ 
+// ===== SEO: title, OG, Twitter, canonical, JSON-LD =====
+function updateSEOTags(article) {
+    const catName = CATEGORY_NAMES[article.category] || article.category;
+    const url = window.location.origin + window.location.pathname + '?id=' + article.id;
+    const desc = (article.excerpt || '').substring(0, 160);
+ 
+    document.getElementById('pageTitle').textContent = `${article.title} — Newzyy`;
+    document.getElementById('metaDescription').setAttribute('content', desc);
+    document.getElementById('canonicalLink').setAttribute('href', url);
+ 
+    document.getElementById('ogTitle').setAttribute('content', article.title);
+    document.getElementById('ogDescription').setAttribute('content', desc);
+    document.getElementById('ogImage').setAttribute('content', article.image || '');
+    document.getElementById('ogUrl').setAttribute('content', url);
+ 
+    document.getElementById('twitterTitle').setAttribute('content', article.title);
+    document.getElementById('twitterDescription').setAttribute('content', desc);
+    document.getElementById('twitterImage').setAttribute('content', article.image || '');
+ 
+    const schema = {
+        "@context": "https://schema.org",
+        "@type": "NewsArticle",
+        "headline": article.title,
+        "description": desc,
+        "image": article.image ? [article.image] : [],
+        "datePublished": article.fetched_at,
+        "author": { "@type": "Person", "name": article.author || "Newzyy" },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Newzyy",
+            "logo": { "@type": "ImageObject", "url": window.location.origin + "/images/logos/logo.png" }
+        },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": url },
+        "articleSection": catName
+    };
+    document.getElementById('newsArticleSchema').textContent = JSON.stringify(schema);
+}
+ 
+function renderLiveKicker(article) {
+    if (!article.breaking) return '';
+    return `<span class="live-kicker"><span class="dot"></span> Live</span>`;
+}
+ 
+function renderArticle(article) {
+    currentArticle = article;
+    updateSEOTags(article);
+ 
+    const catName = CATEGORY_NAMES[article.category] || (article.category || 'News');
+    const catColor = CATEGORY_COLORS[article.category] || '#b80000';
+    const initials = (article.author || 'N').charAt(0).toUpperCase();
+ 
+    document.getElementById('articleRoot').innerHTML = `
+        <div class="bbc-breadcrumb">
+            <a href="index.html">Home</a> &nbsp;›&nbsp;
+            <a href="index.html?cat=${article.category}">${catName}</a>
+        </div>
+ 
+        <div class="bbc-article-header">
+            <div class="kicker-row">
+                <a class="kicker" href="index.html?cat=${article.category}" style="color:${catColor}">${catName}</a>
+                ${renderLiveKicker(article)}
+            </div>
+            <h1 class="article-title">${article.title}</h1>
+            ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}
+        </div>
+ 
+        <div class="bbc-article-header">
+            <div class="byline-row">
+                <div class="avatar">${initials}</div>
+                <div class="byline-text">By <strong>${article.author || 'Newzyy'}</strong><br>${article.time || 'Just now'}</div>
+                <div class="byline-meta">
+                    <span>${getReadingTime(article.body || article.excerpt)} min read</span>
+                    <span id="viewCountDisplay"><i class="fa fa-eye"></i> ${formatViews(article.views)} views</span>
+                </div>
+            </div>
+        </div>
+ 
+        <div class="bbc-article-image">
+            <img src="${article.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200'" alt="${article.title}">
+        </div>
+ 
+        <div class="bbc-article-body">
+            ${renderBody(article.body || article.excerpt)}
+        </div>
+ 
+        ${article.source_url ? `
+            <div class="bbc-source-line">
+                Originally reported by <strong>${article.source || 'the source'}</strong>.
+                <a href="${article.source_url}" target="_blank" rel="noopener noreferrer">Read the full original article →</a>
+            </div>
+        ` : ''}
+ 
+        <div class="bbc-share-row">
+            <div class="tags"><span>Tags</span><a href="index.html?cat=${article.category}">${catName}</a></div>
+            <ul class="share-icons list-unstyled d-flex m-0">
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(article.title)}" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
+            </ul>
+        </div>
+ 
+        <div id="relatedRoot"></div>
+        <div class="bbc-sidebar">
+            <div class="sidebar-widget">
+                <h3 class="section-label">Most Read</h3>
+                <div id="mostReadRoot"></div>
+            </div>
+        </div>
+    `;
+ 
+    loadRelated(article);
+    loadMostRead();
+    registerView(article.id);
+}
+ 
+function renderRelatedGrid(items) {
+    const root = document.getElementById('relatedRoot');
+    if (!root || !items.length) { if (root) root.innerHTML = ''; return; }
+    root.innerHTML = `
+        <div class="bbc-related">
+            <h3 class="section-label">Related Stories</h3>
+            <div class="related-grid">
+                ${items.map(a => `
+                    <div class="related-item" onclick="window.location.href='single-post.html?id=${a.id}'">
+                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+                        <div class="cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</div>
+                        <div class="title">${a.title}</div>
+                        <div class="meta">${a.time || 'Just now'}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+}
+ 
+async function loadRelated(article) {
+    try {
+        const res = await fetch(`${API_BASE}/api/category/${article.category}?limit=6`);
+        const data = await res.json();
+        const items = (data.news || []).filter(a => a.id !== article.id).slice(0, 4);
+        renderRelatedGrid(items);
+    } catch (e) {
+        console.error('related fetch error:', e);
+    }
+}
+ 
+async function loadMostRead() {
+    const root = document.getElementById('mostReadRoot');
+    if (!root) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/most-read`);
+        const data = await res.json();
+        const items = (data.news || []).slice(0, 5);
+        if (!items.length) { root.innerHTML = '<p class="text-muted small">No data yet.</p>'; return; }
+        root.innerHTML = items.map((a, i) => `
+            <div class="most-read-item" onclick="window.location.href='single-post.html?id=${a.id}'">
+                <div class="rank">${i + 1}</div>
+                <div class="title">${a.title}</div>
+            </div>
+        `).join('');
+    } catch (e) {
+        root.innerHTML = '<p class="text-muted small">Could not load.</p>';
+    }
+}
+ 
+// Real server-side view count — fires once per page load, updates DB permanently.
+async function registerView(id) {
+    try {
+        await fetch(`${API_BASE}/api/article/${id}/view`, { method: 'POST' });
+    } catch (e) { /* non-critical */ }
+}
+ 
+function updateTrendingBar(items) {
+    const container = document.getElementById('trendingTrack');
+    if (!container) return;
+    if (!items.length) { container.innerHTML = '<span class="item">Welcome to Newzyy</span>'; return; }
+    container.innerHTML = items.slice(0, 10).map(a => `
+        <span class="item"><a href="single-post.html?id=${a.id}">${a.title}</a></span>
+    `).join('');
+}
+ 
+function renderNotFound() {
+    document.getElementById('articleRoot').innerHTML = `
+        <div class="bbc-state-msg">
+            <h4>Article not found</h4>
+            <p class="text-muted">This story may have been removed or the link is incorrect.</p>
+            <a href="index.html">← Back to Newzyy home</a>
+        </div>
+    `;
+}
+ 
+// reading progress rail
+window.addEventListener('scroll', () => {
+    const el = document.documentElement;
+    const scrolled = (el.scrollTop) / (el.scrollHeight - el.clientHeight) * 100;
+    const bar = document.getElementById('readProgress');
+    if (bar) bar.style.width = (scrolled || 0) + '%';
+});
+ 
+async function init() {
+    updateAccountLinks();
+    const id = new URLSearchParams(window.location.search).get('id');
+    if (!id) { renderNotFound(); return; }
+ 
+    try {
+        const res = await fetch(`${API_BASE}/api/article/${id}`);
+        if (!res.ok) { renderNotFound(); return; }
+        const data = await res.json();
+        if (!data.success || !data.article) { renderNotFound(); return; }
+        renderArticle(data.article);
+    } catch (e) {
+        console.error('article fetch error:', e);
+        renderNotFound();
+    }
+ 
+    try {
+        const res2 = await fetch(`${API_BASE}/api/all-news?limit=10`);
+        const data2 = await res2.json();
+        updateTrendingBar(data2.news || []);
+    } catch (e) { /* non-critical */ }
+}
+ 
+document.addEventListener('DOMContentLoaded', init);
+</script>
+ 
 </body>
 </html>
