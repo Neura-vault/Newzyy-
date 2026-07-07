@@ -760,3 +760,24 @@ a.read-more:hover i {
 .post-block-wrapper:nth-child(4) { animation-delay: 0.20s; }
 .post-block-wrapper:nth-child(5) { animation-delay: 0.25s; }
 .post-block-wrapper:nth-child(6) { animation-delay: 0.30s; }
+
+/* ===== PAGINATION CENTER FIX ===== */
+.pagination-wrapper {
+    text-align: center !important;
+}
+
+.pagination {
+    justify-content: center !important;
+    display: flex !important;
+    padding-left: 0 !important;
+    list-style: none !important;
+}
+
+.pagination .page-item {
+    display: inline-block !important;
+    float: none !important;
+}
+
+.pagination .page-link {
+    float: none !important;
+}
