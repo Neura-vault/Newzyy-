@@ -286,6 +286,8 @@ function renderBody(bodyText) {
         });
         if (chunk.trim()) paras.push(chunk.trim());
     }
+    // Fallback: agar paras empty hai toh poori body daal do
+    if (paras.length === 0) paras = [bodyText];
     return paras.map(p => `<p>${escapeHtml(p)}</p>`).join('');
 }
  
