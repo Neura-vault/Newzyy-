@@ -21,58 +21,147 @@
     <link rel="stylesheet" href="css/style.css?v=2">
     
     <style>
-        /* ===== BBC-STYLE CLEAN HEADER ===== */
-        .bbc-top-bar {
-            background: #0a0a0a;
-            padding: 6px 0;
-            border-bottom: 1px solid #222;
+        /* ===== PROFESSIONAL WHITE HEADER ===== */
+        .pro-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e4df;
+            padding: 10px 0;
         }
-        .bbc-top-bar .logo-text {
-            font-size: 1.6rem;
+        .pro-header .logo-text {
+            font-size: 1.8rem;
             font-weight: 800;
-            color: #ffffff;
+            color: #0a0a0a;
             letter-spacing: -0.5px;
         }
-        .bbc-top-bar .logo-text span { color: #e8380d; }
-        .bbc-top-bar .logo-text small { font-size: 0.55rem; font-weight: 400; color: #888; margin-left: 4px; }
+        .pro-header .logo-text span { color: #e8380d; }
+        .pro-header .logo-text small {
+            font-size: 0.55rem;
+            font-weight: 400;
+            color: #888;
+            margin-left: 4px;
+        }
         
-        .bbc-top-bar .search-input {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 20px;
-            padding: 5px 14px;
-            color: #fff;
+        /* Search */
+        .pro-header .search-wrapper {
+            position: relative;
+        }
+        .pro-header .search-wrapper .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
             font-size: 0.8rem;
-            width: 180px;
+        }
+        .pro-header .search-input {
+            background: #f5f5f0;
+            border: 1px solid #e8e4df;
+            border-radius: 30px;
+            padding: 7px 16px 7px 36px;
+            color: #0a0a0a;
+            font-size: 0.85rem;
+            width: 220px;
             outline: none;
             transition: 0.3s;
         }
-        .bbc-top-bar .search-input:focus {
+        .pro-header .search-input:focus {
             border-color: #e8380d;
-            width: 200px;
+            box-shadow: 0 0 0 3px rgba(232,56,13,0.1);
+            width: 250px;
         }
-        .bbc-top-bar .search-input::placeholder { color: #666; }
+        .pro-header .search-input::placeholder { color: #999; }
         
-        .bbc-top-bar .top-right a {
-            color: #ccc;
+        /* Account Section - Professional */
+        .pro-header .account-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .pro-header .account-section .btn-login {
+            background: transparent;
+            border: 1.5px solid #e8380d;
+            color: #e8380d;
+            padding: 6px 18px;
+            border-radius: 30px;
             font-size: 0.8rem;
             font-weight: 600;
             transition: 0.3s;
             text-decoration: none;
-            padding: 4px 10px;
         }
-        .bbc-top-bar .top-right a:hover { color: #fff; }
-        .bbc-top-bar .top-right .separator { color: #444; margin: 0 4px; }
-        .bbc-top-bar .top-right .user-name { color: #e8380d; font-weight: 700; }
+        .pro-header .account-section .btn-login:hover {
+            background: #e8380d;
+            color: #fff;
+        }
+        .pro-header .account-section .btn-signup {
+            background: #e8380d;
+            border: 1.5px solid #e8380d;
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+        .pro-header .account-section .btn-signup:hover {
+            background: #c42e09;
+            border-color: #c42e09;
+        }
         
-        /* BBC-Style Navbar */
-        .bbc-nav {
-            background: #0a0a0a;
-            padding: 0;
-            border-bottom: 1px solid #222;
+        /* User Logged In */
+        .pro-header .account-section .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
-        .bbc-nav .nav-link {
-            color: #ccc !important;
+        .pro-header .account-section .user-profile .avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #e8380d;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .pro-header .account-section .user-profile .user-name {
+            font-weight: 600;
+            color: #0a0a0a;
+            font-size: 0.85rem;
+        }
+        .pro-header .account-section .user-profile .btn-logout {
+            background: transparent;
+            border: 1px solid #e8e4df;
+            color: #666;
+            padding: 4px 14px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            transition: 0.3s;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .pro-header .account-section .user-profile .btn-logout:hover {
+            background: #f5f5f0;
+            border-color: #ccc;
+        }
+        
+        /* Separator */
+        .pro-header .divider {
+            width: 1px;
+            height: 28px;
+            background: #e8e4df;
+        }
+        
+        /* BBC-Style Navbar (White Background) */
+        .pro-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e8e4df;
+            padding: 0;
+        }
+        .pro-nav .nav-link {
+            color: #4a4a4a !important;
             font-size: 0.75rem;
             font-weight: 600;
             padding: 10px 14px !important;
@@ -81,23 +170,25 @@
             border-bottom: 2px solid transparent;
             transition: 0.3s;
         }
-        .bbc-nav .nav-link:hover,
-        .bbc-nav .nav-link.active {
-            color: #fff !important;
+        .pro-nav .nav-link:hover,
+        .pro-nav .nav-link.active {
+            color: #e8380d !important;
             border-bottom-color: #e8380d;
         }
         
         /* Responsive */
         @media (max-width: 992px) {
-            .bbc-top-bar .search-input { width: 120px; }
-            .bbc-top-bar .search-input:focus { width: 140px; }
-            .bbc-nav .nav-link { font-size: 0.65rem; padding: 8px 10px !important; }
+            .pro-header .search-input { width: 160px; }
+            .pro-header .search-input:focus { width: 180px; }
+            .pro-nav .nav-link { font-size: 0.65rem; padding: 8px 10px !important; }
         }
         @media (max-width: 768px) {
-            .bbc-top-bar .logo-text { font-size: 1.2rem; }
-            .bbc-top-bar .search-input { width: 100px; font-size: 0.7rem; }
-            .bbc-top-bar .top-right a { font-size: 0.7rem; padding: 2px 6px; }
-            .bbc-nav .nav-link { font-size: 0.6rem; padding: 6px 8px !important; }
+            .pro-header .logo-text { font-size: 1.3rem; }
+            .pro-header .search-input { width: 120px; font-size: 0.75rem; padding: 5px 12px 5px 30px; }
+            .pro-header .search-wrapper .search-icon { left: 8px; font-size: 0.7rem; }
+            .pro-header .account-section .btn-login,
+            .pro-header .account-section .btn-signup { padding: 4px 12px; font-size: 0.7rem; }
+            .pro-nav .nav-link { font-size: 0.6rem; padding: 6px 8px !important; }
         }
     </style>
 </head>
@@ -139,8 +230,8 @@
     </div>
 </div>
 
-<!-- ===== BBC-STYLE HEADER ===== -->
-<div class="bbc-top-bar">
+<!-- ===== PROFESSIONAL WHITE HEADER ===== -->
+<header class="pro-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             <!-- Logo -->
@@ -151,19 +242,27 @@
             
             <!-- Search + Account -->
             <div class="d-flex align-items-center gap-3 flex-wrap">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+                <!-- Search -->
+                <div class="search-wrapper">
+                    <i class="fa fa-search search-icon"></i>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search news...">
+                </div>
                 
-                <div class="top-right d-flex align-items-center" id="accountSection">
+                <!-- Divider -->
+                <span class="divider d-none d-sm-block"></span>
+                
+                <!-- Account Section -->
+                <div class="account-section" id="accountSection">
                     <!-- Dynamic content via JS -->
                     <span id="accountLinks"></span>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</header>
 
-<!-- ===== BBC-STYLE NAVBAR ===== -->
-<nav class="bbc-nav">
+<!-- ===== BBC-STYLE NAVBAR (WHITE) ===== -->
+<nav class="pro-nav">
     <div class="container">
         <div class="d-flex flex-wrap" id="navLinks">
             <a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a>
@@ -183,7 +282,7 @@
     </div>
 </nav>
 
-<!-- ===== MAIN CONTENT (BAQI SAB WAISA HI) ===== -->
+<!-- ===== MAIN CONTENT ===== -->
 <div class="py-30"></div>
 
 <!-- ===== CAROUSEL ===== -->
@@ -278,7 +377,7 @@
 
 <script>
 // ============================================================
-//  NEWZYY — COMPLETE SCRIPT (BBC-STYLE HEADER)
+//  NEWZYY — PROFESSIONAL HEADER SCRIPT
 // ============================================================
 
 // ===== BACKEND API =====
@@ -309,23 +408,25 @@ const CATEGORY_ICONS = {
     economy: 'coins'
 };
 
-// ===== UPDATE ACCOUNT LINKS (TOP-RIGHT) =====
+// ===== UPDATE ACCOUNT LINKS (Professional) =====
 function updateAccountLinks() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
     const container = document.getElementById('accountLinks');
     if (!container) return;
     
     if (loggedIn) {
+        const initials = loggedIn.name.charAt(0).toUpperCase();
         container.innerHTML = `
-            <span class="user-name">👋 ${loggedIn.name}</span>
-            <span class="separator">|</span>
-            <a href="#" onclick="logoutUser(); return false;">Logout</a>
+            <div class="user-profile">
+                <div class="avatar">${initials}</div>
+                <span class="user-name">${loggedIn.name}</span>
+                <button class="btn-logout" onclick="logoutUser()">Logout</button>
+            </div>
         `;
     } else {
         container.innerHTML = `
-            <a href="account.html">Log In</a>
-            <span class="separator">|</span>
-            <a href="signup.html">Register</a>
+            <a href="account.html" class="btn-login">Log In</a>
+            <a href="signup.html" class="btn-signup">Register</a>
         `;
     }
 }
@@ -448,8 +549,8 @@ function loadMore() {
 function filterCategory(cat) {
     currentFilter = cat;
     displayCount = 6;
-    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
+    document.querySelectorAll('.pro-nav .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.pro-nav .nav-link').forEach(el => {
         const text = el.textContent.toLowerCase().trim();
         if (text === cat || (cat === 'all' && text === 'home')) {
             el.classList.add('active');
