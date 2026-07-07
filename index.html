@@ -18,406 +18,195 @@
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <link rel="stylesheet" href="css/style.css?v=3">
-    
-    <style>
-        /* ===== NEWZYY CUSTOM STYLES (BBC-Inspired) ===== */
-        
-        /* 1. Root Variables */
-        :root {
-            --newzyy-red: #e8380d;
-            --newzyy-dark: #0a0a0a;
-            --newzyy-light: #f5f5f0;
-            --newzyy-card: #ffffff;
-            --newzyy-border: #e8e4df;
-            --newzyy-text: #0a0a0a;
-            --newzyy-muted: #6a6a6a;
-        }
-        
-        body {
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-            background: var(--newzyy-light);
-            color: var(--newzyy-text);
-        }
-        
-        /* 2. BBC-Inspired Header */
-        .n-header {
-            background: var(--newzyy-dark);
-            padding: 12px 0;
-            border-bottom: 3px solid var(--newzyy-red);
-        }
-        .n-header .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #ffffff;
-            letter-spacing: -0.5px;
-        }
-        .n-header .logo span { color: var(--newzyy-red); }
-        .n-header .logo small { font-size: 0.6rem; font-weight: 400; color: #888; margin-left: 4px; }
-        .n-header .search-input {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            border-radius: 20px;
-            padding: 6px 16px;
-            color: #ffffff;
-            font-size: 0.85rem;
-            width: 200px;
-            outline: none;
-            transition: 0.3s;
-        }
-        .n-header .search-input:focus {
-            border-color: var(--newzyy-red);
-            width: 240px;
-        }
-        .n-header .search-input::placeholder { color: #666; }
-        
-        /* 3. BBC-Inspired Nav */
-        .n-nav {
-            background: var(--newzyy-dark);
-            padding: 0;
-            border-bottom: 1px solid #222;
-        }
-        .n-nav .nav-link {
-            color: #ccc !important;
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 12px 16px !important;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            border-bottom: 3px solid transparent;
-            transition: 0.3s;
-        }
-        .n-nav .nav-link:hover,
-        .n-nav .nav-link.active {
-            color: #fff !important;
-            border-bottom-color: var(--newzyy-red);
-        }
-        .n-nav .nav-link.dropdown-toggle::after { display: none; }
-        
-        /* 4. BBC-Inspired Trending Bar */
-        .n-trending {
-            background: var(--newzyy-red);
-            color: #fff;
-            padding: 6px 0;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .n-trending .label {
-            background: rgba(0,0,0,0.25);
-            padding: 2px 14px;
-            font-weight: 700;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-right: 16px;
-            border-radius: 2px;
-        }
-        .n-trending .track {
-            display: inline-block;
-            animation: scrollTicker 50s linear infinite;
-        }
-        .n-trending .track .item {
-            display: inline-block;
-            padding: 0 30px;
-            font-size: 0.85rem;
-        }
-        .n-trending .track .item a { color: #fff; text-decoration: none; }
-        .n-trending .track .item a:hover { text-decoration: underline; }
-        
-        @keyframes scrollTicker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        /* 5. BBC-Inspired Hero */
-        .n-hero {
-            background: var(--newzyy-card);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 24px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .n-hero:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.08); }
-        .n-hero img { width: 100%; height: 340px; object-fit: cover; }
-        .n-hero .content { padding: 24px 28px; background: var(--newzyy-card); }
-        .n-hero .content .category {
-            font-size: 0.7rem;
-            color: var(--newzyy-red);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .n-hero .content .title {
-            font-size: 1.8rem;
-            font-weight: 800;
-            line-height: 1.2;
-            margin: 8px 0;
-        }
-        .n-hero .content .title a { color: var(--newzyy-text); text-decoration: none; }
-        .n-hero .content .title a:hover { color: var(--newzyy-red); }
-        .n-hero .content .meta {
-            font-size: 0.8rem;
-            color: var(--newzyy-muted);
-        }
-        
-        /* 6. BBC-Inspired Card */
-        .n-card {
-            background: var(--newzyy-card);
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--newzyy-border);
-            margin-bottom: 16px;
-        }
-        .n-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.06); }
-        .n-card .row { margin: 0; }
-        .n-card img {
-            width: 100%;
-            height: 160px;
-            object-fit: cover;
-        }
-        .n-card .body { padding: 16px 20px; }
-        .n-card .body .category {
-            font-size: 0.65rem;
-            color: var(--newzyy-red);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-        .n-card .body .title {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin: 6px 0;
-            line-height: 1.3;
-        }
-        .n-card .body .title a { color: var(--newzyy-text); text-decoration: none; }
-        .n-card .body .title a:hover { color: var(--newzyy-red); }
-        .n-card .body .excerpt {
-            font-size: 0.9rem;
-            color: var(--newzyy-muted);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-        }
-        .n-card .body .meta {
-            font-size: 0.75rem;
-            color: var(--newzyy-muted);
-            margin-top: 8px;
-        }
-        
-        /* 7. BBC-Inspired Pagination */
-        .n-pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-            padding: 30px 0;
-            flex-wrap: wrap;
-        }
-        .n-pagination .btn-page {
-            padding: 8px 16px;
-            border: 1px solid var(--newzyy-border);
-            background: var(--newzyy-card);
-            color: var(--newzyy-text);
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: 0.3s;
-            min-width: 40px;
-            text-align: center;
-        }
-        .n-pagination .btn-page:hover {
-            background: var(--newzyy-red);
-            color: #fff;
-            border-color: var(--newzyy-red);
-        }
-        .n-pagination .btn-page.active {
-            background: var(--newzyy-red);
-            color: #fff;
-            border-color: var(--newzyy-red);
-        }
-        .n-pagination .btn-page.disabled {
-            opacity: 0.4;
-            cursor: not-allowed;
-        }
-        .n-pagination .btn-page.disabled:hover {
-            background: var(--newzyy-card);
-            color: var(--newzyy-text);
-            border-color: var(--newzyy-border);
-        }
-        
-        /* 8. BBC-Inspired Sidebar */
-        .n-sidebar .widget {
-            background: var(--newzyy-card);
-            padding: 16px 20px;
-            border-radius: 8px;
-            border: 1px solid var(--newzyy-border);
-            margin-bottom: 20px;
-        }
-        .n-sidebar .widget .widget-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--newzyy-text);
-            border-bottom: 2px solid var(--newzyy-red);
-            padding-bottom: 8px;
-            margin-bottom: 14px;
-        }
-        .n-sidebar .widget .topic-tag {
-            padding: 4px 14px;
-            background: var(--newzyy-light);
-            border-radius: 20px;
-            font-size: 0.75rem;
-            color: var(--newzyy-text);
-            cursor: pointer;
-            border: 1px solid var(--newzyy-border);
-            transition: 0.3s;
-        }
-        .n-sidebar .widget .topic-tag:hover {
-            background: var(--newzyy-red);
-            color: #fff;
-            border-color: var(--newzyy-red);
-        }
-        
-        /* 9. BBC-Inspired Footer */
-        .n-footer {
-            background: var(--newzyy-dark);
-            color: #ccc;
-            padding: 40px 0 20px;
-            margin-top: 40px;
-            border-top: 3px solid var(--newzyy-red);
-        }
-        .n-footer a { color: #ccc; text-decoration: none; font-size: 0.85rem; transition: 0.3s; }
-        .n-footer a:hover { color: #fff; }
-        .n-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        .n-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
-        
-        /* 10. Responsive */
-        @media (max-width: 768px) {
-            .n-header .logo { font-size: 1.4rem; }
-            .n-header .search-input { width: 140px; }
-            .n-header .search-input:focus { width: 160px; }
-            .n-hero img { height: 200px; }
-            .n-hero .content .title { font-size: 1.3rem; }
-            .n-card img { height: 120px; }
-            .n-nav .nav-link { font-size: 0.7rem; padding: 8px 10px !important; }
-        }
-        @media (max-width: 576px) {
-            .n-header .search-input { width: 100px; }
-            .n-hero img { height: 160px; }
-            .n-hero .content { padding: 16px; }
-            .n-hero .content .title { font-size: 1.1rem; }
-            .n-card .body { padding: 12px 16px; }
-            .n-card .body .title { font-size: 0.95rem; }
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
 <!-- ===== TRENDING BAR ===== -->
-<div class="n-trending">
-    <span class="label">⚡ Breaking</span>
-    <div class="track" id="tickerTrack">
-        <span class="item">Loading news...</span>
+<div class="trending-bar-dark hidden-xs">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h3 class="trending-bar-title">Trending News</h3>
+                <div class="trending-news-slider" id="tickerContainer">
+                    <div class="item">
+                        <div class="post-content">
+                            <h2 class="post-title title-sm">
+                                <a href="single-post.html">Loading news...</a>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 col-sm-12 col-xs-12 top-nav-social-lists text-lg-right col-lg-4 ml-lg-auto">
+                <ul class="list-unstyled mt-4 mt-lg-0">
+                    <li>
+                        <a href="#"><span class="social-icon"><i class="fa fa-facebook-f"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-twitter"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-google-plus"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-youtube"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-linkedin"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-pinterest-p"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-rss"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-github"></i></span></a>
+                        <a href="#"><span class="social-icon"><i class="fa fa-reddit-alien"></i></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
 <!-- ===== HEADER ===== -->
-<header class="n-header">
+<header class="header-navigation d-none d-lg-block">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <div class="logo">
-                Newzy<span>y</span>
-                <small>News</small>
+        <div class="row align-items-center">
+            <div class="col-xs-12 col-sm-3 col-md-3">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="images/logos/logo.png" alt="Newzyy" style="max-height:35px; width:auto;">
+                    </a>
+                </div>
             </div>
-            <div class="d-flex align-items-center gap-3">
-                <input type="text" id="searchInput" class="search-input" placeholder="Search...">
-                <button class="btn btn-sm btn-outline-light" onclick="toggleTheme()" style="border-radius:50%;width:36px;height:36px;padding:0;">🌓</button>
+            <div class="col-xs-12 col-sm-9 col-md-9">
+                <a href="#"></a>
             </div>
         </div>
     </div>
 </header>
 
 <!-- ===== NAVBAR ===== -->
-<nav class="n-nav">
+<div class="main-navbar clearfix bg-dark">
     <div class="container">
-        <div class="d-flex flex-wrap" id="navLinks">
-            <a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a>
-            <a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a>
-            <a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a>
-            <a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a>
-            <a class="nav-link" href="#" onclick="filterCategory('business')">Business</a>
-            <a class="nav-link" href="#" onclick="filterCategory('health')">Health</a>
-            <a class="nav-link" href="#" onclick="filterCategory('science')">Science</a>
-            <a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a>
-            <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
-            <div class="dropdown-menu" id="accountDropdown" style="background:#0a0a0a;border:1px solid #222;">
-                <a class="dropdown-item" href="account.html" style="color:#ccc;">Log In</a>
-                <a class="dropdown-item" href="signup.html" style="color:#ccc;">Register</a>
+        <div class="row">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg site-main-nav navigation">
+                    <a class="navbar-brand d-lg-none" href="index.html">
+                        <img src="images/logos/footer-logo.png" alt="Newzyy" style="max-height:30px; width:auto;">
+                    </a>
+  
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="fa fa-bars"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item"><a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('business')">Business</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('health')">Health</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('science')">Science</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a></li>
+                            <li class="nav-item dropdown" id="accountNav">
+                                <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
+                                <div class="dropdown-menu" id="accountDropdown">
+                                    <a class="dropdown-item" href="account.html">Log In</a>
+                                    <a class="dropdown-item" href="signup.html">Register</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="nav-search ml-auto d-none d-lg-block">
+                            <span id="search"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div>
     </div>
-</nav>
-
-<!-- ===== MAIN CONTENT ===== -->
-<main class="container py-4">
-
-    <!-- ===== HERO ===== -->
-    <div id="heroCarousel"></div>
-
-    <!-- ===== NEWS GRID ===== -->
-    <div class="row">
-        <div class="col-lg-8">
-            <div id="newsContainer">
-                <div class="text-center py-5">
-                    <div class="spinner-border text-danger" role="status"></div>
-                    <p class="mt-2 text-muted">Loading news...</p>
-                </div>
-            </div>
-            
-            <!-- ===== PAGINATION ===== -->
-            <div class="n-pagination" id="paginationContainer">
-                <button class="btn-page" id="prevPage" onclick="goToPage(currentPage - 1)">‹</button>
-                <div id="pageNumbers"></div>
-                <button class="btn-page" id="nextPage" onclick="goToPage(currentPage + 1)">›</button>
-            </div>
+    <form class="site-search" method="get">
+        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
+        <div class="search-close">
+            <span class="close-search"><i class="fa fa-times"></i></span>
         </div>
+    </form>
+</div>
 
-        <!-- ===== SIDEBAR ===== -->
-        <div class="col-lg-4 n-sidebar">
-            <div class="widget">
-                <h4 class="widget-title">🔥 Trending</h4>
-                <div id="trendingTopics" class="d-flex flex-wrap gap-2">
-                    <span class="topic-tag">Loading...</span>
+<div class="py-30"></div>
+
+<!-- ===== CAROUSEL ===== -->
+<section class="featured-posts">
+    <div class="container">
+        <div id="heroCarousel"></div>
+    </div>
+</section>
+
+<!-- ===== NEWS CONTAINER ===== -->
+<section class="block-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+                <div id="newsContainer">
+                    <div class="loader" style="text-align:center;padding:60px;">
+                        <div class="spinner" style="display:inline-block;width:40px;height:40px;border:4px solid #e8e4df;border-top:4px solid #e8380d;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+                        <p style="margin-top:16px;color:#6a6a6a;">Loading news...</p>
+                    </div>
+                </div>
+                
+                <div class="load-more-btn" id="loadMoreBtn" style="display:none;text-align:center;margin:40px 0;">
+                    <button onclick="loadMore()" style="padding:12px 32px;background:#e8380d;color:white;border:none;border-radius:40px;cursor:pointer;font-weight:700;">Load More →</button>
                 </div>
             </div>
-            <div class="widget">
-                <h4 class="widget-title">📬 Connect</h4>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-youtube"></i></a>
+
+            <!-- ===== SIDEBAR ===== -->
+            <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="widget">
+                        <h3 class="news-title"><span>Stay in touch</span></h3>
+                        <ul class="list-inline social-widget">
+                            <li class="list-inline-item"><a class="social-page youtube" href="#"><i class="fa fa-play"></i></a></li>
+                            <li class="list-inline-item"><a class="social-page facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li class="list-inline-item"><a class="social-page twitter" href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li class="list-inline-item"><a class="social-page pinterest" href="#"><i class="fa fa-pinterest"></i></a></li>
+                            <li class="list-inline-item"><a class="social-page linkedin" href="#"><i class="fa fa-linkedin"></i></a></li>
+                            <li class="list-inline-item"><a class="social-page youtube" href="#"><i class="fa fa-youtube"></i></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="widget" id="trendingTopics">
+                        <h3 class="news-title"><span>Trending Topics</span></h3>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                            <span class="trending-topic">Loading...</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</main>
+</section>
 
 <!-- ===== FOOTER ===== -->
-<footer class="n-footer">
+<footer class="footer footer-main">
     <div class="container">
-        <div class="links">
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-sm-12 col-lg-6 text-center">
+                <a href="index.html">
+                    <img src="images/logos/footer-logo.png" alt="Newzyy" style="max-width:140px; height:auto;">
+                </a>
+                <p class="mt-4">Newzyy — Fast, reliable, and independent news from around the world.</p>
+
+                <ul class="list-inline footer-social">
+                    <li class="li list-inline-item"><a href="https://www.facebook.com/newzyy"><i class="fa fa-facebook"></i></a></li>
+                    <li class="li list-inline-item"><a href="https://twitter.com/newzyy"><i class="fa fa-twitter"></i></a></li>
+                    <li class="li list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                    <li class="li list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                    <li class="li list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>
+                    <li class="li list-inline-item"><a href="#"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+
+                <div class="copyright-text text-center">
+                    <p class="mb-0">© 2026 Newzyy — Independent Journalism</p>
+                </div>
+            </div>
+
+            <div class="scroll-to-top">
+                <button class="btn btn-primary" title="Back to Top">
+                    <i class="fa fa-angle-up"></i>
+                </button>
+            </div>
         </div>
-        <div class="copyright">© 2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
 
@@ -425,31 +214,32 @@
 <script src="plugins/jquery/jquery.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/slick-carousel/slick.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
+<script src="plugins/google-map/gmap.js"></script>
 <script src="js/custom.js"></script>
 
 <script>
 // ============================================================
-//  NEWZYY — BBC-INSPIRED COMPLETE SCRIPT
+//  NEWZYY — COMPLETE BACKEND CONNECTED SCRIPT
 // ============================================================
 
 // ===== BACKEND API =====
 const API_BASE = 'https://newzyy.onrender.com';
 let allNews = [];
 let currentFilter = 'all';
-let currentPage = 1;
-const ITEMS_PER_PAGE = 6;
-let totalPages = 1;
+let displayCount = 6;
+let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
 
 // ===== CATEGORIES =====
 const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment'];
-const CATEGORY_COLORS = {
-    politics: '#e8380d',
-    technology: '#2563eb',
-    sports: '#16a34a',
-    business: '#7c3aed',
-    health: '#0891b2',
-    science: '#d97706',
-    entertainment: '#dc2626'
+const CATEGORY_ICONS = {
+    politics: 'landmark',
+    technology: 'microchip',
+    sports: 'futbol',
+    business: 'chart-line',
+    health: 'heartbeat',
+    science: 'flask',
+    entertainment: 'film'
 };
 
 // ===== LOGIN/LOGOUT =====
@@ -462,15 +252,15 @@ function updateNavbar() {
         accountLink.textContent = loggedIn.name + ' ▼';
         if (accountDropdown) {
             accountDropdown.innerHTML = `
-                <a class="dropdown-item" href="#" onclick="logoutUser(); return false;" style="color:#ccc;">🚪 Logout</a>
+                <a class="dropdown-item" href="#" onclick="logoutUser(); return false;">🚪 Logout</a>
             `;
         }
     } else if (!loggedIn && accountLink) {
         accountLink.textContent = 'Account ▼';
         if (accountDropdown) {
             accountDropdown.innerHTML = `
-                <a class="dropdown-item" href="account.html" style="color:#ccc;">Log In</a>
-                <a class="dropdown-item" href="signup.html" style="color:#ccc;">Register</a>
+                <a class="dropdown-item" href="account.html">Log In</a>
+                <a class="dropdown-item" href="signup.html">Register</a>
             `;
         }
     }
@@ -483,10 +273,40 @@ function logoutUser() {
     }
 }
 
-// ===== UTILITY =====
+// ===== UTILITY FUNCTIONS =====
 function getReadingTime(text) {
     const words = (text || '').split(/\s+/).length;
     return Math.max(1, Math.ceil(words / 200));
+}
+
+function formatTimeAgo(dateString) {
+    if (!dateString) return 'Just now';
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMins = Math.floor((now - date) / 60000);
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return diffMins + 'm ago';
+    const diffHours = Math.floor(diffMins / 60);
+    if (diffHours < 24) return diffHours + 'h ago';
+    const diffDays = Math.floor(diffHours / 24);
+    return diffDays + 'd ago';
+}
+
+function showToast(msg) {
+    let t = document.getElementById('toast');
+    if (!t) {
+        t = document.createElement('div');
+        t.id = 'toast';
+        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#e8380d;color:white;padding:12px 24px;border-radius:40px;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;';
+        document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.transform = 'translateX(-50%) translateY(0)';
+    t.style.opacity = '1';
+    setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(-50%) translateY(100px)';
+    }, 3000);
 }
 
 // ===== FETCH NEWS =====
@@ -496,208 +316,245 @@ async function fetchNews() {
         const data = await res.json();
         if (data.success && data.news) {
             allNews = data.news;
-            console.log('✅ Loaded ' + allNews.length + ' articles');
+            console.log('✅ Loaded ' + allNews.length + ' news articles');
         } else {
             allNews = [];
+            console.warn('⚠️ No news found');
         }
     } catch(e) {
         console.error('❌ Fetch error:', e);
         allNews = [];
     }
-    currentPage = 1;
+    displayCount = 6;
     renderAll();
     updateTicker();
-    renderHero();
-    renderTrending();
+    renderCarousel();
+    renderTrendingTopics();
 }
 
 // ===== RENDER ALL NEWS =====
 function renderAll() {
     let f = currentFilter === 'all' ? allNews : allNews.filter(n => n.category === currentFilter);
-    totalPages = Math.max(1, Math.ceil(f.length / ITEMS_PER_PAGE));
-    if (currentPage > totalPages) currentPage = totalPages;
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    const pageItems = f.slice(start, start + ITEMS_PER_PAGE);
     
     const container = document.getElementById('newsContainer');
     if (!container) return;
     
-    if (!pageItems.length) {
+    if (!f.length) {
         container.innerHTML = `
-            <div class="text-center py-5">
-                <h3 style="color:var(--newzyy-red);">📭 No News Found</h3>
-                <p class="text-muted">Try checking back later.</p>
-                <button onclick="filterCategory('all')" class="btn btn-danger">Show All</button>
+            <div style="text-align:center;padding:60px 20px;">
+                <h3 style="font-size:1.8rem;color:#e8380d;">📭 No News Found</h3>
+                <p style="color:#6a6a6a;margin-top:10px;">Try checking back later or select a different category.</p>
+                <button onclick="filterCategory('all')" style="margin-top:16px;padding:10px 28px;border-radius:40px;background:#e8380d;color:white;border:none;cursor:pointer;font-weight:600;">Show All News →</button>
             </div>
         `;
-        document.getElementById('paginationContainer').style.display = 'none';
+        document.getElementById('loadMoreBtn').style.display = 'none';
         return;
     }
     
     let html = '';
-    pageItems.forEach(a => {
+    CATEGORIES.forEach(cat => {
+        const articles = f.filter(n => n.category === cat).slice(0, displayCount);
+        if (!articles.length) return;
+        
         html += `
-            <div class="n-card" onclick="openNews('${a.id}')">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="body">
-                            <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
-                            <h4 class="title"><a href="single-post.html?id=${a.id}">${a.title}</a></h4>
-                            <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
-                            <div class="meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'} · ${getReadingTime(a.body || a.excerpt)} min</div>
+            <div style="margin-top:40px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;border-bottom:2px solid #e8380d;padding-bottom:6px;">
+                    <h2 style="font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#0a0a0a;">
+                        <i class="fas fa-${CATEGORY_ICONS[cat]}" style="color:#e8380d;"></i> ${cat.toUpperCase()}
+                    </h2>
+                    <span style="font-size:0.7rem;color:#e8380d;cursor:pointer;font-weight:600;" onclick="filterCategory('${cat}')">View all →</span>
+                </div>
+                <div class="grid-3">
+                    ${articles.map(a => `
+                        <div class="card" onclick="openNews('${a.id}')">
+                            <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+                            <div class="card-body">
+                                <span class="card-category">${a.category}</span>
+                                <div class="card-title">${a.title.substring(0,70)}${a.title.length > 70 ? '...' : ''}</div>
+                                <div class="card-meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'} · <span class="read-time">${getReadingTime(a.body || a.excerpt)} min</span></div>
+                            </div>
                         </div>
-                    </div>
+                    `).join('')}
                 </div>
             </div>
         `;
     });
     
     container.innerHTML = html;
-    updatePagination(totalPages);
+    
+    const totalDisplayed = CATEGORIES.reduce((sum, cat) => {
+        return sum + f.filter(n => n.category === cat).slice(0, displayCount).length;
+    }, 0);
+    const hasMore = f.length > totalDisplayed;
+    document.getElementById('loadMoreBtn').style.display = hasMore ? 'block' : 'none';
 }
 
-// ===== PAGINATION =====
-function updatePagination(total) {
-    const container = document.getElementById('paginationContainer');
-    if (!container) return;
-    if (total <= 1) { container.style.display = 'none'; return; }
-    container.style.display = 'flex';
-    
-    document.getElementById('prevPage').classList.toggle('disabled', currentPage <= 1);
-    document.getElementById('nextPage').classList.toggle('disabled', currentPage >= total);
-    
-    let pages = '';
-    const maxVisible = 5;
-    let start = Math.max(1, currentPage - Math.floor(maxVisible / 2));
-    let end = Math.min(total, start + maxVisible - 1);
-    if (end - start < maxVisible - 1) start = Math.max(1, end - maxVisible + 1);
-    
-    if (start > 1) { pages += `<button class="btn-page" onclick="goToPage(1)">1</button>`; if (start > 2) pages += `<span class="btn-page disabled">…</span>`; }
-    for (let i = start; i <= end; i++) pages += `<button class="btn-page ${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
-    if (end < total) { if (end < total - 1) pages += `<span class="btn-page disabled">…</span>`; pages += `<button class="btn-page" onclick="goToPage(${total})">${total}</button>`; }
-    
-    document.getElementById('pageNumbers').innerHTML = pages;
-}
-
-function goToPage(page) {
-    if (page < 1 || page > totalPages) return;
-    currentPage = page;
+function loadMore() {
+    displayCount += 6;
     renderAll();
-    window.scrollTo({ top: document.querySelector('.n-card')?.offsetTop - 80 || 0, behavior: 'smooth' });
 }
 
-// ===== FILTER =====
+// ===== FILTER CATEGORY =====
 function filterCategory(cat) {
     currentFilter = cat;
-    currentPage = 1;
-    document.querySelectorAll('.n-nav .nav-link').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.n-nav .nav-link').forEach(el => {
-        const text = el.textContent.toLowerCase().trim();
-        if (text === cat || (cat === 'all' && text === 'home')) el.classList.add('active');
+    displayCount = 6;
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(el => {
+        if (el.textContent.toLowerCase().trim() === cat || (cat === 'all' && el.textContent.trim() === 'Home')) {
+            el.classList.add('active');
+        }
     });
     renderAll();
+    showToast('📰 Showing: ' + (cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
 }
 
-// ===== HERO =====
-function renderHero() {
-    const container = document.getElementById('heroCarousel');
-    if (!container || !allNews.length) { container.innerHTML = ''; return; }
-    const top = allNews[0];
-    container.innerHTML = `
-        <div class="n-hero" onclick="openNews('${top.id}')">
-            <img src="${top.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'" loading="lazy">
-            <div class="content">
-                <span class="category">${top.category || 'News'}</span>
-                <h2 class="title"><a href="single-post.html?id=${top.id}">${top.title}</a></h2>
-                <div class="meta">${top.author || 'Newzyy'} · ${top.time || 'Just now'} · ${getReadingTime(top.body || top.excerpt)} min read</div>
+// ===== UPDATE TICKER =====
+function updateTicker() {
+    const container = document.getElementById('tickerContainer');
+    if (!container) return;
+    const h = allNews.slice(0, 10);
+    if (!h.length) {
+        container.innerHTML = '<div class="item"><div class="post-content"><h2 class="post-title title-sm"><a href="#">Welcome to Newzyy</a></h2></div></div>';
+        return;
+    }
+    container.innerHTML = h.map(a => `
+        <div class="item">
+            <div class="post-content">
+                <h2 class="post-title title-sm">
+                    <a href="single-post.html?id=${a.id}">${a.title}</a>
+                </h2>
             </div>
+        </div>
+    `).join('');
+    // Re-initialize slick slider
+    if (typeof $ !== 'undefined' && $('.trending-news-slider').length) {
+        $('.trending-news-slider').slick('refresh');
+    }
+}
+
+// ===== RENDER CAROUSEL =====
+function renderCarousel() {
+    const container = document.getElementById('heroCarousel');
+    if (!container) return;
+    const slides = allNews.slice(0, 6);
+    if (!slides.length) {
+        container.innerHTML = '<div style="text-align:center;padding:60px;">No news available</div>';
+        return;
+    }
+    
+    let html = `
+        <div class="row no-gutters">
+            <div class="col-md-6 col-xs-12 col-lg-4">
+                <div class="featured-slider mr-md-3 mr-lg-3">
+                    <div class="item" style="background-image:url(${slides[0].image || 'images/news/img-1.jpg'})">
+                        <div class="post-content">
+                            <a href="#" class="post-cat bg-primary">${slides[0].category || 'News'}</a>
+                            <h2 class="slider-post-title">
+                                <a href="single-post.html?id=${slides[0].id}">${slides[0].title.substring(0, 50)}${slides[0].title.length > 50 ? '...' : ''}</a>
+                            </h2>
+                            <div class="post-meta mt-2">
+                                <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>${slides[0].time || 'Just now'}</span>
+                                <span class="post-author">by <a href="author.html">${slides[0].author || 'Newzyy'}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 col-lg-4">
+                <div class="featured-slider mr-lg-3">
+                    <div class="item" style="background-image:url(${slides[1]?.image || 'images/news/img-2.jpg'})">
+                        <div class="post-content">
+                            <a href="#" class="post-cat bg-danger">${slides[1]?.category || 'News'}</a>
+                            <h2 class="slider-post-title">
+                                <a href="single-post.html?id=${slides[1]?.id || ''}">${slides[1]?.title ? slides[1].title.substring(0, 50) + (slides[1].title.length > 50 ? '...' : '') : 'Loading...'}</a>
+                            </h2>
+                            <div class="post-meta mt-2">
+                                <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>${slides[1]?.time || 'Just now'}</span>
+                                <span class="post-author">by <a href="author.html">${slides[1]?.author || 'Newzyy'}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-4">
+                <div class="row mt-3 mt-lg-0">
+                    ${slides.slice(2, 4).map(s => `
+                        <div class="col-lg-12 col-xs-12 col-sm-6 col-md-6">
+                            <div class="post-featured-style" style="background-image:url(${s.image || 'images/news/news-02.jpg'})">
+                                <div class="post-content">
+                                    <a href="#" class="post-cat bg-success">${s.category || 'News'}</a>
+                                    <h2 class="post-title">
+                                        <a href="single-post.html?id=${s.id}">${s.title.substring(0, 50)}${s.title.length > 50 ? '...' : ''}</a>
+                                    </h2>
+                                    <div class="post-meta mt-2">
+                                        <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>${s.time || 'Just now'}</span>
+                                        <span class="post-author">by <a href="author.html">${s.author || 'Newzyy'}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+    container.innerHTML = html;
+}
+
+// ===== RENDER TRENDING TOPICS =====
+function renderTrendingTopics() {
+    const container = document.getElementById('trendingTopics');
+    if (!container) return;
+    if (!allNews.length) {
+        container.innerHTML = '<h3 class="news-title"><span>Trending Topics</span></h3><div>No topics available</div>';
+        return;
+    }
+    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'AI', 'Climate', 'Economy'];
+    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 8);
+    container.innerHTML = `
+        <h3 class="news-title"><span>Trending Topics</span></h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            ${shuffled.map(t => `
+                <span class="trending-topic" onclick="filterCategory('${t.toLowerCase()}')" style="padding:4px 14px;background:#f5f5f0;border-radius:20px;font-size:0.75rem;color:#4a4a4a;cursor:pointer;border:1px solid #e8e4df;transition:0.2s;">#${t}</span>
+            `).join('')}
         </div>
     `;
 }
 
-// ===== TRENDING TICKER =====
-function updateTicker() {
-    const container = document.getElementById('tickerTrack');
-    if (!container) return;
-    const items = allNews.slice(0, 12);
-    if (!items.length) { container.innerHTML = '<span class="item">Welcome to Newzyy</span>'; return; }
-    const doubled = [...items, ...items];
-    container.innerHTML = doubled.map(a => `<span class="item"><a href="single-post.html?id=${a.id}">${a.title}</a></span>`).join('');
-}
-
-// ===== TRENDING TOPICS =====
-function renderTrending() {
-    const container = document.getElementById('trendingTopics');
-    if (!container) return;
-    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'AI', 'Climate', 'Economy'];
-    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 8);
-    container.innerHTML = shuffled.map(t => `
-        <span class="topic-tag" onclick="filterCategory('${t.toLowerCase()}')">#${t}</span>
-    `).join('');
+// ===== OPEN NEWS =====
+function openNews(id) {
+    window.location.href = 'single-post.html?id=' + id;
 }
 
 // ===== SEARCH =====
 document.getElementById('searchInput')?.addEventListener('input', function(e) {
     const q = e.target.value.toLowerCase().trim();
-    if (q.length < 2) { filterCategory('all'); return; }
+    if (q.length < 2) {
+        currentFilter = 'all';
+        renderAll();
+        return;
+    }
     const results = allNews.filter(a => a.title.toLowerCase().includes(q) || (a.category && a.category.toLowerCase().includes(q)));
     const container = document.getElementById('newsContainer');
-    if (!results.length) { container.innerHTML = '<div class="text-center py-5"><h4>🔍 No results found</h4></div>'; return; }
-    let html = `<h4 class="mb-3">🔍 Results (${results.length})</h4>`;
-    results.slice(0, 12).forEach(a => {
-        html += `
-            <div class="n-card" onclick="openNews('${a.id}')">
-                <div class="row g-0">
-                    <div class="col-md-4"><img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy"></div>
-                    <div class="col-md-8">
-                        <div class="body">
-                            <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
-                            <h4 class="title"><a href="single-post.html?id=${a.id}">${a.title}</a></h4>
-                            <div class="meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'}</div>
-                        </div>
-                    </div>
-                </div>
+    if (!results.length) {
+        container.innerHTML = '<div style="text-align:center;padding:60px;">🔍 No results found</div>';
+        return;
+    }
+    let html = `<div style="margin-top:20px;"><h3 style="font-family:'Oswald',sans-serif;">🔍 Search Results (${results.length})</h3><div class="grid-3">`;
+    html += results.slice(0, 12).map(a => `
+        <div class="card" onclick="openNews('${a.id}')">
+            <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+            <div class="card-body">
+                <span class="card-category">${a.category}</span>
+                <div class="card-title">${a.title.substring(0,60)}${a.title.length > 60 ? '...' : ''}</div>
+                <div class="card-meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'}</div>
             </div>
-        `;
-    });
+        </div>
+    `).join('');
+    html += '</div></div>';
     container.innerHTML = html;
-    document.getElementById('paginationContainer').style.display = 'none';
+    document.getElementById('loadMoreBtn').style.display = 'none';
 });
-
-// ===== OPEN NEWS =====
-function openNews(id) { window.location.href = 'single-post.html?id=' + id; }
-
-// ===== THEME TOGGLE =====
-function toggleTheme() {
-    document.body.classList.toggle('dark-theme');
-    localStorage.setItem('newzyy_theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
-}
-if (localStorage.getItem('newzyy_theme') === 'dark') document.body.classList.add('dark-theme');
-
-// ===== DARK THEME STYLES =====
-const darkStyle = document.createElement('style');
-darkStyle.textContent = `
-    body.dark-theme { background: #0a0a0a; color: #ffffff; }
-    body.dark-theme .n-card { background: #151515; border-color: #222; }
-    body.dark-theme .n-card .body .title a { color: #ffffff; }
-    body.dark-theme .n-card .body .title a:hover { color: #e8380d; }
-    body.dark-theme .n-sidebar .widget { background: #151515; border-color: #222; }
-    body.dark-theme .n-hero { background: #151515; }
-    body.dark-theme .n-hero .content { background: #151515; }
-    body.dark-theme .n-hero .content .title a { color: #ffffff; }
-    body.dark-theme .n-hero .content .title a:hover { color: #e8380d; }
-    body.dark-theme .n-pagination .btn-page { background: #151515; border-color: #333; color: #fff; }
-    body.dark-theme .n-pagination .btn-page:hover { background: #e8380d; color: #fff; }
-    body.dark-theme .n-pagination .btn-page.active { background: #e8380d; color: #fff; }
-    body.dark-theme .n-pagination .btn-page.disabled { background: #151515; color: #666; }
-    body.dark-theme .n-sidebar .widget .topic-tag { background: #222; border-color: #333; color: #ccc; }
-    body.dark-theme .n-sidebar .widget .topic-tag:hover { background: #e8380d; color: #fff; }
-    body.dark-theme .form-control { background: #1a1a1a; color: #fff; border-color: #333; }
-`;
-document.head.appendChild(darkStyle);
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
@@ -705,12 +562,22 @@ document.addEventListener('DOMContentLoaded', function() {
     fetchNews();
 });
 
-// Make global
+// Make functions global
 window.filterCategory = filterCategory;
 window.openNews = openNews;
-window.goToPage = goToPage;
+window.loadMore = loadMore;
 window.logoutUser = logoutUser;
-window.toggleTheme = toggleTheme;
+window.updateNavbar = updateNavbar;
+
+// ===== SPINNER KEYFRAME =====
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
 </script>
 
 </body>
