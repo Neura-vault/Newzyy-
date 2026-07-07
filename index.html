@@ -779,15 +779,17 @@ function showToast(msg) {
 }
 
 // ===== FETCH NEWS =====
+// ===== FETCH NEWS =====
 async function fetchNews() {
     try {
-        const res = await fetch(`${API_BASE}/api/all-news`);
+        const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=50`);
         const data = await res.json();
         if (data.success && data.news) {
             allNews = data.news;
             console.log('✅ Loaded ' + allNews.length + ' articles');
         } else {
             allNews = [];
+            console.warn('⚠️ No news in response');
         }
     } catch(e) {
         console.error('❌ Fetch error:', e);
@@ -800,7 +802,6 @@ async function fetchNews() {
     renderTrendingTopics();
     updateCategoryHero();
 }
-
 // ===== TRENDING BAR =====
 function updateTrendingBar() {
     const container = document.getElementById('trendingTrack');
