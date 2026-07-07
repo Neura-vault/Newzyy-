@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/style.css?v=2">
     
     <style>
-        /* ===== NEWZYY PROFESSIONAL STYLES v2 ===== */
+        /* ===== NEWZYY PROFESSIONAL STYLES (BBC-Inspired) ===== */
         :root {
             --newzyy-red: #e8380d;
             --newzyy-dark: #0a0a0a;
@@ -35,18 +35,15 @@
         body { font-family: var(--font-sans); background: var(--newzyy-light); color: var(--newzyy-text); }
         a { text-decoration: none; color: inherit; }
         
-        /* ===== LIVE BREAKING BAR ===== */
-        .live-bar {
-            background: var(--newzyy-red);
-            color: ##000000;
+        /* ===== TRENDING BAR (OLD STYLE - BBC Inspired) ===== */
+        .trending-bar {
+            background: var(--newzyy-dark);
+            color: #fff;
             padding: 6px 0;
-            overflow: hidden;
-            white-space: nowrap;
-            position: relative;
-            z-index: 99;
+            border-bottom: 2px solid var(--newzyy-red);
         }
-        .live-bar .label {
-            background: rgba(0,0,0,0.2);
+        .trending-bar .label {
+            background: var(--newzyy-red);
             padding: 2px 14px;
             font-weight: 700;
             font-size: 0.7rem;
@@ -54,27 +51,38 @@
             display: inline-block;
             margin-right: 16px;
             border-radius: 2px;
-            animation: pulse-label 1.5s infinite;
         }
-        .live-bar .track {
+        .trending-bar .track {
             display: inline-block;
-            animation: scrollLive 50s linear infinite;
+            overflow: hidden;
+            white-space: nowrap;
+            vertical-align: middle;
+            max-width: 80%;
         }
-        .live-bar .track .item {
+        .trending-bar .track .item {
             display: inline-block;
-            padding: 0 30px;
+            padding: 0 20px;
             font-size: 0.85rem;
         }
-        .live-bar .track .item a { color: ##000000; }
-        .live-bar .track .item a:hover { text-decoration: underline; }
+        .trending-bar .track .item a { color: #fff; }
+        .trending-bar .track .item a:hover { text-decoration: underline; }
         
-        @keyframes scrollLive {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        /* ===== LIVE INDICATOR (BBC Style) ===== */
+        .live-badge {
+            display: inline-block;
+            background: var(--newzyy-red);
+            color: #fff;
+            font-size: 0.55rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 1px 8px;
+            border-radius: 3px;
+            margin-left: 8px;
+            animation: pulse-live 1.5s infinite;
         }
-        @keyframes pulse-label {
+        @keyframes pulse-live {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            50% { opacity: 0.5; }
         }
         
         /* ===== HEADER ===== */
@@ -214,7 +222,7 @@
             border-bottom-color: var(--newzyy-red);
         }
         
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION (BBC Style) ===== */
         .n-hero {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -319,7 +327,7 @@
             margin-top: 4px;
         }
         
-        /* ===== CATEGORY HERO (Small) ===== */
+        /* ===== CATEGORY HERO (BBC Style) ===== */
         .n-category-hero {
             background: var(--newzyy-card);
             border-radius: 12px;
@@ -415,6 +423,23 @@
             font-size: 0.65rem;
         }
         
+        /* ===== VIDEO/AUDIO BADGE (BBC Style) ===== */
+        .media-badge {
+            position: absolute;
+            bottom: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.7);
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .n-card { position: relative; }
+        
         /* ===== LOAD MORE ===== */
         .n-load-more {
             text-align: center;
@@ -471,7 +496,7 @@
             border-color: var(--newzyy-red);
         }
         
-        /* ===== FOOTER ===== */
+        /* ===== FOOTER (BBC Style) ===== */
         .n-footer {
             background: var(--newzyy-dark);
             color: #ccc;
@@ -504,11 +529,13 @@
 </head>
 <body>
 
-<!-- ===== LIVE BREAKING BAR (Feature 1) ===== -->
-<div class="live-bar">
-    <span class="label">🔴 LIVE</span>
-    <div class="track" id="liveTrack">
-        <span class="item">Loading breaking news...</span>
+<!-- ===== TRENDING BAR (OLD STYLE - BBC Inspired) ===== -->
+<div class="trending-bar">
+    <div class="container">
+        <span class="label">⚡ Trending</span>
+        <div class="track" id="trendingTrack">
+            <span class="item">Loading news...</span>
+        </div>
     </div>
 </div>
 
@@ -557,7 +584,7 @@
 <!-- ===== MAIN CONTENT ===== -->
 <main class="container">
 
-    <!-- ===== CATEGORY HERO (Feature 2) ===== -->
+    <!-- ===== CATEGORY HERO ===== -->
     <div id="categoryHero" class="n-category-hero" style="display:none;">
         <span class="cat-title">📰 <span id="catHeroName">All News</span></span>
         <span class="cat-count" id="catHeroCount">0 articles</span>
@@ -626,7 +653,7 @@
 
 <script>
 // ============================================================
-//  NEWZYY — PROFESSIONAL SCRIPT v2 (3 New Features)
+//  NEWZYY — BBC-INSPIRED SCRIPT
 // ============================================================
 
 // ===== BACKEND API =====
@@ -650,7 +677,7 @@ const CATEGORY_COLORS = {
     environment: '#22c55e',
     culture: '#8b5cf6',
     world: '#3b82f6',
-    economy: '#f59e0b'
+    economy: '#f59e0e'
 };
 const CATEGORY_NAMES = {
     politics: 'Politics',
@@ -757,29 +784,28 @@ async function fetchNews() {
         allNews = [];
     }
     displayCount = 6;
-    updateLiveBar();
+    updateTrendingBar();
     renderHero();
     renderAll();
-    renderTrending();
+    renderTrendingTopics();
     updateCategoryHero();
 }
 
-// ===== FEATURE 1: LIVE BREAKING BAR =====
-function updateLiveBar() {
-    const container = document.getElementById('liveTrack');
+// ===== TRENDING BAR (Old Style) =====
+function updateTrendingBar() {
+    const container = document.getElementById('trendingTrack');
     if (!container) return;
-    const items = allNews.slice(0, 15);
+    const items = allNews.slice(0, 12);
     if (!items.length) {
         container.innerHTML = '<span class="item">Welcome to Newzyy</span>';
         return;
     }
-    const doubled = [...items, ...items];
-    container.innerHTML = doubled.map(a => `
+    container.innerHTML = items.map(a => `
         <span class="item"><a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a></span>
     `).join('');
 }
 
-// ===== FEATURE 2: CATEGORY HERO =====
+// ===== CATEGORY HERO =====
 function updateCategoryHero() {
     const container = document.getElementById('categoryHero');
     if (!container) return;
@@ -813,7 +839,7 @@ function renderHero() {
                 <h2 class="title">${featured.title}</h2>
                 <div class="meta">
                     ${featured.author || 'Newzyy'} · ${featured.time || 'Just now'} · 
-                    <span class="read-time">${getReadingTime(featured.body || featured.excerpt)} min read</span>
+                    <span class="read-time">${getReadingTime(featured.body || featured.excerpt)} min</span>
                     <span class="views"><i class="fa fa-eye"></i> ${views}</span>
                 </div>
             </div>
@@ -848,9 +874,16 @@ function renderAll() {
     let html = '<div class="n-grid">';
     pageItems.forEach(a => {
         const views = getViews(a.id);
+        const isVideo = a.source === 'video' || a.title.toLowerCase().includes('video');
+        const isAudio = a.source === 'audio' || a.title.toLowerCase().includes('podcast');
+        let badge = '';
+        if (isVideo) badge = '<span class="media-badge"><i class="fa fa-play"></i> Video</span>';
+        else if (isAudio) badge = '<span class="media-badge"><i class="fa fa-headphones"></i> Audio</span>';
+        
         html += `
             <div class="n-card" onclick="openNews('${a.id}')">
                 <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+                ${badge}
                 <div class="body">
                     <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
                     <h3 class="title">${a.title}</h3>
@@ -891,7 +924,7 @@ function filterCategory(cat) {
 }
 
 // ===== RENDER TRENDING TOPICS =====
-function renderTrending() {
+function renderTrendingTopics() {
     const container = document.getElementById('trendingTopics');
     if (!container) return;
     const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy', 'AI', 'Climate', 'Space'];
