@@ -761,23 +761,36 @@ a.read-more:hover i {
 .post-block-wrapper:nth-child(5) { animation-delay: 0.25s; }
 .post-block-wrapper:nth-child(6) { animation-delay: 0.30s; }
 
-/* ===== PAGINATION CENTER FIX ===== */
+/* ===== PAGINATION FORCE CENTER ===== */
 .pagination-wrapper {
     text-align: center !important;
+    width: 100% !important;
+    display: block !important;
 }
 
-.pagination {
-    justify-content: center !important;
+.pagination-wrapper .pagination {
     display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
     padding-left: 0 !important;
-    list-style: none !important;
+    margin: 0 auto !important;
+    width: 100% !important;
 }
 
-.pagination .page-item {
+.pagination-wrapper .pagination .page-item {
     display: inline-block !important;
     float: none !important;
 }
 
-.pagination .page-link {
+.pagination-wrapper .pagination .page-link {
     float: none !important;
+    display: inline-block !important;
+}
+
+/* Extra: Agar parent container left mein ho */
+.pagination-wrapper .container,
+.pagination-wrapper .row,
+.pagination-wrapper .col-lg-8,
+.pagination-wrapper .col-md-12 {
+    text-align: center !important;
 }
