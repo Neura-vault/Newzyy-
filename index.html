@@ -100,6 +100,12 @@
                             <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('health')">Health</a></li>
                             <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('science')">Science</a></li>
                             <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a></li>
+                            <!-- ===== NEW CATEGORIES ADDED ===== -->
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('travel')">Travel</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('environment')">Earth</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('culture')">Culture</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('world')">World</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('economy')">Economy</a></li>
                             <li class="nav-item dropdown" id="accountNav">
                                 <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
                                 <div class="dropdown-menu" id="accountDropdown">
@@ -230,8 +236,13 @@ let currentFilter = 'all';
 let displayCount = 6;
 let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
 
-// ===== CATEGORIES =====
-const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment'];
+// ===== CATEGORIES (UPDATED WITH 12 CATEGORIES) =====
+const CATEGORIES = [
+    'politics', 'technology', 'sports', 'business', 'health', 
+    'science', 'entertainment', 'travel', 'environment', 
+    'culture', 'world', 'economy'
+];
+
 const CATEGORY_ICONS = {
     politics: 'landmark',
     technology: 'microchip',
@@ -239,7 +250,12 @@ const CATEGORY_ICONS = {
     business: 'chart-line',
     health: 'heartbeat',
     science: 'flask',
-    entertainment: 'film'
+    entertainment: 'film',
+    travel: 'plane',
+    environment: 'leaf',
+    culture: 'palette',
+    world: 'globe',
+    economy: 'coins'
 };
 
 // ===== LOGIN/LOGOUT =====
@@ -400,7 +416,8 @@ function filterCategory(cat) {
     displayCount = 6;
     document.querySelectorAll('.navbar-nav .nav-link').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.navbar-nav .nav-link').forEach(el => {
-        if (el.textContent.toLowerCase().trim() === cat || (cat === 'all' && el.textContent.trim() === 'Home')) {
+        const text = el.textContent.toLowerCase().trim();
+        if (text === cat || (cat === 'all' && text === 'home')) {
             el.classList.add('active');
         }
     });
@@ -426,7 +443,6 @@ function updateTicker() {
             </div>
         </div>
     `).join('');
-    // Re-initialize slick slider
     if (typeof $ !== 'undefined' && $('.trending-news-slider').length) {
         $('.trending-news-slider').slick('refresh');
     }
@@ -509,8 +525,8 @@ function renderTrendingTopics() {
         container.innerHTML = '<h3 class="news-title"><span>Trending Topics</span></h3><div>No topics available</div>';
         return;
     }
-    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'AI', 'Climate', 'Economy'];
-    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 8);
+    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy', 'AI', 'Climate'];
+    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 10);
     container.innerHTML = `
         <h3 class="news-title"><span>Trending Topics</span></h3>
         <div style="display:flex;flex-wrap:wrap;gap:8px;">
