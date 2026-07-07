@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="utf-8">
     <title>Newzyy — Top World News</title>
@@ -10,19 +10,19 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
+ 
     <!-- THEME CSS -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
     <link rel="stylesheet" href="css/style.css?v=2">
-    
+ 
     <!-- BBC-Inspired Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+ 
     <style>
-        /* ===== BBC-INSPIRED DESIGN (Clean, No Emojis) ===== */
+        /* ===== Same BBC design tokens as index.html — keep in sync ===== */
         :root {
             --bbc-red: #b80000;
             --bbc-dark: #0a0a0a;
@@ -33,614 +33,185 @@
             --bbc-muted: #6a6a6a;
             --bbc-font: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: var(--bbc-font); 
-            background: var(--bbc-light); 
+        body {
+            font-family: var(--bbc-font);
+            background: var(--bbc-light);
             color: var(--bbc-text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
         a { text-decoration: none; color: inherit; }
-        
+ 
         /* ===== TRENDING BAR ===== */
-        .bbc-trending {
-            background: var(--bbc-dark);
-            color: #fff;
-            padding: 8px 0;
-            border-bottom: 2px solid var(--bbc-red);
-            font-size: 0.85rem;
-        }
-        .bbc-trending .label {
-            background: var(--bbc-red);
-            padding: 2px 16px;
-            font-weight: 600;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-right: 16px;
-            border-radius: 0;
-            letter-spacing: 0.5px;
-        }
-        .bbc-trending .track {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            vertical-align: middle;
-            max-width: 80%;
-        }
-        .bbc-trending .track .item {
-            display: inline-block;
-            padding: 0 24px;
-            font-size: 0.8rem;
-        }
+        .bbc-trending { background: var(--bbc-dark); color: #fff; padding: 8px 0; border-bottom: 2px solid var(--bbc-red); font-size: 0.85rem; }
+        .bbc-trending .label { background: var(--bbc-red); padding: 2px 16px; font-weight: 600; font-size: 0.65rem; text-transform: uppercase; display: inline-block; margin-right: 16px; letter-spacing: 0.5px; }
+        .bbc-trending .track { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: middle; max-width: 80%; }
+        .bbc-trending .track .item { display: inline-block; padding: 0 24px; font-size: 0.8rem; }
         .bbc-trending .track .item a { color: #fff; }
         .bbc-trending .track .item a:hover { text-decoration: underline; }
-        
-        /* ===== HEADER (Clean, No Emojis) ===== */
-        .bbc-header {
-            background: #ffffff;
-            border-bottom: 1px solid var(--bbc-border);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .bbc-header .logo {
-            font-family: var(--bbc-font);
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--bbc-dark);
-            letter-spacing: -0.5px;
-        }
+ 
+        /* ===== HEADER ===== */
+        .bbc-header { background: #ffffff; border-bottom: 1px solid var(--bbc-border); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        .bbc-header .logo { font-family: var(--bbc-font); font-size: 1.8rem; font-weight: 900; color: var(--bbc-dark); letter-spacing: -0.5px; }
         .bbc-header .logo span { color: var(--bbc-red); }
-        .bbc-header .logo small { 
-            font-size: 0.55rem; 
-            font-weight: 400; 
-            color: #888;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        
-        .bbc-header .search-input {
-            background: var(--bbc-light);
-            border: 1px solid var(--bbc-border);
-            border-radius: 4px;
-            padding: 8px 16px 8px 36px;
-            font-size: 0.85rem;
-            width: 220px;
-            outline: none;
-            font-family: var(--bbc-font);
-            transition: 0.3s;
-        }
-        .bbc-header .search-input:focus {
-            border-color: var(--bbc-red);
-            box-shadow: 0 0 0 3px rgba(184,0,0,0.08);
-            width: 260px;
-        }
+        .bbc-header .logo small { font-size: 0.55rem; font-weight: 400; color: #888; letter-spacing: 0.5px; text-transform: uppercase; }
+        .bbc-header .search-input { background: var(--bbc-light); border: 1px solid var(--bbc-border); border-radius: 4px; padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--bbc-font); transition: 0.3s; }
+        .bbc-header .search-input:focus { border-color: var(--bbc-red); box-shadow: 0 0 0 3px rgba(184,0,0,0.08); width: 260px; }
         .bbc-header .search-wrapper { position: relative; }
-        .bbc-header .search-wrapper i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-            font-size: 0.85rem;
+        .bbc-header .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999; font-size: 0.85rem; }
+        .bbc-header .account-section { display: flex; align-items: center; gap: 12px; }
+        .bbc-header .account-section .btn-login { background: transparent; border: 1px solid var(--bbc-border); color: var(--bbc-dark); padding: 6px 20px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: var(--bbc-font); }
+        .bbc-header .account-section .btn-login:hover { background: var(--bbc-light); }
+        .bbc-header .account-section .btn-signup { background: var(--bbc-red); border: 1px solid var(--bbc-red); color: #fff; padding: 6px 20px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: var(--bbc-font); }
+        .bbc-header .account-section .btn-signup:hover { background: #a00000; border-color: #a00000; }
+        .bbc-header .account-section .user-profile { display: flex; align-items: center; gap: 10px; }
+        .bbc-header .account-section .user-profile .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--bbc-red); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; }
+        .bbc-header .account-section .user-profile .username { font-weight: 600; font-size: 0.85rem; color: var(--bbc-dark); }
+        .bbc-header .account-section .user-profile .btn-logout { background: transparent; border: 1px solid var(--bbc-border); color: #666; padding: 3px 14px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; font-family: var(--bbc-font); }
+        .bbc-header .account-section .user-profile .btn-logout:hover { background: var(--bbc-light); }
+ 
+        /* ===== NAVBAR ===== */
+        .bbc-nav { background: #ffffff; border-bottom: 1px solid var(--bbc-border); padding: 0; }
+        .bbc-nav .nav-link { color: #4a4a4a !important; font-size: 0.75rem; font-weight: 600; padding: 12px 16px !important; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 2px solid transparent; transition: 0.3s; cursor: pointer; font-family: var(--bbc-font); }
+        .bbc-nav .nav-link:hover, .bbc-nav .nav-link.active { color: var(--bbc-red) !important; border-bottom-color: var(--bbc-red); }
+ 
+        /* ===== ARTICLE PAGE ===== */
+        .bbc-article-wrap { margin: 28px 0 40px; }
+        .bbc-breadcrumb { font-size: 0.75rem; color: var(--bbc-muted); margin-bottom: 16px; }
+        .bbc-breadcrumb a:hover { color: var(--bbc-red); }
+ 
+        .bbc-article-header .category-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+        .bbc-article-header .category-badge { background: var(--bbc-red); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px; display: inline-block; }
+        .bbc-live-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--bbc-dark); color: #fff; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 12px 4px 10px; }
+        .bbc-live-badge .live-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--bbc-red); display: inline-block; }
+ 
+        .bbc-article-header .article-title { font-family: var(--bbc-font); font-size: 2.1rem; font-weight: 800; line-height: 1.2; color: var(--bbc-dark); margin-bottom: 14px; }
+        .bbc-article-header .article-excerpt { font-size: 1.1rem; color: var(--bbc-muted); font-weight: 400; margin-bottom: 18px; line-height: 1.5; }
+ 
+        .bbc-article-meta { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 14px 0; border-top: 1px solid var(--bbc-border); border-bottom: 1px solid var(--bbc-border); font-size: 0.85rem; color: var(--bbc-muted); margin-bottom: 24px; }
+        .bbc-article-meta .read-time { background: var(--bbc-light); padding: 2px 10px; font-size: 0.75rem; font-weight: 600; }
+        .bbc-article-meta .view-count { display: flex; align-items: center; gap: 4px; }
+ 
+        .bbc-article-image { margin-bottom: 24px; overflow: hidden; }
+        .bbc-article-image img { width: 100%; max-height: 480px; object-fit: cover; display: block; }
+        .bbc-article-image .caption { font-size: 0.75rem; color: var(--bbc-muted); padding: 8px 0; border-bottom: 1px solid var(--bbc-border); }
+ 
+        .bbc-article-body { font-size: 1.05rem; line-height: 1.8; color: #1a1a1a; }
+        .bbc-article-body p { margin-bottom: 20px; }
+        .bbc-article-body p:first-of-type::first-letter {
+            font-size: 3.2rem; font-weight: 800; float: left; line-height: 1; padding: 4px 8px 0 0; color: var(--bbc-red); font-family: var(--bbc-font);
         }
-        
-        .bbc-header .account-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .bbc-header .account-section .btn-login {
-            background: transparent;
-            border: 1px solid var(--bbc-border);
-            color: var(--bbc-dark);
-            padding: 6px 20px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: var(--bbc-font);
-        }
-        .bbc-header .account-section .btn-login:hover {
-            background: var(--bbc-light);
-        }
-        .bbc-header .account-section .btn-signup {
-            background: var(--bbc-red);
-            border: 1px solid var(--bbc-red);
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: var(--bbc-font);
-        }
-        .bbc-header .account-section .btn-signup:hover {
-            background: #a00000;
-            border-color: #a00000;
-        }
-        .bbc-header .account-section .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .bbc-header .account-section .user-profile .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--bbc-red);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-        }
-        .bbc-header .account-section .user-profile .username {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--bbc-dark);
-        }
-        .bbc-header .account-section .user-profile .btn-logout {
-            background: transparent;
-            border: 1px solid var(--bbc-border);
-            color: #666;
-            padding: 3px 14px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: var(--bbc-font);
-        }
-        .bbc-header .account-section .user-profile .btn-logout:hover {
-            background: var(--bbc-light);
-        }
-        
-        /* ===== NAVBAR (BBC Style) ===== */
-        .bbc-nav {
-            background: #ffffff;
-            border-bottom: 1px solid var(--bbc-border);
-            padding: 0;
-        }
-        .bbc-nav .nav-link {
-            color: #4a4a4a !important;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 12px 16px !important;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            border-bottom: 2px solid transparent;
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: var(--bbc-font);
-        }
-        .bbc-nav .nav-link:hover,
-        .bbc-nav .nav-link.active {
-            color: var(--bbc-red) !important;
-            border-bottom-color: var(--bbc-red);
-        }
-        
-        /* ===== HERO SECTION (BBC Style) ===== */
-        .bbc-hero {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-            margin: 24px 0;
-        }
-        .bbc-hero .featured {
-            background: var(--bbc-card);
-            border-radius: 0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--bbc-border);
-        }
-        .bbc-hero .featured:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-        }
-        .bbc-hero .featured img {
-            width: 100%;
-            height: 340px;
-            object-fit: cover;
-        }
-        .bbc-hero .featured .content {
-            padding: 20px 24px;
-        }
-        .bbc-hero .featured .content .category {
-            font-size: 0.7rem;
-            color: var(--bbc-red);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .bbc-hero .featured .content .title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin: 6px 0;
-            line-height: 1.2;
-            color: var(--bbc-dark);
-            font-family: var(--bbc-font);
-        }
-        .bbc-hero .featured .content .title:hover { color: var(--bbc-red); }
-        .bbc-hero .featured .content .meta {
-            font-size: 0.8rem;
-            color: var(--bbc-muted);
-        }
-        .bbc-hero .featured .content .views {
-            font-size: 0.7rem;
-            color: var(--bbc-muted);
-            display: inline-block;
-            margin-left: 12px;
-        }
-        
-        .bbc-hero .side-stories {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .bbc-hero .side-stories .side-item {
-            background: var(--bbc-card);
-            border-radius: 0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--bbc-border);
-            display: flex;
-            gap: 12px;
-            padding: 12px;
-            align-items: flex-start;
-        }
-        .bbc-hero .side-stories .side-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-        }
-        .bbc-hero .side-stories .side-item img {
-            width: 110px;
-            height: 75px;
-            object-fit: cover;
-            border-radius: 0;
-            flex-shrink: 0;
-        }
-        .bbc-hero .side-stories .side-item .side-content {
-            flex: 1;
-        }
-        .bbc-hero .side-stories .side-item .side-content .side-category {
-            font-size: 0.6rem;
-            color: var(--bbc-red);
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        .bbc-hero .side-stories .side-item .side-content .side-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-family: var(--bbc-font);
-        }
-        .bbc-hero .side-stories .side-item .side-content .side-meta {
-            font-size: 0.65rem;
-            color: var(--bbc-muted);
-            margin-top: 4px;
-        }
-        
-        /* ===== CATEGORY HERO (BBC Style) ===== */
-        .bbc-category-hero {
-            background: var(--bbc-card);
-            border-radius: 0;
-            padding: 16px 24px;
-            border-left: 4px solid var(--bbc-red);
-            margin: 16px 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .bbc-category-hero .cat-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--bbc-dark);
-            font-family: var(--bbc-font);
-        }
-        .bbc-category-hero .cat-title span { color: var(--bbc-red); }
-        .bbc-category-hero .cat-count {
-            font-size: 0.8rem;
-            color: var(--bbc-muted);
-        }
-        
-        /* ===== NEWS GRID ===== */
-        .bbc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 24px 0;
-        }
-        .bbc-card {
-            background: var(--bbc-card);
-            border-radius: 0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--bbc-border);
-        }
-        .bbc-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-        }
-        .bbc-card img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-        }
-        .bbc-card .body {
-            padding: 16px 18px;
-        }
-        .bbc-card .body .category {
-            font-size: 0.65rem;
-            color: var(--bbc-red);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-        .bbc-card .body .title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 6px 0;
-            line-height: 1.3;
-            color: var(--bbc-dark);
-            font-family: var(--bbc-font);
-        }
-        .bbc-card .body .title:hover { color: var(--bbc-red); }
-        .bbc-card .body .excerpt {
-            font-size: 0.85rem;
-            color: var(--bbc-muted);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-family: var(--bbc-font);
-        }
-        .bbc-card .body .meta {
-            font-size: 0.7rem;
-            color: var(--bbc-muted);
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .bbc-card .body .meta .read-time {
-            background: var(--bbc-light);
-            padding: 1px 10px;
-            border-radius: 2px;
-            font-size: 0.6rem;
-            font-weight: 600;
-        }
-        .bbc-card .body .meta .view-count {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            font-size: 0.65rem;
-        }
-        
-        /* ===== LOAD MORE ===== */
-        .bbc-load-more {
-            text-align: center;
-            margin: 32px 0;
-        }
-        .bbc-load-more button {
-            padding: 12px 40px;
-            background: transparent;
-            border: 2px solid var(--bbc-red);
-            color: var(--bbc-red);
-            border-radius: 0;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: var(--bbc-font);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .bbc-load-more button:hover {
-            background: var(--bbc-red);
-            color: #fff;
-        }
-        
-        /* ===== SIDEBAR ===== */
-        .bbc-sidebar .widget {
-            background: var(--bbc-card);
-            border-radius: 0;
-            padding: 16px 20px;
-            border: 1px solid var(--bbc-border);
-            margin-bottom: 20px;
-        }
-        .bbc-sidebar .widget .widget-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--bbc-dark);
-            border-bottom: 2px solid var(--bbc-red);
-            padding-bottom: 8px;
-            margin-bottom: 14px;
-            font-family: var(--bbc-font);
-            letter-spacing: 0.3px;
-        }
-        .bbc-sidebar .widget .topic-tag {
-            padding: 4px 14px;
-            background: var(--bbc-light);
-            border-radius: 0;
-            font-size: 0.75rem;
-            color: var(--bbc-text);
-            cursor: pointer;
-            border: 1px solid var(--bbc-border);
-            transition: 0.3s;
-            display: inline-block;
-            margin: 3px;
-            font-family: var(--bbc-font);
-        }
-        .bbc-sidebar .widget .topic-tag:hover {
-            background: var(--bbc-red);
-            color: #fff;
-            border-color: var(--bbc-red);
-        }
-        
-        /* ===== FOOTER (BBC Style) ===== */
-        .bbc-footer {
-            background: var(--bbc-dark);
-            color: #ccc;
-            padding: 40px 0 20px;
-            margin-top: 40px;
-            border-top: 3px solid var(--bbc-red);
-        }
-        .bbc-footer a { 
-            color: #ccc; 
-            font-size: 0.85rem; 
-            transition: 0.3s; 
-            font-family: var(--bbc-font);
-        }
+ 
+        .bbc-source-line { margin: 24px 0; padding: 14px 18px; background: var(--bbc-card); border: 1px solid var(--bbc-border); border-left: 4px solid var(--bbc-red); font-size: 0.85rem; color: var(--bbc-muted); }
+        .bbc-source-line a { color: var(--bbc-red); font-weight: 600; }
+        .bbc-source-line a:hover { text-decoration: underline; }
+ 
+        .bbc-share-row { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-top: 1px solid var(--bbc-border); border-bottom: 1px solid var(--bbc-border); margin: 24px 0 40px; flex-wrap: wrap; gap: 12px; }
+        .bbc-share-row .tags span { font-size: 0.75rem; color: var(--bbc-muted); text-transform: uppercase; font-weight: 700; margin-right: 8px; }
+        .bbc-share-row .tags a { font-size: 0.75rem; background: var(--bbc-light); border: 1px solid var(--bbc-border); padding: 4px 12px; margin-right: 6px; display: inline-block; color: var(--bbc-text); }
+        .bbc-share-row .tags a:hover { background: var(--bbc-red); color: #fff; border-color: var(--bbc-red); }
+        .bbc-share-row .share-icons { display: flex; gap: 8px; list-style: none; }
+        .bbc-share-row .share-icons a { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: var(--bbc-light); border: 1px solid var(--bbc-border); color: var(--bbc-dark); }
+        .bbc-share-row .share-icons a:hover { background: var(--bbc-red); color: #fff; border-color: var(--bbc-red); }
+ 
+        /* ===== RELATED STORIES ===== */
+        .bbc-related { margin: 20px 0 40px; }
+        .bbc-related .section-title { font-size: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; color: var(--bbc-dark); border-bottom: 2px solid var(--bbc-red); padding-bottom: 10px; margin-bottom: 20px; }
+        .bbc-related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .bbc-related-card { background: var(--bbc-card); border: 1px solid var(--bbc-border); cursor: pointer; transition: 0.3s; }
+        .bbc-related-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+        .bbc-related-card img { width: 100%; height: 130px; object-fit: cover; }
+        .bbc-related-card .body { padding: 12px 14px; }
+        .bbc-related-card .category { font-size: 0.6rem; color: var(--bbc-red); text-transform: uppercase; font-weight: 700; }
+        .bbc-related-card .title { font-size: 0.85rem; font-weight: 700; line-height: 1.3; margin-top: 4px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .bbc-related-card .title:hover { color: var(--bbc-red); }
+        .bbc-related-card .meta { font-size: 0.65rem; color: var(--bbc-muted); margin-top: 8px; }
+ 
+        /* ===== SIDEBAR (kept from your original widgets) ===== */
+        .bbc-sidebar .widget { background: var(--bbc-card); padding: 16px 20px; border: 1px solid var(--bbc-border); margin-bottom: 20px; }
+        .bbc-sidebar .widget .widget-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--bbc-dark); border-bottom: 2px solid var(--bbc-red); padding-bottom: 8px; margin-bottom: 14px; letter-spacing: 0.3px; }
+ 
+        /* ===== FOOTER ===== */
+        .bbc-footer { background: var(--bbc-dark); color: #ccc; padding: 40px 0 20px; margin-top: 40px; border-top: 3px solid var(--bbc-red); }
+        .bbc-footer a { color: #ccc; font-size: 0.85rem; }
         .bbc-footer a:hover { color: #fff; }
         .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
-        .bbc-footer .copyright { 
-            font-size: 0.75rem; 
-            color: #666; 
-            margin-top: 20px; 
-            text-align: center; 
-            font-family: var(--bbc-font);
-        }
-        
-        /* ===== RESPONSIVE ===== */
+        .bbc-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
+ 
+        /* ===== STATE MESSAGES ===== */
+        .bbc-state-msg { text-align: center; padding: 80px 20px; }
+        .bbc-state-msg h4 { font-weight: 700; margin-bottom: 10px; }
+        .bbc-state-msg a { color: var(--bbc-red); font-weight: 700; }
+ 
         @media (max-width: 992px) {
-            .bbc-hero { grid-template-columns: 1fr; }
-            .bbc-hero .featured img { height: 240px; }
-            .bbc-hero .side-stories { display: grid; grid-template-columns: 1fr 1fr; }
-            .bbc-grid { grid-template-columns: repeat(2, 1fr); }
+            .bbc-related-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
-            .bbc-header .logo { font-size: 1.3rem; }
-            .bbc-header .search-input { width: 120px; font-size: 0.75rem; padding: 5px 12px 5px 30px; }
-            .bbc-header .search-input:focus { width: 140px; }
-            .bbc-hero .side-stories { grid-template-columns: 1fr; }
-            .bbc-grid { grid-template-columns: 1fr; }
-            .bbc-nav .nav-link { font-size: 0.6rem; padding: 8px 10px !important; }
-            .bbc-category-hero { flex-direction: column; text-align: center; }
+            .bbc-article-header .article-title { font-size: 1.5rem; }
+            .bbc-share-row { flex-direction: column; align-items: flex-start; }
+            .bbc-related-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-
+ 
 <!-- ===== TRENDING BAR ===== -->
 <div class="bbc-trending">
     <div class="container">
         <span class="label">Trending</span>
-        <div class="track" id="trendingTrack">
-            <span class="item">Loading news...</span>
-        </div>
+        <div class="track" id="trendingTrack"><span class="item">Loading news...</span></div>
     </div>
 </div>
-
+ 
 <!-- ===== HEADER ===== -->
 <header class="bbc-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <div class="logo">
-                Newzy<span>y</span>
-                <small>News</small>
-            </div>
+            <a href="index.html" class="logo">Newzy<span>y</span><small>News</small></a>
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search"
+                           onkeydown="if(event.key==='Enter'){window.location.href='index.html?search='+encodeURIComponent(this.value)}">
                 </div>
-                <div class="account-section" id="accountSection">
-                    <span id="accountLinks"></span>
-                </div>
+                <div class="account-section"><span id="accountLinks"></span></div>
             </div>
         </div>
     </div>
 </header>
-
+ 
 <!-- ===== NAVBAR ===== -->
 <nav class="bbc-nav">
     <div class="container">
-        <div class="d-flex flex-wrap" id="navLinks">
-            <a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a>
-            <a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a>
-            <a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a>
-            <a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a>
-            <a class="nav-link" href="#" onclick="filterCategory('business')">Business</a>
-            <a class="nav-link" href="#" onclick="filterCategory('health')">Health</a>
-            <a class="nav-link" href="#" onclick="filterCategory('science')">Science</a>
-            <a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a>
-            <a class="nav-link" href="#" onclick="filterCategory('travel')">Travel</a>
-            <a class="nav-link" href="#" onclick="filterCategory('environment')">Earth</a>
-            <a class="nav-link" href="#" onclick="filterCategory('culture')">Culture</a>
-            <a class="nav-link" href="#" onclick="filterCategory('world')">World</a>
-            <a class="nav-link" href="#" onclick="filterCategory('economy')">Economy</a>
+        <div class="d-flex flex-wrap">
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="index.html?cat=politics">Politics</a>
+            <a class="nav-link" href="index.html?cat=technology">Tech</a>
+            <a class="nav-link" href="index.html?cat=sports">Sports</a>
+            <a class="nav-link" href="index.html?cat=business">Business</a>
+            <a class="nav-link" href="index.html?cat=health">Health</a>
+            <a class="nav-link" href="index.html?cat=science">Science</a>
+            <a class="nav-link" href="index.html?cat=entertainment">Entertainment</a>
+            <a class="nav-link" href="index.html?cat=travel">Travel</a>
+            <a class="nav-link" href="index.html?cat=environment">Earth</a>
+            <a class="nav-link" href="index.html?cat=culture">Culture</a>
+            <a class="nav-link" href="index.html?cat=world">World</a>
+            <a class="nav-link" href="index.html?cat=economy">Economy</a>
         </div>
     </div>
 </nav>
-
-<!-- ===== MAIN CONTENT ===== -->
-<main class="container">
-
-    <!-- ===== CATEGORY HERO ===== -->
-    <div id="categoryHero" class="bbc-category-hero" style="display:none;">
-        <span class="cat-title"><span id="catHeroName">All News</span></span>
-        <span class="cat-count" id="catHeroCount">0 articles</span>
-    </div>
-
-    <!-- ===== HERO SECTION ===== -->
-    <div id="heroSection" class="bbc-hero"></div>
-
-    <!-- ===== NEWS GRID ===== -->
-    <div id="newsContainer">
-        <div class="text-center py-5">
+ 
+<!-- ===== MAIN ===== -->
+<main class="container bbc-article-wrap">
+    <div id="articleRoot">
+        <div class="bbc-state-msg">
             <div class="spinner-border text-danger" role="status"></div>
-            <p class="mt-2 text-muted">Loading news...</p>
+            <p class="mt-3 text-muted">Loading article...</p>
         </div>
     </div>
-
-    <!-- ===== LOAD MORE ===== -->
-    <div class="bbc-load-more" id="loadMoreBtn" style="display:none;">
-        <button onclick="loadMore()">Load More</button>
-    </div>
-
 </main>
-
-<!-- ===== SIDEBAR ===== -->
-<aside class="container">
-    <div class="row">
-        <div class="col-lg-4 offset-lg-8 bbc-sidebar">
-            <div class="widget">
-                <h4 class="widget-title">Trending Topics</h4>
-                <div id="trendingTopics" class="d-flex flex-wrap">
-                    <span class="topic-tag">Loading...</span>
-                </div>
-            </div>
-            <div class="widget">
-                <h4 class="widget-title">Connect</h4>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-youtube"></i></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</aside>
-
+ 
 <!-- ===== FOOTER ===== -->
 <footer class="bbc-footer">
     <div class="container">
@@ -654,57 +225,42 @@
         <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
-
-<!-- ===== SCRIPTS ===== -->
+ 
 <script src="plugins/jquery/jquery.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/slick-carousel/slick.min.js"></script>
 <script src="js/custom.js"></script>
-
+ 
 <script>
 // ============================================================
-//  NEWZYY — BBC-INSPIRED SCRIPT (Clean, No Emojis)
+//  NEWZYY — SINGLE POST (BBC-style, dynamic)
 // ============================================================
-
-// ===== BACKEND API =====
 const API_BASE = 'https://newzyy.onrender.com';
 let allNews = [];
-let currentFilter = 'all';
-let displayCount = 6;
 let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
-
-// ===== CATEGORIES =====
-const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment', 'travel', 'environment', 'culture', 'world', 'economy'];
+ 
 const CATEGORY_COLORS = {
-    politics: '#b80000',
-    technology: '#2563eb',
-    sports: '#16a34a',
-    business: '#7c3aed',
-    health: '#0891b2',
-    science: '#d97706',
-    entertainment: '#dc2626',
-    travel: '#0ea5e9',
-    environment: '#22c55e',
-    culture: '#8b5cf6',
-    world: '#3b82f6',
-    economy: '#f59e0e'
+    politics: '#b80000', technology: '#2563eb', sports: '#16a34a', business: '#7c3aed',
+    health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
+    environment: '#22c55e', culture: '#8b5cf6', world: '#3b82f6', economy: '#f59e0e'
 };
 const CATEGORY_NAMES = {
-    politics: 'Politics',
-    technology: 'Technology',
-    sports: 'Sports',
-    business: 'Business',
-    health: 'Health',
-    science: 'Science',
-    entertainment: 'Entertainment',
-    travel: 'Travel',
-    environment: 'Earth',
-    culture: 'Culture',
-    world: 'World',
-    economy: 'Economy'
+    politics: 'Politics', technology: 'Technology', sports: 'Sports', business: 'Business',
+    health: 'Health', science: 'Science', entertainment: 'Entertainment', travel: 'Travel',
+    environment: 'Earth', culture: 'Culture', world: 'World', economy: 'Economy'
 };
-
-// ===== ACCOUNT LINKS =====
+ 
+// ===== SHARED UTILITIES (kept identical to index.html) =====
+function getReadingTime(text) {
+    const words = (text || '').split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200));
+}
+function trackView(id) {
+    articleViews[id] = (articleViews[id] || 0) + 1;
+    localStorage.setItem('articleViews', JSON.stringify(articleViews));
+}
+function getViews(id) { return articleViews[id] || 0; }
+ 
 function updateAccountLinks() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
     const container = document.getElementById('accountLinks');
@@ -716,92 +272,45 @@ function updateAccountLinks() {
                 <div class="avatar">${initials}</div>
                 <span class="username">${loggedIn.name}</span>
                 <button class="btn-logout" onclick="logoutUser()">Logout</button>
-            </div>
-        `;
+            </div>`;
     } else {
         container.innerHTML = `
             <a href="account.html" class="btn-login">Log In</a>
-            <a href="signup.html" class="btn-signup">Register</a>
-        `;
+            <a href="signup.html" class="btn-signup">Register</a>`;
     }
 }
-
 function logoutUser() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('newzyy_logged_in');
         location.reload();
     }
 }
-
-// ===== UTILITY =====
-function getReadingTime(text) {
-    const words = (text || '').split(/\s+/).length;
-    return Math.max(1, Math.ceil(words / 200));
-}
-
-function formatTimeAgo(dateString) {
-    if (!dateString) return 'Just now';
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMins = Math.floor((now - date) / 60000);
-    if (diffMins < 1) return 'Just now';
-    if (diffMins < 60) return diffMins + 'm ago';
-    const diffHours = Math.floor(diffMins / 60);
-    if (diffHours < 24) return diffHours + 'h ago';
-    const diffDays = Math.floor(diffHours / 24);
-    return diffDays + 'd ago';
-}
-
-function trackView(id) {
-    articleViews[id] = (articleViews[id] || 0) + 1;
-    localStorage.setItem('articleViews', JSON.stringify(articleViews));
-}
-
-function getViews(id) {
-    return articleViews[id] || 0;
-}
-
-function showToast(msg) {
-    let t = document.getElementById('toast');
-    if (!t) {
-        t = document.createElement('div');
-        t.id = 'toast';
-        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#b80000;color:white;padding:12px 24px;border-radius:0;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;font-family:Inter,sans-serif;';
-        document.body.appendChild(t);
+ 
+// ===== BODY -> PARAGRAPHS =====
+// API bodies come back as a single text blob. Split on blank lines first,
+// fall back to sentence grouping so long single-blob bodies aren't one wall of text.
+function renderBody(bodyText) {
+    if (!bodyText) return '<p>Full article text is not available for this story yet.</p>';
+    let paras = bodyText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
+    if (paras.length <= 1) {
+        const sentences = bodyText.match(/[^.!?]+[.!?]+/g) || [bodyText];
+        paras = [];
+        let chunk = '';
+        sentences.forEach((s, i) => {
+            chunk += s.trim() + ' ';
+            if ((i + 1) % 4 === 0) { paras.push(chunk.trim()); chunk = ''; }
+        });
+        if (chunk.trim()) paras.push(chunk.trim());
     }
-    t.textContent = msg;
-    t.style.transform = 'translateX(-50%) translateY(0)';
-    t.style.opacity = '1';
-    setTimeout(() => {
-        t.style.opacity = '0';
-        t.style.transform = 'translateX(-50%) translateY(100px)';
-    }, 3000);
+    return paras.map(p => `<p>${escapeHtml(p)}</p>`).join('');
 }
-
-// ===== FETCH NEWS =====
-async function fetchNews() {
-    try {
-        const res = await fetch(`${API_BASE}/api/all-news`);
-        const data = await res.json();
-        if (data.success && data.news) {
-            allNews = data.news;
-            console.log('✅ Loaded ' + allNews.length + ' articles');
-        } else {
-            allNews = [];
-        }
-    } catch(e) {
-        console.error('❌ Fetch error:', e);
-        allNews = [];
-    }
-    displayCount = 6;
-    updateTrendingBar();
-    renderHero();
-    renderAll();
-    renderTrendingTopics();
-    updateCategoryHero();
+function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
 }
-
-// ===== TRENDING BAR =====
+ 
+// ===== TRENDING BAR (same source as index.html) =====
 function updateTrendingBar() {
     const container = document.getElementById('trendingTrack');
     if (!container) return;
@@ -811,182 +320,166 @@ function updateTrendingBar() {
         return;
     }
     container.innerHTML = items.map(a => `
-        <span class="item"><a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a></span>
+        <span class="item"><a href="single-post.html?id=${a.id}">${a.title}</a></span>
     `).join('');
 }
-
-// ===== CATEGORY HERO =====
-function updateCategoryHero() {
-    const container = document.getElementById('categoryHero');
-    if (!container) return;
-    if (currentFilter === 'all') {
-        container.style.display = 'none';
-        return;
-    }
-    container.style.display = 'flex';
-    const name = CATEGORY_NAMES[currentFilter] || currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
-    const count = allNews.filter(n => n.category === currentFilter).length;
-    document.getElementById('catHeroName').textContent = name;
-    document.getElementById('catHeroCount').textContent = count + ' articles';
-}
-
-// ===== RENDER HERO =====
-function renderHero() {
-    const container = document.getElementById('heroSection');
-    if (!container || !allNews.length) {
-        container.innerHTML = '<div class="text-center py-4 text-muted">No featured news</div>';
-        return;
-    }
-    const featured = allNews[0];
-    const side = allNews.slice(1, 5);
-    const views = getViews(featured.id);
-    
-    container.innerHTML = `
-        <div class="featured" onclick="openNews('${featured.id}')">
-            <img src="${featured.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'" loading="lazy">
-            <div class="content">
-                <span class="category">${featured.category || 'News'}</span>
-                <h2 class="title">${featured.title}</h2>
-                <div class="meta">
-                    ${featured.author || 'Newzyy'} · ${featured.time || 'Just now'} · 
-                    <span class="read-time">${getReadingTime(featured.body || featured.excerpt)} min</span>
-                    <span class="views"><i class="fa fa-eye"></i> ${views}</span>
-                </div>
-            </div>
-        </div>
-        <div class="side-stories">
-            ${side.map(a => `
-                <div class="side-item" onclick="openNews('${a.id}')">
-                    <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=200'" loading="lazy">
-                    <div class="side-content">
-                        <span class="side-category">${a.category || 'News'}</span>
-                        <div class="side-title">${a.title}</div>
-                        <div class="side-meta">${a.time || 'Just now'} · <i class="fa fa-eye"></i> ${getViews(a.id)}</div>
+ 
+// ===== RELATED STORIES =====
+function renderRelated(article) {
+    const related = allNews
+        .filter(a => a.category === article.category && a.id !== article.id)
+        .slice(0, 4);
+ 
+    if (!related.length) return '';
+ 
+    return `
+        <div class="bbc-related">
+            <h3 class="section-title">Related Stories</h3>
+            <div class="bbc-related-grid">
+                ${related.map(a => `
+                    <div class="bbc-related-card" onclick="window.location.href='single-post.html?id=${a.id}'">
+                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+                        <div class="body">
+                            <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || 'News'}</span>
+                            <div class="title">${a.title}</div>
+                            <div class="meta">${a.time || 'Just now'} · <i class="fa fa-eye"></i> ${getViews(a.id)}</div>
+                        </div>
                     </div>
-                </div>
-            `).join('')}
+                `).join('')}
+            </div>
         </div>
     `;
 }
-
-// ===== RENDER ALL NEWS =====
-function renderAll() {
-    let f = currentFilter === 'all' ? allNews : allNews.filter(n => n.category === currentFilter);
-    const container = document.getElementById('newsContainer');
-    if (!container) return;
-    if (!f.length) {
-        container.innerHTML = '<div class="text-center py-5"><h4 class="text-muted">No news found</h4></div>';
-        document.getElementById('loadMoreBtn').style.display = 'none';
-        updateCategoryHero();
-        return;
-    }
-    const pageItems = f.slice(0, displayCount);
-    let html = '<div class="bbc-grid">';
-    pageItems.forEach(a => {
-        const views = getViews(a.id);
-        html += `
-            <div class="bbc-card" onclick="openNews('${a.id}')">
-                <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                <div class="body">
-                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${a.category || 'News'}</span>
-                    <h3 class="title">${a.title}</h3>
-                    <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
-                    <div class="meta">
-                        ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
-                        <span class="read-time">${getReadingTime(a.body || a.excerpt)} min</span>
-                        <span class="view-count"><i class="fa fa-eye"></i> ${views}</span>
+ 
+// ===== LIVE / BREAKING BADGE =====
+// Reads article.breaking if the backend sends it. Safe no-op otherwise.
+function renderLiveBadge(article) {
+    if (!article.breaking) return '';
+    return `<span class="bbc-live-badge"><span class="live-dot"></span> Live</span>`;
+}
+ 
+// ===== RENDER ARTICLE =====
+function renderArticle(article) {
+    trackView(article.id);
+    const catName = CATEGORY_NAMES[article.category] || (article.category || 'News');
+    const catColor = CATEGORY_COLORS[article.category] || '#b80000';
+ 
+    document.title = `${article.title} — Newzyy`;
+ 
+    document.getElementById('articleRoot').innerHTML = `
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="bbc-breadcrumb">
+                    <a href="index.html">Home</a> ›
+                    <a href="index.html?cat=${article.category}">${catName}</a> › Article
+                </div>
+ 
+                <div class="bbc-article-header">
+                    <div class="category-row">
+                        <a class="category-badge" href="index.html?cat=${article.category}" style="background:${catColor}">${catName}</a>
+                        ${renderLiveBadge(article)}
                     </div>
+                    <h1 class="article-title">${article.title}</h1>
+                    ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}
+                </div>
+ 
+                <div class="bbc-article-meta">
+                    <span>By <strong>${article.author || 'Newzyy'}</strong></span>
+                    <span>${article.time || 'Just now'}</span>
+                    <span class="read-time">${getReadingTime(article.body || article.excerpt)} min read</span>
+                    <span class="view-count"><i class="fa fa-eye"></i> ${getViews(article.id)} views</span>
+                </div>
+ 
+                <div class="bbc-article-image">
+                    <img src="${article.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1000'" alt="${article.title}">
+                </div>
+ 
+                <div class="bbc-article-body">
+                    ${renderBody(article.body || article.excerpt)}
+                </div>
+ 
+                ${article.source_url ? `
+                    <div class="bbc-source-line">
+                        Originally reported by <strong>${article.source || 'the source'}</strong>.
+                        <a href="${article.source_url}" target="_blank" rel="noopener noreferrer">Read the full original article →</a>
+                    </div>
+                ` : ''}
+ 
+                <div class="bbc-share-row">
+                    <div class="tags">
+                        <span>Tags</span>
+                        <a href="index.html?cat=${article.category}">${catName}</a>
+                    </div>
+                    <ul class="share-icons list-unstyled">
+                        <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(article.title)}" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
+                    </ul>
+                </div>
+ 
+                ${renderRelated(article)}
+            </div>
+ 
+            <div class="col-lg-4 col-md-12 bbc-sidebar">
+                <div class="widget">
+                    <h4 class="widget-title">More in ${catName}</h4>
+                    <div id="sidebarCategoryList"></div>
                 </div>
             </div>
-        `;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-    const hasMore = f.length > displayCount;
-    document.getElementById('loadMoreBtn').style.display = hasMore ? 'block' : 'none';
-    updateCategoryHero();
+        </div>
+    `;
+ 
+    renderSidebarCategoryList(article);
 }
-
-function loadMore() {
-    displayCount += 6;
-    renderAll();
-}
-
-// ===== FILTER CATEGORY =====
-function filterCategory(cat) {
-    currentFilter = cat;
-    displayCount = 6;
-    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
-        const text = el.textContent.toLowerCase().trim();
-        if (text === cat || (cat === 'all' && text === 'home')) el.classList.add('active');
-    });
-    renderAll();
-    updateCategoryHero();
-    showToast((cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
-}
-
-// ===== RENDER TRENDING TOPICS =====
-function renderTrendingTopics() {
-    const container = document.getElementById('trendingTopics');
+ 
+function renderSidebarCategoryList(article) {
+    const container = document.getElementById('sidebarCategoryList');
     if (!container) return;
-    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy', 'AI', 'Climate', 'Space'];
-    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 12);
-    container.innerHTML = shuffled.map(t => `
-        <span class="topic-tag" onclick="filterCategory('${t.toLowerCase()}')">${t}</span>
+    const items = allNews.filter(a => a.category === article.category && a.id !== article.id).slice(0, 5);
+    if (!items.length) { container.innerHTML = '<p class="text-muted small">No other stories yet.</p>'; return; }
+    container.innerHTML = items.map(a => `
+        <div style="padding:10px 0;border-bottom:1px solid var(--bbc-border);cursor:pointer" onclick="window.location.href='single-post.html?id=${a.id}'">
+            <div style="font-size:0.85rem;font-weight:600;line-height:1.3">${a.title}</div>
+            <div style="font-size:0.7rem;color:var(--bbc-muted);margin-top:4px">${a.time || 'Just now'}</div>
+        </div>
     `).join('');
 }
-
-// ===== SEARCH =====
-document.getElementById('searchInput')?.addEventListener('input', function(e) {
-    const q = e.target.value.toLowerCase().trim();
-    if (q.length < 2) { filterCategory('all'); return; }
-    const results = allNews.filter(a => a.title.toLowerCase().includes(q) || (a.category && a.category.toLowerCase().includes(q)));
-    const container = document.getElementById('newsContainer');
-    if (!results.length) {
-        container.innerHTML = '<div class="text-center py-5"><h4>No results found</h4></div>';
-        document.getElementById('loadMoreBtn').style.display = 'none';
-        return;
-    }
-    let html = `<h4 class="mb-3">Results (${results.length})</h4><div class="bbc-grid">`;
-    results.slice(0, 12).forEach(a => {
-        const views = getViews(a.id);
-        html += `
-            <div class="bbc-card" onclick="openNews('${a.id}')">
-                <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                <div class="body">
-                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${a.category || 'News'}</span>
-                    <h3 class="title">${a.title}</h3>
-                    <div class="meta">
-                        ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
-                        <span class="view-count"><i class="fa fa-eye"></i> ${views}</span>
-                    </div>
-                </div>
-            </div>
-        `;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-    document.getElementById('loadMoreBtn').style.display = 'none';
-});
-
-// ===== OPEN NEWS =====
-function openNews(id) {
-    trackView(id);
-    window.location.href = 'single-post.html?id=' + id;
+ 
+function renderNotFound() {
+    document.getElementById('articleRoot').innerHTML = `
+        <div class="bbc-state-msg">
+            <h4>Article not found</h4>
+            <p class="text-muted">This story may have been removed or the link is incorrect.</p>
+            <a href="index.html">← Back to Newzyy home</a>
+        </div>
+    `;
 }
-
+ 
 // ===== INIT =====
-document.addEventListener('DOMContentLoaded', function() {
+async function init() {
     updateAccountLinks();
-    fetchNews();
-});
-
-window.filterCategory = filterCategory;
-window.openNews = openNews;
-window.loadMore = loadMore;
+    const id = new URLSearchParams(window.location.search).get('id');
+    if (!id) { renderNotFound(); return; }
+ 
+    try {
+        const res = await fetch(`${API_BASE}/api/all-news`);
+        const data = await res.json();
+        allNews = (data && data.success && data.news) ? data.news : [];
+    } catch (e) {
+        console.error('Fetch error:', e);
+        allNews = [];
+    }
+ 
+    updateTrendingBar();
+ 
+    const article = allNews.find(a => a.id === id);
+    if (!article) { renderNotFound(); return; }
+    renderArticle(article);
+}
+ 
+document.addEventListener('DOMContentLoaded', init);
 window.logoutUser = logoutUser;
 </script>
-
+ 
 </body>
 </html>
