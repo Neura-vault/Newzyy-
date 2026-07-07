@@ -18,161 +18,163 @@
     <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
     <link rel="stylesheet" href="css/style.css?v=2">
     
+    <!-- BBC-Inspired Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* ===== NEWZYY PROFESSIONAL STYLES (BBC-Inspired) ===== */
+        /* ===== BBC-INSPIRED DESIGN (Clean, No Emojis) ===== */
         :root {
-            --newzyy-red: #e8380d;
-            --newzyy-dark: #0a0a0a;
-            --newzyy-light: #f5f5f0;
-            --newzyy-card: #ffffff;
-            --newzyy-border: #e8e4df;
-            --newzyy-text: #0a0a0a;
-            --newzyy-muted: #6a6a6a;
-            --font-sans: 'Segoe UI', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            --bbc-red: #b80000;
+            --bbc-dark: #0a0a0a;
+            --bbc-light: #f5f5f0;
+            --bbc-card: #ffffff;
+            --bbc-border: #e8e4df;
+            --bbc-text: #0a0a0a;
+            --bbc-muted: #6a6a6a;
+            --bbc-font: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
         }
         
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-sans); background: var(--newzyy-light); color: var(--newzyy-text); }
+        body { 
+            font-family: var(--bbc-font); 
+            background: var(--bbc-light); 
+            color: var(--bbc-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
         a { text-decoration: none; color: inherit; }
         
-        /* ===== TRENDING BAR (OLD STYLE - BBC Inspired) ===== */
-        .trending-bar {
-            background: var(--newzyy-dark);
+        /* ===== TRENDING BAR ===== */
+        .bbc-trending {
+            background: var(--bbc-dark);
             color: #fff;
-            padding: 6px 0;
-            border-bottom: 2px solid var(--newzyy-red);
+            padding: 8px 0;
+            border-bottom: 2px solid var(--bbc-red);
+            font-size: 0.85rem;
         }
-        .trending-bar .label {
-            background: var(--newzyy-red);
-            padding: 2px 14px;
-            font-weight: 700;
-            font-size: 0.7rem;
+        .bbc-trending .label {
+            background: var(--bbc-red);
+            padding: 2px 16px;
+            font-weight: 600;
+            font-size: 0.65rem;
             text-transform: uppercase;
             display: inline-block;
             margin-right: 16px;
-            border-radius: 2px;
+            border-radius: 0;
+            letter-spacing: 0.5px;
         }
-        .trending-bar .track {
+        .bbc-trending .track {
             display: inline-block;
             overflow: hidden;
             white-space: nowrap;
             vertical-align: middle;
             max-width: 80%;
         }
-        .trending-bar .track .item {
+        .bbc-trending .track .item {
             display: inline-block;
-            padding: 0 20px;
-            font-size: 0.85rem;
+            padding: 0 24px;
+            font-size: 0.8rem;
         }
-        .trending-bar .track .item a { color: #fff; }
-        .trending-bar .track .item a:hover { text-decoration: underline; }
+        .bbc-trending .track .item a { color: #fff; }
+        .bbc-trending .track .item a:hover { text-decoration: underline; }
         
-        /* ===== LIVE INDICATOR (BBC Style) ===== */
-        .live-badge {
-            display: inline-block;
-            background: var(--newzyy-red);
-            color: #fff;
-            font-size: 0.55rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            padding: 1px 8px;
-            border-radius: 3px;
-            margin-left: 8px;
-            animation: pulse-live 1.5s infinite;
-        }
-        @keyframes pulse-live {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        
-        /* ===== HEADER ===== */
-        .n-header {
+        /* ===== HEADER (Clean, No Emojis) ===== */
+        .bbc-header {
             background: #ffffff;
-            border-bottom: 1px solid var(--newzyy-border);
-            padding: 12px 0;
+            border-bottom: 1px solid var(--bbc-border);
+            padding: 16px 0;
             position: sticky;
             top: 0;
             z-index: 100;
         }
-        .n-header .logo {
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: var(--newzyy-dark);
+        .bbc-header .logo {
+            font-family: var(--bbc-font);
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--bbc-dark);
             letter-spacing: -0.5px;
         }
-        .n-header .logo span { color: var(--newzyy-red); }
-        .n-header .logo small { font-size: 0.55rem; font-weight: 400; color: #888; }
+        .bbc-header .logo span { color: var(--bbc-red); }
+        .bbc-header .logo small { 
+            font-size: 0.55rem; 
+            font-weight: 400; 
+            color: #888;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
         
-        .n-header .search-input {
-            background: var(--newzyy-light);
-            border: 1px solid var(--newzyy-border);
-            border-radius: 30px;
-            padding: 7px 16px 7px 36px;
+        .bbc-header .search-input {
+            background: var(--bbc-light);
+            border: 1px solid var(--bbc-border);
+            border-radius: 4px;
+            padding: 8px 16px 8px 36px;
             font-size: 0.85rem;
-            width: 200px;
+            width: 220px;
             outline: none;
+            font-family: var(--bbc-font);
             transition: 0.3s;
         }
-        .n-header .search-input:focus {
-            border-color: var(--newzyy-red);
-            box-shadow: 0 0 0 3px rgba(232,56,13,0.08);
-            width: 240px;
+        .bbc-header .search-input:focus {
+            border-color: var(--bbc-red);
+            box-shadow: 0 0 0 3px rgba(184,0,0,0.08);
+            width: 260px;
         }
-        .n-header .search-wrapper { position: relative; }
-        .n-header .search-wrapper i {
+        .bbc-header .search-wrapper { position: relative; }
+        .bbc-header .search-wrapper i {
             position: absolute;
             left: 12px;
             top: 50%;
             transform: translateY(-50%);
             color: #999;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
         }
         
-        .n-header .account-section {
+        .bbc-header .account-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
-        .n-header .account-section .btn-login {
+        .bbc-header .account-section .btn-login {
             background: transparent;
-            border: 1.5px solid var(--newzyy-red);
-            color: var(--newzyy-red);
-            padding: 5px 18px;
-            border-radius: 30px;
+            border: 1px solid var(--bbc-border);
+            color: var(--bbc-dark);
+            padding: 6px 20px;
+            border-radius: 4px;
             font-size: 0.8rem;
             font-weight: 600;
             transition: 0.3s;
             cursor: pointer;
+            font-family: var(--bbc-font);
         }
-        .n-header .account-section .btn-login:hover {
-            background: var(--newzyy-red);
-            color: #fff;
+        .bbc-header .account-section .btn-login:hover {
+            background: var(--bbc-light);
         }
-        .n-header .account-section .btn-signup {
-            background: var(--newzyy-red);
-            border: 1.5px solid var(--newzyy-red);
+        .bbc-header .account-section .btn-signup {
+            background: var(--bbc-red);
+            border: 1px solid var(--bbc-red);
             color: #fff;
-            padding: 5px 18px;
-            border-radius: 30px;
+            padding: 6px 20px;
+            border-radius: 4px;
             font-size: 0.8rem;
             font-weight: 600;
             transition: 0.3s;
             cursor: pointer;
+            font-family: var(--bbc-font);
         }
-        .n-header .account-section .btn-signup:hover {
-            background: #c42e09;
-            border-color: #c42e09;
+        .bbc-header .account-section .btn-signup:hover {
+            background: #a00000;
+            border-color: #a00000;
         }
-        .n-header .account-section .user-profile {
+        .bbc-header .account-section .user-profile {
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .n-header .account-section .user-profile .avatar {
+        .bbc-header .account-section .user-profile .avatar {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background: var(--newzyy-red);
+            background: var(--bbc-red);
             color: #fff;
             display: flex;
             align-items: center;
@@ -180,139 +182,142 @@
             font-weight: 700;
             font-size: 0.8rem;
         }
-        .n-header .account-section .user-profile .username {
+        .bbc-header .account-section .user-profile .username {
             font-weight: 600;
             font-size: 0.85rem;
-            color: var(--newzyy-dark);
+            color: var(--bbc-dark);
         }
-        .n-header .account-section .user-profile .btn-logout {
+        .bbc-header .account-section .user-profile .btn-logout {
             background: transparent;
-            border: 1px solid var(--newzyy-border);
+            border: 1px solid var(--bbc-border);
             color: #666;
             padding: 3px 14px;
-            border-radius: 30px;
+            border-radius: 4px;
             font-size: 0.7rem;
             cursor: pointer;
             transition: 0.3s;
+            font-family: var(--bbc-font);
         }
-        .n-header .account-section .user-profile .btn-logout:hover {
-            background: var(--newzyy-light);
+        .bbc-header .account-section .user-profile .btn-logout:hover {
+            background: var(--bbc-light);
         }
         
-        /* ===== NAVBAR ===== */
-        .n-nav {
+        /* ===== NAVBAR (BBC Style) ===== */
+        .bbc-nav {
             background: #ffffff;
-            border-bottom: 1px solid var(--newzyy-border);
+            border-bottom: 1px solid var(--bbc-border);
             padding: 0;
         }
-        .n-nav .nav-link {
+        .bbc-nav .nav-link {
             color: #4a4a4a !important;
             font-size: 0.75rem;
             font-weight: 600;
-            padding: 10px 14px !important;
+            padding: 12px 16px !important;
             text-transform: uppercase;
             letter-spacing: 0.3px;
             border-bottom: 2px solid transparent;
             transition: 0.3s;
             cursor: pointer;
+            font-family: var(--bbc-font);
         }
-        .n-nav .nav-link:hover,
-        .n-nav .nav-link.active {
-            color: var(--newzyy-red) !important;
-            border-bottom-color: var(--newzyy-red);
+        .bbc-nav .nav-link:hover,
+        .bbc-nav .nav-link.active {
+            color: var(--bbc-red) !important;
+            border-bottom-color: var(--bbc-red);
         }
         
         /* ===== HERO SECTION (BBC Style) ===== */
-        .n-hero {
+        .bbc-hero {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 20px;
+            gap: 24px;
             margin: 24px 0;
         }
-        .n-hero .featured {
-            background: var(--newzyy-card);
-            border-radius: 12px;
+        .bbc-hero .featured {
+            background: var(--bbc-card);
+            border-radius: 0;
             overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
-            border: 1px solid var(--newzyy-border);
+            border: 1px solid var(--bbc-border);
         }
-        .n-hero .featured:hover {
+        .bbc-hero .featured:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
-        .n-hero .featured img {
+        .bbc-hero .featured img {
             width: 100%;
             height: 340px;
             object-fit: cover;
         }
-        .n-hero .featured .content {
+        .bbc-hero .featured .content {
             padding: 20px 24px;
         }
-        .n-hero .featured .content .category {
+        .bbc-hero .featured .content .category {
             font-size: 0.7rem;
-            color: var(--newzyy-red);
+            color: var(--bbc-red);
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
-        .n-hero .featured .content .title {
+        .bbc-hero .featured .content .title {
             font-size: 1.6rem;
             font-weight: 800;
             margin: 6px 0;
             line-height: 1.2;
-            color: var(--newzyy-dark);
+            color: var(--bbc-dark);
+            font-family: var(--bbc-font);
         }
-        .n-hero .featured .content .title:hover { color: var(--newzyy-red); }
-        .n-hero .featured .content .meta {
+        .bbc-hero .featured .content .title:hover { color: var(--bbc-red); }
+        .bbc-hero .featured .content .meta {
             font-size: 0.8rem;
-            color: var(--newzyy-muted);
+            color: var(--bbc-muted);
         }
-        .n-hero .featured .content .views {
+        .bbc-hero .featured .content .views {
             font-size: 0.7rem;
-            color: var(--newzyy-muted);
+            color: var(--bbc-muted);
             display: inline-block;
             margin-left: 12px;
         }
         
-        .n-hero .side-stories {
+        .bbc-hero .side-stories {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 16px;
         }
-        .n-hero .side-stories .side-item {
-            background: var(--newzyy-card);
-            border-radius: 10px;
+        .bbc-hero .side-stories .side-item {
+            background: var(--bbc-card);
+            border-radius: 0;
             overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
-            border: 1px solid var(--newzyy-border);
+            border: 1px solid var(--bbc-border);
             display: flex;
             gap: 12px;
             padding: 12px;
             align-items: flex-start;
         }
-        .n-hero .side-stories .side-item:hover {
+        .bbc-hero .side-stories .side-item:hover {
             transform: translateX(4px);
             box-shadow: 0 4px 16px rgba(0,0,0,0.04);
         }
-        .n-hero .side-stories .side-item img {
+        .bbc-hero .side-stories .side-item img {
             width: 110px;
             height: 75px;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 0;
             flex-shrink: 0;
         }
-        .n-hero .side-stories .side-item .side-content {
+        .bbc-hero .side-stories .side-item .side-content {
             flex: 1;
         }
-        .n-hero .side-stories .side-item .side-content .side-category {
+        .bbc-hero .side-stories .side-item .side-content .side-category {
             font-size: 0.6rem;
-            color: var(--newzyy-red);
+            color: var(--bbc-red);
             text-transform: uppercase;
             font-weight: 700;
         }
-        .n-hero .side-stories .side-item .side-content .side-title {
+        .bbc-hero .side-stories .side-item .side-content .side-title {
             font-size: 0.85rem;
             font-weight: 600;
             line-height: 1.3;
@@ -320,19 +325,20 @@
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            font-family: var(--bbc-font);
         }
-        .n-hero .side-stories .side-item .side-content .side-meta {
+        .bbc-hero .side-stories .side-item .side-content .side-meta {
             font-size: 0.65rem;
-            color: var(--newzyy-muted);
+            color: var(--bbc-muted);
             margin-top: 4px;
         }
         
         /* ===== CATEGORY HERO (BBC Style) ===== */
-        .n-category-hero {
-            background: var(--newzyy-card);
-            border-radius: 12px;
+        .bbc-category-hero {
+            background: var(--bbc-card);
+            border-radius: 0;
             padding: 16px 24px;
-            border-left: 4px solid var(--newzyy-red);
+            border-left: 4px solid var(--bbc-red);
             margin: 16px 0 24px;
             display: flex;
             justify-content: space-between;
@@ -340,199 +346,203 @@
             flex-wrap: wrap;
             gap: 12px;
         }
-        .n-category-hero .cat-title {
+        .bbc-category-hero .cat-title {
             font-size: 1.1rem;
             font-weight: 700;
-            color: var(--newzyy-dark);
+            color: var(--bbc-dark);
+            font-family: var(--bbc-font);
         }
-        .n-category-hero .cat-title span { color: var(--newzyy-red); }
-        .n-category-hero .cat-count {
+        .bbc-category-hero .cat-title span { color: var(--bbc-red); }
+        .bbc-category-hero .cat-count {
             font-size: 0.8rem;
-            color: var(--newzyy-muted);
+            color: var(--bbc-muted);
         }
         
         /* ===== NEWS GRID ===== */
-        .n-grid {
+        .bbc-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
+            gap: 24px;
             margin: 24px 0;
         }
-        .n-card {
-            background: var(--newzyy-card);
-            border-radius: 12px;
+        .bbc-card {
+            background: var(--bbc-card);
+            border-radius: 0;
             overflow: hidden;
             cursor: pointer;
             transition: 0.3s;
-            border: 1px solid var(--newzyy-border);
+            border: 1px solid var(--bbc-border);
         }
-        .n-card:hover {
+        .bbc-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 30px rgba(0,0,0,0.06);
         }
-        .n-card img {
+        .bbc-card img {
             width: 100%;
             height: 170px;
             object-fit: cover;
         }
-        .n-card .body {
+        .bbc-card .body {
             padding: 16px 18px;
         }
-        .n-card .body .category {
+        .bbc-card .body .category {
             font-size: 0.65rem;
-            color: var(--newzyy-red);
+            color: var(--bbc-red);
             text-transform: uppercase;
             font-weight: 700;
+            letter-spacing: 0.3px;
         }
-        .n-card .body .title {
+        .bbc-card .body .title {
             font-size: 1rem;
             font-weight: 700;
             margin: 6px 0;
             line-height: 1.3;
-            color: var(--newzyy-dark);
+            color: var(--bbc-dark);
+            font-family: var(--bbc-font);
         }
-        .n-card .body .title:hover { color: var(--newzyy-red); }
-        .n-card .body .excerpt {
+        .bbc-card .body .title:hover { color: var(--bbc-red); }
+        .bbc-card .body .excerpt {
             font-size: 0.85rem;
-            color: var(--newzyy-muted);
+            color: var(--bbc-muted);
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            font-family: var(--bbc-font);
         }
-        .n-card .body .meta {
+        .bbc-card .body .meta {
             font-size: 0.7rem;
-            color: var(--newzyy-muted);
+            color: var(--bbc-muted);
             margin-top: 8px;
             display: flex;
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
         }
-        .n-card .body .meta .read-time {
-            background: var(--newzyy-light);
+        .bbc-card .body .meta .read-time {
+            background: var(--bbc-light);
             padding: 1px 10px;
-            border-radius: 20px;
+            border-radius: 2px;
             font-size: 0.6rem;
             font-weight: 600;
         }
-        .n-card .body .meta .view-count {
+        .bbc-card .body .meta .view-count {
             display: flex;
             align-items: center;
             gap: 3px;
             font-size: 0.65rem;
         }
         
-        /* ===== VIDEO/AUDIO BADGE (BBC Style) ===== */
-        .media-badge {
-            position: absolute;
-            bottom: 8px;
-            left: 8px;
-            background: rgba(0,0,0,0.7);
-            color: #fff;
-            padding: 2px 10px;
-            border-radius: 4px;
-            font-size: 0.6rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .n-card { position: relative; }
-        
         /* ===== LOAD MORE ===== */
-        .n-load-more {
+        .bbc-load-more {
             text-align: center;
             margin: 32px 0;
         }
-        .n-load-more button {
+        .bbc-load-more button {
             padding: 12px 40px;
             background: transparent;
-            border: 2px solid var(--newzyy-red);
-            color: var(--newzyy-red);
-            border-radius: 40px;
+            border: 2px solid var(--bbc-red);
+            color: var(--bbc-red);
+            border-radius: 0;
             font-weight: 700;
             font-size: 0.9rem;
             cursor: pointer;
             transition: 0.3s;
+            font-family: var(--bbc-font);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
-        .n-load-more button:hover {
-            background: var(--newzyy-red);
+        .bbc-load-more button:hover {
+            background: var(--bbc-red);
             color: #fff;
         }
         
         /* ===== SIDEBAR ===== */
-        .n-sidebar .widget {
-            background: var(--newzyy-card);
-            border-radius: 12px;
+        .bbc-sidebar .widget {
+            background: var(--bbc-card);
+            border-radius: 0;
             padding: 16px 20px;
-            border: 1px solid var(--newzyy-border);
+            border: 1px solid var(--bbc-border);
             margin-bottom: 20px;
         }
-        .n-sidebar .widget .widget-title {
+        .bbc-sidebar .widget .widget-title {
             font-size: 0.85rem;
             font-weight: 700;
             text-transform: uppercase;
-            color: var(--newzyy-dark);
-            border-bottom: 2px solid var(--newzyy-red);
+            color: var(--bbc-dark);
+            border-bottom: 2px solid var(--bbc-red);
             padding-bottom: 8px;
             margin-bottom: 14px;
+            font-family: var(--bbc-font);
+            letter-spacing: 0.3px;
         }
-        .n-sidebar .widget .topic-tag {
+        .bbc-sidebar .widget .topic-tag {
             padding: 4px 14px;
-            background: var(--newzyy-light);
-            border-radius: 20px;
+            background: var(--bbc-light);
+            border-radius: 0;
             font-size: 0.75rem;
-            color: var(--newzyy-text);
+            color: var(--bbc-text);
             cursor: pointer;
-            border: 1px solid var(--newzyy-border);
+            border: 1px solid var(--bbc-border);
             transition: 0.3s;
             display: inline-block;
             margin: 3px;
+            font-family: var(--bbc-font);
         }
-        .n-sidebar .widget .topic-tag:hover {
-            background: var(--newzyy-red);
+        .bbc-sidebar .widget .topic-tag:hover {
+            background: var(--bbc-red);
             color: #fff;
-            border-color: var(--newzyy-red);
+            border-color: var(--bbc-red);
         }
         
         /* ===== FOOTER (BBC Style) ===== */
-        .n-footer {
-            background: var(--newzyy-dark);
+        .bbc-footer {
+            background: var(--bbc-dark);
             color: #ccc;
             padding: 40px 0 20px;
             margin-top: 40px;
-            border-top: 3px solid var(--newzyy-red);
+            border-top: 3px solid var(--bbc-red);
         }
-        .n-footer a { color: #ccc; font-size: 0.85rem; transition: 0.3s; }
-        .n-footer a:hover { color: #fff; }
-        .n-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
-        .n-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
+        .bbc-footer a { 
+            color: #ccc; 
+            font-size: 0.85rem; 
+            transition: 0.3s; 
+            font-family: var(--bbc-font);
+        }
+        .bbc-footer a:hover { color: #fff; }
+        .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
+        .bbc-footer .copyright { 
+            font-size: 0.75rem; 
+            color: #666; 
+            margin-top: 20px; 
+            text-align: center; 
+            font-family: var(--bbc-font);
+        }
         
         /* ===== RESPONSIVE ===== */
         @media (max-width: 992px) {
-            .n-hero { grid-template-columns: 1fr; }
-            .n-hero .featured img { height: 240px; }
-            .n-hero .side-stories { display: grid; grid-template-columns: 1fr 1fr; }
-            .n-grid { grid-template-columns: repeat(2, 1fr); }
+            .bbc-hero { grid-template-columns: 1fr; }
+            .bbc-hero .featured img { height: 240px; }
+            .bbc-hero .side-stories { display: grid; grid-template-columns: 1fr 1fr; }
+            .bbc-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
-            .n-header .logo { font-size: 1.3rem; }
-            .n-header .search-input { width: 120px; font-size: 0.75rem; padding: 5px 12px 5px 30px; }
-            .n-header .search-input:focus { width: 140px; }
-            .n-hero .side-stories { grid-template-columns: 1fr; }
-            .n-grid { grid-template-columns: 1fr; }
-            .n-nav .nav-link { font-size: 0.6rem; padding: 6px 8px !important; }
-            .n-category-hero { flex-direction: column; text-align: center; }
+            .bbc-header .logo { font-size: 1.3rem; }
+            .bbc-header .search-input { width: 120px; font-size: 0.75rem; padding: 5px 12px 5px 30px; }
+            .bbc-header .search-input:focus { width: 140px; }
+            .bbc-hero .side-stories { grid-template-columns: 1fr; }
+            .bbc-grid { grid-template-columns: 1fr; }
+            .bbc-nav .nav-link { font-size: 0.6rem; padding: 8px 10px !important; }
+            .bbc-category-hero { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== TRENDING BAR (OLD STYLE - BBC Inspired) ===== -->
-<div class="trending-bar">
+<!-- ===== TRENDING BAR ===== -->
+<div class="bbc-trending">
     <div class="container">
-        <span class="label">⚡ Trending</span>
+        <span class="label">Trending</span>
         <div class="track" id="trendingTrack">
             <span class="item">Loading news...</span>
         </div>
@@ -540,7 +550,7 @@
 </div>
 
 <!-- ===== HEADER ===== -->
-<header class="n-header">
+<header class="bbc-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             <div class="logo">
@@ -550,7 +560,7 @@
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search news...">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search">
                 </div>
                 <div class="account-section" id="accountSection">
                     <span id="accountLinks"></span>
@@ -561,7 +571,7 @@
 </header>
 
 <!-- ===== NAVBAR ===== -->
-<nav class="n-nav">
+<nav class="bbc-nav">
     <div class="container">
         <div class="d-flex flex-wrap" id="navLinks">
             <a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a>
@@ -585,13 +595,13 @@
 <main class="container">
 
     <!-- ===== CATEGORY HERO ===== -->
-    <div id="categoryHero" class="n-category-hero" style="display:none;">
-        <span class="cat-title">📰 <span id="catHeroName">All News</span></span>
+    <div id="categoryHero" class="bbc-category-hero" style="display:none;">
+        <span class="cat-title"><span id="catHeroName">All News</span></span>
         <span class="cat-count" id="catHeroCount">0 articles</span>
     </div>
 
     <!-- ===== HERO SECTION ===== -->
-    <div id="heroSection" class="n-hero"></div>
+    <div id="heroSection" class="bbc-hero"></div>
 
     <!-- ===== NEWS GRID ===== -->
     <div id="newsContainer">
@@ -602,8 +612,8 @@
     </div>
 
     <!-- ===== LOAD MORE ===== -->
-    <div class="n-load-more" id="loadMoreBtn" style="display:none;">
-        <button onclick="loadMore()">Load More →</button>
+    <div class="bbc-load-more" id="loadMoreBtn" style="display:none;">
+        <button onclick="loadMore()">Load More</button>
     </div>
 
 </main>
@@ -611,15 +621,15 @@
 <!-- ===== SIDEBAR ===== -->
 <aside class="container">
     <div class="row">
-        <div class="col-lg-4 offset-lg-8 n-sidebar">
+        <div class="col-lg-4 offset-lg-8 bbc-sidebar">
             <div class="widget">
-                <h4 class="widget-title">🔥 Trending Topics</h4>
+                <h4 class="widget-title">Trending Topics</h4>
                 <div id="trendingTopics" class="d-flex flex-wrap">
                     <span class="topic-tag">Loading...</span>
                 </div>
             </div>
             <div class="widget">
-                <h4 class="widget-title">📬 Connect</h4>
+                <h4 class="widget-title">Connect</h4>
                 <div class="d-flex gap-2 flex-wrap">
                     <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-facebook"></i></a>
                     <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-twitter"></i></a>
@@ -632,7 +642,7 @@
 </aside>
 
 <!-- ===== FOOTER ===== -->
-<footer class="n-footer">
+<footer class="bbc-footer">
     <div class="container">
         <div class="links">
             <a href="index.html">Home</a>
@@ -641,7 +651,7 @@
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
         </div>
-        <div class="copyright">© 2026 Newzyy — Independent Journalism</div>
+        <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
 
@@ -653,7 +663,7 @@
 
 <script>
 // ============================================================
-//  NEWZYY — BBC-INSPIRED SCRIPT
+//  NEWZYY — BBC-INSPIRED SCRIPT (Clean, No Emojis)
 // ============================================================
 
 // ===== BACKEND API =====
@@ -666,7 +676,7 @@ let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
 // ===== CATEGORIES =====
 const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment', 'travel', 'environment', 'culture', 'world', 'economy'];
 const CATEGORY_COLORS = {
-    politics: '#e8380d',
+    politics: '#b80000',
     technology: '#2563eb',
     sports: '#16a34a',
     business: '#7c3aed',
@@ -756,7 +766,7 @@ function showToast(msg) {
     if (!t) {
         t = document.createElement('div');
         t.id = 'toast';
-        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#e8380d;color:white;padding:12px 24px;border-radius:40px;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;';
+        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#b80000;color:white;padding:12px 24px;border-radius:0;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;font-family:Inter,sans-serif;';
         document.body.appendChild(t);
     }
     t.textContent = msg;
@@ -791,7 +801,7 @@ async function fetchNews() {
     updateCategoryHero();
 }
 
-// ===== TRENDING BAR (Old Style) =====
+// ===== TRENDING BAR =====
 function updateTrendingBar() {
     const container = document.getElementById('trendingTrack');
     if (!container) return;
@@ -871,21 +881,14 @@ function renderAll() {
         return;
     }
     const pageItems = f.slice(0, displayCount);
-    let html = '<div class="n-grid">';
+    let html = '<div class="bbc-grid">';
     pageItems.forEach(a => {
         const views = getViews(a.id);
-        const isVideo = a.source === 'video' || a.title.toLowerCase().includes('video');
-        const isAudio = a.source === 'audio' || a.title.toLowerCase().includes('podcast');
-        let badge = '';
-        if (isVideo) badge = '<span class="media-badge"><i class="fa fa-play"></i> Video</span>';
-        else if (isAudio) badge = '<span class="media-badge"><i class="fa fa-headphones"></i> Audio</span>';
-        
         html += `
-            <div class="n-card" onclick="openNews('${a.id}')">
+            <div class="bbc-card" onclick="openNews('${a.id}')">
                 <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                ${badge}
                 <div class="body">
-                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
+                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${a.category || 'News'}</span>
                     <h3 class="title">${a.title}</h3>
                     <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
                     <div class="meta">
@@ -913,14 +916,14 @@ function loadMore() {
 function filterCategory(cat) {
     currentFilter = cat;
     displayCount = 6;
-    document.querySelectorAll('.n-nav .nav-link').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.n-nav .nav-link').forEach(el => {
+    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
         const text = el.textContent.toLowerCase().trim();
         if (text === cat || (cat === 'all' && text === 'home')) el.classList.add('active');
     });
     renderAll();
     updateCategoryHero();
-    showToast('📰 ' + (cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
+    showToast((cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
 }
 
 // ===== RENDER TRENDING TOPICS =====
@@ -930,7 +933,7 @@ function renderTrendingTopics() {
     const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy', 'AI', 'Climate', 'Space'];
     const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 12);
     container.innerHTML = shuffled.map(t => `
-        <span class="topic-tag" onclick="filterCategory('${t.toLowerCase()}')">#${t}</span>
+        <span class="topic-tag" onclick="filterCategory('${t.toLowerCase()}')">${t}</span>
     `).join('');
 }
 
@@ -941,18 +944,18 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
     const results = allNews.filter(a => a.title.toLowerCase().includes(q) || (a.category && a.category.toLowerCase().includes(q)));
     const container = document.getElementById('newsContainer');
     if (!results.length) {
-        container.innerHTML = '<div class="text-center py-5"><h4>🔍 No results found</h4></div>';
+        container.innerHTML = '<div class="text-center py-5"><h4>No results found</h4></div>';
         document.getElementById('loadMoreBtn').style.display = 'none';
         return;
     }
-    let html = `<h4 class="mb-3">🔍 Results (${results.length})</h4><div class="n-grid">`;
+    let html = `<h4 class="mb-3">Results (${results.length})</h4><div class="bbc-grid">`;
     results.slice(0, 12).forEach(a => {
         const views = getViews(a.id);
         html += `
-            <div class="n-card" onclick="openNews('${a.id}')">
+            <div class="bbc-card" onclick="openNews('${a.id}')">
                 <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
                 <div class="body">
-                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
+                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${a.category || 'News'}</span>
                     <h3 class="title">${a.title}</h3>
                     <div class="meta">
                         ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
