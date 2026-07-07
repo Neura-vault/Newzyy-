@@ -28,25 +28,11 @@
         <div class="row">
             <div class="col-lg-6">
                 <h3 class="trending-bar-title">Trending News</h3>
-                <div class="trending-news-slider">
+                <div class="trending-news-slider" id="tickerContainer">
                     <div class="item">
                         <div class="post-content">
                             <h2 class="post-title title-sm">
-                                <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Here's How To Get Free Pizza On 2 hour</a>
+                                <a href="single-post.html">Loading news...</a>
                             </h2>
                         </div>
                     </div>
@@ -72,7 +58,7 @@
     </div>
 </div>
 
-<!-- ===== HEADER (LOGO FIXED) ===== -->
+<!-- ===== HEADER ===== -->
 <header class="header-navigation d-none d-lg-block">
     <div class="container">
         <div class="row align-items-center">
@@ -84,9 +70,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-9 col-md-9">
-                    <a href="#">
-                    </a>
-                </div>
+                <a href="#"></a>
             </div>
         </div>
     </div>
@@ -108,49 +92,20 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Home</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="index.html">Home 1</a>
-                                    <a class="dropdown-item" href="index-2.html">Home 2</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Post</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="post-left-sidebar.html">Post Left Sidebar</a>
-                                    <a class="dropdown-item" href="post-full-width.html">Post Full Width</a>
-                                    <a class="dropdown-item" href="single-post.html">Single Post</a>
-                                    <a class="dropdown-item" href="post-category-1.html">Category 1</a>
-                                    <a class="dropdown-item" href="post-category-2.html">Category 2</a>
-                                    <a class="dropdown-item" href="author.html">Author</a>
-                                </div>
-                            </li>
+                            <li class="nav-item"><a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('business')">Business</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('health')">Health</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('science')">Science</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a></li>
                             <li class="nav-item dropdown" id="accountNav">
-                                 <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
+                                <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
                                 <div class="dropdown-menu" id="accountDropdown">
                                     <a class="dropdown-item" href="account.html">Log In</a>
                                     <a class="dropdown-item" href="signup.html">Register</a>
                                 </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">About</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="about.html">About</a>
-                                    <a class="dropdown-item" href="terms.html">Terms</a>
-                                    <a class="dropdown-item" href="privacy.html">Privacy Policy</a>
-                                    <a class="dropdown-item" href="job.html">Career</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="404.html">404 Page</a>
-                                    <a class="dropdown-item" href="search.html">Search Page</a>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
                             </li>
                         </ul>
                         <div class="nav-search ml-auto d-none d-lg-block">
@@ -171,335 +126,33 @@
 
 <div class="py-30"></div>
 
-<!-- ===== FEATURED POSTS ===== -->
+<!-- ===== CAROUSEL ===== -->
 <section class="featured-posts">
     <div class="container">
-        <div class="row no-gutters">
-            <div class="col-md-6 col-xs-12 col-lg-4">
-                <div class="featured-slider mr-md-3 mr-lg-3">
-                    <div class="item" style="background-image:url(images/news/img-1.jpg)">
-                        <div class="post-content">
-                            <a href="#" class="post-cat bg-primary">Entertainment</a>
-                            <h2 class="slider-post-title">
-                                <a href="single-post.html">Here's How To Get Free Pizza On</a>
-                            </h2>
-                            <div class="post-meta mt-2">
-                                <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>19 hours ago</span>
-                                <span class="post-author">by <a href="author.html">Rodinho Summon</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-xs-12 col-lg-4">
-                <div class="featured-slider mr-lg-3">
-                    <div class="item" style="background-image:url(images/news/img-2.jpg)">
-                        <div class="post-content">
-                            <a href="#" class="post-cat bg-danger">game</a>
-                            <h2 class="slider-post-title">
-                                <a href="single-post.html">Call Of Duty: Black Ops 4 Releasing</a>
-                            </h2>
-                            <div class="post-meta mt-2">
-                                <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>19 hours ago</span>
-                                <span class="post-author">by <a href="author.html">Rodinho Summon</a></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-4">
-                <div class="row mt-3 mt-lg-0">
-                    <div class="col-lg-12 col-xs-12 col-sm-6 col-md-6">
-                        <div class="post-featured-style" style="background-image:url(images/news/news-02.jpg)">
-                            <div class="post-content">
-                                <a href="#" class="post-cat bg-success">lifestyle</a>
-                                <h2 class="post-title">
-                                    <a href="single-post.html">Healthy diet to keep you healthy and strong</a>
-                                </h2>
-                                <div class="post-meta mt-2">
-                                    <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>19 hours ago</span>
-                                    <span class="post-author">by <a href="author.html">Rodinho Summon</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 col-xs-12 col-sm-6 col-md-6">
-                        <div class="post-featured-style" style="background-image:url(images/news/news-04.jpg)">
-                            <div class="post-content">
-                                <a href="#" class="post-cat bg-info">travel</a>
-                                <h2 class="post-title">
-                                    <a href="single-post.html">Call Of Duty: Black Ops 4 Releasing</a>
-                                </h2>
-                                <div class="post-meta mt-2">
-                                    <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>19 hours ago</span>
-                                    <span class="post-author">by <a href="author.html">Rodinho Summon</a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div id="heroCarousel"></div>
     </div>
 </section>
 
-<!-- ===== BLOCK WRAPPER ===== -->
+<!-- ===== NEWS CONTAINER ===== -->
 <section class="block-wrapper">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                
-                <!-- ===== EDITOR PICKS ===== -->
-                <div class="news-style-one">
-                    <h3 class="news-title"><span>Editor Picks</span></h3>
-                    <div class="news-style-one-slide">
-                        <div class="item">
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-01.jpg" alt="post-image"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title mt-3">
-                                        <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-02.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="single-post.html">Extra Crunch The next service marketplace wave: Vertical</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-03.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="single-post.html">Apple HomePod review: locked in device to start out</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-04.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title title-lg">
-                                        <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid Reiciendis.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-05.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="single-post.html">Here's How To Get Free Pizza On lets check it out</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-06.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="single-post.html">Call Of Duty: Black Ops 4 Releasing</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid similique.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-07.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="single-post.html">Your social media apps want to help</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper clearfix mb-5">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.htm">
-                                        <img class="img-fluid" src="images/news/news-08.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title">
-                                        <a href="single-post.html">PS4 Games Sale: All The PSN Deals</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid Reiciendis.</p>
-                                </div>
-                            </div>
-                        </div>
+                <div id="newsContainer">
+                    <div class="loader" style="text-align:center;padding:60px;">
+                        <div class="spinner" style="display:inline-block;width:40px;height:40px;border:4px solid #e8e4df;border-top:4px solid #e8380d;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
+                        <p style="margin-top:16px;color:#6a6a6a;">Loading news...</p>
                     </div>
                 </div>
-
-                <div class="py-40"></div>
-
-                <!-- ===== TECH SECTION ===== -->
-                <div class="news-style-two">
-                    <h3 class="news-title"><span>Tech</span></h3>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6">
-                            <div class="post-block-wrapper clearfix">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.html">
-                                        <img class="img-fluid" src="images/news/news-09.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <a class="post-category" href="categoty-style1.html">Tech</a>
-                                <div class="post-content">
-                                    <h2 class="post-title mt-3">
-                                        <a href="single-post.html">YouTube will remove ads and downgrade</a>
-                                    </h2>
-                                    <div class="post-meta mb-2">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                                        <span class="post-author">by <a href="author.html">Tarnak Sunder</a></span>
-                                    </div>
-                                    <p>Lumbersexual meh sustainable Thundercats meditation kogi. Tilde Pitchfork vegan, gentrify minim elit semiotics non messenger bag Austin which roasted</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="post-list-block m-top-0">
-                                <div class="post-block-wrapper post-float clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-04.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h2 class="post-title title-sm">
-                                            <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                                        </h2>
-                                        <div class="post-meta">
-                                            <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>7 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-block-wrapper post-float clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-03.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h2 class="post-title title-sm">
-                                            <a href="single-post.html">Apple HomePod review: locked in</a>
-                                        </h2>
-                                        <div class="post-meta">
-                                            <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>10 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-block-wrapper post-float clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-07.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h2 class="post-title title-sm">
-                                            <a href="single-post.html">Your social media apps want to help</a>
-                                        </h2>
-                                        <div class="post-meta">
-                                            <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>11 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-block-wrapper post-float clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-02.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <h2 class="post-title title-sm">
-                                            <a href="single-post.html">Flu season rages on,2009 swine flu</a>
-                                        </h2>
-                                        <div class="post-meta">
-                                            <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>12 hours ago</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                
+                <div class="load-more-btn" id="loadMoreBtn" style="display:none;text-align:center;margin:40px 0;">
+                    <button onclick="loadMore()" style="padding:12px 32px;background:#e8380d;color:white;border:none;border-radius:40px;cursor:pointer;font-weight:700;">Load More →</button>
                 </div>
             </div>
 
             <!-- ===== SIDEBAR ===== -->
             <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
                 <div class="sidebar">
-                    <!-- Stay in touch -->
                     <div class="widget">
                         <h3 class="news-title"><span>Stay in touch</span></h3>
                         <ul class="list-inline social-widget">
@@ -512,169 +165,10 @@
                         </ul>
                     </div>
 
-                    <!-- Hot News -->
-                    <div class="widget">
-                        <h3 class="news-title"><span>Hot News</span></h3>
-                        <div class="post-overlay-wrapper">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-15.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <a class="post-category white" href="post-category-1.html">Fashion</a>
-                                <h2 class="post-title">
-                                    <a href="single-post.html">First Look At Self-Portrait's Autumn Collection...</a>
-                                </h2>
-                                <div class="post-meta white">
-                                    <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>17 jun,2019</span>
-                                    <span> by </span>
-                                    <span class="post-author"><a href="author.html">Jammy Anderson</a></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-list-block">
-                            <div class="post-block-wrapper post-float">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.html">
-                                        <img class="img-fluid" src="images/news/news-03.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title title-sm">
-                                        <a href="single-post.html">Apple HomePod review: locked in</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>2 hours ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper post-float">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.html">
-                                        <img class="img-fluid" src="images/news/news-05.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title title-sm">
-                                        <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>15 March, 2019</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper post-float">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.html">
-                                        <img class="img-fluid" src="images/news/news-11.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title title-sm">
-                                        <a href="single-post.html">Free Two-Hour Delivery From Whole Foods</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>5 hours ago</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="post-block-wrapper post-float">
-                                <div class="post-thumbnail">
-                                    <a href="single-post.html">
-                                        <img class="img-fluid" src="images/news/news-06.jpg" alt="post-thumbnail"/>
-                                    </a>
-                                </div>
-                                <div class="post-content">
-                                    <h2 class="post-title title-sm">
-                                        <a href="single-post.html">Here's How To Get Free Pizza On</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="posted-time"><i class="fa fa-clock-o mr-1"></i>17 June, 2019</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Beauty Blog -->
-                    <div class="widget mb-0">
-                        <h3 class="news-title"><span>Beauty Blog</span></h3>
-                        <div class="post-slide">
-                            <div class="item">
-                                <div class="post-overlay-wrapper clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-16.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a class="post-category white" href="post-category-2.html">Hair</a>
-                                        <h2 class="post-title">
-                                            <a href="single-post.html">On Beauty: Style and Fashion Blogger...</a>
-                                        </h2>
-                                        <div class="post-meta white">
-                                            <span class="posted-time">4 hours ago</span>
-                                            <span> by </span>
-                                            <span class="post-author"><a href="author.html">Jammy Anderson</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-overlay-wrapper clearfix mt-3">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-18.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a class="post-category white" href="post-category-2.html">Eyes</a>
-                                        <h2 class="post-title">
-                                            <a href="single-post.html">The Best Eye Makeup Tutorials fo...</a>
-                                        </h2>
-                                        <div class="post-meta white">
-                                            <span class="posted-time">5 hours ago</span>
-                                            <span> by </span>
-                                            <span class="post-author"><a href="author.html">Roberto Carlous</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="post-overlay-wrapper clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-17.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a class="post-category white" href="post-category-2.html">Nail</a>
-                                        <h2 class="post-title">
-                                            <a href="single-post.html">5 Best Essie Polishes for Winter...</a>
-                                        </h2>
-                                        <div class="post-meta white">
-                                            <span class="posted-time">10 hours ago</span>
-                                            <span> by </span>
-                                            <span class="post-author"><a href="author.html">Jamalick Jack</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="post-overlay-wrapper mt-3 clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-19.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a class="post-category white" href="post-category-2.html">Lips</a>
-                                        <h2 class="post-title">
-                                            <a href="single-post.html">This Red Hot Metallic Lip Tutori...</a>
-                                        </h2>
-                                        <div class="post-meta white">
-                                            <span class="posted-time">5 hours ago</span>
-                                            <span> by </span>
-                                            <span class="post-author"><a href="author.html">Jerin Khan</a></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="widget" id="trendingTopics">
+                        <h3 class="news-title"><span>Trending Topics</span></h3>
+                        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                            <span class="trending-topic">Loading...</span>
                         </div>
                     </div>
                 </div>
@@ -683,328 +177,7 @@
     </div>
 </section>
 
-<!-- ===== NEWS STYLE FOUR ===== -->
-<section class="news-style-four bg-light section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="block">
-                    <h3 class="news-title"><span>Tour</span></h3>
-                    <div class="post-overlay-wrapper clearfix">
-                        <div class="post-thumbnail">
-                            <img class="img-fluid" src="images/news/news-13.jpg" alt="post-thumbnail"/>
-                        </div>
-                        <div class="post-content">
-                            <h2 class="post-title">
-                                <a href="single-post.html">An Asteroid Is Passing Earth Today: Here's How to</a>
-                            </h2>
-                            <div class="post-meta white">
-                                <span class="posted-time">2 hours ago</span>
-                                <span class="post-author">by <a href="author.html">Rock Madveen</a></span>
-                                <span class="pull-right">
-                                    <i class="fa fa-comments"></i>
-                                    <a href="single-post.html#comments">05</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-list-block">
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-11.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Snow and Freezing Rain in Paris Forces the</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">3 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-04.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Your social media apps want to help.</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">8 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-12.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Today Is the Day Most People Quit Their New Year's</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">9 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="block">
-                    <h3 class="news-title"><span>Game</span></h3>
-                    <div class="post-overlay-wrapper clearfix">
-                        <div class="post-thumbnail">
-                            <img class="img-fluid" src="images/news/news-08.jpg" alt="post-thumbnail"/>
-                        </div>
-                        <div class="post-content">
-                            <h2 class="post-title">
-                                <a href="single-post.html">Call Of Duty: Black Ops 4 Releasing</a>
-                            </h2>
-                            <div class="post-meta white">
-                                <span class="posted-time">3 hours ago</span>
-                                <span class="post-author">by <a href="author.html">Arya Stark</a></span>
-                                <span class="pull-right">
-                                    <i class="fa fa-comments"></i>
-                                    <a href="single-post.html#comments">10</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-list-block">
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-03.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Apple HomePod review: locked in</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">4 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-01.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">5 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-06.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">PS4 Games Sale: All The PSN Deals</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">12 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="block">
-                    <h3 class="news-title"><span>Health</span></h3>
-                    <div class="post-overlay-wrapper clearfix">
-                        <div class="post-thumbnail">
-                            <img class="img-fluid" src="images/news/news-05.jpg" alt="post-thumbnail"/>
-                        </div>
-                        <div class="post-content">
-                            <h2 class="post-title">
-                                <a href="single-post.html">Here's How To Get Free Pizza On</a>
-                            </h2>
-                            <div class="post-meta white">
-                                <span class="posted-time">an hour ago</span>
-                                <span class="post-author">by <a href="author.html">Mad King</a></span>
-                                <span class="pull-right">
-                                    <i class="fa fa-comments"></i>
-                                    <a href="single-post.html#comments">30</a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="post-list-block">
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-10.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Free Two-Hour Delivery From Whole Foods</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">2 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-07.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Your social media apps want to help</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">4 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="post-block-wrapper post-float clearfix">
-                            <div class="post-thumbnail">
-                                <img class="img-fluid" src="images/news/news-14.jpg" alt="post-thumbnail"/>
-                            </div>
-                            <div class="post-content">
-                                <h2 class="post-title title-sm">
-                                    <a href="single-post.html">Snow and Freezing Rain in Paris Forces the</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="posted-time">9 hours ago</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ===== LATEST ARTICLES ===== -->
-<section class="section-padding">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-                <div class="all-news-block">
-                    <h3 class="news-title"><span>Latest Articles</span></h3>
-                    <div class="all-news">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="post-block-wrapper post-float-half clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-01.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a class="post-category" href="post-category-2.html">Google</a>
-                                        <h2 class="post-title mt-3">
-                                            <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                                        </h2>
-                                        <div class="post-meta">
-                                            <span class="posted-time">an hour ago</span>
-                                            <span class="post-author">by <a href="author.html">John Snow</a></span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel eaque, aliquid accusamus soluta!...</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="post-block-wrapper post-float-half clearfix">
-                                    <div class="post-thumbnail">
-                                        <a href="single-post.html">
-                                            <img class="img-fluid" src="images/news/news-12.jpg" alt="post-thumbnail"/>
-                                        </a>
-                                    </div>
-                                    <div class="post-content">
-                                        <a class="post-category" href="post-category-2.html">Health</a>
-                                        <h2 class="post-title mt-3">
-                                            <a href="single-post.html">Today Is the Day Most People Quit Their New Year's Party</a>
-                                        </h2>
-                                        <div class="post-meta">
-                                            <span class="posted-time">4 hours ago</span>
-                                            <span class="post-author">by <a href="author.html">Rimmon Ronnick</a></span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis blanditiis hic cumque excepturi...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ===== PAGINATION ===== -->
-                <nav aria-label="pagination-wrapper" class="pagination-wrapper">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item active">
-                            <a class="page-link" href="#" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fa fa-angle-double-left mr-2"></i></span>
-                                <span class="">Previous</span>
-                            </a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span class="">Next</span>
-                                <span aria-hidden="true"><i class="fa fa-angle-double-right ml-2"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-
-            <!-- ===== SIDEBAR RIGHT ===== -->
-            <div class="col-lg-4 col-md-8 col-sm-12 col-xs-12">
-                <div class="sidebar sidebar-right">
-                    <div class="widget">
-                        <h3 class="news-title"><span>Top Authors</span></h3>
-                        <div class="post-list-block">
-                            <div class="review-post-list">
-                                <div class="top-author">
-                                    <img src="images/news/author-01.jpg" alt="author-thumb">
-                                    <div class="info">
-                                        <h4 class="name"><a href="author.html">Jack Rockshow</a></h4>
-                                        <ul class="list-unstyled"><li>37 Posts</li></ul>
-                                    </div>
-                                </div>
-                                <div class="top-author">
-                                    <img src="images/news/author-02.jpg" alt="author-thumb">
-                                    <div class="info">
-                                        <h4 class="name"><a href="author.html">Lint Handson</a></h4>
-                                        <ul class="list-unstyled"><li>28 Posts</li></ul>
-                                    </div>
-                                </div>
-                                <div class="top-author">
-                                    <img src="images/news/author-03.jpg" alt="author-thumb">
-                                    <div class="info">
-                                        <h4 class="name"><a href="author.html">Ronny Robeen</a></h4>
-                                        <ul class="list-unstyled"><li>19 Posts</li></ul>
-                                    </div>
-                                </div>
-                                <div class="top-author">
-                                    <img src="images/news/author-02.jpg" alt="author-thumb">
-                                    <div class="info">
-                                        <h4 class="name"><a href="author.html">Handson</a></h4>
-                                        <ul class="list-unstyled"><li>18 Posts</li></ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<div class="py-40"></div>
-
-<!-- ===== FOOTER (LOGO FIXED) ===== -->
+<!-- ===== FOOTER ===== -->
 <footer class="footer footer-main">
     <div class="container">
         <div class="row justify-content-center">
@@ -1046,9 +219,30 @@
 <script src="js/custom.js"></script>
 
 <script>
-// ===== NEWZYY COMPLETE SCRIPT =====
+// ============================================================
+//  NEWZYY — COMPLETE BACKEND CONNECTED SCRIPT
+// ============================================================
 
-// ===== LOGIN/LOGOUT NAVBAR UPDATE =====
+// ===== BACKEND API =====
+const API_BASE = 'https://newzyy.onrender.com';
+let allNews = [];
+let currentFilter = 'all';
+let displayCount = 6;
+let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
+
+// ===== CATEGORIES =====
+const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment'];
+const CATEGORY_ICONS = {
+    politics: 'landmark',
+    technology: 'microchip',
+    sports: 'futbol',
+    business: 'chart-line',
+    health: 'heartbeat',
+    science: 'flask',
+    entertainment: 'film'
+};
+
+// ===== LOGIN/LOGOUT =====
 function updateNavbar() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
     const accountLink = document.getElementById('accountLink');
@@ -1072,7 +266,6 @@ function updateNavbar() {
     }
 }
 
-// ===== LOGOUT FUNCTION =====
 function logoutUser() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('newzyy_logged_in');
@@ -1080,14 +273,311 @@ function logoutUser() {
     }
 }
 
-// ===== RUN ON PAGE LOAD =====
+// ===== UTILITY FUNCTIONS =====
+function getReadingTime(text) {
+    const words = (text || '').split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200));
+}
+
+function formatTimeAgo(dateString) {
+    if (!dateString) return 'Just now';
+    const date = new Date(dateString);
+    const now = new Date();
+    const diffMins = Math.floor((now - date) / 60000);
+    if (diffMins < 1) return 'Just now';
+    if (diffMins < 60) return diffMins + 'm ago';
+    const diffHours = Math.floor(diffMins / 60);
+    if (diffHours < 24) return diffHours + 'h ago';
+    const diffDays = Math.floor(diffHours / 24);
+    return diffDays + 'd ago';
+}
+
+function showToast(msg) {
+    let t = document.getElementById('toast');
+    if (!t) {
+        t = document.createElement('div');
+        t.id = 'toast';
+        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#e8380d;color:white;padding:12px 24px;border-radius:40px;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;';
+        document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.transform = 'translateX(-50%) translateY(0)';
+    t.style.opacity = '1';
+    setTimeout(() => {
+        t.style.opacity = '0';
+        t.style.transform = 'translateX(-50%) translateY(100px)';
+    }, 3000);
+}
+
+// ===== FETCH NEWS =====
+async function fetchNews() {
+    try {
+        const res = await fetch(`${API_BASE}/api/all-news`);
+        const data = await res.json();
+        if (data.success && data.news) {
+            allNews = data.news;
+            console.log('✅ Loaded ' + allNews.length + ' news articles');
+        } else {
+            allNews = [];
+            console.warn('⚠️ No news found');
+        }
+    } catch(e) {
+        console.error('❌ Fetch error:', e);
+        allNews = [];
+    }
+    displayCount = 6;
+    renderAll();
+    updateTicker();
+    renderCarousel();
+    renderTrendingTopics();
+}
+
+// ===== RENDER ALL NEWS =====
+function renderAll() {
+    let f = currentFilter === 'all' ? allNews : allNews.filter(n => n.category === currentFilter);
+    
+    const container = document.getElementById('newsContainer');
+    if (!container) return;
+    
+    if (!f.length) {
+        container.innerHTML = `
+            <div style="text-align:center;padding:60px 20px;">
+                <h3 style="font-size:1.8rem;color:#e8380d;">📭 No News Found</h3>
+                <p style="color:#6a6a6a;margin-top:10px;">Try checking back later or select a different category.</p>
+                <button onclick="filterCategory('all')" style="margin-top:16px;padding:10px 28px;border-radius:40px;background:#e8380d;color:white;border:none;cursor:pointer;font-weight:600;">Show All News →</button>
+            </div>
+        `;
+        document.getElementById('loadMoreBtn').style.display = 'none';
+        return;
+    }
+    
+    let html = '';
+    CATEGORIES.forEach(cat => {
+        const articles = f.filter(n => n.category === cat).slice(0, displayCount);
+        if (!articles.length) return;
+        
+        html += `
+            <div style="margin-top:40px;">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;border-bottom:2px solid #e8380d;padding-bottom:6px;">
+                    <h2 style="font-family:'Oswald',sans-serif;font-size:1.4rem;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:#0a0a0a;">
+                        <i class="fas fa-${CATEGORY_ICONS[cat]}" style="color:#e8380d;"></i> ${cat.toUpperCase()}
+                    </h2>
+                    <span style="font-size:0.7rem;color:#e8380d;cursor:pointer;font-weight:600;" onclick="filterCategory('${cat}')">View all →</span>
+                </div>
+                <div class="grid-3">
+                    ${articles.map(a => `
+                        <div class="card" onclick="openNews('${a.id}')">
+                            <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+                            <div class="card-body">
+                                <span class="card-category">${a.category}</span>
+                                <div class="card-title">${a.title.substring(0,70)}${a.title.length > 70 ? '...' : ''}</div>
+                                <div class="card-meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'} · <span class="read-time">${getReadingTime(a.body || a.excerpt)} min</span></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+    
+    const totalDisplayed = CATEGORIES.reduce((sum, cat) => {
+        return sum + f.filter(n => n.category === cat).slice(0, displayCount).length;
+    }, 0);
+    const hasMore = f.length > totalDisplayed;
+    document.getElementById('loadMoreBtn').style.display = hasMore ? 'block' : 'none';
+}
+
+function loadMore() {
+    displayCount += 6;
+    renderAll();
+}
+
+// ===== FILTER CATEGORY =====
+function filterCategory(cat) {
+    currentFilter = cat;
+    displayCount = 6;
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.navbar-nav .nav-link').forEach(el => {
+        if (el.textContent.toLowerCase().trim() === cat || (cat === 'all' && el.textContent.trim() === 'Home')) {
+            el.classList.add('active');
+        }
+    });
+    renderAll();
+    showToast('📰 Showing: ' + (cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
+}
+
+// ===== UPDATE TICKER =====
+function updateTicker() {
+    const container = document.getElementById('tickerContainer');
+    if (!container) return;
+    const h = allNews.slice(0, 10);
+    if (!h.length) {
+        container.innerHTML = '<div class="item"><div class="post-content"><h2 class="post-title title-sm"><a href="#">Welcome to Newzyy</a></h2></div></div>';
+        return;
+    }
+    container.innerHTML = h.map(a => `
+        <div class="item">
+            <div class="post-content">
+                <h2 class="post-title title-sm">
+                    <a href="single-post.html?id=${a.id}">${a.title}</a>
+                </h2>
+            </div>
+        </div>
+    `).join('');
+    // Re-initialize slick slider
+    if (typeof $ !== 'undefined' && $('.trending-news-slider').length) {
+        $('.trending-news-slider').slick('refresh');
+    }
+}
+
+// ===== RENDER CAROUSEL =====
+function renderCarousel() {
+    const container = document.getElementById('heroCarousel');
+    if (!container) return;
+    const slides = allNews.slice(0, 6);
+    if (!slides.length) {
+        container.innerHTML = '<div style="text-align:center;padding:60px;">No news available</div>';
+        return;
+    }
+    
+    let html = `
+        <div class="row no-gutters">
+            <div class="col-md-6 col-xs-12 col-lg-4">
+                <div class="featured-slider mr-md-3 mr-lg-3">
+                    <div class="item" style="background-image:url(${slides[0].image || 'images/news/img-1.jpg'})">
+                        <div class="post-content">
+                            <a href="#" class="post-cat bg-primary">${slides[0].category || 'News'}</a>
+                            <h2 class="slider-post-title">
+                                <a href="single-post.html?id=${slides[0].id}">${slides[0].title.substring(0, 50)}${slides[0].title.length > 50 ? '...' : ''}</a>
+                            </h2>
+                            <div class="post-meta mt-2">
+                                <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>${slides[0].time || 'Just now'}</span>
+                                <span class="post-author">by <a href="author.html">${slides[0].author || 'Newzyy'}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 col-lg-4">
+                <div class="featured-slider mr-lg-3">
+                    <div class="item" style="background-image:url(${slides[1]?.image || 'images/news/img-2.jpg'})">
+                        <div class="post-content">
+                            <a href="#" class="post-cat bg-danger">${slides[1]?.category || 'News'}</a>
+                            <h2 class="slider-post-title">
+                                <a href="single-post.html?id=${slides[1]?.id || ''}">${slides[1]?.title ? slides[1].title.substring(0, 50) + (slides[1].title.length > 50 ? '...' : '') : 'Loading...'}</a>
+                            </h2>
+                            <div class="post-meta mt-2">
+                                <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>${slides[1]?.time || 'Just now'}</span>
+                                <span class="post-author">by <a href="author.html">${slides[1]?.author || 'Newzyy'}</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12 col-sm-12 col-lg-4">
+                <div class="row mt-3 mt-lg-0">
+                    ${slides.slice(2, 4).map(s => `
+                        <div class="col-lg-12 col-xs-12 col-sm-6 col-md-6">
+                            <div class="post-featured-style" style="background-image:url(${s.image || 'images/news/news-02.jpg'})">
+                                <div class="post-content">
+                                    <a href="#" class="post-cat bg-success">${s.category || 'News'}</a>
+                                    <h2 class="post-title">
+                                        <a href="single-post.html?id=${s.id}">${s.title.substring(0, 50)}${s.title.length > 50 ? '...' : ''}</a>
+                                    </h2>
+                                    <div class="post-meta mt-2">
+                                        <span class="posted-time"><i class="fa fa-clock-o mr-2 text-danger"></i>${s.time || 'Just now'}</span>
+                                        <span class="post-author">by <a href="author.html">${s.author || 'Newzyy'}</a></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+    container.innerHTML = html;
+}
+
+// ===== RENDER TRENDING TOPICS =====
+function renderTrendingTopics() {
+    const container = document.getElementById('trendingTopics');
+    if (!container) return;
+    if (!allNews.length) {
+        container.innerHTML = '<h3 class="news-title"><span>Trending Topics</span></h3><div>No topics available</div>';
+        return;
+    }
+    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'AI', 'Climate', 'Economy'];
+    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 8);
+    container.innerHTML = `
+        <h3 class="news-title"><span>Trending Topics</span></h3>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;">
+            ${shuffled.map(t => `
+                <span class="trending-topic" onclick="filterCategory('${t.toLowerCase()}')" style="padding:4px 14px;background:#f5f5f0;border-radius:20px;font-size:0.75rem;color:#4a4a4a;cursor:pointer;border:1px solid #e8e4df;transition:0.2s;">#${t}</span>
+            `).join('')}
+        </div>
+    `;
+}
+
+// ===== OPEN NEWS =====
+function openNews(id) {
+    window.location.href = 'single-post.html?id=' + id;
+}
+
+// ===== SEARCH =====
+document.getElementById('searchInput')?.addEventListener('input', function(e) {
+    const q = e.target.value.toLowerCase().trim();
+    if (q.length < 2) {
+        currentFilter = 'all';
+        renderAll();
+        return;
+    }
+    const results = allNews.filter(a => a.title.toLowerCase().includes(q) || (a.category && a.category.toLowerCase().includes(q)));
+    const container = document.getElementById('newsContainer');
+    if (!results.length) {
+        container.innerHTML = '<div style="text-align:center;padding:60px;">🔍 No results found</div>';
+        return;
+    }
+    let html = `<div style="margin-top:20px;"><h3 style="font-family:'Oswald',sans-serif;">🔍 Search Results (${results.length})</h3><div class="grid-3">`;
+    html += results.slice(0, 12).map(a => `
+        <div class="card" onclick="openNews('${a.id}')">
+            <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+            <div class="card-body">
+                <span class="card-category">${a.category}</span>
+                <div class="card-title">${a.title.substring(0,60)}${a.title.length > 60 ? '...' : ''}</div>
+                <div class="card-meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'}</div>
+            </div>
+        </div>
+    `).join('');
+    html += '</div></div>';
+    container.innerHTML = html;
+    document.getElementById('loadMoreBtn').style.display = 'none';
+});
+
+// ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
     updateNavbar();
+    fetchNews();
 });
 
 // Make functions global
-window.updateNavbar = updateNavbar;
+window.filterCategory = filterCategory;
+window.openNews = openNews;
+window.loadMore = loadMore;
 window.logoutUser = logoutUser;
+window.updateNavbar = updateNavbar;
+
+// ===== SPINNER KEYFRAME =====
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+`;
+document.head.appendChild(style);
 </script>
 
 </body>
