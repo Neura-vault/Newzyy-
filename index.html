@@ -778,8 +778,7 @@ function showToast(msg) {
     }, 3000);
 }
 
-// ===== FETCH NEWS =====
-// ===== FETCH NEWS =====
+// ===== FETCH NEWS (FIXED) =====
 async function fetchNews() {
     try {
         const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=50`);
@@ -802,6 +801,7 @@ async function fetchNews() {
     renderTrendingTopics();
     updateCategoryHero();
 }
+
 // ===== TRENDING BAR =====
 function updateTrendingBar() {
     const container = document.getElementById('trendingTrack');
