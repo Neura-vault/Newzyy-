@@ -19,6 +19,87 @@
     <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
     <link rel="stylesheet" href="css/style.css?v=2">
+    
+    <style>
+        /* ===== BBC-STYLE CLEAN HEADER ===== */
+        .bbc-top-bar {
+            background: #0a0a0a;
+            padding: 6px 0;
+            border-bottom: 1px solid #222;
+        }
+        .bbc-top-bar .logo-text {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+        }
+        .bbc-top-bar .logo-text span { color: #e8380d; }
+        .bbc-top-bar .logo-text small { font-size: 0.55rem; font-weight: 400; color: #888; margin-left: 4px; }
+        
+        .bbc-top-bar .search-input {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 5px 14px;
+            color: #fff;
+            font-size: 0.8rem;
+            width: 180px;
+            outline: none;
+            transition: 0.3s;
+        }
+        .bbc-top-bar .search-input:focus {
+            border-color: #e8380d;
+            width: 200px;
+        }
+        .bbc-top-bar .search-input::placeholder { color: #666; }
+        
+        .bbc-top-bar .top-right a {
+            color: #ccc;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: 0.3s;
+            text-decoration: none;
+            padding: 4px 10px;
+        }
+        .bbc-top-bar .top-right a:hover { color: #fff; }
+        .bbc-top-bar .top-right .separator { color: #444; margin: 0 4px; }
+        .bbc-top-bar .top-right .user-name { color: #e8380d; font-weight: 700; }
+        
+        /* BBC-Style Navbar */
+        .bbc-nav {
+            background: #0a0a0a;
+            padding: 0;
+            border-bottom: 1px solid #222;
+        }
+        .bbc-nav .nav-link {
+            color: #ccc !important;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 10px 14px !important;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            border-bottom: 2px solid transparent;
+            transition: 0.3s;
+        }
+        .bbc-nav .nav-link:hover,
+        .bbc-nav .nav-link.active {
+            color: #fff !important;
+            border-bottom-color: #e8380d;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .bbc-top-bar .search-input { width: 120px; }
+            .bbc-top-bar .search-input:focus { width: 140px; }
+            .bbc-nav .nav-link { font-size: 0.65rem; padding: 8px 10px !important; }
+        }
+        @media (max-width: 768px) {
+            .bbc-top-bar .logo-text { font-size: 1.2rem; }
+            .bbc-top-bar .search-input { width: 100px; font-size: 0.7rem; }
+            .bbc-top-bar .top-right a { font-size: 0.7rem; padding: 2px 6px; }
+            .bbc-nav .nav-link { font-size: 0.6rem; padding: 6px 8px !important; }
+        }
+    </style>
 </head>
 <body>
 
@@ -58,78 +139,51 @@
     </div>
 </div>
 
-<!-- ===== HEADER ===== -->
-<header class="header-navigation d-none d-lg-block">
+<!-- ===== BBC-STYLE HEADER ===== -->
+<div class="bbc-top-bar">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logos/logo.png" alt="Newzyy" style="max-height:35px; width:auto;">
-                    </a>
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <!-- Logo -->
+            <div class="logo-text">
+                Newzy<span>y</span>
+                <small>News</small>
+            </div>
+            
+            <!-- Search + Account -->
+            <div class="d-flex align-items-center gap-3 flex-wrap">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search...">
+                
+                <div class="top-right d-flex align-items-center" id="accountSection">
+                    <!-- Dynamic content via JS -->
+                    <span id="accountLinks"></span>
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-9 col-md-9">
-                <a href="#"></a>
-            </div>
         </div>
     </div>
-</header>
-
-<!-- ===== NAVBAR ===== -->
-<div class="main-navbar clearfix bg-dark">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                    <a class="navbar-brand d-lg-none" href="index.html">
-                        <img src="images/logos/footer-logo.png" alt="Newzyy" style="max-height:30px; width:auto;">
-                    </a>
-  
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="fa fa-bars"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item"><a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('business')">Business</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('health')">Health</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('science')">Science</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a></li>
-                            <!-- ===== NEW CATEGORIES ADDED ===== -->
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('travel')">Travel</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('environment')">Earth</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('culture')">Culture</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('world')">World</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#" onclick="filterCategory('economy')">Economy</a></li>
-                            <li class="nav-item dropdown" id="accountNav">
-                                <a class="nav-link dropdown-toggle" id="accountLink" href="#" role="button" data-toggle="dropdown">Account ▼</a>
-                                <div class="dropdown-menu" id="accountDropdown">
-                                    <a class="dropdown-item" href="account.html">Log In</a>
-                                    <a class="dropdown-item" href="signup.html">Register</a>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="nav-search ml-auto d-none d-lg-block">
-                            <span id="search"><i class="fa fa-search"></i></span>
-                        </div>
-                    </div>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <form class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-        <div class="search-close">
-            <span class="close-search"><i class="fa fa-times"></i></span>
-        </div>
-    </form>
 </div>
 
+<!-- ===== BBC-STYLE NAVBAR ===== -->
+<nav class="bbc-nav">
+    <div class="container">
+        <div class="d-flex flex-wrap" id="navLinks">
+            <a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a>
+            <a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a>
+            <a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a>
+            <a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a>
+            <a class="nav-link" href="#" onclick="filterCategory('business')">Business</a>
+            <a class="nav-link" href="#" onclick="filterCategory('health')">Health</a>
+            <a class="nav-link" href="#" onclick="filterCategory('science')">Science</a>
+            <a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a>
+            <a class="nav-link" href="#" onclick="filterCategory('travel')">Travel</a>
+            <a class="nav-link" href="#" onclick="filterCategory('environment')">Earth</a>
+            <a class="nav-link" href="#" onclick="filterCategory('culture')">Culture</a>
+            <a class="nav-link" href="#" onclick="filterCategory('world')">World</a>
+            <a class="nav-link" href="#" onclick="filterCategory('economy')">Economy</a>
+        </div>
+    </div>
+</nav>
+
+<!-- ===== MAIN CONTENT (BAQI SAB WAISA HI) ===== -->
 <div class="py-30"></div>
 
 <!-- ===== CAROUSEL ===== -->
@@ -220,13 +274,11 @@
 <script src="plugins/jquery/jquery.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/slick-carousel/slick.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="plugins/google-map/gmap.js"></script>
 <script src="js/custom.js"></script>
 
 <script>
 // ============================================================
-//  NEWZYY — COMPLETE BACKEND CONNECTED SCRIPT
+//  NEWZYY — COMPLETE SCRIPT (BBC-STYLE HEADER)
 // ============================================================
 
 // ===== BACKEND API =====
@@ -234,9 +286,8 @@ const API_BASE = 'https://newzyy.onrender.com';
 let allNews = [];
 let currentFilter = 'all';
 let displayCount = 6;
-let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
 
-// ===== CATEGORIES (UPDATED WITH 12 CATEGORIES) =====
+// ===== CATEGORIES (12) =====
 const CATEGORIES = [
     'politics', 'technology', 'sports', 'business', 'health', 
     'science', 'entertainment', 'travel', 'environment', 
@@ -258,30 +309,28 @@ const CATEGORY_ICONS = {
     economy: 'coins'
 };
 
-// ===== LOGIN/LOGOUT =====
-function updateNavbar() {
+// ===== UPDATE ACCOUNT LINKS (TOP-RIGHT) =====
+function updateAccountLinks() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
-    const accountLink = document.getElementById('accountLink');
-    const accountDropdown = document.getElementById('accountDropdown');
-
-    if (loggedIn && accountLink) {
-        accountLink.textContent = loggedIn.name + ' ▼';
-        if (accountDropdown) {
-            accountDropdown.innerHTML = `
-                <a class="dropdown-item" href="#" onclick="logoutUser(); return false;">🚪 Logout</a>
-            `;
-        }
-    } else if (!loggedIn && accountLink) {
-        accountLink.textContent = 'Account ▼';
-        if (accountDropdown) {
-            accountDropdown.innerHTML = `
-                <a class="dropdown-item" href="account.html">Log In</a>
-                <a class="dropdown-item" href="signup.html">Register</a>
-            `;
-        }
+    const container = document.getElementById('accountLinks');
+    if (!container) return;
+    
+    if (loggedIn) {
+        container.innerHTML = `
+            <span class="user-name">👋 ${loggedIn.name}</span>
+            <span class="separator">|</span>
+            <a href="#" onclick="logoutUser(); return false;">Logout</a>
+        `;
+    } else {
+        container.innerHTML = `
+            <a href="account.html">Log In</a>
+            <span class="separator">|</span>
+            <a href="signup.html">Register</a>
+        `;
     }
 }
 
+// ===== LOGOUT =====
 function logoutUser() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('newzyy_logged_in');
@@ -293,19 +342,6 @@ function logoutUser() {
 function getReadingTime(text) {
     const words = (text || '').split(/\s+/).length;
     return Math.max(1, Math.ceil(words / 200));
-}
-
-function formatTimeAgo(dateString) {
-    if (!dateString) return 'Just now';
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMins = Math.floor((now - date) / 60000);
-    if (diffMins < 1) return 'Just now';
-    if (diffMins < 60) return diffMins + 'm ago';
-    const diffHours = Math.floor(diffMins / 60);
-    if (diffHours < 24) return diffHours + 'h ago';
-    const diffDays = Math.floor(diffHours / 24);
-    return diffDays + 'd ago';
 }
 
 function showToast(msg) {
@@ -335,7 +371,6 @@ async function fetchNews() {
             console.log('✅ Loaded ' + allNews.length + ' news articles');
         } else {
             allNews = [];
-            console.warn('⚠️ No news found');
         }
     } catch(e) {
         console.error('❌ Fetch error:', e);
@@ -351,7 +386,6 @@ async function fetchNews() {
 // ===== RENDER ALL NEWS =====
 function renderAll() {
     let f = currentFilter === 'all' ? allNews : allNews.filter(n => n.category === currentFilter);
-    
     const container = document.getElementById('newsContainer');
     if (!container) return;
     
@@ -414,8 +448,8 @@ function loadMore() {
 function filterCategory(cat) {
     currentFilter = cat;
     displayCount = 6;
-    document.querySelectorAll('.navbar-nav .nav-link').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.navbar-nav .nav-link').forEach(el => {
+    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
         const text = el.textContent.toLowerCase().trim();
         if (text === cat || (cat === 'all' && text === 'home')) {
             el.classList.add('active');
@@ -574,7 +608,7 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
 
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', function() {
-    updateNavbar();
+    updateAccountLinks();
     fetchNews();
 });
 
@@ -583,7 +617,7 @@ window.filterCategory = filterCategory;
 window.openNews = openNews;
 window.loadMore = loadMore;
 window.logoutUser = logoutUser;
-window.updateNavbar = updateNavbar;
+window.updateAccountLinks = updateAccountLinks;
 
 // ===== SPINNER KEYFRAME =====
 const style = document.createElement('style');
