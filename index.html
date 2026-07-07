@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/style.css?v=2">
     
     <style>
-        /* ===== NEWZYY PROFESSIONAL STYLES ===== */
+        /* ===== NEWZYY PROFESSIONAL STYLES v2 ===== */
         :root {
             --newzyy-red: #e8380d;
             --newzyy-dark: #0a0a0a;
@@ -35,11 +35,53 @@
         body { font-family: var(--font-sans); background: var(--newzyy-light); color: var(--newzyy-text); }
         a { text-decoration: none; color: inherit; }
         
+        /* ===== LIVE BREAKING BAR ===== */
+        .live-bar {
+            background: var(--newzyy-red);
+            color: #fff;
+            padding: 6px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 99;
+        }
+        .live-bar .label {
+            background: rgba(0,0,0,0.2);
+            padding: 2px 14px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-right: 16px;
+            border-radius: 2px;
+            animation: pulse-label 1.5s infinite;
+        }
+        .live-bar .track {
+            display: inline-block;
+            animation: scrollLive 50s linear infinite;
+        }
+        .live-bar .track .item {
+            display: inline-block;
+            padding: 0 30px;
+            font-size: 0.85rem;
+        }
+        .live-bar .track .item a { color: #fff; }
+        .live-bar .track .item a:hover { text-decoration: underline; }
+        
+        @keyframes scrollLive {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes pulse-label {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
         /* ===== HEADER ===== */
         .n-header {
             background: #ffffff;
             border-bottom: 1px solid var(--newzyy-border);
-            padding: 14px 0;
+            padding: 12px 0;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -59,14 +101,14 @@
             border-radius: 30px;
             padding: 7px 16px 7px 36px;
             font-size: 0.85rem;
-            width: 220px;
+            width: 200px;
             outline: none;
             transition: 0.3s;
         }
         .n-header .search-input:focus {
             border-color: var(--newzyy-red);
             box-shadow: 0 0 0 3px rgba(232,56,13,0.08);
-            width: 260px;
+            width: 240px;
         }
         .n-header .search-wrapper { position: relative; }
         .n-header .search-wrapper i {
@@ -172,7 +214,7 @@
             border-bottom-color: var(--newzyy-red);
         }
         
-        /* ===== HERO SECTION (BBC Style) ===== */
+        /* ===== HERO SECTION ===== */
         .n-hero {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -217,6 +259,12 @@
         .n-hero .featured .content .meta {
             font-size: 0.8rem;
             color: var(--newzyy-muted);
+        }
+        .n-hero .featured .content .views {
+            font-size: 0.7rem;
+            color: var(--newzyy-muted);
+            display: inline-block;
+            margin-left: 12px;
         }
         
         .n-hero .side-stories {
@@ -269,6 +317,30 @@
             font-size: 0.65rem;
             color: var(--newzyy-muted);
             margin-top: 4px;
+        }
+        
+        /* ===== CATEGORY HERO (Small) ===== */
+        .n-category-hero {
+            background: var(--newzyy-card);
+            border-radius: 12px;
+            padding: 16px 24px;
+            border-left: 4px solid var(--newzyy-red);
+            margin: 16px 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .n-category-hero .cat-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--newzyy-dark);
+        }
+        .n-category-hero .cat-title span { color: var(--newzyy-red); }
+        .n-category-hero .cat-count {
+            font-size: 0.8rem;
+            color: var(--newzyy-muted);
         }
         
         /* ===== NEWS GRID ===== */
@@ -324,6 +396,23 @@
             font-size: 0.7rem;
             color: var(--newzyy-muted);
             margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .n-card .body .meta .read-time {
+            background: var(--newzyy-light);
+            padding: 1px 10px;
+            border-radius: 20px;
+            font-size: 0.6rem;
+            font-weight: 600;
+        }
+        .n-card .body .meta .view-count {
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            font-size: 0.65rem;
         }
         
         /* ===== LOAD MORE ===== */
@@ -409,41 +498,17 @@
             .n-hero .side-stories { grid-template-columns: 1fr; }
             .n-grid { grid-template-columns: 1fr; }
             .n-nav .nav-link { font-size: 0.6rem; padding: 6px 8px !important; }
+            .n-category-hero { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== TRENDING BAR ===== -->
-<div class="trending-bar-dark hidden-xs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h3 class="trending-bar-title">⚡ Breaking</h3>
-                <div class="trending-news-slider" id="tickerContainer">
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm"><a href="#">Loading news...</a></h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-xs-12 top-nav-social-lists text-lg-right col-lg-4 ml-lg-auto">
-                <ul class="list-unstyled mt-4 mt-lg-0">
-                    <li>
-                        <a href="#"><span class="social-icon"><i class="fa fa-facebook-f"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-twitter"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-google-plus"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-youtube"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-linkedin"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-pinterest-p"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-rss"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-github"></i></span></a>
-                        <a href="#"><span class="social-icon"><i class="fa fa-reddit-alien"></i></span></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+<!-- ===== LIVE BREAKING BAR (Feature 1) ===== -->
+<div class="live-bar">
+    <span class="label">🔴 LIVE</span>
+    <div class="track" id="liveTrack">
+        <span class="item">Loading breaking news...</span>
     </div>
 </div>
 
@@ -492,10 +557,16 @@
 <!-- ===== MAIN CONTENT ===== -->
 <main class="container">
 
+    <!-- ===== CATEGORY HERO (Feature 2) ===== -->
+    <div id="categoryHero" class="n-category-hero" style="display:none;">
+        <span class="cat-title">📰 <span id="catHeroName">All News</span></span>
+        <span class="cat-count" id="catHeroCount">0 articles</span>
+    </div>
+
     <!-- ===== HERO SECTION ===== -->
     <div id="heroSection" class="n-hero"></div>
 
-    <!-- ===== CATEGORY GRID ===== -->
+    <!-- ===== NEWS GRID ===== -->
     <div id="newsContainer">
         <div class="text-center py-5">
             <div class="spinner-border text-danger" role="status"></div>
@@ -555,7 +626,7 @@
 
 <script>
 // ============================================================
-//  NEWZYY — BBC-INSPIRED PROFESSIONAL SCRIPT
+//  NEWZYY — PROFESSIONAL SCRIPT v2 (3 New Features)
 // ============================================================
 
 // ===== BACKEND API =====
@@ -563,6 +634,7 @@ const API_BASE = 'https://newzyy.onrender.com';
 let allNews = [];
 let currentFilter = 'all';
 let displayCount = 6;
+let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
 
 // ===== CATEGORIES =====
 const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment', 'travel', 'environment', 'culture', 'world', 'economy'];
@@ -579,6 +651,20 @@ const CATEGORY_COLORS = {
     culture: '#8b5cf6',
     world: '#3b82f6',
     economy: '#f59e0b'
+};
+const CATEGORY_NAMES = {
+    politics: 'Politics',
+    technology: 'Technology',
+    sports: 'Sports',
+    business: 'Business',
+    health: 'Health',
+    science: 'Science',
+    entertainment: 'Entertainment',
+    travel: 'Travel',
+    environment: 'Earth',
+    culture: 'Culture',
+    world: 'World',
+    economy: 'Economy'
 };
 
 // ===== ACCOUNT LINKS =====
@@ -629,6 +715,15 @@ function formatTimeAgo(dateString) {
     return diffDays + 'd ago';
 }
 
+function trackView(id) {
+    articleViews[id] = (articleViews[id] || 0) + 1;
+    localStorage.setItem('articleViews', JSON.stringify(articleViews));
+}
+
+function getViews(id) {
+    return articleViews[id] || 0;
+}
+
 function showToast(msg) {
     let t = document.getElementById('toast');
     if (!t) {
@@ -662,13 +757,44 @@ async function fetchNews() {
         allNews = [];
     }
     displayCount = 6;
+    updateLiveBar();
     renderHero();
     renderAll();
-    updateTicker();
     renderTrending();
+    updateCategoryHero();
 }
 
-// ===== RENDER HERO (BBC Style) =====
+// ===== FEATURE 1: LIVE BREAKING BAR =====
+function updateLiveBar() {
+    const container = document.getElementById('liveTrack');
+    if (!container) return;
+    const items = allNews.slice(0, 15);
+    if (!items.length) {
+        container.innerHTML = '<span class="item">Welcome to Newzyy</span>';
+        return;
+    }
+    const doubled = [...items, ...items];
+    container.innerHTML = doubled.map(a => `
+        <span class="item"><a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a></span>
+    `).join('');
+}
+
+// ===== FEATURE 2: CATEGORY HERO =====
+function updateCategoryHero() {
+    const container = document.getElementById('categoryHero');
+    if (!container) return;
+    if (currentFilter === 'all') {
+        container.style.display = 'none';
+        return;
+    }
+    container.style.display = 'flex';
+    const name = CATEGORY_NAMES[currentFilter] || currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
+    const count = allNews.filter(n => n.category === currentFilter).length;
+    document.getElementById('catHeroName').textContent = name;
+    document.getElementById('catHeroCount').textContent = count + ' articles';
+}
+
+// ===== RENDER HERO =====
 function renderHero() {
     const container = document.getElementById('heroSection');
     if (!container || !allNews.length) {
@@ -677,6 +803,7 @@ function renderHero() {
     }
     const featured = allNews[0];
     const side = allNews.slice(1, 5);
+    const views = getViews(featured.id);
     
     container.innerHTML = `
         <div class="featured" onclick="openNews('${featured.id}')">
@@ -684,7 +811,11 @@ function renderHero() {
             <div class="content">
                 <span class="category">${featured.category || 'News'}</span>
                 <h2 class="title">${featured.title}</h2>
-                <div class="meta">${featured.author || 'Newzyy'} · ${featured.time || 'Just now'} · ${getReadingTime(featured.body || featured.excerpt)} min read</div>
+                <div class="meta">
+                    ${featured.author || 'Newzyy'} · ${featured.time || 'Just now'} · 
+                    <span class="read-time">${getReadingTime(featured.body || featured.excerpt)} min read</span>
+                    <span class="views"><i class="fa fa-eye"></i> ${views}</span>
+                </div>
             </div>
         </div>
         <div class="side-stories">
@@ -694,7 +825,7 @@ function renderHero() {
                     <div class="side-content">
                         <span class="side-category">${a.category || 'News'}</span>
                         <div class="side-title">${a.title}</div>
-                        <div class="side-meta">${a.time || 'Just now'}</div>
+                        <div class="side-meta">${a.time || 'Just now'} · <i class="fa fa-eye"></i> ${getViews(a.id)}</div>
                     </div>
                 </div>
             `).join('')}
@@ -710,11 +841,13 @@ function renderAll() {
     if (!f.length) {
         container.innerHTML = '<div class="text-center py-5"><h4 class="text-muted">No news found</h4></div>';
         document.getElementById('loadMoreBtn').style.display = 'none';
+        updateCategoryHero();
         return;
     }
     const pageItems = f.slice(0, displayCount);
     let html = '<div class="n-grid">';
     pageItems.forEach(a => {
+        const views = getViews(a.id);
         html += `
             <div class="n-card" onclick="openNews('${a.id}')">
                 <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
@@ -722,7 +855,11 @@ function renderAll() {
                     <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
                     <h3 class="title">${a.title}</h3>
                     <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
-                    <div class="meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'} · ${getReadingTime(a.body || a.excerpt)} min</div>
+                    <div class="meta">
+                        ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
+                        <span class="read-time">${getReadingTime(a.body || a.excerpt)} min</span>
+                        <span class="view-count"><i class="fa fa-eye"></i> ${views}</span>
+                    </div>
                 </div>
             </div>
         `;
@@ -731,6 +868,7 @@ function renderAll() {
     container.innerHTML = html;
     const hasMore = f.length > displayCount;
     document.getElementById('loadMoreBtn').style.display = hasMore ? 'block' : 'none';
+    updateCategoryHero();
 }
 
 function loadMore() {
@@ -748,38 +886,16 @@ function filterCategory(cat) {
         if (text === cat || (cat === 'all' && text === 'home')) el.classList.add('active');
     });
     renderAll();
+    updateCategoryHero();
     showToast('📰 ' + (cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
-}
-
-// ===== UPDATE TICKER =====
-function updateTicker() {
-    const container = document.getElementById('tickerContainer');
-    if (!container) return;
-    const items = allNews.slice(0, 10);
-    if (!items.length) {
-        container.innerHTML = '<div class="item"><div class="post-content"><h2 class="post-title title-sm"><a href="#">Welcome to Newzyy</a></h2></div></div>';
-        return;
-    }
-    container.innerHTML = items.map(a => `
-        <div class="item">
-            <div class="post-content">
-                <h2 class="post-title title-sm">
-                    <a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a>
-                </h2>
-            </div>
-        </div>
-    `).join('');
-    if (typeof $ !== 'undefined' && $('.trending-news-slider').length) {
-        $('.trending-news-slider').slick('refresh');
-    }
 }
 
 // ===== RENDER TRENDING TOPICS =====
 function renderTrending() {
     const container = document.getElementById('trendingTopics');
     if (!container) return;
-    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy'];
-    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 10);
+    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy', 'AI', 'Climate', 'Space'];
+    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 12);
     container.innerHTML = shuffled.map(t => `
         <span class="topic-tag" onclick="filterCategory('${t.toLowerCase()}')">#${t}</span>
     `).join('');
@@ -798,13 +914,17 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
     }
     let html = `<h4 class="mb-3">🔍 Results (${results.length})</h4><div class="n-grid">`;
     results.slice(0, 12).forEach(a => {
+        const views = getViews(a.id);
         html += `
             <div class="n-card" onclick="openNews('${a.id}')">
                 <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
                 <div class="body">
                     <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#e8380d'}">${a.category || 'News'}</span>
                     <h3 class="title">${a.title}</h3>
-                    <div class="meta">${a.author || 'Newzyy'} · ${a.time || 'Just now'}</div>
+                    <div class="meta">
+                        ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
+                        <span class="view-count"><i class="fa fa-eye"></i> ${views}</span>
+                    </div>
                 </div>
             </div>
         `;
@@ -816,6 +936,7 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
 
 // ===== OPEN NEWS =====
 function openNews(id) {
+    trackView(id);
     window.location.href = 'single-post.html?id=' + id;
 }
 
