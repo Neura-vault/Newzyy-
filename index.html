@@ -10,638 +10,287 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
-    <!-- THEME CSS -->
+
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <link rel="stylesheet" href="css/style.css?v=2">
-    
-    <!-- BBC-Inspired Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+    <link rel="stylesheet" href="css/style.css?v=3">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+
     <style>
-        /* ===== BBC-INSPIRED DESIGN (Clean, No Emojis) ===== */
         :root {
-            --bbc-red: #b80000;
-            --bbc-dark: #0a0a0a;
-            --bbc-light: #f5f5f0;
-            --bbc-card: #ffffff;
-            --bbc-border: #e8e4df;
-            --bbc-text: #0a0a0a;
-            --bbc-muted: #6a6a6a;
-            --bbc-font: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            --red: #b80000;
+            --ink: #141414;
+            --paper: #ffffff;
+            --canvas: #f7f6f2;
+            --hairline: #e3ded3;
+            --muted: #6e6a62;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
         }
-        
+        :root[data-theme="dark"] {
+            --ink: #f0ede6;
+            --paper: #17150f;
+            --canvas: #0f0d09;
+            --hairline: #2c2820;
+            --muted: #9c9689;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            font-family: var(--bbc-font); 
-            background: var(--bbc-light); 
-            color: var(--bbc-text);
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
+        body { font-family: var(--sans); background: var(--canvas); color: var(--ink); -webkit-font-smoothing: antialiased; transition: background 0.2s, color 0.2s; }
         a { text-decoration: none; color: inherit; }
-        
+
+        /* ===== UTILITY BAR (date + weather + dark mode) ===== */
+        .util-bar { background: var(--paper); border-bottom: 1px solid var(--hairline); font-size: 0.72rem; color: var(--muted); padding: 6px 0; }
+        .util-bar .container { display: flex; justify-content: space-between; align-items: center; }
+        .util-bar .weather { display: flex; align-items: center; gap: 6px; }
+        .theme-toggle { background: none; border: 1px solid var(--hairline); border-radius: 50%; width: 26px; height: 26px; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: var(--ink); font-size: 0.75rem; }
+        .theme-toggle:hover { border-color: var(--red); color: var(--red); }
+
         /* ===== TRENDING BAR ===== */
-        .bbc-trending {
-            background: var(--bbc-dark);
-            color: #fff;
-            padding: 8px 0;
-            border-bottom: 2px solid var(--bbc-red);
-            font-size: 0.85rem;
-        }
-        .bbc-trending .label {
-            background: var(--bbc-red);
-            padding: 2px 16px;
-            font-weight: 600;
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            display: inline-block;
-            margin-right: 16px;
-            border-radius: 0;
-            letter-spacing: 0.5px;
-        }
-        .bbc-trending .track {
-            display: inline-block;
-            overflow: hidden;
-            white-space: nowrap;
-            vertical-align: middle;
-            max-width: 80%;
-        }
-        .bbc-trending .track .item {
-            display: inline-block;
-            padding: 0 24px;
-            font-size: 0.8rem;
-        }
-        .bbc-trending .track .item a { color: #fff; }
+        .bbc-trending { background: var(--ink); color: var(--paper); padding: 8px 0; border-bottom: 2px solid var(--red); font-size: 0.85rem; }
+        :root[data-theme="dark"] .bbc-trending { color: #0f0d09; }
+        .bbc-trending .label { background: var(--red); color: #fff !important; padding: 2px 16px; font-weight: 600; font-size: 0.62rem; text-transform: uppercase; display: inline-block; margin-right: 16px; letter-spacing: 0.6px; }
+        .bbc-trending .track { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: middle; max-width: 78%; }
+        .bbc-trending .track .item { display: inline-block; padding: 0 24px; font-size: 0.8rem; }
         .bbc-trending .track .item a:hover { text-decoration: underline; }
-        
-        /* ===== HEADER (Clean, No Emojis) ===== */
-        .bbc-header {
-            background: #ffffff;
-            border-bottom: 1px solid var(--bbc-border);
-            padding: 16px 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .bbc-header .logo {
-            font-family: var(--bbc-font);
-            font-size: 1.8rem;
-            font-weight: 900;
-            color: var(--bbc-dark);
-            letter-spacing: -0.5px;
-        }
-        .bbc-header .logo span { color: var(--bbc-red); }
-        .bbc-header .logo small { 
-            font-size: 0.55rem; 
-            font-weight: 400; 
-            color: #888;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-        
-        .bbc-header .search-input {
-            background: var(--bbc-light);
-            border: 1px solid var(--bbc-border);
-            border-radius: 4px;
-            padding: 8px 16px 8px 36px;
-            font-size: 0.85rem;
-            width: 220px;
-            outline: none;
-            font-family: var(--bbc-font);
-            transition: 0.3s;
-        }
-        .bbc-header .search-input:focus {
-            border-color: var(--bbc-red);
-            box-shadow: 0 0 0 3px rgba(184,0,0,0.08);
-            width: 260px;
-        }
-        .bbc-header .search-wrapper { position: relative; }
-        .bbc-header .search-wrapper i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-            font-size: 0.85rem;
-        }
-        
-        .bbc-header .account-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .bbc-header .account-section .btn-login {
-            background: transparent;
-            border: 1px solid var(--bbc-border);
-            color: var(--bbc-dark);
-            padding: 6px 20px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: var(--bbc-font);
-        }
-        .bbc-header .account-section .btn-login:hover {
-            background: var(--bbc-light);
-        }
-        .bbc-header .account-section .btn-signup {
-            background: var(--bbc-red);
-            border: 1px solid var(--bbc-red);
-            color: #fff;
-            padding: 6px 20px;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: var(--bbc-font);
-        }
-        .bbc-header .account-section .btn-signup:hover {
-            background: #a00000;
-            border-color: #a00000;
-        }
-        .bbc-header .account-section .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .bbc-header .account-section .user-profile .avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: var(--bbc-red);
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.8rem;
-        }
-        .bbc-header .account-section .user-profile .username {
-            font-weight: 600;
-            font-size: 0.85rem;
-            color: var(--bbc-dark);
-        }
-        .bbc-header .account-section .user-profile .btn-logout {
-            background: transparent;
-            border: 1px solid var(--bbc-border);
-            color: #666;
-            padding: 3px 14px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: var(--bbc-font);
-        }
-        .bbc-header .account-section .user-profile .btn-logout:hover {
-            background: var(--bbc-light);
-        }
-        
-        /* ===== NAVBAR (BBC Style) ===== */
-        .bbc-nav {
-            background: #ffffff;
-            border-bottom: 1px solid var(--bbc-border);
-            padding: 0;
-        }
-        .bbc-nav .nav-link {
-            color: #4a4a4a !important;
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 12px 16px !important;
-            text-transform: uppercase;
-            letter-spacing: 0.3px;
-            border-bottom: 2px solid transparent;
-            transition: 0.3s;
-            cursor: pointer;
-            font-family: var(--bbc-font);
-        }
-        .bbc-nav .nav-link:hover,
-        .bbc-nav .nav-link.active {
-            color: var(--bbc-red) !important;
-            border-bottom-color: var(--bbc-red);
-        }
-        
-        /* ===== HERO SECTION (BBC Style) ===== */
-        .bbc-hero {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 24px;
-            margin: 24px 0;
-        }
-        .bbc-hero .featured {
-            background: var(--bbc-card);
-            border-radius: 0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--bbc-border);
-        }
-        .bbc-hero .featured:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-        }
-        .bbc-hero .featured img {
-            width: 100%;
-            height: 340px;
-            object-fit: cover;
-        }
-        .bbc-hero .featured .content {
-            padding: 20px 24px;
-        }
-        .bbc-hero .featured .content .category {
-            font-size: 0.7rem;
-            color: var(--bbc-red);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-        .bbc-hero .featured .content .title {
-            font-size: 1.6rem;
-            font-weight: 800;
-            margin: 6px 0;
-            line-height: 1.2;
-            color: var(--bbc-dark);
-            font-family: var(--bbc-font);
-        }
-        .bbc-hero .featured .content .title:hover { color: var(--bbc-red); }
-        .bbc-hero .featured .content .meta {
-            font-size: 0.8rem;
-            color: var(--bbc-muted);
-        }
-        .bbc-hero .featured .content .views {
-            font-size: 0.7rem;
-            color: var(--bbc-muted);
-            display: inline-block;
-            margin-left: 12px;
-        }
-        
-        .bbc-hero .side-stories {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-        .bbc-hero .side-stories .side-item {
-            background: var(--bbc-card);
-            border-radius: 0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--bbc-border);
-            display: flex;
-            gap: 12px;
-            padding: 12px;
-            align-items: flex-start;
-        }
-        .bbc-hero .side-stories .side-item:hover {
-            transform: translateX(4px);
-            box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-        }
-        .bbc-hero .side-stories .side-item img {
-            width: 110px;
-            height: 75px;
-            object-fit: cover;
-            border-radius: 0;
-            flex-shrink: 0;
-        }
-        .bbc-hero .side-stories .side-item .side-content {
-            flex: 1;
-        }
-        .bbc-hero .side-stories .side-item .side-content .side-category {
-            font-size: 0.6rem;
-            color: var(--bbc-red);
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-        .bbc-hero .side-stories .side-item .side-content .side-title {
-            font-size: 0.85rem;
-            font-weight: 600;
-            line-height: 1.3;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-family: var(--bbc-font);
-        }
-        .bbc-hero .side-stories .side-item .side-content .side-meta {
-            font-size: 0.65rem;
-            color: var(--bbc-muted);
-            margin-top: 4px;
-        }
-        
-        /* ===== CATEGORY HERO (BBC Style) ===== */
-        .bbc-category-hero {
-            background: var(--bbc-card);
-            border-radius: 0;
-            padding: 16px 24px;
-            border-left: 4px solid var(--bbc-red);
-            margin: 16px 0 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        .bbc-category-hero .cat-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--bbc-dark);
-            font-family: var(--bbc-font);
-        }
-        .bbc-category-hero .cat-title span { color: var(--bbc-red); }
-        .bbc-category-hero .cat-count {
-            font-size: 0.8rem;
-            color: var(--bbc-muted);
-        }
-        
+
+        /* ===== HEADER ===== */
+        .bbc-header { background: var(--paper); border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
+        .bbc-header .logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; }
+        .bbc-header .logo span { color: var(--red); }
+        .bbc-header .logo small { font-size: 0.55rem; font-weight: 400; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
+
+        .search-wrapper { position: relative; }
+        .search-input { background: var(--canvas); border: 1px solid var(--hairline); color: var(--ink); border-radius: 4px; padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--sans); }
+        .search-input:focus { border-color: var(--red); }
+        .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.85rem; }
+        .search-suggestions { position: absolute; top: calc(100% + 6px); left: 0; width: 320px; background: var(--paper); border: 1px solid var(--hairline); box-shadow: 0 12px 30px rgba(0,0,0,0.12); z-index: 200; display: none; max-height: 340px; overflow-y: auto; }
+        .search-suggestions.active { display: block; }
+        .search-suggestions .sug-item { display: flex; gap: 10px; padding: 10px 14px; border-bottom: 1px solid var(--hairline); cursor: pointer; }
+        .search-suggestions .sug-item:last-child { border-bottom: none; }
+        .search-suggestions .sug-item:hover { background: var(--canvas); }
+        .search-suggestions .sug-item img { width: 46px; height: 46px; object-fit: cover; flex-shrink: 0; }
+        .search-suggestions .sug-item .sug-cat { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
+        .search-suggestions .sug-item .sug-title { font-size: 0.8rem; font-weight: 600; line-height: 1.3; }
+        .search-suggestions .sug-empty { padding: 16px; font-size: 0.8rem; color: var(--muted); text-align: center; }
+
+        .btn-login { background: transparent; border: 1px solid var(--hairline); color: var(--ink); padding: 6px 20px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+        .btn-signup { background: var(--red); border: 1px solid var(--red); color: #fff; padding: 6px 20px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+        .user-profile { display: flex; align-items: center; gap: 10px; }
+        .user-profile .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--red); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.8rem; }
+        .btn-logout { background: transparent; border: 1px solid var(--hairline); color: var(--muted); padding: 3px 14px; border-radius: 4px; font-size: 0.7rem; }
+
+        /* ===== NAVBAR ===== */
+        .bbc-nav { background: var(--paper); border-bottom: 1px solid var(--hairline); }
+        .bbc-nav .nav-link { color: var(--muted) !important; font-size: 0.72rem; font-weight: 600; padding: 12px 16px !important; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 2px solid transparent; cursor: pointer; }
+        .bbc-nav .nav-link:hover, .bbc-nav .nav-link.active { color: var(--red) !important; border-bottom-color: var(--red); }
+
+        /* ===== CATEGORY HERO ===== */
+        .bbc-category-hero { background: var(--paper); padding: 14px 20px; border-left: 3px solid var(--red); margin: 20px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .bbc-category-hero .cat-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; }
+        .bbc-category-hero .cat-count { font-size: 0.78rem; color: var(--muted); }
+
+        /* ===== LIVE / BREAKING BADGE ===== */
+        .live-kicker { display: inline-flex; align-items: center; gap: 6px; font-weight: 800; font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--red); }
+        .live-kicker .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); display: inline-block; animation: pulse 1.2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(0.75);} }
+
+        /* ===== HERO SECTION ===== */
+        .bbc-hero { display: grid; grid-template-columns: 2fr 1fr; gap: 28px; margin: 26px 0; }
+        .bbc-hero .featured { cursor: pointer; }
+        .bbc-hero .featured img { width: 100%; height: 360px; object-fit: cover; }
+        .bbc-hero .featured .content { padding-top: 16px; }
+        .bbc-hero .featured .content .category-row { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .bbc-hero .featured .content .category { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .bbc-hero .featured .content .title { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; line-height: 1.2; color: var(--ink); }
+        .bbc-hero .featured .content .title:hover { color: var(--red); }
+        .bbc-hero .featured .content .meta { font-size: 0.8rem; color: var(--muted); margin-top: 10px; }
+
+        .bbc-hero .side-stories { display: flex; flex-direction: column; gap: 16px; }
+        .bbc-hero .side-stories .side-item { cursor: pointer; display: flex; gap: 12px; padding-bottom: 16px; border-bottom: 1px solid var(--hairline); }
+        .bbc-hero .side-stories .side-item:last-child { border-bottom: none; }
+        .bbc-hero .side-stories .side-item img { width: 100px; height: 68px; object-fit: cover; flex-shrink: 0; }
+        .bbc-hero .side-stories .side-content .side-category { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; }
+        .bbc-hero .side-stories .side-content .side-title { font-family: var(--serif); font-size: 0.92rem; font-weight: 600; line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .bbc-hero .side-stories .side-item:hover .side-title { color: var(--red); }
+        .bbc-hero .side-stories .side-content .side-meta { font-size: 0.65rem; color: var(--muted); margin-top: 4px; }
+
         /* ===== NEWS GRID ===== */
-        .bbc-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            margin: 24px 0;
-        }
-        .bbc-card {
-            background: var(--bbc-card);
-            border-radius: 0;
-            overflow: hidden;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--bbc-border);
-        }
-        .bbc-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
-        }
-        .bbc-card img {
-            width: 100%;
-            height: 170px;
-            object-fit: cover;
-        }
-        .bbc-card .body {
-            padding: 16px 18px;
-        }
-        .bbc-card .body .category {
-            font-size: 0.65rem;
-            color: var(--bbc-red);
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.3px;
-        }
-        .bbc-card .body .title {
-            font-size: 1rem;
-            font-weight: 700;
-            margin: 6px 0;
-            line-height: 1.3;
-            color: var(--bbc-dark);
-            font-family: var(--bbc-font);
-        }
-        .bbc-card .body .title:hover { color: var(--bbc-red); }
-        .bbc-card .body .excerpt {
-            font-size: 0.85rem;
-            color: var(--bbc-muted);
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            font-family: var(--bbc-font);
-        }
-        .bbc-card .body .meta {
-            font-size: 0.7rem;
-            color: var(--bbc-muted);
-            margin-top: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-        .bbc-card .body .meta .read-time {
-            background: var(--bbc-light);
-            padding: 1px 10px;
-            border-radius: 2px;
-            font-size: 0.6rem;
-            font-weight: 600;
-        }
-        .bbc-card .body .meta .view-count {
-            display: flex;
-            align-items: center;
-            gap: 3px;
-            font-size: 0.65rem;
-        }
-        
+        .bbc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 26px 0; }
+        .bbc-card { cursor: pointer; }
+        .bbc-card img { width: 100%; height: 170px; object-fit: cover; margin-bottom: 12px; }
+        .bbc-card .body .category { font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; }
+        .bbc-card .body .title { font-family: var(--serif); font-size: 1.08rem; font-weight: 700; margin: 6px 0; line-height: 1.3; color: var(--ink); }
+        .bbc-card:hover .body .title { color: var(--red); }
+        .bbc-card .body .excerpt { font-size: 0.85rem; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .bbc-card .body .meta { font-size: 0.7rem; color: var(--muted); margin-top: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .bbc-card .body .meta .read-time { background: var(--canvas); padding: 1px 10px; font-size: 0.62rem; font-weight: 600; }
+
+        /* ===== SKELETON LOADING ===== */
+        .skeleton { background: linear-gradient(90deg, var(--hairline) 25%, var(--canvas) 50%, var(--hairline) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+        @keyframes shimmer { 0%{background-position:200% 0;} 100%{background-position:-200% 0;} }
+        .skeleton-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 26px 0; }
+        .skeleton-card .img { width: 100%; height: 170px; margin-bottom: 12px; }
+        .skeleton-card .line { height: 12px; margin-bottom: 8px; width: 100%; }
+        .skeleton-card .line.short { width: 60%; }
+        @media (max-width: 992px) { .skeleton-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (max-width: 600px) { .skeleton-grid { grid-template-columns: 1fr; } }
+
         /* ===== LOAD MORE ===== */
-        .bbc-load-more {
-            text-align: center;
-            margin: 32px 0;
-        }
-        .bbc-load-more button {
-            padding: 12px 40px;
-            background: transparent;
-            border: 2px solid var(--bbc-red);
-            color: var(--bbc-red);
-            border-radius: 0;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: var(--bbc-font);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .bbc-load-more button:hover {
-            background: var(--bbc-red);
-            color: #fff;
-        }
-        
+        .bbc-load-more { text-align: center; margin: 32px 0; }
+        .bbc-load-more button { padding: 12px 40px; background: transparent; border: 1.5px solid var(--red); color: var(--red); font-weight: 700; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; letter-spacing: 0.5px; }
+        .bbc-load-more button:hover { background: var(--red); color: #fff; }
+
         /* ===== SIDEBAR ===== */
-        .bbc-sidebar .widget {
-            background: var(--bbc-card);
-            border-radius: 0;
-            padding: 16px 20px;
-            border: 1px solid var(--bbc-border);
-            margin-bottom: 20px;
-        }
-        .bbc-sidebar .widget .widget-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--bbc-dark);
-            border-bottom: 2px solid var(--bbc-red);
-            padding-bottom: 8px;
-            margin-bottom: 14px;
-            font-family: var(--bbc-font);
-            letter-spacing: 0.3px;
-        }
-        .bbc-sidebar .widget .topic-tag {
-            padding: 4px 14px;
-            background: var(--bbc-light);
-            border-radius: 0;
-            font-size: 0.75rem;
-            color: var(--bbc-text);
-            cursor: pointer;
-            border: 1px solid var(--bbc-border);
-            transition: 0.3s;
-            display: inline-block;
-            margin: 3px;
-            font-family: var(--bbc-font);
-        }
-        .bbc-sidebar .widget .topic-tag:hover {
-            background: var(--bbc-red);
-            color: #fff;
-            border-color: var(--bbc-red);
-        }
-        
-        /* ===== FOOTER (BBC Style) ===== */
-        .bbc-footer {
-            background: var(--bbc-dark);
-            color: #ccc;
-            padding: 40px 0 20px;
-            margin-top: 40px;
-            border-top: 3px solid var(--bbc-red);
-        }
-        .bbc-footer a { 
-            color: #ccc; 
-            font-size: 0.85rem; 
-            transition: 0.3s; 
-            font-family: var(--bbc-font);
-        }
+        .bbc-sidebar .widget { padding: 0 0 26px; margin-bottom: 26px; border-bottom: 1px solid var(--hairline); }
+        .bbc-sidebar .widget:last-child { border-bottom: none; }
+        .widget-title { font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--ink); border-bottom: 2px solid var(--ink); padding-bottom: 10px; margin-bottom: 16px; }
+
+        .justin-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--hairline); cursor: pointer; }
+        .justin-item:last-child { border-bottom: none; }
+        .justin-item .time { font-family: var(--serif); font-size: 0.7rem; color: var(--red); font-weight: 700; width: 52px; flex-shrink: 0; }
+        .justin-item .title { font-size: 0.82rem; font-weight: 600; line-height: 1.3; }
+        .justin-item:hover .title { color: var(--red); }
+
+        .most-read-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid var(--hairline); cursor: pointer; }
+        .most-read-item:last-child { border-bottom: none; }
+        .most-read-item .rank { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; color: var(--hairline); line-height: 1; width: 26px; flex-shrink: 0; }
+        .most-read-item:hover .rank { color: var(--red); }
+        .most-read-item .title { font-size: 0.85rem; font-weight: 600; line-height: 1.3; }
+        .most-read-item:hover .title { color: var(--red); }
+
+        .topic-tag { padding: 4px 14px; background: var(--canvas); font-size: 0.75rem; color: var(--ink); border: 1px solid var(--hairline); display: inline-block; margin: 3px; cursor: pointer; }
+        .topic-tag:hover { background: var(--red); color: #fff; border-color: var(--red); }
+
+        .newsletter-widget { background: var(--ink); color: var(--paper); padding: 22px; }
+        :root[data-theme="dark"] .newsletter-widget { color: #0f0d09; }
+        .newsletter-widget h4 { font-family: var(--serif); font-size: 1.1rem; margin-bottom: 8px; }
+        .newsletter-widget p { font-size: 0.8rem; opacity: 0.8; margin-bottom: 14px; }
+        .newsletter-widget input { width: 100%; padding: 10px 12px; border: none; margin-bottom: 10px; font-family: var(--sans); font-size: 0.85rem; }
+        .newsletter-widget button { width: 100%; padding: 10px; background: var(--red); color: #fff; border: none; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.5px; cursor: pointer; }
+        .newsletter-widget button:hover { opacity: 0.9; }
+
+        /* ===== FOOTER ===== */
+        .bbc-footer { background: var(--ink); color: #ccc; padding: 40px 0 20px; margin-top: 40px; border-top: 3px solid var(--red); }
+        :root[data-theme="dark"] .bbc-footer { background: #000; }
+        .bbc-footer a { color: #ccc; font-size: 0.85rem; }
         .bbc-footer a:hover { color: #fff; }
         .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
-        .bbc-footer .copyright { 
-            font-size: 0.75rem; 
-            color: #666; 
-            margin-top: 20px; 
-            text-align: center; 
-            font-family: var(--bbc-font);
-        }
-        
-        /* ===== RESPONSIVE ===== */
+        .bbc-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
+
         @media (max-width: 992px) {
             .bbc-hero { grid-template-columns: 1fr; }
             .bbc-hero .featured img { height: 240px; }
-            .bbc-hero .side-stories { display: grid; grid-template-columns: 1fr 1fr; }
             .bbc-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 600px) {
-            .bbc-header .logo { font-size: 1.3rem; }
-            .bbc-header .search-input { width: 120px; font-size: 0.75rem; padding: 5px 12px 5px 30px; }
-            .bbc-header .search-input:focus { width: 140px; }
-            .bbc-hero .side-stories { grid-template-columns: 1fr; }
+            .search-input { width: 130px; }
+            .search-suggestions { width: 260px; }
             .bbc-grid { grid-template-columns: 1fr; }
-            .bbc-nav .nav-link { font-size: 0.6rem; padding: 8px 10px !important; }
-            .bbc-category-hero { flex-direction: column; text-align: center; }
+            .util-bar .container { flex-wrap: wrap; gap: 6px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ===== TRENDING BAR ===== -->
-<div class="bbc-trending">
+<div class="util-bar">
     <div class="container">
-        <span class="label">Trending</span>
-        <div class="track" id="trendingTrack">
-            <span class="item">Loading news...</span>
+        <span id="dateDisplay"></span>
+        <div class="d-flex align-items-center gap-3">
+            <span class="weather" id="weatherWidget"><i class="fa fa-spinner fa-spin"></i></span>
+            <button class="theme-toggle" id="themeToggle" title="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
         </div>
     </div>
 </div>
 
-<!-- ===== HEADER ===== -->
+<div class="bbc-trending">
+    <div class="container">
+        <span class="label">Trending</span>
+        <div class="track" id="trendingTrack"><span class="item">Loading news...</span></div>
+    </div>
+</div>
+
 <header class="bbc-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <div class="logo">
-                Newzy<span>y</span>
-                <small>News</small>
-            </div>
+            <div class="logo">Newzy<span>y</span><small>News</small></div>
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search" autocomplete="off">
+                    <div class="search-suggestions" id="searchSuggestions"></div>
                 </div>
-                <div class="account-section" id="accountSection">
-                    <span id="accountLinks"></span>
-                </div>
+                <div class="account-section"><span id="accountLinks"></span></div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- ===== NAVBAR ===== -->
 <nav class="bbc-nav">
     <div class="container">
         <div class="d-flex flex-wrap" id="navLinks">
-            <a class="nav-link active" href="#" onclick="filterCategory('all')">Home</a>
-            <a class="nav-link" href="#" onclick="filterCategory('politics')">Politics</a>
-            <a class="nav-link" href="#" onclick="filterCategory('technology')">Tech</a>
-            <a class="nav-link" href="#" onclick="filterCategory('sports')">Sports</a>
-            <a class="nav-link" href="#" onclick="filterCategory('business')">Business</a>
-            <a class="nav-link" href="#" onclick="filterCategory('health')">Health</a>
-            <a class="nav-link" href="#" onclick="filterCategory('science')">Science</a>
-            <a class="nav-link" href="#" onclick="filterCategory('entertainment')">Entertainment</a>
-            <a class="nav-link" href="#" onclick="filterCategory('travel')">Travel</a>
-            <a class="nav-link" href="#" onclick="filterCategory('environment')">Earth</a>
-            <a class="nav-link" href="#" onclick="filterCategory('culture')">Culture</a>
-            <a class="nav-link" href="#" onclick="filterCategory('world')">World</a>
-            <a class="nav-link" href="#" onclick="filterCategory('economy')">Economy</a>
+            <a class="nav-link active" href="#" onclick="filterCategory('all');return false;">Home</a>
+            <a class="nav-link" href="#" onclick="filterCategory('politics');return false;">Politics</a>
+            <a class="nav-link" href="#" onclick="filterCategory('technology');return false;">Tech</a>
+            <a class="nav-link" href="#" onclick="filterCategory('sports');return false;">Sports</a>
+            <a class="nav-link" href="#" onclick="filterCategory('business');return false;">Business</a>
+            <a class="nav-link" href="#" onclick="filterCategory('health');return false;">Health</a>
+            <a class="nav-link" href="#" onclick="filterCategory('science');return false;">Science</a>
+            <a class="nav-link" href="#" onclick="filterCategory('entertainment');return false;">Entertainment</a>
+            <a class="nav-link" href="#" onclick="filterCategory('travel');return false;">Travel</a>
+            <a class="nav-link" href="#" onclick="filterCategory('environment');return false;">Earth</a>
+            <a class="nav-link" href="#" onclick="filterCategory('culture');return false;">Culture</a>
+            <a class="nav-link" href="#" onclick="filterCategory('world');return false;">World</a>
+            <a class="nav-link" href="#" onclick="filterCategory('economy');return false;">Economy</a>
         </div>
     </div>
 </nav>
 
-<!-- ===== MAIN CONTENT ===== -->
 <main class="container">
-
-    <!-- ===== CATEGORY HERO ===== -->
     <div id="categoryHero" class="bbc-category-hero" style="display:none;">
         <span class="cat-title"><span id="catHeroName">All News</span></span>
         <span class="cat-count" id="catHeroCount">0 articles</span>
     </div>
 
-    <!-- ===== HERO SECTION ===== -->
     <div id="heroSection" class="bbc-hero"></div>
 
-    <!-- ===== NEWS GRID ===== -->
-    <div id="newsContainer">
-        <div class="text-center py-5">
-            <div class="spinner-border text-danger" role="status"></div>
-            <p class="mt-2 text-muted">Loading news...</p>
-        </div>
-    </div>
-
-    <!-- ===== LOAD MORE ===== -->
-    <div class="bbc-load-more" id="loadMoreBtn" style="display:none;">
-        <button onclick="loadMore()">Load More</button>
-    </div>
-
-</main>
-
-<!-- ===== SIDEBAR ===== -->
-<aside class="container">
     <div class="row">
-        <div class="col-lg-4 offset-lg-8 bbc-sidebar">
+        <div class="col-lg-8">
+            <div id="newsContainer"></div>
+            <div class="bbc-load-more" id="loadMoreBtn" style="display:none;">
+                <button onclick="loadMore()">Load More</button>
+            </div>
+        </div>
+
+        <div class="col-lg-4 bbc-sidebar">
+            <div class="widget">
+                <h4 class="widget-title">Just In</h4>
+                <div id="justInRoot"></div>
+            </div>
+            <div class="widget">
+                <h4 class="widget-title">Most Read</h4>
+                <div id="mostReadRoot"></div>
+            </div>
+            <div class="widget">
+                <div class="newsletter-widget">
+                    <h4>Stay Informed</h4>
+                    <p>Get the day's top stories in your inbox every morning.</p>
+                    <input type="email" id="newsletterEmail" placeholder="Your email address">
+                    <button onclick="submitNewsletter()">Subscribe</button>
+                </div>
+            </div>
             <div class="widget">
                 <h4 class="widget-title">Trending Topics</h4>
                 <div id="trendingTopics" class="d-flex flex-wrap">
                     <span class="topic-tag">Loading...</span>
                 </div>
             </div>
-            <div class="widget">
-                <h4 class="widget-title">Connect</h4>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-facebook"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-twitter"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-instagram"></i></a>
-                    <a href="#" class="btn btn-sm btn-dark"><i class="fa fa-youtube"></i></a>
-                </div>
-            </div>
         </div>
     </div>
-</aside>
+</main>
 
-<!-- ===== FOOTER ===== -->
 <footer class="bbc-footer">
     <div class="container">
         <div class="links">
@@ -655,7 +304,6 @@
     </div>
 </footer>
 
-<!-- ===== SCRIPTS ===== -->
 <script src="plugins/jquery/jquery.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="plugins/slick-carousel/slick.min.js"></script>
@@ -663,49 +311,84 @@
 
 <script>
 // ============================================================
-//  NEWZYY — BBC-INSPIRED SCRIPT (Clean, No Emojis)
+//  NEWZYY — HOME (editorial redesign + Just In / search / weather / dark mode)
 // ============================================================
-
-// ===== BACKEND API =====
 const API_BASE = 'https://newzyy.onrender.com';
 let allNews = [];
-let currentDataset = [];        // NEW — jo abhi screen par render ho raha hai
-let categoryCache = {};         // NEW — har category ka data cache (dobara fetch na karna pade)
-let categoryTotal = {};         // NEW — har category ka real total count (DB se)
+let currentDataset = [];
+let categoryCache = {};
+let categoryTotal = {};
 let currentFilter = 'all';
 let displayCount = 6;
-let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
 
-// ===== CATEGORIES =====
-const CATEGORIES = ['politics', 'technology', 'sports', 'business', 'health', 'science', 'entertainment', 'travel', 'environment', 'culture', 'world', 'economy'];
 const CATEGORY_COLORS = {
-    politics: '#b80000',
-    technology: '#2563eb',
-    sports: '#16a34a',
-    business: '#7c3aed',
-    health: '#0891b2',
-    science: '#d97706',
-    entertainment: '#dc2626',
-    travel: '#0ea5e9',
-    environment: '#22c55e',
-    culture: '#8b5cf6',
-    world: '#3b82f6',
-    economy: '#f59e0e'
+    politics: '#b80000', technology: '#2563eb', sports: '#16a34a', business: '#7c3aed',
+    health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
+    environment: '#22c55e', culture: '#8b5cf6', world: '#3b82f6', economy: '#f59e0e'
 };
 const CATEGORY_NAMES = {
-    politics: 'Politics',
-    technology: 'Technology',
-    sports: 'Sports',
-    business: 'Business',
-    health: 'Health',
-    science: 'Science',
-    entertainment: 'Entertainment',
-    travel: 'Travel',
-    environment: 'Earth',
-    culture: 'Culture',
-    world: 'World',
-    economy: 'Economy'
+    politics: 'Politics', technology: 'Technology', sports: 'Sports', business: 'Business',
+    health: 'Health', science: 'Science', entertainment: 'Entertainment', travel: 'Travel',
+    environment: 'Earth', culture: 'Culture', world: 'World', economy: 'Economy'
 };
+
+// ===== DARK MODE =====
+function initTheme() {
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    updateThemeIcon(saved);
+}
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('newzyy_theme', next);
+    updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+}
+
+// ===== DATE =====
+function renderDate() {
+    const el = document.getElementById('dateDisplay');
+    if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+// ===== WEATHER (Open-Meteo — free, no API key) =====
+function weatherIcon(code) {
+    if (code === 0) return 'fa-sun-o';
+    if ([1, 2, 3].includes(code)) return 'fa-cloud';
+    if ([45, 48].includes(code)) return 'fa-align-justify';
+    if (code >= 51 && code <= 67) return 'fa-tint';
+    if (code >= 71 && code <= 77) return 'fa-snowflake-o';
+    if (code >= 80 && code <= 82) return 'fa-tint';
+    if (code >= 95) return 'fa-bolt';
+    return 'fa-cloud';
+}
+async function loadWeather(lat, lon, label) {
+    const el = document.getElementById('weatherWidget');
+    try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        const data = await res.json();
+        const w = data.current_weather;
+        if (!w || !el) return;
+        el.innerHTML = `<i class="fa ${weatherIcon(w.weathercode)}"></i> ${Math.round(w.temperature)}&deg;C ${label ? '· ' + label : ''}`;
+    } catch (e) {
+        if (el) el.innerHTML = '';
+    }
+}
+function initWeather() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            pos => loadWeather(pos.coords.latitude, pos.coords.longitude, ''),
+            () => loadWeather(51.5074, -0.1278, 'London') // fallback default
+        );
+    } else {
+        loadWeather(51.5074, -0.1278, 'London');
+    }
+}
 
 // ===== ACCOUNT LINKS =====
 function updateAccountLinks() {
@@ -717,18 +400,13 @@ function updateAccountLinks() {
         container.innerHTML = `
             <div class="user-profile">
                 <div class="avatar">${initials}</div>
-                <span class="username">${loggedIn.name}</span>
+                <span style="font-weight:600;font-size:0.85rem">${loggedIn.name}</span>
                 <button class="btn-logout" onclick="logoutUser()">Logout</button>
-            </div>
-        `;
+            </div>`;
     } else {
-        container.innerHTML = `
-            <a href="account.html" class="btn-login">Log In</a>
-            <a href="signup.html" class="btn-signup">Register</a>
-        `;
+        container.innerHTML = `<a href="account.html" class="btn-login">Log In</a> <a href="signup.html" class="btn-signup">Register</a>`;
     }
 }
-
 function logoutUser() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('newzyy_logged_in');
@@ -741,119 +419,140 @@ function getReadingTime(text) {
     const words = (text || '').split(/\s+/).length;
     return Math.max(1, Math.ceil(words / 200));
 }
-
-function formatTimeAgo(dateString) {
-    if (!dateString) return 'Just now';
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffMins = Math.floor((now - date) / 60000);
-    if (diffMins < 1) return 'Just now';
-    if (diffMins < 60) return diffMins + 'm ago';
-    const diffHours = Math.floor(diffMins / 60);
-    if (diffHours < 24) return diffHours + 'h ago';
-    const diffDays = Math.floor(diffHours / 24);
-    return diffDays + 'd ago';
+function formatViews(n) {
+    n = n || 0;
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+    return String(n);
 }
-
-function trackView(id) {
-    articleViews[id] = (articleViews[id] || 0) + 1;
-    localStorage.setItem('articleViews', JSON.stringify(articleViews));
+function shortTime(timeStr) {
+    // "2h ago" -> "2h" for the compact Just In list
+    return (timeStr || '').replace(' ago', '');
 }
-
-function getViews(id) {
-    return articleViews[id] || 0;
-}
-
 function showToast(msg) {
     let t = document.getElementById('toast');
     if (!t) {
         t = document.createElement('div');
         t.id = 'toast';
-        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#b80000;color:white;padding:12px 24px;border-radius:0;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;font-family:Inter,sans-serif;';
+        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#b80000;color:white;padding:12px 24px;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;font-family:Inter,sans-serif;';
         document.body.appendChild(t);
     }
     t.textContent = msg;
     t.style.transform = 'translateX(-50%) translateY(0)';
     t.style.opacity = '1';
-    setTimeout(() => {
-        t.style.opacity = '0';
-        t.style.transform = 'translateX(-50%) translateY(100px)';
-    }, 3000);
+    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(100px)'; }, 2500);
+}
+function renderLiveBadge(article) {
+    if (!article.breaking) return '';
+    return `<span class="live-kicker"><span class="dot"></span> Live</span>`;
+}
+function skeletonGrid(count) {
+    let html = '<div class="skeleton-grid">';
+    for (let i = 0; i < count; i++) {
+        html += `<div class="skeleton-card">
+            <div class="skeleton img"></div>
+            <div class="skeleton line"></div>
+            <div class="skeleton line"></div>
+            <div class="skeleton line short"></div>
+        </div>`;
+    }
+    return html + '</div>';
 }
 
-// ===== FETCH NEWS (FIXED) =====
+// ===== FETCH NEWS =====
 async function fetchNews() {
+    document.getElementById('newsContainer').innerHTML = skeletonGrid(6);
     try {
         const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=50`);
         const data = await res.json();
-        if (data.success && data.news) {
-            allNews = data.news;
-            console.log('✅ Loaded ' + allNews.length + ' articles');
-        } else {
-            allNews = [];
-        }
-    } catch(e) {
+        allNews = (data.success && data.news) ? data.news : [];
+        console.log('✅ Loaded ' + allNews.length + ' articles');
+    } catch (e) {
         console.error('❌ Fetch error:', e);
         allNews = [];
     }
-    currentDataset = allNews;   // <-- YE LINE ADD KARO
+    currentDataset = allNews;
     displayCount = 6;
     updateTrendingBar();
     renderHero();
     renderAll();
     renderTrendingTopics();
+    renderJustIn();
+    loadMostRead();
     updateCategoryHero();
 }
 
-// ===== TRENDING BAR =====
 function updateTrendingBar() {
     const container = document.getElementById('trendingTrack');
     if (!container) return;
     const items = allNews.slice(0, 12);
-    if (!items.length) {
-        container.innerHTML = '<span class="item">Welcome to Newzyy</span>';
-        return;
-    }
-    container.innerHTML = items.map(a => `
-        <span class="item"><a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a></span>
+    if (!items.length) { container.innerHTML = '<span class="item">Welcome to Newzyy</span>'; return; }
+    container.innerHTML = items.map(a => `<span class="item"><a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a></span>`).join('');
+}
+
+function renderJustIn() {
+    const root = document.getElementById('justInRoot');
+    if (!root) return;
+    const items = allNews.slice(0, 6);
+    if (!items.length) { root.innerHTML = '<p class="text-muted small">Nothing yet.</p>'; return; }
+    root.innerHTML = items.map(a => `
+        <div class="justin-item" onclick="openNews('${a.id}')">
+            <div class="time">${shortTime(a.time)}</div>
+            <div class="title">${a.title}</div>
+        </div>
     `).join('');
 }
 
-// ===== CATEGORY HERO =====
-function updateCategoryHero() {
-      const container = document.getElementById('categoryHero');
-    if (!container) return;
-    if (currentFilter === 'all') {
-        container.style.display = 'none';
-        return;
+async function loadMostRead() {
+    const root = document.getElementById('mostReadRoot');
+    if (!root) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/most-read`);
+        const data = await res.json();
+        const items = (data.news || []).slice(0, 5);
+        if (!items.length) { root.innerHTML = '<p class="text-muted small">No data yet.</p>'; return; }
+        root.innerHTML = items.map((a, i) => `
+            <div class="most-read-item" onclick="openNews('${a.id}')">
+                <div class="rank">${i + 1}</div>
+                <div class="title">${a.title}</div>
+            </div>
+        `).join('');
+    } catch (e) {
+        root.innerHTML = '<p class="text-muted small">Could not load.</p>';
     }
+}
+
+function updateCategoryHero() {
+    const container = document.getElementById('categoryHero');
+    if (!container) return;
+    if (currentFilter === 'all') { container.style.display = 'none'; return; }
     container.style.display = 'flex';
-    const name = CATEGORY_NAMES[currentFilter] || currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
-    const count = categoryTotal[currentFilter] !== undefined ? categoryTotal[currentFilter] : currentDataset.length;  // <-- YE LINE CHANGE KARO
+    const name = CATEGORY_NAMES[currentFilter] || currentFilter;
+    const count = categoryTotal[currentFilter] !== undefined ? categoryTotal[currentFilter] : currentDataset.length;
     document.getElementById('catHeroName').textContent = name;
     document.getElementById('catHeroCount').textContent = count + ' articles';
 }
-// ===== RENDER HERO =====
+
 function renderHero() {
     const container = document.getElementById('heroSection');
-    if (!container || !allNews.length) {
-        container.innerHTML = '<div class="text-center py-4 text-muted">No featured news</div>';
-        return;
-    }
+    if (!container) return;
+    if (!allNews.length) { container.innerHTML = '<div class="text-center py-4 text-muted">No featured news</div>'; return; }
     const featured = allNews[0];
     const side = allNews.slice(1, 5);
-    const views = getViews(featured.id);
-    
+
     container.innerHTML = `
         <div class="featured" onclick="openNews('${featured.id}')">
             <img src="${featured.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'" loading="lazy">
             <div class="content">
-                <span class="category">${featured.category || 'News'}</span>
+                <div class="category-row">
+                    <span class="category" style="color:${CATEGORY_COLORS[featured.category] || '#b80000'}">${CATEGORY_NAMES[featured.category] || featured.category || 'News'}</span>
+                    ${renderLiveBadge(featured)}
+                </div>
                 <h2 class="title">${featured.title}</h2>
                 <div class="meta">
-                    ${featured.author || 'Newzyy'} · ${featured.time || 'Just now'} · 
-                    <span class="read-time">${getReadingTime(featured.body || featured.excerpt)} min</span>
-                    <span class="views"><i class="fa fa-eye"></i> ${views}</span>
+                    ${featured.author || 'Newzyy'} · ${featured.time || 'Just now'} ·
+                    <span class="read-time">${getReadingTime(featured.body || featured.excerpt)} min</span> ·
+                    <i class="fa fa-eye"></i> ${formatViews(featured.views)}
                 </div>
             </div>
         </div>
@@ -862,9 +561,9 @@ function renderHero() {
                 <div class="side-item" onclick="openNews('${a.id}')">
                     <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=200'" loading="lazy">
                     <div class="side-content">
-                        <span class="side-category">${a.category || 'News'}</span>
+                        <span class="side-category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || 'News'}</span>
                         <div class="side-title">${a.title}</div>
-                        <div class="side-meta">${a.time || 'Just now'} · <i class="fa fa-eye"></i> ${getViews(a.id)}</div>
+                        <div class="side-meta">${a.time || 'Just now'}</div>
                     </div>
                 </div>
             `).join('')}
@@ -872,32 +571,30 @@ function renderHero() {
     `;
 }
 
-// ===== RENDER ALL NEWS =====
 function renderAll() {
-    let f = currentDataset;   // <-- YE LINE CHANGE KARO (pehle "currentFilter === 'all' ? allNews : allNews.filter(...)" tha)
+    let f = currentDataset;
     const container = document.getElementById('newsContainer');
     if (!container) return;
     if (!f.length) {
         container.innerHTML = '<div class="text-center py-5"><h4 class="text-muted">No news found</h4></div>';
         document.getElementById('loadMoreBtn').style.display = 'none';
-        updateCategoryHero();
         return;
     }
     const pageItems = f.slice(0, displayCount);
     let html = '<div class="bbc-grid">';
     pageItems.forEach(a => {
-        const views = getViews(a.id);
         html += `
             <div class="bbc-card" onclick="openNews('${a.id}')">
                 <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
                 <div class="body">
-                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${a.category || 'News'}</span>
+                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || 'News'}</span>
+                    ${renderLiveBadge(a)}
                     <h3 class="title">${a.title}</h3>
                     <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
                     <div class="meta">
                         ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
                         <span class="read-time">${getReadingTime(a.body || a.excerpt)} min</span>
-                        <span class="view-count"><i class="fa fa-eye"></i> ${views}</span>
+                        <span><i class="fa fa-eye"></i> ${formatViews(a.views)}</span>
                     </div>
                 </div>
             </div>
@@ -907,15 +604,11 @@ function renderAll() {
     container.innerHTML = html;
     const hasMore = f.length > displayCount;
     document.getElementById('loadMoreBtn').style.display = hasMore ? 'block' : 'none';
-    updateCategoryHero();
 }
 
-function loadMore() {
-    displayCount += 6;
-    renderAll();
-}
+function loadMore() { displayCount += 6; renderAll(); }
 
-// ===== FILTER CATEGORY =====
+// ===== CATEGORY FILTER (fetches from the real per-category endpoint) =====
 async function filterCategory(cat) {
     currentFilter = cat;
     displayCount = 6;
@@ -926,7 +619,6 @@ async function filterCategory(cat) {
         if (text === cat || (cat === 'all' && text === 'home')) el.classList.add('active');
     });
 
-    // "All" tab ke liye already loaded data hai, koi fetch nahi chahiye
     if (cat === 'all') {
         currentDataset = allNews;
         renderAll();
@@ -935,20 +627,15 @@ async function filterCategory(cat) {
         return;
     }
 
-    // Agar pehle se cache mein hai to dobara fetch na karo
     if (categoryCache[cat]) {
         currentDataset = categoryCache[cat];
         renderAll();
         updateCategoryHero();
-        showToast(cat.charAt(0).toUpperCase() + cat.slice(1));
+        showToast(CATEGORY_NAMES[cat] || cat);
         return;
     }
 
-    // Loading state dikhao jab tak fetch ho raha hai
-    const container = document.getElementById('newsContainer');
-    if (container) {
-        container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-danger" role="status"></div></div>';
-    }
+    document.getElementById('newsContainer').innerHTML = skeletonGrid(6);
 
     try {
         const res = await fetch(`${API_BASE}/api/category/${cat}?limit=30`);
@@ -964,60 +651,72 @@ async function filterCategory(cat) {
 
     renderAll();
     updateCategoryHero();
-    showToast(cat.charAt(0).toUpperCase() + cat.slice(1));
+    showToast(CATEGORY_NAMES[cat] || cat);
 }
-// ===== RENDER TRENDING TOPICS =====
+
 function renderTrendingTopics() {
     const container = document.getElementById('trendingTopics');
     if (!container) return;
-    const topics = ['Politics', 'Technology', 'Sports', 'Business', 'Health', 'Science', 'Entertainment', 'Travel', 'Environment', 'Culture', 'World', 'Economy', 'AI', 'Climate', 'Space'];
-    const shuffled = topics.sort(() => 0.5 - Math.random()).slice(0, 12);
-    container.innerHTML = shuffled.map(t => `
-        <span class="topic-tag" onclick="filterCategory('${t.toLowerCase()}')">${t}</span>
-    `).join('');
+    const topics = Object.keys(CATEGORY_NAMES).map(k => CATEGORY_NAMES[k]);
+    container.innerHTML = topics.map(t => `<span class="topic-tag" onclick="filterCategory('${t.toLowerCase() === 'earth' ? 'environment' : t.toLowerCase()}')">${t}</span>`).join('');
 }
 
-// ===== SEARCH =====
-document.getElementById('searchInput')?.addEventListener('input', function(e) {
-    const q = e.target.value.toLowerCase().trim();
-    if (q.length < 2) { filterCategory('all'); return; }
-    const results = allNews.filter(a => a.title.toLowerCase().includes(q) || (a.category && a.category.toLowerCase().includes(q)));
-    const container = document.getElementById('newsContainer');
-    if (!results.length) {
-        container.innerHTML = '<div class="text-center py-5"><h4>No results found</h4></div>';
-        document.getElementById('loadMoreBtn').style.display = 'none';
-        return;
-    }
-    let html = `<h4 class="mb-3">Results (${results.length})</h4><div class="bbc-grid">`;
-    results.slice(0, 12).forEach(a => {
-        const views = getViews(a.id);
-        html += `
-            <div class="bbc-card" onclick="openNews('${a.id}')">
-                <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                <div class="body">
-                    <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${a.category || 'News'}</span>
-                    <h3 class="title">${a.title}</h3>
-                    <div class="meta">
-                        ${a.author || 'Newzyy'} · ${a.time || 'Just now'}
-                        <span class="view-count"><i class="fa fa-eye"></i> ${views}</span>
+// ===== LIVE SEARCH SUGGESTIONS =====
+let searchDebounce = null;
+document.getElementById('searchInput')?.addEventListener('input', function (e) {
+    const q = e.target.value.trim();
+    clearTimeout(searchDebounce);
+    const box = document.getElementById('searchSuggestions');
+    if (q.length < 2) { box.classList.remove('active'); return; }
+
+    searchDebounce = setTimeout(async () => {
+        try {
+            const res = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(q)}`);
+            const data = await res.json();
+            const items = (data.news || []).slice(0, 6);
+            if (!items.length) {
+                box.innerHTML = '<div class="sug-empty">No matching stories</div>';
+            } else {
+                box.innerHTML = items.map(a => `
+                    <div class="sug-item" onclick="openNews('${a.id}')">
+                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=100'">
+                        <div>
+                            <div class="sug-cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</div>
+                            <div class="sug-title">${a.title}</div>
+                        </div>
                     </div>
-                </div>
-            </div>
-        `;
-    });
-    html += '</div>';
-    container.innerHTML = html;
-    document.getElementById('loadMoreBtn').style.display = 'none';
+                `).join('');
+            }
+            box.classList.add('active');
+        } catch (e) { box.classList.remove('active'); }
+    }, 300);
 });
+document.addEventListener('click', (e) => {
+    const wrapper = document.querySelector('.search-wrapper');
+    if (wrapper && !wrapper.contains(e.target)) {
+        document.getElementById('searchSuggestions')?.classList.remove('active');
+    }
+});
+
+// ===== NEWSLETTER (placeholder — wire to /api/newsletter/subscribe when built) =====
+function submitNewsletter() {
+    const email = document.getElementById('newsletterEmail').value.trim();
+    if (!email || !email.includes('@')) { showToast('Enter a valid email'); return; }
+    showToast('Subscribed! (connect backend endpoint to store this)');
+    document.getElementById('newsletterEmail').value = '';
+}
 
 // ===== OPEN NEWS =====
 function openNews(id) {
-    trackView(id);
     window.location.href = 'single-post.html?id=' + id;
 }
 
 // ===== INIT =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    initTheme();
+    document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+    renderDate();
+    initWeather();
     updateAccountLinks();
     fetchNews();
 });
@@ -1026,6 +725,7 @@ window.filterCategory = filterCategory;
 window.openNews = openNews;
 window.loadMore = loadMore;
 window.logoutUser = logoutUser;
+window.submitNewsletter = submitNewsletter;
 </script>
 
 </body>
