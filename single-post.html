@@ -286,8 +286,6 @@ function renderBody(bodyText) {
         });
         if (chunk.trim()) paras.push(chunk.trim());
     }
-    // Fallback: agar paras empty hai toh poori body daal do
-    if (paras.length === 0) paras = [bodyText];
     return paras.map(p => `<p>${escapeHtml(p)}</p>`).join('');
 }
  
@@ -376,12 +374,16 @@ function renderArticle(article) {
             ${renderBody(article.body || article.excerpt)}
         </div>
  
-        ${article.source_url ? `
+        ${article.rewritten ? `
+            <div class="bbc-source-line" style="font-size:0.72rem;opacity:0.75;border-left-color:var(--hairline)">
+                Sources: ${article.source || 'wire services'}
+            </div>
+        ` : (article.source_url ? `
             <div class="bbc-source-line">
                 Originally reported by <strong>${article.source || 'the source'}</strong>.
                 <a href="${article.source_url}" target="_blank" rel="noopener noreferrer">Read the full original article →</a>
             </div>
-        ` : ''}
+        ` : '')}
  
         <div class="bbc-share-row">
             <div class="tags"><span>Tags</span><a href="index.html?cat=${article.category}">${catName}</a></div>
