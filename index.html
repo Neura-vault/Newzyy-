@@ -669,6 +669,9 @@
 // ===== BACKEND API =====
 const API_BASE = 'https://newzyy.onrender.com';
 let allNews = [];
+let currentDataset = [];        // NEW — jo abhi screen par render ho raha hai
+let categoryCache = {};         // NEW — har category ka data cache (dobara fetch na karna pade)
+let categoryTotal = {};         // NEW — har category ka real total count (DB se)
 let currentFilter = 'all';
 let displayCount = 6;
 let articleViews = JSON.parse(localStorage.getItem('articleViews') || '{}');
@@ -788,12 +791,12 @@ async function fetchNews() {
             console.log('✅ Loaded ' + allNews.length + ' articles');
         } else {
             allNews = [];
-            console.warn('⚠️ No news in response');
         }
     } catch(e) {
         console.error('❌ Fetch error:', e);
         allNews = [];
     }
+    currentDataset = allNews;   // <-- YE LINE ADD KARO
     displayCount = 6;
     updateTrendingBar();
     renderHero();
@@ -818,7 +821,7 @@ function updateTrendingBar() {
 
 // ===== CATEGORY HERO =====
 function updateCategoryHero() {
-    const container = document.getElementById('categoryHero');
+      const container = document.getElementById('categoryHero');
     if (!container) return;
     if (currentFilter === 'all') {
         container.style.display = 'none';
@@ -826,11 +829,10 @@ function updateCategoryHero() {
     }
     container.style.display = 'flex';
     const name = CATEGORY_NAMES[currentFilter] || currentFilter.charAt(0).toUpperCase() + currentFilter.slice(1);
-    const count = allNews.filter(n => n.category === currentFilter).length;
+    const count = categoryTotal[currentFilter] !== undefined ? categoryTotal[currentFilter] : currentDataset.length;  // <-- YE LINE CHANGE KARO
     document.getElementById('catHeroName').textContent = name;
     document.getElementById('catHeroCount').textContent = count + ' articles';
 }
-
 // ===== RENDER HERO =====
 function renderHero() {
     const container = document.getElementById('heroSection');
@@ -872,7 +874,7 @@ function renderHero() {
 
 // ===== RENDER ALL NEWS =====
 function renderAll() {
-    let f = currentFilter === 'all' ? allNews : allNews.filter(n => n.category === currentFilter);
+    let f = currentDataset;   // <-- YE LINE CHANGE KARO (pehle "currentFilter === 'all' ? allNews : allNews.filter(...)" tha)
     const container = document.getElementById('newsContainer');
     if (!container) return;
     if (!f.length) {
@@ -914,19 +916,56 @@ function loadMore() {
 }
 
 // ===== FILTER CATEGORY =====
-function filterCategory(cat) {
+async function filterCategory(cat) {
     currentFilter = cat;
     displayCount = 6;
+
     document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
         const text = el.textContent.toLowerCase().trim();
         if (text === cat || (cat === 'all' && text === 'home')) el.classList.add('active');
     });
+
+    // "All" tab ke liye already loaded data hai, koi fetch nahi chahiye
+    if (cat === 'all') {
+        currentDataset = allNews;
+        renderAll();
+        updateCategoryHero();
+        showToast('All News');
+        return;
+    }
+
+    // Agar pehle se cache mein hai to dobara fetch na karo
+    if (categoryCache[cat]) {
+        currentDataset = categoryCache[cat];
+        renderAll();
+        updateCategoryHero();
+        showToast(cat.charAt(0).toUpperCase() + cat.slice(1));
+        return;
+    }
+
+    // Loading state dikhao jab tak fetch ho raha hai
+    const container = document.getElementById('newsContainer');
+    if (container) {
+        container.innerHTML = '<div class="text-center py-5"><div class="spinner-border text-danger" role="status"></div></div>';
+    }
+
+    try {
+        const res = await fetch(`${API_BASE}/api/category/${cat}?limit=30`);
+        const data = await res.json();
+        const items = (data.success && data.news) ? data.news : [];
+        categoryCache[cat] = items;
+        categoryTotal[cat] = data.total || items.length;
+        currentDataset = items;
+    } catch (e) {
+        console.error('❌ Category fetch error:', e);
+        currentDataset = [];
+    }
+
     renderAll();
     updateCategoryHero();
-    showToast((cat === 'all' ? 'All News' : cat.charAt(0).toUpperCase() + cat.slice(1)));
+    showToast(cat.charAt(0).toUpperCase() + cat.slice(1));
 }
-
 // ===== RENDER TRENDING TOPICS =====
 function renderTrendingTopics() {
     const container = document.getElementById('trendingTopics');
