@@ -58,9 +58,9 @@
 
         /* ===== HEADER ===== */
         .bbc-header { background: var(--paper); border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-        .bbc-header .logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; }
-        .bbc-header .logo span { color: var(--red); }
-        .bbc-header .logo small { font-size: 0.55rem; font-weight: 400; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
+        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
+        .bbc-header .site-logo span { color: var(--red); }
+        .bbc-header .site-logo small { font-size: 0.55rem; font-weight: 400; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
 
         .search-wrapper { position: relative; }
         .search-input { background: var(--canvas); border: 1px solid var(--hairline); color: var(--ink); border-radius: 4px; padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--sans); }
@@ -215,7 +215,7 @@
 <header class="bbc-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <div class="logo">Newzy<span>y</span><small>News</small></div>
+            <a href="index.html" class="site-logo">Newzy<span>y</span><small>News</small></a>
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
