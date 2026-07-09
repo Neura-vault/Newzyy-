@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
- 
+
 <head>
     <meta charset="utf-8">
     <title id="pageTitle">Newzyy — Article</title>
@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
- 
+
     <!-- ===== SEO / SOCIAL PREVIEW META (filled dynamically once the article loads) ===== -->
     <meta id="metaDescription" name="description" content="Newzyy — breaking news, politics, technology, sport and business.">
     <link id="canonicalLink" rel="canonical" href="">
@@ -25,15 +25,15 @@
     <meta id="twitterDescription" name="twitter:description" content="Newzyy — breaking news.">
     <meta id="twitterImage" name="twitter:image" content="">
     <script id="newsArticleSchema" type="application/ld+json"></script>
- 
+
     <!-- THEME CSS -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css?v=2">
- 
+
     <!-- Sans for chrome/nav/meta, Serif for the actual editorial content -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
- 
+
     <style>
         :root {
             --red: #b80000;
@@ -48,22 +48,22 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: var(--sans); background: var(--canvas); color: var(--ink); -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; }
- 
+
         /* progress rail */
         #readProgress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 999; transition: width 0.1s linear; }
- 
+
         /* ===== TRENDING BAR ===== */
         .bbc-trending { background: var(--ink); color: #fff; padding: 8px 0; border-bottom: 2px solid var(--red); font-size: 0.85rem; }
         .bbc-trending .label { background: var(--red); padding: 2px 16px; font-weight: 600; font-size: 0.62rem; text-transform: uppercase; display: inline-block; margin-right: 16px; letter-spacing: 0.6px; }
         .bbc-trending .track { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: middle; max-width: 80%; }
         .bbc-trending .track .item { display: inline-block; padding: 0 24px; font-size: 0.8rem; }
         .bbc-trending .track .item a:hover { text-decoration: underline; }
- 
+
         /* ===== HEADER / NAV (kept consistent with index.html) ===== */
         .bbc-header { background: #fff; border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-        .bbc-header .logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; }
-        .bbc-header .logo span { color: var(--red); }
-        .bbc-header .logo small { font-size: 0.55rem; font-weight: 400; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
+        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
+        .bbc-header .site-logo span { color: var(--red); }
+        .bbc-header .site-logo small { font-size: 0.55rem; font-weight: 400; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
         .bbc-header .search-input { background: var(--canvas); border: 1px solid var(--hairline); padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--sans); }
         .bbc-header .search-input:focus { border-color: var(--red); }
         .bbc-header .search-wrapper { position: relative; }
@@ -73,42 +73,42 @@
         .bbc-nav { background: #fff; border-bottom: 1px solid var(--hairline); }
         .bbc-nav .nav-link { color: #4a4a4a !important; font-size: 0.72rem; font-weight: 600; padding: 12px 16px !important; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 2px solid transparent; }
         .bbc-nav .nav-link:hover { color: var(--red) !important; border-bottom-color: var(--red); }
- 
+
         /* ===== READING LAYOUT ===== */
         .bbc-article-wrap { padding: 36px 0 60px; }
         .bbc-breadcrumb { max-width: 700px; margin: 0 auto 22px; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.2px; }
         .bbc-breadcrumb a:hover { color: var(--red); }
- 
+
         .bbc-article-header { max-width: 700px; margin: 0 auto; }
         .kicker-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
         .kicker { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.6px; }
         .live-kicker { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--red); }
         .live-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); display: inline-block; animation: pulse 1.2s ease-in-out infinite; }
         @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(0.75);} }
- 
+
         .article-title { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; line-height: 1.18; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.3px; }
         .article-excerpt { font-family: var(--serif); font-size: 1.28rem; font-weight: 400; color: #3a3a3a; line-height: 1.5; margin-bottom: 22px; }
- 
+
         .byline-row { display: flex; align-items: center; gap: 12px; padding: 18px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); margin-bottom: 26px; }
         .byline-row .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
         .byline-row .byline-text { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
         .byline-row .byline-text strong { color: var(--ink); font-weight: 700; }
         .byline-row .byline-meta { margin-left: auto; display: flex; gap: 14px; align-items: center; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap; text-align: right; }
- 
+
         .bbc-article-image { max-width: 900px; margin: 0 auto 8px; }
         .bbc-article-image img { width: 100%; max-height: 520px; object-fit: cover; display: block; }
         .bbc-article-image .caption { max-width: 700px; margin: 0 auto; font-family: var(--sans); font-size: 0.74rem; font-style: italic; color: var(--muted); padding: 8px 0 0; }
- 
+
         .bbc-article-body { max-width: 700px; margin: 30px auto 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.85; color: #1e1e1e; }
         .bbc-article-body p { margin-bottom: 24px; }
         .bbc-article-body p:first-of-type::first-letter {
             font-family: var(--serif); font-size: 4.4rem; font-weight: 700; float: left; line-height: 0.82;
             padding: 6px 10px 0 0; color: var(--red);
         }
- 
+
         .bbc-source-line { max-width: 700px; margin: 30px auto; padding: 16px 20px; background: #fff; border-left: 3px solid var(--red); font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
         .bbc-source-line a { color: var(--red); font-weight: 700; }
- 
+
         .bbc-share-row { max-width: 700px; margin: 30px auto 46px; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); flex-wrap: wrap; gap: 14px; font-family: var(--sans); }
         .bbc-share-row .tags span { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.4px; margin-right: 10px; }
         .bbc-share-row .tags a { font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-right: 14px; }
@@ -116,7 +116,7 @@
         .bbc-share-row .share-icons { display: flex; gap: 10px; list-style: none; }
         .bbc-share-row .share-icons a { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--hairline); border-radius: 50%; color: var(--ink); font-size: 0.85rem; }
         .bbc-share-row .share-icons a:hover { border-color: var(--red); color: var(--red); }
- 
+
         /* ===== RELATED (understated, hairline dividers, not boxed cards) ===== */
         .bbc-related { max-width: 900px; margin: 0 auto 50px; }
         .section-label { font-family: var(--sans); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink); padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 22px; }
@@ -127,7 +127,7 @@
         .related-item .title { font-family: var(--serif); font-size: 0.98rem; font-weight: 600; line-height: 1.3; margin-top: 4px; }
         .related-item:hover .title { color: var(--red); }
         .related-item .meta { font-family: var(--sans); font-size: 0.68rem; color: var(--muted); margin-top: 8px; }
- 
+
         /* ===== SIDEBAR — real Most Read, ranked list ===== */
         .bbc-sidebar { max-width: 700px; margin: 0 auto; }
         .sidebar-widget { margin-bottom: 30px; }
@@ -137,18 +137,18 @@
         .most-read-item:hover .rank { color: var(--red); }
         .most-read-item .title { font-family: var(--sans); font-size: 0.88rem; font-weight: 600; line-height: 1.35; }
         .most-read-item:hover .title { color: var(--red); }
- 
+
         /* ===== FOOTER ===== */
         .bbc-footer { background: var(--ink); color: #ccc; padding: 40px 0 20px; margin-top: 0; border-top: 3px solid var(--red); font-family: var(--sans); }
         .bbc-footer a { color: #ccc; font-size: 0.85rem; }
         .bbc-footer a:hover { color: #fff; }
         .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
         .bbc-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
- 
+
         .bbc-state-msg { max-width: 700px; margin: 0 auto; text-align: center; padding: 90px 20px; font-family: var(--sans); }
         .bbc-state-msg h4 { font-weight: 700; margin-bottom: 10px; }
         .bbc-state-msg a { color: var(--red); font-weight: 700; }
- 
+
         @media (max-width: 992px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 600px) {
             .article-title { font-size: 1.7rem; }
@@ -161,20 +161,20 @@
     </style>
 </head>
 <body>
- 
+
 <div id="readProgress"></div>
- 
+
 <div class="bbc-trending">
     <div class="container">
         <span class="label">Trending</span>
         <div class="track" id="trendingTrack"><span class="item">Loading news...</span></div>
     </div>
 </div>
- 
+
 <header class="bbc-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="index.html" class="logo">Newzy<span>y</span><small>News</small></a>
+            <a href="index.html" class="site-logo">Newzy<span>y</span><small>News</small></a>
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
@@ -186,7 +186,7 @@
         </div>
     </div>
 </header>
- 
+
 <nav class="bbc-nav">
     <div class="container">
         <div class="d-flex flex-wrap">
@@ -202,7 +202,7 @@
         </div>
     </div>
 </nav>
- 
+
 <main class="container bbc-article-wrap">
     <div id="articleRoot">
         <div class="bbc-state-msg">
@@ -211,7 +211,7 @@
         </div>
     </div>
 </main>
- 
+
 <footer class="bbc-footer">
     <div class="container">
         <div class="links">
@@ -224,15 +224,15 @@
         <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
- 
+
 <script src="plugins/jquery/jquery.js"></script>
 <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
 <script src="js/custom.js"></script>
- 
+
 <script>
 const API_BASE = 'https://newzyy.onrender.com';
 let currentArticle = null;
- 
+
 const CATEGORY_COLORS = {
     politics: '#b80000', technology: '#2563eb', sports: '#16a34a', business: '#7c3aed',
     health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
@@ -243,7 +243,7 @@ const CATEGORY_NAMES = {
     health: 'Health', science: 'Science', entertainment: 'Entertainment', travel: 'Travel',
     environment: 'Earth', culture: 'Culture', world: 'World', economy: 'Economy'
 };
- 
+
 function getReadingTime(text) {
     const words = (text || '').split(/\s+/).length;
     return Math.max(1, Math.ceil(words / 200));
@@ -259,7 +259,7 @@ function escapeHtml(str) {
     div.textContent = str;
     return div.innerHTML;
 }
- 
+
 function updateAccountLinks() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
     const container = document.getElementById('accountLinks');
@@ -271,7 +271,7 @@ function updateAccountLinks() {
         container.innerHTML = `<a href="account.html" class="btn-login">Log In</a> <a href="signup.html" class="btn-signup">Register</a>`;
     }
 }
- 
+
 // Body comes back as one text blob — split into readable paragraphs.
 function renderBody(bodyText) {
     if (!bodyText) return '<p>Full article text is not available for this story yet.</p>';
@@ -288,26 +288,26 @@ function renderBody(bodyText) {
     }
     return paras.map(p => `<p>${escapeHtml(p)}</p>`).join('');
 }
- 
+
 // ===== SEO: title, OG, Twitter, canonical, JSON-LD =====
 function updateSEOTags(article) {
     const catName = CATEGORY_NAMES[article.category] || article.category;
     const url = window.location.origin + window.location.pathname + '?id=' + article.id;
     const desc = (article.excerpt || '').substring(0, 160);
- 
+
     document.getElementById('pageTitle').textContent = `${article.title} — Newzyy`;
     document.getElementById('metaDescription').setAttribute('content', desc);
     document.getElementById('canonicalLink').setAttribute('href', url);
- 
+
     document.getElementById('ogTitle').setAttribute('content', article.title);
     document.getElementById('ogDescription').setAttribute('content', desc);
     document.getElementById('ogImage').setAttribute('content', article.image || '');
     document.getElementById('ogUrl').setAttribute('content', url);
- 
+
     document.getElementById('twitterTitle').setAttribute('content', article.title);
     document.getElementById('twitterDescription').setAttribute('content', desc);
     document.getElementById('twitterImage').setAttribute('content', article.image || '');
- 
+
     const schema = {
         "@context": "https://schema.org",
         "@type": "NewsArticle",
@@ -326,26 +326,26 @@ function updateSEOTags(article) {
     };
     document.getElementById('newsArticleSchema').textContent = JSON.stringify(schema);
 }
- 
+
 function renderLiveKicker(article) {
     if (!article.breaking) return '';
     return `<span class="live-kicker"><span class="dot"></span> Live</span>`;
 }
- 
+
 function renderArticle(article) {
     currentArticle = article;
     updateSEOTags(article);
- 
+
     const catName = CATEGORY_NAMES[article.category] || (article.category || 'News');
     const catColor = CATEGORY_COLORS[article.category] || '#b80000';
     const initials = (article.author || 'N').charAt(0).toUpperCase();
- 
+
     document.getElementById('articleRoot').innerHTML = `
         <div class="bbc-breadcrumb">
             <a href="index.html">Home</a> &nbsp;›&nbsp;
             <a href="index.html?cat=${article.category}">${catName}</a>
         </div>
- 
+
         <div class="bbc-article-header">
             <div class="kicker-row">
                 <a class="kicker" href="index.html?cat=${article.category}" style="color:${catColor}">${catName}</a>
@@ -354,7 +354,7 @@ function renderArticle(article) {
             <h1 class="article-title">${article.title}</h1>
             ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}
         </div>
- 
+
         <div class="bbc-article-header">
             <div class="byline-row">
                 <div class="avatar">${initials}</div>
@@ -365,26 +365,15 @@ function renderArticle(article) {
                 </div>
             </div>
         </div>
- 
+
         <div class="bbc-article-image">
             <img src="${article.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200'" alt="${article.title}">
         </div>
- 
+
         <div class="bbc-article-body">
             ${renderBody(article.body || article.excerpt)}
         </div>
- 
-        ${article.rewritten ? `
-            <div class="bbc-source-line" style="font-size:0.72rem;opacity:0.75;border-left-color:var(--hairline)">
-                Sources: ${article.source || 'wire services'}
-            </div>
-        ` : (article.source_url ? `
-            <div class="bbc-source-line">
-                Originally reported by <strong>${article.source || 'the source'}</strong>.
-                <a href="${article.source_url}" target="_blank" rel="noopener noreferrer">Read the full original article →</a>
-            </div>
-        ` : '')}
- 
+
         <div class="bbc-share-row">
             <div class="tags"><span>Tags</span><a href="index.html?cat=${article.category}">${catName}</a></div>
             <ul class="share-icons list-unstyled d-flex m-0">
@@ -393,7 +382,7 @@ function renderArticle(article) {
                 <li><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
             </ul>
         </div>
- 
+
         <div id="relatedRoot"></div>
         <div class="bbc-sidebar">
             <div class="sidebar-widget">
@@ -402,12 +391,12 @@ function renderArticle(article) {
             </div>
         </div>
     `;
- 
+
     loadRelated(article);
     loadMostRead();
     registerView(article.id);
 }
- 
+
 function renderRelatedGrid(items) {
     const root = document.getElementById('relatedRoot');
     if (!root || !items.length) { if (root) root.innerHTML = ''; return; }
@@ -427,7 +416,7 @@ function renderRelatedGrid(items) {
         </div>
     `;
 }
- 
+
 async function loadRelated(article) {
     try {
         const res = await fetch(`${API_BASE}/api/category/${article.category}?limit=6`);
@@ -438,7 +427,7 @@ async function loadRelated(article) {
         console.error('related fetch error:', e);
     }
 }
- 
+
 async function loadMostRead() {
     const root = document.getElementById('mostReadRoot');
     if (!root) return;
@@ -457,14 +446,14 @@ async function loadMostRead() {
         root.innerHTML = '<p class="text-muted small">Could not load.</p>';
     }
 }
- 
+
 // Real server-side view count — fires once per page load, updates DB permanently.
 async function registerView(id) {
     try {
         await fetch(`${API_BASE}/api/article/${id}/view`, { method: 'POST' });
     } catch (e) { /* non-critical */ }
 }
- 
+
 function updateTrendingBar(items) {
     const container = document.getElementById('trendingTrack');
     if (!container) return;
@@ -473,7 +462,7 @@ function updateTrendingBar(items) {
         <span class="item"><a href="single-post.html?id=${a.id}">${a.title}</a></span>
     `).join('');
 }
- 
+
 function renderNotFound() {
     document.getElementById('articleRoot').innerHTML = `
         <div class="bbc-state-msg">
@@ -483,7 +472,7 @@ function renderNotFound() {
         </div>
     `;
 }
- 
+
 // reading progress rail
 window.addEventListener('scroll', () => {
     const el = document.documentElement;
@@ -491,12 +480,12 @@ window.addEventListener('scroll', () => {
     const bar = document.getElementById('readProgress');
     if (bar) bar.style.width = (scrolled || 0) + '%';
 });
- 
+
 async function init() {
     updateAccountLinks();
     const id = new URLSearchParams(window.location.search).get('id');
     if (!id) { renderNotFound(); return; }
- 
+
     try {
         const res = await fetch(`${API_BASE}/api/article/${id}`);
         if (!res.ok) { renderNotFound(); return; }
@@ -507,16 +496,16 @@ async function init() {
         console.error('article fetch error:', e);
         renderNotFound();
     }
- 
+
     try {
         const res2 = await fetch(`${API_BASE}/api/all-news?limit=10`);
         const data2 = await res2.json();
         updateTrendingBar(data2.news || []);
     } catch (e) { /* non-critical */ }
 }
- 
+
 document.addEventListener('DOMContentLoaded', init);
 </script>
- 
+
 </body>
 </html>
