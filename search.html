@@ -1,359 +1,149 @@
 <!DOCTYPE html>
-
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Newzyy - Top World News</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Search — Newzyy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-    <!-- theme meta -->
-    <meta name="theme-name" content="Newzyy" />
-
-    <!--Favicon-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
-    <!-- THEME CSS
-	================================================== -->
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <!-- Slick Carousel -->
-    <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
-    <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <!-- manin stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
+            --sans:'Inter',sans-serif; --serif:'Source Serif 4',Georgia,serif; }
+        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:var(--sans); background:var(--canvas); color:var(--ink); }
+        a { text-decoration:none; color:inherit; }
+        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
+        .site-logo { font-size:1.8rem; font-weight:900; color:var(--ink); }
+        .site-logo span { color:var(--red); }
+        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
+        .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
+        .bbc-nav a { font-size:0.72rem; font-weight:600; padding:12px 16px; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); display:inline-block; }
+        .search-hero { max-width:700px; margin:0 auto; padding:40px 20px 10px; }
+        .search-hero h1 { font-family:var(--serif); font-size:1.8rem; margin-bottom:16px; }
+        .search-box { position:relative; }
+        .search-box input { width:100%; padding:14px 18px 14px 44px; border:1.5px solid var(--hairline); font-size:1rem; font-family:var(--sans); background:var(--paper); color:var(--ink); }
+        .search-box input:focus { outline:none; border-color:var(--red); }
+        .search-box i { position:absolute; left:16px; top:50%; transform:translateY(-50%); color:var(--muted); }
+        .result-count { font-size:0.85rem; color:var(--muted); margin:16px 0; }
+        .results-wrap { max-width:900px; margin:0 auto; padding:0 20px 60px; }
+        .result-card { display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--hairline); cursor:pointer; }
+        .result-card img { width:140px; height:100px; object-fit:cover; flex-shrink:0; }
+        .result-card .cat { font-size:0.65rem; font-weight:800; text-transform:uppercase; }
+        .result-card .title { font-family:var(--serif); font-size:1.15rem; font-weight:700; margin:6px 0; }
+        .result-card:hover .title { color:var(--red); }
+        .result-card .excerpt { font-size:0.88rem; color:var(--muted); }
+        .empty-state { text-align:center; padding:60px 20px; color:var(--muted); }
+        .bbc-footer { background:var(--ink); color:#ccc; padding:40px 0 20px; margin-top:40px; border-top:3px solid var(--red); }
+        .bbc-footer a { color:#ccc; font-size:0.85rem; }
+        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
+        .bbc-footer .copyright { font-size:0.75rem; color:#666; margin-top:20px; text-align:center; }
+        @media (max-width:600px){ .result-card{flex-direction:column;} .result-card img{width:100%;height:160px;} }
+    </style>
 </head>
 <body>
 
-
-
-
-
-
-<div class="trending-bar-dark hidden-xs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h3 class="trending-bar-title">Trending News</h3>
-                <div class="trending-news-slider">
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html" >Here's How To Get Free Pizza On 2 hour</a>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-12 col-sm-12 col-xs-12 top-nav-social-lists text-lg-right col-lg-4 ml-lg-auto">
-                <ul class="list-unstyled mt-4 mt-lg-0">
-                    <li>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-facebook-f"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-twitter"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-youtube"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-linkedin"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-pinterest-p"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-rss"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-reddit-alien"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<header class="header-navigation d-none d-lg-block">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logos/logo.png" alt=""> <!-- Replace Logo Here -->
-                    </a>
-                </div>
-                <!-- End Logo -->
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-9">
-                    <a href="#">
-                    </a>
-                </div>
-            </div>
-        </div>
+<header class="bbc-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="index.html" class="site-logo">Newzy<span>y</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
     </div>
 </header>
+<nav class="bbc-nav"><div class="container"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></nav>
 
-<div class="main-navbar clearfix bg-dark ">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                      <a class="navbar-brand d-lg-none" href="index.html">
-                        <img src="images/logos/footer-logo.png" alt=""> 
-                     </a>
-  
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span>
-                  </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                           
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 Home
-                                </a>
-                                <div class="dropdown-menu" >
-                                  <a class="dropdown-item" href="index.html" >Home 1</a>
-                                  <a class="dropdown-item" href="index-2.html">Home 2</a>
-                                </div>
-                            </li>
-                           
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Post
-                                </a>
-                                <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="post-left-sidebar.html">Post Left Sidebar</a>
-                                  <a class="dropdown-item" href="post-full-width.html">Post Full Width</a>
-                                  <a class="dropdown-item" href="single-post.html">Single Post</a>
-                                  <a class="dropdown-item" href="post-category-1.html">Category 1</a>
-                                  <a class="dropdown-item" href="post-category-2.html">Category 2</a>
-                                  <a class="dropdown-item" href="author.html">Author</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Account
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="account.html">Log In</a>
-                                  <a class="dropdown-item" href="signup.html">Register</a>
-                                </div>
-                            </li>
-
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  About
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="about.html">About</a>
-                                  <a class="dropdown-item" href="terms.html">Terms</a>
-                                  <a class="dropdown-item" href="privacy.html">Privacy Policy</a>
-                                  <a class="dropdown-item" href="job.html">Career</a>
-                                </div>
-                            </li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Pages
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="404.html">404 Page</a>
-                                  <a class="dropdown-item" href="search.html">Search Page</a>
-                                </div>
-                            </li>
-
-                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-
-                        </ul>
-                        <div class="nav-search ml-auto d-none d-lg-block">
-                            <span id="search">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </nav>
-                
-            </div>
-        </div>
+<div class="search-hero">
+    <h1>Search Newzyy</h1>
+    <div class="search-box">
+        <i class="fa fa-search"></i>
+        <input type="text" id="searchInput" placeholder="Search articles..." autocomplete="off">
     </div>
-    <form class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-        <div class="search-close">
-            <span class="close-search">
-                <i class="fa fa-times"></i>
-            </span>
-        </div>
-    </form>
+    <div class="result-count" id="resultCount"></div>
 </div>
 
-<section class="error-404 section-padding bg-white">
+<div class="results-wrap" id="resultsWrap"></div>
+
+<footer class="bbc-footer">
     <div class="container">
-        <div class="row justify-content-center align-items-center">
-            <div class="col-lg-6 text-center">
-                <div class="search-info mb-4">
-                    <i class="fa fa-search"></i>
-                    <h2 class="mt-5">Search results for "service"</h2>
-                    <hr>
-                </div>
-            </div>
+        <div class="links">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
         </div>
-
-        <div class="row mt-5">
-            <div class="col-lg-4 col-md-6">
-                <div class="post-block-wrapper clearfix mb-5 mb-lg-0">
-                    <div class="post-thumbnail">
-                        <a href="single-post.htm">
-                            <img class="img-fluid" src="images/news/news-02.jpg" alt="post-image"/>
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <h2 class="post-title mt-3">
-                            <a href="single-post.html">Extra Crunch The next service marketplace wave: Vertical</a>
-                        </h2>
-                        <div class="post-meta mb-2">
-                            <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                            <span class="post-author">
-                                by
-                                <a href="author.html">Tarnak Sunder</a>
-                            </span>
-                        </div>
-                         <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-                <div class="post-block-wrapper clearfix mb-5 mb-lg-0">
-                    <div class="post-thumbnail">
-                        <a href="single-post.htm">
-                            <img class="img-fluid" src="images/news/news-03.jpg" alt="post-image"/>
-                        </a>
-                    </div>
-                    <div class="post-content">
-                        <h2 class="post-title mt-3">
-                            <a href="single-post.html">Apple HomePod review: locked in device to start service</a>
-                        </h2>
-                        <div class="post-meta mb-2">
-                            <span class="posted-time"><i class="fa fa-clock-o mr-2"></i>5 hours ago</span>
-                            <span class="post-author">
-                                by
-                                <a href="author.html">Tarnak Sunder</a>
-                            </span>
-                        </div>
-                         <p>Suscipit beatae facilis doloribus aliquam sed expedita accusantium itaque assumenda laborum facere aliquid hic.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-
-<footer class="footer footer-main ">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-12 col-lg-6 text-center">
-                <a href="index.html"><img src="images/logos/footer-logo.png" alt="" class="img-fluid"></a>
-                <p class="mt-4">We perfectly balances the simplicity of a clean, eye-catching blog with the flexibility to create unique page layouts.</p>
-
-                <ul class="list-inline footer-social">
-                    <li class="li list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="fa fa-facebook"></i></a></li>
-                    <li class="li list-inline-item"><a href="https://twitter.com/themefisher"><i class="fa fa-twitter"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-youtube"></i></a></li>
-                </ul>
-
-                <div class="copyright-text text-center">
-                    <p class="mb-0">© All Copyright Reserved to - Newzyy</a></p>
-                </div>
-            </div>
-
-            <div class="scroll-to-top">
-                <button class="btn btn-primary" title="Back to Top">
-                    <i class="fa fa-angle-up"></i>
-                </button>
-            </div>
-        </div>
+        <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
 
+<script>
+const API_BASE = 'https://newzyy.onrender.com';
+const CATEGORY_COLORS = { politics:'#b80000', technology:'#2563eb', ai:'#9333ea', sports:'#16a34a', business:'#7c3aed',
+    health:'#0891b2', science:'#d97706', entertainment:'#dc2626', travel:'#0ea5e9', environment:'#22c55e',
+    culture:'#8b5cf6', world:'#3b82f6', economy:'#f59e0e' };
+const CATEGORY_NAMES = { politics:'Politics', technology:'Technology', ai:'AI', sports:'Sports', business:'Business',
+    health:'Health', science:'Science', entertainment:'Entertainment', travel:'Travel', environment:'Earth',
+    culture:'Culture', world:'World', economy:'Economy' };
 
-<!-- THEME JAVASCRIPT FILES
-================================================== -->
-<!-- initialize jQuery Library -->
-<script src="plugins/jquery/jquery.js"></script>
-<!-- Bootstrap jQuery -->
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- Slick Slider -->
-<script src="plugins/slick-carousel/slick.min.js"></script>
-<!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="plugins/google-map/gmap.js"></script>
-<!-- main js -->
-<script src="js/custom.js"></script>
+function openNews(id) { window.location.href = 'single-post.html?id=' + id; }
 
+async function runSearch(q) {
+    const wrap = document.getElementById('resultsWrap');
+    const countEl = document.getElementById('resultCount');
+    if (!q || q.trim().length < 2) {
+        wrap.innerHTML = '';
+        countEl.textContent = '';
+        return;
+    }
+    wrap.innerHTML = '<div class="empty-state">Searching...</div>';
+    try {
+        const res = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        const items = data.news || [];
+        countEl.textContent = items.length ? `${items.length} result${items.length !== 1 ? 's' : ''} for "${q}"` : '';
+        if (!items.length) {
+            wrap.innerHTML = `<div class="empty-state">No results for "${q}". Try a different search term.</div>`;
+            return;
+        }
+        wrap.innerHTML = items.map(a => `
+            <div class="result-card" onclick="openNews('${a.id}')">
+                <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'">
+                <div>
+                    <span class="cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</span>
+                    <div class="title">${a.title}</div>
+                    <div class="excerpt">${(a.excerpt || '').substring(0, 140)}...</div>
+                </div>
+            </div>
+        `).join('');
+    } catch (e) {
+        wrap.innerHTML = '<div class="empty-state">Something went wrong. Please try again.</div>';
+    }
+}
+
+let debounce;
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    clearTimeout(debounce);
+    debounce = setTimeout(() => runSearch(e.target.value), 350);
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('newzyy_theme', next);
+        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    });
+
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q') || params.get('search') || '';
+    if (q) {
+        document.getElementById('searchInput').value = q;
+        runSearch(q);
+    }
+});
+</script>
 </body>
 </html>
