@@ -1,373 +1,102 @@
 <!DOCTYPE html>
-
-<!--
- // WEBSITE: https://themefisher.com
- // TWITTER: https://twitter.com/themefisher
- // FACEBOOK: https://facebook.com/themefisher
- // GITHUB: https://github.com/themefisher/
--->
-
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Newzyy - Top World News</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Terms of Use — Newzyy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-    <!-- theme meta -->
-    <meta name="theme-name" content="Newzyy" />
-
-    <!--Favicon-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
-    <!-- THEME CSS
-	================================================== -->
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <!-- Slick Carousel -->
-    <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
-    <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <!-- manin stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
+    <style>
+        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
+            --sans:'Inter',sans-serif; --serif:'Source Serif 4',Georgia,serif; }
+        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:var(--sans); background:var(--canvas); color:var(--ink); }
+        a { text-decoration:none; color:var(--red); font-weight:600; }
+        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
+        .site-logo { font-size:1.8rem; font-weight:900; color:var(--ink); text-decoration:none; }
+        .site-logo span { color:var(--red); }
+        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
+        .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
+        .bbc-nav a { font-size:0.72rem; font-weight:600; padding:12px 16px; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); display:inline-block; }
+        .page-wrap { max-width:740px; margin:0 auto; padding:50px 20px 70px; }
+        .page-wrap h1 { font-family:var(--serif); font-size:2.2rem; margin-bottom:8px; }
+        .updated { font-size:0.8rem; color:var(--muted); margin-bottom:30px; }
+        .page-wrap h2 { font-family:var(--serif); font-size:1.25rem; margin:30px 0 12px; border-bottom:2px solid var(--red); padding-bottom:8px; }
+        .page-wrap p, .page-wrap li { font-size:0.98rem; line-height:1.75; color:#333; margin-bottom:14px; }
+        :root[data-theme="dark"] .page-wrap p, :root[data-theme="dark"] .page-wrap li { color:#d8d4c8; }
+        .page-wrap ul { padding-left:22px; }
+        .bbc-footer { background:var(--ink); color:#ccc; padding:40px 0 20px; margin-top:40px; border-top:3px solid var(--red); }
+        .bbc-footer a { color:#ccc; font-weight:400; font-size:0.85rem; }
+        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
+        .bbc-footer .copyright { font-size:0.75rem; color:#666; margin-top:20px; text-align:center; }
+    </style>
 </head>
 <body>
 
-<div class="trending-bar-dark hidden-xs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h3 class="trending-bar-title">Trending News</h3>
-                <div class="trending-news-slider">
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html" >Here's How To Get Free Pizza On 2 hour</a>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-12 col-sm-12 col-xs-12 top-nav-social-lists text-lg-right col-lg-4 ml-lg-auto">
-                <ul class="list-unstyled mt-4 mt-lg-0">
-                    <li>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-facebook-f"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-twitter"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-youtube"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-linkedin"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-pinterest-p"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-rss"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-reddit-alien"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<header class="header-navigation d-none d-lg-block">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logos/logo.png" alt=""> <!-- Replace Logo Here -->
-                    </a>
-                </div>
-                <!-- End Logo -->
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-9">
-                    <a href="#">
-                    </a>
-                </div>
-            </div>
-        </div>
+<header class="bbc-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="index.html" class="site-logo">Newzy<span>y</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
     </div>
 </header>
+<nav class="bbc-nav"><div class="container"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></nav>
 
-<div class="main-navbar clearfix bg-dark ">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                      <a class="navbar-brand d-lg-none" href="index.html">
-                        <img src="images/logos/footer-logo.png" alt=""> 
-                     </a>
-  
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span>
-                  </button>
+<div class="page-wrap">
+    <h1>Terms of Use</h1>
+    <div class="updated">Last updated: July 2026</div>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                           
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 Home
-                                </a>
-                                <div class="dropdown-menu" >
-                                  <a class="dropdown-item" href="index.html" >Home 1</a>
-                                  <a class="dropdown-item" href="index-2.html">Home 2</a>
-                                </div>
-                            </li>
-                           
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Post
-                                </a>
-                                <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="post-left-sidebar.html">Post Left Sidebar</a>
-                                  <a class="dropdown-item" href="post-full-width.html">Post Full Width</a>
-                                  <a class="dropdown-item" href="single-post.html">Single Post</a>
-                                  <a class="dropdown-item" href="post-category-1.html">Category 1</a>
-                                  <a class="dropdown-item" href="post-category-2.html">Category 2</a>
-                                  <a class="dropdown-item" href="author.html">Author</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Account
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="account.html">Log In</a>
-                                  <a class="dropdown-item" href="signup.html">Register</a>
-                                </div>
-                            </li>
+    <p>By using Newzyy, you agree to the following terms. We've kept this as short and clear as the subject allows.</p>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  About
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="about.html">About</a>
-                                  <a class="dropdown-item" href="terms.html">Terms</a>
-                                  <a class="dropdown-item" href="privacy.html">Privacy Policy</a>
-                                  <a class="dropdown-item" href="job.html">Career</a>
-                                </div>
-                            </li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Pages
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="404.html">404 Page</a>
-                                  <a class="dropdown-item" href="search.html">Search Page</a>
-                                </div>
-                            </li>
+    <h2>Our content</h2>
+    <p>Newzyy publishes original articles written using an AI-assisted editorial process: our system gathers factual source material from established news organizations and public feeds, and our AI writing system produces independently-worded articles from those facts. Where an article draws on external reporting, we aim to note the underlying source. Content is provided for general information purposes and should not be treated as the sole basis for legal, financial, or medical decisions.</p>
 
-                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
+    <h2>Accuracy and corrections</h2>
+    <p>We work to keep our reporting accurate, but errors can occur — especially in an automated pipeline. If you spot one, please tell us via our <a href="contact.html">contact page</a>; we correct confirmed errors promptly.</p>
 
-                        </ul>
-                        <div class="nav-search ml-auto d-none d-lg-block">
-                            <span id="search">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </nav>
-                
-            </div>
-        </div>
-    </div>
-    <form class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-        <div class="search-close">
-            <span class="close-search">
-                <i class="fa fa-times"></i>
-            </span>
-        </div>
-    </form>
+    <h2>Acceptable use</h2>
+    <ul>
+        <li>Don't scrape, republish, or redistribute Newzyy's articles in bulk without permission.</li>
+        <li>Don't attempt to disrupt, overload, or gain unauthorized access to our systems.</li>
+        <li>Don't use our contact form or comment features (where enabled) to send spam, harassment, or unlawful content.</li>
+    </ul>
+
+    <h2>Accounts</h2>
+    <p>If you create an account, you're responsible for keeping your login details secure. We don't share account information with third parties for advertising purposes.</p>
+
+    <h2>Limitation of liability</h2>
+    <p>Newzyy is provided "as is." We aren't liable for decisions made based on our content, or for temporary outages, errors, or omissions in our automated publishing pipeline.</p>
+
+    <h2>Changes</h2>
+    <p>We may update these terms as the site evolves. Continued use of Newzyy after an update means you accept the revised terms.</p>
 </div>
 
-<div class="breadcrumb-wrapper">
+<footer class="bbc-footer">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>Terms & Conditions</li>
-                </ol>
-            </div>
+        <div class="links">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
         </div>
-    </div>
-</div>
-
-<section class="section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
-				<!-- Replace the existing generic Terms content with this specific and comprehensive Terms & Conditions section -->
-				<h2>Terms & Conditions</h2>
-				<hr>
-				<p><strong>Last Updated:</strong> July 11, 2026</p>
-				<p>Welcome to Newzyy. By accessing and using our website, you agree to comply with and be bound by the following Terms & Conditions. If you do not agree with any part of these terms, please do not use our website.</p>
-
-				<h3>1. Acceptance of Terms</h3>
-				<p>By accessing or using Newzyy, you confirm that you have read, understood, and agreed to these Terms & Conditions.</p>
-
-				<h3>2. Website Content</h3>
-				<p>Newzyy provides news, articles, opinions, and informational content for general informational purposes only. While we strive to ensure the accuracy of the information published, we do not guarantee that all content is complete, accurate, or up to date.</p>
-
-				<h3>3. Intellectual Property</h3>
-				<p>All content published on Newzyy, including text, graphics, logos, images, videos, and website design, is the property of Newzyy unless otherwise stated and is protected by applicable copyright and intellectual property laws.</p>
-				<p>You may:</p>
-				<ul class="info-list">
-					<li>Read and share links to our articles.</li>
-					<li>Quote limited portions of our content with proper credit and a link to the original article.</li>
-				</ul>
-				<p>You may not:</p>
-				<ul class="info-list">
-					<li>Copy, reproduce, republish, or distribute our content without prior written permission.</li>
-					<li>Use our content for commercial purposes without authorization.</li>
-				</ul>
-
-				<h3>4. User Conduct</h3>
-				<p>By using Newzyy, you agree not to:</p>
-				<ul class="info-list">
-					<li>Violate any applicable laws or regulations.</li>
-					<li>Attempt to gain unauthorized access to the website or its servers.</li>
-					<li>Upload or distribute malicious software or harmful content.</li>
-					<li>Engage in activities that disrupt the normal functioning of the website.</li>
-				</ul>
-
-				<h3>5. External Links</h3>
-				<p>Our website may contain links to third-party websites for additional information or reference. We do not control or endorse the content, products, or services provided by these third-party websites and are not responsible for their practices or policies.</p>
-
-				<h3>6. Disclaimer</h3>
-				<p>The information provided on Newzyy is for informational purposes only. We make reasonable efforts to ensure accuracy; however, we do not guarantee that all information is error-free or current.</p>
-				<p>Opinions expressed in opinion articles belong to their respective authors and do not necessarily represent the views of Newzyy.</p>
-
-				<h3>7. Limitation of Liability</h3>
-				<p>Newzyy shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from the use of or inability to use this website or its content.</p>
-				<p>Users access and use the website at their own risk.</p>
-
-				<h3>8. Privacy</h3>
-				<p>Your use of Newzyy is also governed by our Privacy Policy. By using the website, you agree to the collection and use of information as described in that policy.</p>
-
-				<h3>9. Changes to These Terms</h3>
-				<p>We reserve the right to modify or update these Terms & Conditions at any time without prior notice. Any changes will become effective immediately upon publication on this page.</p>
-				<p>Users are encouraged to review this page periodically.</p>
-
-				<h3>10. Governing Law</h3>
-				<p>These Terms & Conditions shall be governed by and interpreted in accordance with the applicable laws of the jurisdiction where Newzyy operates.</p>
-
-				<h3>11. Contact Us</h3>
-				<p>If you have any questions regarding these Terms & Conditions, you may contact us through the Contact page available on our website.</p>
-
-				<p><em>Thank you for visiting Newzyy.</em></p>
-			</div>
-		</div>
-	</div>
-</section>
-
-<footer class="footer footer-main ">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-12 col-lg-6 text-center">
-                <a href="index.html"><img src="images/logos/footer-logo.png" alt="" class="img-fluid"></a>
-                <p class="mt-4">We perfectly balances the simplicity of a clean, eye-catching blog with the flexibility to create unique page layouts.</p>
-
-                <ul class="list-inline footer-social">
-                    <li class="li list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="fa fa-facebook"></i></a></li>
-                    <li class="li list-inline-item"><a href="https://twitter.com/themefisher"><i class="fa fa-twitter"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-rss"></i></a></li>
-                    <li class="li list-inline-item"><a href="#"><i class="fa fa-youtube"></i></a></li>
-                </ul>
-
-                <div class="copyright-text text-center">
-                    <p class="mb-0">© All Copyright Reserved to - Newzyy</a></p>
-                </div>
-            </div>
-
-            <div class="scroll-to-top">
-                <button class="btn btn-primary" title="Back to Top">
-                    <i class="fa fa-angle-up"></i>
-                </button>
-            </div>
-        </div>
+        <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
 
-
-<!-- THEME JAVASCRIPT FILES
-================================================== -->
-<!-- initialize jQuery Library -->
-<script src="plugins/jquery/jquery.js"></script>
-<!-- Bootstrap jQuery -->
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- Slick Slider -->
-<script src="plugins/slick-carousel/slick.min.js"></script>
-<!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="plugins/google-map/gmap.js"></script>
-<!-- main js -->
-<script src="js/custom.js"></script>
-
+<script>
+(function(){
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('newzyy_theme', next);
+        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    });
+})();
+</script>
 </body>
 </html>
