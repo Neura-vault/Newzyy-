@@ -219,7 +219,8 @@
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search" autocomplete="off">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search" autocomplete="off"
+                           onkeydown="if(event.key==='Enter'){window.location.href='search.html?q='+encodeURIComponent(this.value)}">
                     <div class="search-suggestions" id="searchSuggestions"></div>
                 </div>
                 <div class="account-section"><span id="accountLinks"></span></div>
