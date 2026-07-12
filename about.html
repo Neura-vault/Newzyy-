@@ -1,376 +1,112 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
-    <title>Newzyy - Top World News</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>About — Newzyy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-    <!-- theme meta -->
-    <meta name="theme-name" content="newzyy" />
-
-    <!--Favicon-->
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
-    
-    <!-- THEME CSS
-	================================================== -->
-    <!-- Bootstrap -->
     <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <!-- Slick Carousel -->
-    <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
-    <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <!-- manin stylesheet -->
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #b80000; --ink: #141414; --paper: #ffffff; --canvas: #f7f6f2;
+            --hairline: #e3ded3; --muted: #6e6a62;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+        }
+        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: var(--sans); background: var(--canvas); color: var(--ink); transition:0.2s; }
+        a { text-decoration:none; color:inherit; }
+        .bbc-header { background: var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
+        .site-logo { font-size:1.8rem; font-weight:900; color:var(--ink); }
+        .site-logo span { color: var(--red); }
+        .site-logo small { font-size:0.55rem; font-weight:400; color:var(--muted); text-transform:uppercase; margin-left:6px; }
+        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
+        .bbc-nav { background: var(--paper); border-bottom:1px solid var(--hairline); }
+        .bbc-nav a { font-size:0.72rem; font-weight:600; padding:12px 16px; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); display:inline-block; }
+        .bbc-nav a:hover { color: var(--red); }
+        .page-wrap { max-width:760px; margin:0 auto; padding:50px 20px 70px; }
+        .page-wrap h1 { font-family: var(--serif); font-size:2.4rem; margin-bottom:20px; }
+        .page-wrap h2 { font-family: var(--serif); font-size:1.4rem; margin:34px 0 14px; }
+        .page-wrap p { font-size:1.05rem; line-height:1.8; color:#333; margin-bottom:18px; }
+        :root[data-theme="dark"] .page-wrap p { color:#d8d4c8; }
+        .value-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:26px 0; }
+        .value-item { padding:20px; background:var(--paper); border-left:3px solid var(--red); }
+        .value-item h3 { font-family:var(--serif); font-size:1.1rem; margin-bottom:8px; }
+        .value-item p { font-size:0.9rem; margin:0; }
+        .bbc-footer { background: var(--ink); color:#ccc; padding:40px 0 20px; margin-top:40px; border-top:3px solid var(--red); }
+        .bbc-footer a { color:#ccc; font-size:0.85rem; }
+        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
+        .bbc-footer .copyright { font-size:0.75rem; color:#666; margin-top:20px; text-align:center; }
+        @media (max-width:600px){ .value-grid{grid-template-columns:1fr;} .page-wrap h1{font-size:1.8rem;} }
+    </style>
 </head>
 <body>
 
-
-
-
-
-
-<div class="trending-bar-dark hidden-xs">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <h3 class="trending-bar-title">Trending News</h3>
-                <div class="trending-news-slider">
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Ex-Googler warns coding bootcamps are lacking</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html">Intel’s new smart glasses actually look good</a>
-                            </h2>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-sm">
-                                <a href="single-post.html" >Here's How To Get Free Pizza On 2 hour</a>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-12 col-sm-12 col-xs-12 top-nav-social-lists text-lg-right col-lg-4 ml-lg-auto">
-                <ul class="list-unstyled mt-4 mt-lg-0">
-                    <li>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-facebook-f"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-twitter"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-google-plus"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-youtube"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-linkedin"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-pinterest-p"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-rss"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-github"></i>
-                            </span>
-                        </a>
-                        <a href="#">
-                            <span class="social-icon">
-                                <i class="fa fa-reddit-alien"></i>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<header class="header-navigation d-none d-lg-block">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xs-12 col-sm-3 col-md-3">
-                <!-- Logo -->
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="images/logos/logo.png" alt=""> <!-- Replace Logo Here -->
-                    </a>
-                </div>
-                <!-- End Logo -->
-            </div>
-            <div class="col-xs-12 col-sm-9 col-md-9">
-                    <a href="#">
-                    </a>
-                </div>
-            </div>
-        </div>
+<header class="bbc-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="index.html" class="site-logo">Newzy<span>y</span><small>News</small></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
     </div>
 </header>
+<nav class="bbc-nav"><div class="container"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></nav>
 
-<div class="main-navbar clearfix bg-dark ">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <nav class="navbar navbar-expand-lg site-main-nav navigation">
-                      <a class="navbar-brand d-lg-none" href="index.html">
-                        <img src="images/logos/footer-logo.png" alt="Newzyy" style="max-width:150px; height:auto;"> 
-                     </a>
-  
-                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="fa fa-bars"></span>
-                  </button>
+<div class="page-wrap">
+    <h1>About Newzyy</h1>
+    <p>Newzyy is an independent news outlet built on a simple premise: reporting shouldn't depend on chasing clicks, and every reader deserves a clear, honest account of what's happening in the world — across politics, technology, science, culture, and beyond.</p>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav mr-auto">
-                           
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                 Home
-                                </a>
-                                <div class="dropdown-menu" >
-                                  <a class="dropdown-item" href="index.html" >Home 1</a>
-                                  <a class="dropdown-item" href="index-2.html">Home 2</a>
-                                </div>
-                            </li>
-                           
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Post
-                                </a>
-                                <div class="dropdown-menu" >
-                                <a class="dropdown-item" href="post-left-sidebar.html">Post Left Sidebar</a>
-                                  <a class="dropdown-item" href="post-full-width.html">Post Full Width</a>
-                                  <a class="dropdown-item" href="single-post.html">Single Post</a>
-                                  <a class="dropdown-item" href="post-category-1.html">Category 1</a>
-                                  <a class="dropdown-item" href="post-category-2.html">Category 2</a>
-                                  <a class="dropdown-item" href="author.html">Author</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Account
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="account.html">Log In</a>
-                                  <a class="dropdown-item" href="signup.html">Register</a>
-                                </div>
-                            </li>
+    <p>We are a new outlet, and we're transparent about how we work. Newzyy uses an AI-assisted editorial process: our system continuously gathers facts from established wire services and news organizations, then our AI writing system produces original, independently-worded articles based strictly on those facts — never copied, never reproduced verbatim. A human editorial framework governs what gets published, what images are used, and what standards every article must meet before it goes live.</p>
 
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  About
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="about.html">About</a>
-                                  <a class="dropdown-item" href="terms.html">Terms</a>
-                                  <a class="dropdown-item" href="privacy.html">Privacy Policy</a>
-                                  <a class="dropdown-item" href="job.html">Career</a>
-                                </div>
-                            </li>
-                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Pages
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="404.html">404 Page</a>
-                                  <a class="dropdown-item" href="search.html">Search Page</a>
-                                </div>
-                            </li>
-
-                             <li class="nav-item">
-                                <a class="nav-link" href="contact.html">Contact</a>
-                            </li>
-
-                        </ul>
-                        <div class="nav-search ml-auto d-none d-lg-block">
-                            <span id="search">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </nav>
-                
-            </div>
+    <h2>Our Standards</h2>
+    <div class="value-grid">
+        <div class="value-item">
+            <h3>Accuracy First</h3>
+            <p>Every article is grounded in verified source facts. We don't publish speculation as news.</p>
+        </div>
+        <div class="value-item">
+            <h3>Original Writing</h3>
+            <p>Nothing on Newzyy is copied from another outlet. Every article is independently written.</p>
+        </div>
+        <div class="value-item">
+            <h3>No Filler Content</h3>
+            <p>If we can't source a properly illustrated, well-reported story, we don't publish it at all.</p>
+        </div>
+        <div class="value-item">
+            <h3>Constant Correction</h3>
+            <p>Errors happen. When they do, we fix them — see our <a href="privacy.html" style="color:var(--red)">corrections policy</a>.</p>
         </div>
     </div>
-    <form class="site-search" method="get">
-        <input type="text" id="searchInput" name="site_search" placeholder="Enter Keyword Here..." autofocus="">
-        <div class="search-close">
-            <span class="close-search">
-                <i class="fa fa-times"></i>
-            </span>
-        </div>
-    </form>
+
+    <h2>Get in Touch</h2>
+    <p>Questions, corrections, or feedback? Visit our <a href="contact.html" style="color:var(--red);font-weight:600">Contact page</a> — we read everything.</p>
 </div>
 
-<div class="breadcrumb-wrapper">
+<footer class="bbc-footer">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>About</li>
-                </ol>
-            </div>
+        <div class="links">
+            <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
         </div>
-    </div>
-</div>
-
-
-<section class="section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-6 col-md-6">
-				<h2 class="mb-4">Our History</h2>
-				<p>NEWZYY was founded with a vision to redefine digital journalism for a new generation. In an era where information moves faster than ever, we recognized the need for a platform that values both speed and accuracy without compromising trust. From its beginning, NEWZYY has focused on delivering comprehensive coverage across global news, business, technology, finance, science, entertainment, sports, and emerging trends. As we continue to evolve, our purpose remains unchanged—to build one of the world's most trusted digital news destinations through innovation, integrity, and a relentless commitment to quality.</p>
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<img src="images/news/news-02.jpg" alt="" class="img-fluid rounded">			
-			</div>
-		</div>
-
-		<div class="row mt-5">
-			<div class="col-lg-6 col-md-6">
-				<img src="images/news/news-03.jpg" alt="" class="img-fluid rounded">			
-			</div>
-			<div class="col-lg-6 col-md-6">
-				<h2 class="mb-4">Our Mission</h2>
-				<p>At NEWZYY, we believe that trusted information empowers better decisions. Our mission is to deliver accurate, timely, and independent journalism that keeps people connected to the stories shaping the world. Every article we publish is driven by a commitment to credibility, transparency, and editorial excellence. By combining modern technology with responsible reporting, we strive to create a news experience that is fast, insightful, and accessible to readers everywhere.</p>
-				</ul>
-				
-			</div>
-		</div>
-	</div>
-</section>
-
-
-<section class="section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8">
-				<div class="mb-5">
-					<h2>Our honorable members</h2>
-					<p>Team works that bind us together to get a good result.</p>
-				</div>
-			</div>
-		</div>
-
-
-		<div class="row">
-			<div class="col-lg-4 col-md-6">
-				<div class="team-block mb-5 mb-lg-0">
-					<img src="images/team/team-1.jpg" alt="" class="img-fluid rounded">
-
-					<div class="team-content mt-4">
-						<h3 class="title-large">Mark Jason</h3>
-						<p>CEO of newsbit</p>
-
-						<p>Minima, sapiente nostrum incidunt nisi quidem voluptatem voluptatibus itaque ex!</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4  col-md-6">
-				<div class="team-block mb-5 mb-lg-0">
-					<img src="images/team/team-2.jpg" alt="" class="img-fluid rounded">
-
-					<div class="team-content mt-4">
-						<h3 class="title-large">Jessica roy</h3>
-						<p>Senior Cheif Editor</p>
-
-						<p>Minima, sapiente nostrum incidunt nisi quidem voluptatem voluptatibus itaque ex!</p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-lg-4 col-md-6">
-				<div class="team-block">
-					<img src="images/team/team-3.jpg" alt="" class="img-fluid rounded">
-
-					<div class="team-content mt-4">
-						<h3 class="title-large">Hasi watson</h3>
-						<p>Junior Editor</p>
-
-						<p>Minima, sapiente nostrum incidunt nisi quidem voluptatem voluptatibus itaque ex!</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-<footer class="footer footer-main ">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8 col-sm-12 col-lg-6 text-center">
-                <a href="index.html"><img src="images/logos/footer-logo.png" alt="" class="img-fluid"></a>
-                <p class="mt-4">The Worlds Top News Website</p>
-
-                <div class="copyright-text text-center">
-                    <p class="mb-0">© All Copyright Reserved to - Newzyy</a></p>
-                </div>
-            </div>
-
-            <div class="scroll-to-top">
-                <button class="btn btn-primary" title="Back to Top">
-                    <i class="fa fa-angle-up"></i>
-                </button>
-            </div>
-        </div>
+        <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
 
-
-<!-- THEME JAVASCRIPT FILES
-================================================== -->
-<!-- initialize jQuery Library -->
-<script src="plugins/jquery/jquery.js"></script>
-<!-- Bootstrap jQuery -->
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-<!-- Slick Slider -->
-<script src="plugins/slick-carousel/slick.min.js"></script>
-<!-- Google Map -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCC72vZw-6tGqFyRhhg5CkF2fqfILn2Tsw"></script>
-<script src="plugins/google-map/gmap.js"></script>
-<!-- main js -->
-<script src="js/custom.js"></script>
-
+<script>
+(function(){
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    btn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme');
+        const next = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('newzyy_theme', next);
+        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    });
+})();
+</script>
 </body>
 </html>
