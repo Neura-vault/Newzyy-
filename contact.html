@@ -102,11 +102,36 @@
         btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
     });
 
-    // Frontend-only for now — wire to a real backend endpoint (e.g. /api/contact) when ready.
-    document.getElementById('contactForm').addEventListener('submit', function(e){
+    // Wired to the backend contact endpoint.
+    const API_BASE = 'https://newzyy.onrender.com';
+    document.getElementById('contactForm').addEventListener('submit', async function(e){
         e.preventDefault();
-        document.getElementById('formStatus').innerHTML =
-            '<span style="color:var(--red)">This form is not yet connected to a backend — messages aren\'t sent anywhere yet. Email us directly for now.</span>';
+        const name = document.getElementById('cName').value.trim();
+        const email = document.getElementById('cEmail').value.trim();
+        const message = document.getElementById('cMessage').value.trim();
+        const statusDiv = document.getElementById('formStatus');
+        const btn = this.querySelector('button[type="submit"]');
+
+        btn.disabled = true; btn.textContent = 'Sending...';
+        statusDiv.innerHTML = '';
+
+        try {
+            const res = await fetch(`${API_BASE}/api/contact`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, email, message })
+            });
+            const data = await res.json();
+            if (data.success) {
+                statusDiv.innerHTML = '<span style="color:#16a34a">' + data.message + '</span>';
+                document.getElementById('contactForm').reset();
+            } else {
+                statusDiv.innerHTML = '<span style="color:var(--red)">' + (data.message || 'Something went wrong.') + '</span>';
+            }
+        } catch (err) {
+            statusDiv.innerHTML = '<span style="color:var(--red)">Could not reach the server. Please try again.</span>';
+        }
+        btn.disabled = false; btn.textContent = 'Send Message';
     });
 })();
 </script>
