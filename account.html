@@ -19,8 +19,11 @@
         .auth-card .sub { font-size:0.85rem; color:var(--muted); margin-bottom:24px; }
         .auth-card label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; display:block; margin-bottom:6px; }
         .auth-card input { width:100%; padding:11px 13px; border:1px solid var(--hairline); font-size:0.9rem; margin-bottom:16px; font-family:var(--sans); }
+        .code-input { text-align:center; font-size:1.4rem; letter-spacing:8px; font-weight:700; }
         .btn-primary { width:100%; padding:12px; background:var(--red); color:#fff; border:none; font-weight:700; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.5px; cursor:pointer; }
         .btn-primary:hover { opacity:0.9; }
+        .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
+        .btn-text { background:none; border:none; color:var(--red); font-weight:600; font-size:0.82rem; cursor:pointer; margin-top:12px; display:block; width:100%; text-align:center; }
         .footer-text { text-align:center; font-size:0.85rem; margin-top:18px; color:var(--muted); }
         .footer-text a { color:var(--red); font-weight:600; }
         .message { margin-top:14px; font-size:0.85rem; text-align:center; }
@@ -29,25 +32,45 @@
         .logged-in-box { text-align:center; }
         .logged-in-box h3 { font-family:var(--serif); font-size:1.15rem; margin-bottom:16px; font-weight:600; }
         .btn-logout { width:100%; padding:11px; background:transparent; border:1px solid var(--hairline); margin-top:10px; font-weight:600; font-size:0.8rem; cursor:pointer; }
+        #verifyStep { display:none; }
     </style>
 </head>
 <body>
     <a href="index.html" class="logo">Newzy<span>y</span></a>
-    <div class="auth-card" id="loginContent">
-        <h1>Welcome back</h1>
-        <div class="sub">Log in to your Newzyy account</div>
-        <form id="loginForm">
-            <label>Email</label>
-            <input type="email" id="loginEmail" placeholder="you@example.com" required>
-            <label>Password</label>
-            <input type="password" id="loginPassword" placeholder="Your password" required>
-            <button type="submit" class="btn-primary">Log In</button>
-            <div id="loginMessage" class="message"></div>
-            <p class="footer-text">Don't have an account? <a href="signup.html">Sign up</a></p>
+
+    <div class="auth-card" id="loginStep">
+        <div id="loginContent">
+            <h1>Welcome back</h1>
+            <div class="sub">Log in to your Newzyy account</div>
+            <form id="loginForm">
+                <label>Email</label>
+                <input type="email" id="loginEmail" placeholder="you@example.com" required>
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Your password" required>
+                <button type="submit" class="btn-primary" id="loginBtn">Log In</button>
+                <div id="loginMessage" class="message"></div>
+                <p class="footer-text">Don't have an account? <a href="signup.html">Sign up</a></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="auth-card" id="verifyStep">
+        <h1>Verify your email</h1>
+        <div class="sub">We sent a 6-digit code to <strong id="verifyEmailDisplay"></strong></div>
+        <form id="verifyForm">
+            <label>Verification code</label>
+            <input type="text" id="verifyCode" class="code-input" placeholder="000000" maxlength="6" required>
+            <button type="submit" class="btn-primary" id="verifyBtn">Verify & Log In</button>
+            <div id="verifyMessage" class="message"></div>
+            <button type="button" class="btn-text" id="resendBtn">Resend code</button>
         </form>
     </div>
 
     <script>
+        const API_BASE = 'https://newzyy.onrender.com';
+        let pendingEmail = '';
+        let pendingPassword = '';
+
         const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
         if (loggedIn) {
             document.getElementById('loginContent').innerHTML = `
@@ -59,29 +82,108 @@
             `;
         }
 
-        document.getElementById('loginForm')?.addEventListener('submit', function(e) {
+        document.getElementById('loginForm')?.addEventListener('submit', async function(e) {
             e.preventDefault();
             const email = document.getElementById('loginEmail').value.trim();
             const password = document.getElementById('loginPassword').value;
             const msgDiv = document.getElementById('loginMessage');
+            const btn = document.getElementById('loginBtn');
 
-            let users = JSON.parse(localStorage.getItem('newzyy_users') || '[]');
-            const user = users.find(u => u.email === email && u.password === password);
+            btn.disabled = true; btn.textContent = 'Logging in...';
+            msgDiv.className = 'message'; msgDiv.textContent = '';
 
-            if (user) {
-                localStorage.setItem('newzyy_logged_in', JSON.stringify({ name: user.name, email: user.email }));
-                msgDiv.className = 'message success';
-                msgDiv.textContent = 'Welcome back, ' + user.name + '. Redirecting...';
-                setTimeout(() => { window.location.href = 'index.html'; }, 1000);
-            } else {
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    localStorage.setItem('newzyy_token', data.token);
+                    localStorage.setItem('newzyy_logged_in', JSON.stringify(data.user));
+                    msgDiv.className = 'message success';
+                    msgDiv.textContent = 'Welcome back! Redirecting...';
+                    setTimeout(() => { window.location.href = 'index.html'; }, 800);
+                } else if (data.needsVerification) {
+                    pendingEmail = email;
+                    document.getElementById('verifyEmailDisplay').textContent = email;
+                    document.getElementById('loginStep').style.display = 'none';
+                    document.getElementById('verifyStep').style.display = 'block';
+                    // send a fresh code automatically since they're already here
+                    fetch(`${API_BASE}/api/auth/resend-code`, {
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email })
+                    }).catch(() => {});
+                } else {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = data.message || 'Invalid email or password.';
+                }
+            } catch (e) {
                 msgDiv.className = 'message error';
-                msgDiv.textContent = 'Invalid email or password.';
+                msgDiv.textContent = 'Could not reach the server. Please try again.';
             }
+            btn.disabled = false; btn.textContent = 'Log In';
+        });
+
+        document.getElementById('verifyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const code = document.getElementById('verifyCode').value.trim();
+            const msgDiv = document.getElementById('verifyMessage');
+            const btn = document.getElementById('verifyBtn');
+
+            btn.disabled = true; btn.textContent = 'Verifying...';
+            msgDiv.className = 'message'; msgDiv.textContent = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: pendingEmail, code })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    localStorage.setItem('newzyy_token', data.token);
+                    localStorage.setItem('newzyy_logged_in', JSON.stringify(data.user));
+                    msgDiv.className = 'message success';
+                    msgDiv.textContent = 'Verified! Redirecting...';
+                    setTimeout(() => { window.location.href = 'index.html'; }, 800);
+                } else {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = data.message || 'Incorrect code.';
+                }
+            } catch (e) {
+                msgDiv.className = 'message error';
+                msgDiv.textContent = 'Could not reach the server. Please try again.';
+            }
+            btn.disabled = false; btn.textContent = 'Verify & Log In';
+        });
+
+        document.getElementById('resendBtn').addEventListener('click', async function() {
+            const msgDiv = document.getElementById('verifyMessage');
+            this.disabled = true; this.textContent = 'Sending...';
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/resend-code`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: pendingEmail })
+                });
+                const data = await res.json();
+                msgDiv.className = data.success ? 'message success' : 'message error';
+                msgDiv.textContent = data.message;
+            } catch (e) {
+                msgDiv.className = 'message error';
+                msgDiv.textContent = 'Could not reach the server.';
+            }
+            this.disabled = false; this.textContent = 'Resend code';
         });
 
         function logoutUser() {
             if (confirm('Are you sure you want to log out?')) {
                 localStorage.removeItem('newzyy_logged_in');
+                localStorage.removeItem('newzyy_token');
                 location.reload();
             }
         }
