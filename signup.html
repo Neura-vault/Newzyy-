@@ -19,19 +19,23 @@
         .auth-card .sub { font-size:0.85rem; color:var(--muted); margin-bottom:24px; }
         .auth-card label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; display:block; margin-bottom:6px; }
         .auth-card input { width:100%; padding:11px 13px; border:1px solid var(--hairline); font-size:0.9rem; margin-bottom:16px; font-family:var(--sans); }
+        .code-input { text-align:center; font-size:1.4rem; letter-spacing:8px; font-weight:700; }
         .btn-primary { width:100%; padding:12px; background:var(--red); color:#fff; border:none; font-weight:700; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.5px; cursor:pointer; }
         .btn-primary:hover { opacity:0.9; }
+        .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
+        .btn-text { background:none; border:none; color:var(--red); font-weight:600; font-size:0.82rem; cursor:pointer; margin-top:12px; display:block; width:100%; text-align:center; }
         .footer-text { text-align:center; font-size:0.85rem; margin-top:18px; color:var(--muted); }
         .footer-text a { color:var(--red); font-weight:600; }
         .message { margin-top:14px; font-size:0.85rem; text-align:center; }
         .message.success { color:#16a34a; }
         .message.error { color:var(--red); }
-        .note { font-size:0.72rem; color:var(--muted); margin-top:16px; text-align:center; line-height:1.5; }
+        #verifyStep { display:none; }
     </style>
 </head>
 <body>
     <a href="index.html" class="logo">Newzy<span>y</span></a>
-    <div class="auth-card">
+
+    <div class="auth-card" id="signupStep">
         <h1>Create your account</h1>
         <div class="sub">Join Newzyy to save articles and personalize your feed</div>
         <form id="signupForm">
@@ -41,36 +45,114 @@
             <input type="email" id="signupEmail" placeholder="you@example.com" required>
             <label>Password</label>
             <input type="password" id="signupPassword" placeholder="Min 6 characters" required minlength="6">
-            <button type="submit" class="btn-primary">Sign Up</button>
+            <button type="submit" class="btn-primary" id="signupBtn">Sign Up</button>
             <div id="signupMessage" class="message"></div>
             <p class="footer-text">Already have an account? <a href="account.html">Log in</a></p>
         </form>
-        <div class="note">Accounts are currently stored in your browser only, as this feature is still being connected to our backend.</div>
+    </div>
+
+    <div class="auth-card" id="verifyStep">
+        <h1>Check your email</h1>
+        <div class="sub">We sent a 6-digit code to <strong id="verifyEmailDisplay"></strong></div>
+        <form id="verifyForm">
+            <label>Verification code</label>
+            <input type="text" id="verifyCode" class="code-input" placeholder="000000" maxlength="6" required>
+            <button type="submit" class="btn-primary" id="verifyBtn">Verify & Continue</button>
+            <div id="verifyMessage" class="message"></div>
+            <button type="button" class="btn-text" id="resendBtn">Resend code</button>
+        </form>
     </div>
 
     <script>
-        document.getElementById('signupForm').addEventListener('submit', function(e) {
+        const API_BASE = 'https://newzyy.onrender.com';
+        let pendingEmail = '';
+
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             const name = document.getElementById('signupName').value.trim();
             const email = document.getElementById('signupEmail').value.trim();
             const password = document.getElementById('signupPassword').value;
             const msgDiv = document.getElementById('signupMessage');
+            const btn = document.getElementById('signupBtn');
 
-            let users = JSON.parse(localStorage.getItem('newzyy_users') || '[]');
+            btn.disabled = true; btn.textContent = 'Creating account...';
+            msgDiv.className = 'message'; msgDiv.textContent = '';
 
-            if (users.find(u => u.email === email)) {
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/signup`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    pendingEmail = email;
+                    document.getElementById('verifyEmailDisplay').textContent = email;
+                    document.getElementById('signupStep').style.display = 'none';
+                    document.getElementById('verifyStep').style.display = 'block';
+                } else {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = data.message || 'Something went wrong.';
+                }
+            } catch (e) {
                 msgDiv.className = 'message error';
-                msgDiv.textContent = 'An account with this email already exists.';
-                return;
+                msgDiv.textContent = 'Could not reach the server. Please try again.';
             }
+            btn.disabled = false; btn.textContent = 'Sign Up';
+        });
 
-            users.push({ name, email, password });
-            localStorage.setItem('newzyy_users', JSON.stringify(users));
-            localStorage.setItem('newzyy_logged_in', JSON.stringify({ name, email }));
+        document.getElementById('verifyForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const code = document.getElementById('verifyCode').value.trim();
+            const msgDiv = document.getElementById('verifyMessage');
+            const btn = document.getElementById('verifyBtn');
 
-            msgDiv.className = 'message success';
-            msgDiv.textContent = 'Account created. Redirecting...';
-            setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+            btn.disabled = true; btn.textContent = 'Verifying...';
+            msgDiv.className = 'message'; msgDiv.textContent = '';
+
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/verify`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: pendingEmail, code })
+                });
+                const data = await res.json();
+
+                if (data.success) {
+                    localStorage.setItem('newzyy_token', data.token);
+                    localStorage.setItem('newzyy_logged_in', JSON.stringify(data.user));
+                    msgDiv.className = 'message success';
+                    msgDiv.textContent = 'Verified! Redirecting...';
+                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+                } else {
+                    msgDiv.className = 'message error';
+                    msgDiv.textContent = data.message || 'Incorrect code.';
+                }
+            } catch (e) {
+                msgDiv.className = 'message error';
+                msgDiv.textContent = 'Could not reach the server. Please try again.';
+            }
+            btn.disabled = false; btn.textContent = 'Verify & Continue';
+        });
+
+        document.getElementById('resendBtn').addEventListener('click', async function() {
+            const msgDiv = document.getElementById('verifyMessage');
+            this.disabled = true; this.textContent = 'Sending...';
+            try {
+                const res = await fetch(`${API_BASE}/api/auth/resend-code`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: pendingEmail })
+                });
+                const data = await res.json();
+                msgDiv.className = data.success ? 'message success' : 'message error';
+                msgDiv.textContent = data.message;
+            } catch (e) {
+                msgDiv.className = 'message error';
+                msgDiv.textContent = 'Could not reach the server.';
+            }
+            this.disabled = false; this.textContent = 'Resend code';
         });
     </script>
 </body>
