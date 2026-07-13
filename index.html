@@ -441,6 +441,7 @@ function updateAccountLinks() {
 function logoutUser() {
     if (confirm('Are you sure you want to logout?')) {
         localStorage.removeItem('newzyy_logged_in');
+        localStorage.removeItem('newzyy_token');
         location.reload();
     }
 }
