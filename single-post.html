@@ -378,6 +378,7 @@ function renderArticle(article) {
         <div class="bbc-share-row">
             <div class="tags"><span>Tags</span><a href="index.html?cat=${article.category}">${catName}</a></div>
             <ul class="share-icons list-unstyled d-flex m-0">
+                <li><button id="bookmarkBtn" onclick="toggleBookmark('${article.id}')" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--hairline);border-radius:50%;background:none;color:var(--ink);cursor:pointer;"><i class="fa fa-bookmark-o" id="bookmarkIcon"></i></button></li>
                 <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(article.title)}" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
@@ -396,6 +397,7 @@ function renderArticle(article) {
     loadRelated(article);
     loadMostRead();
     registerView(article.id);
+    checkBookmarkStatus(article.id);
 }
 
 function renderRelatedGrid(items) {
@@ -453,6 +455,52 @@ async function registerView(id) {
     try {
         await fetch(`${API_BASE}/api/article/${id}/view`, { method: 'POST' });
     } catch (e) { /* non-critical */ }
+}
+
+// ===== BOOKMARKS =====
+let currentlyBookmarked = false;
+
+async function checkBookmarkStatus(articleId) {
+    const token = localStorage.getItem('newzyy_token');
+    const icon = document.getElementById('bookmarkIcon');
+    if (!token || !icon) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/bookmarks`, { headers: { 'Authorization': `Bearer ${token}` } });
+        const data = await res.json();
+        if (data.success && (data.news || []).some(a => a.id === articleId)) {
+            currentlyBookmarked = true;
+            icon.className = 'fa fa-bookmark';
+            icon.parentElement.style.color = 'var(--red)';
+            icon.parentElement.style.borderColor = 'var(--red)';
+        }
+    } catch (e) { /* silent — bookmark button just stays in default state */ }
+}
+
+async function toggleBookmark(articleId) {
+    const token = localStorage.getItem('newzyy_token');
+    if (!token) {
+        if (confirm('Please log in to save articles. Go to login page now?')) {
+            window.location.href = 'account.html';
+        }
+        return;
+    }
+    const icon = document.getElementById('bookmarkIcon');
+    const btn = document.getElementById('bookmarkBtn');
+    try {
+        if (currentlyBookmarked) {
+            await fetch(`${API_BASE}/api/bookmarks/${articleId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+            currentlyBookmarked = false;
+            icon.className = 'fa fa-bookmark-o';
+            btn.style.color = 'var(--ink)';
+            btn.style.borderColor = 'var(--hairline)';
+        } else {
+            await fetch(`${API_BASE}/api/bookmarks/${articleId}`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
+            currentlyBookmarked = true;
+            icon.className = 'fa fa-bookmark';
+            btn.style.color = 'var(--red)';
+            btn.style.borderColor = 'var(--red)';
+        }
+    } catch (e) { alert('Could not update bookmark. Please try again.'); }
 }
 
 function updateTrendingBar(items) {
