@@ -431,7 +431,8 @@ function updateAccountLinks() {
         container.innerHTML = `
             <div class="user-profile">
                 <div class="avatar">${initials}</div>
-                <span style="font-weight:600;font-size:0.85rem">${loggedIn.name}</span>
+                <a href="bookmarks.html" style="font-weight:600;font-size:0.85rem;color:inherit;">${loggedIn.name}</a>
+                <a href="bookmarks.html" style="font-size:0.72rem;color:var(--red);font-weight:600;">Bookmarks</a>
                 <button class="btn-logout" onclick="logoutUser()">Logout</button>
             </div>`;
     } else {
@@ -784,11 +785,21 @@ document.addEventListener('click', (e) => {
 });
 
 // ===== NEWSLETTER (placeholder — wire to /api/newsletter/subscribe when built) =====
-function submitNewsletter() {
+async function submitNewsletter() {
     const email = document.getElementById('newsletterEmail').value.trim();
     if (!email || !email.includes('@')) { showToast('Enter a valid email'); return; }
-    showToast('Subscribed! (connect backend endpoint to store this)');
-    document.getElementById('newsletterEmail').value = '';
+    try {
+        const res = await fetch(`${API_BASE}/api/newsletter/subscribe`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email })
+        });
+        const data = await res.json();
+        showToast(data.message || (data.success ? 'Subscribed!' : 'Something went wrong.'));
+        if (data.success) document.getElementById('newsletterEmail').value = '';
+    } catch (e) {
+        showToast('Could not reach the server. Please try again.');
+    }
 }
 
 // ===== OPEN NEWS =====
