@@ -13,29 +13,45 @@
             --sans:'Inter',sans-serif; --serif:'Source Serif 4',Georgia,serif; }
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:var(--sans); background:var(--canvas); color:var(--ink); }
+        a { text-decoration:none; }
         .gate { min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; padding:20px; }
         .gate input { padding:12px 16px; border:1px solid var(--hairline); font-size:0.95rem; width:280px; margin-bottom:12px; }
         .gate button { padding:12px 24px; background:var(--red); color:#fff; border:none; font-weight:700; cursor:pointer; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.4px; }
         .gate .error { color:var(--red); font-size:0.85rem; margin-top:10px; }
-        #dashboard { display:none; max-width:1100px; margin:0 auto; padding:30px 20px 70px; }
+        #dashboard { display:none; max-width:1200px; margin:0 auto; padding:30px 20px 70px; }
         h1 { font-family:var(--serif); font-size:1.8rem; margin-bottom:24px; }
-        .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:34px; }
+        .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px; }
         .stat-card { background:var(--paper); border:1px solid var(--hairline); padding:20px; text-align:center; }
         .stat-card .num { font-family:var(--serif); font-size:2rem; font-weight:700; color:var(--red); }
         .stat-card .label { font-size:0.75rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.4px; margin-top:4px; }
-        .tabs { display:flex; gap:6px; margin-bottom:20px; border-bottom:1px solid var(--hairline); }
+        .quick-actions { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:30px; }
+        .qa-btn { padding:10px 18px; background:var(--ink); color:#fff; border:none; font-size:0.78rem; font-weight:600; cursor:pointer; }
+        .qa-btn:hover { opacity:0.85; }
+        .qa-btn.danger { background:var(--red); }
+        .qa-status { font-size:0.78rem; color:var(--muted); margin-bottom:20px; }
+        .gemini-bar-wrap { background:var(--paper); border:1px solid var(--hairline); padding:16px 20px; margin-bottom:30px; }
+        .gemini-bar-track { height:10px; background:var(--hairline); border-radius:6px; overflow:hidden; margin-top:8px; }
+        .gemini-bar-fill { height:100%; background:var(--red); }
+        .category-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+        .category-pill { font-size:0.72rem; padding:4px 10px; background:var(--canvas); border:1px solid var(--hairline); }
+        .tabs { display:flex; gap:6px; margin-bottom:20px; border-bottom:1px solid var(--hairline); flex-wrap:wrap; }
         .tab-btn { padding:10px 18px; background:none; border:none; font-weight:600; font-size:0.85rem; cursor:pointer; color:var(--muted); border-bottom:2px solid transparent; }
         .tab-btn.active { color:var(--red); border-bottom-color:var(--red); }
         .tab-panel { display:none; }
         .tab-panel.active { display:block; }
         table { width:100%; border-collapse:collapse; background:var(--paper); }
-        th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--hairline); font-size:0.85rem; }
-        th { font-size:0.7rem; text-transform:uppercase; letter-spacing:0.3px; color:var(--muted); }
-        .badge { padding:2px 8px; font-size:0.68rem; font-weight:700; border-radius:3px; }
+        th, td { text-align:left; padding:10px 12px; border-bottom:1px solid var(--hairline); font-size:0.83rem; vertical-align:top; }
+        th { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.3px; color:var(--muted); }
+        .badge { padding:2px 8px; font-size:0.66rem; font-weight:700; border-radius:3px; }
         .badge.yes { background:#dcfce7; color:#16a34a; }
         .badge.no { background:#fee2e2; color:var(--red); }
-        .msg-body { max-width:320px; white-space:pre-wrap; font-size:0.8rem; color:var(--muted); }
+        .msg-body { max-width:280px; white-space:pre-wrap; font-size:0.78rem; color:var(--muted); }
+        .row-actions { display:flex; gap:6px; }
+        .row-actions button { padding:5px 10px; font-size:0.7rem; border:1px solid var(--hairline); background:var(--paper); cursor:pointer; }
+        .row-actions button.delete { color:var(--red); border-color:var(--red); }
         .refresh-btn { padding:8px 16px; background:none; border:1px solid var(--hairline); font-size:0.78rem; cursor:pointer; margin-bottom:16px; }
+        .thumb { width:60px; height:42px; object-fit:cover; }
+        @media (max-width:800px){ .stats-row{grid-template-columns:repeat(2,1fr);} }
     </style>
 </head>
 <body>
@@ -52,15 +68,38 @@
 
     <div class="stats-row" id="statsRow"></div>
 
+    <div class="quick-actions">
+        <button class="qa-btn" onclick="runAction('/manual-fetch', 'Fetching news now...')"><i class="fa fa-refresh"></i> Run News Fetch Now</button>
+        <button class="qa-btn" onclick="runAction('/admin/send-newsletter-now', 'Sending newsletter...')"><i class="fa fa-envelope"></i> Send Newsletter Now</button>
+        <button class="qa-btn danger" onclick="if(confirm('Delete all non-rewritten articles?')) runAction('/admin/purge-non-rewritten', 'Purging...')">Purge Non-Rewritten</button>
+        <button class="qa-btn danger" onclick="if(confirm('This deletes EVERY article permanently. Are you sure?')) runAction('/admin/purge-all&confirm=YES', 'Purging everything...')">Purge ALL Articles</button>
+    </div>
+    <div class="qa-status" id="qaStatus"></div>
+
+    <div class="gemini-bar-wrap">
+        <strong style="font-size:0.85rem;">Gemini Usage Today</strong>
+        <span id="geminiText" style="font-size:0.8rem;color:var(--muted);float:right;"></span>
+        <div class="gemini-bar-track"><div class="gemini-bar-fill" id="geminiBar" style="width:0%"></div></div>
+        <div class="category-pills" id="categoryPills"></div>
+    </div>
+
     <div class="tabs">
-        <button class="tab-btn active" onclick="showTab('contacts')">Contact Messages</button>
+        <button class="tab-btn active" onclick="showTab('articles')">Articles</button>
+        <button class="tab-btn" onclick="showTab('contacts')">Contact Messages</button>
         <button class="tab-btn" onclick="showTab('users')">Users</button>
         <button class="tab-btn" onclick="showTab('subscribers')">Newsletter Subscribers</button>
     </div>
 
     <button class="refresh-btn" onclick="loadAll()"><i class="fa fa-refresh"></i> Refresh</button>
 
-    <div class="tab-panel active" id="panel-contacts"></div>
+    <div class="tab-panel active" id="panel-articles">
+        <div style="display:flex;gap:10px;margin-bottom:14px;">
+            <input type="text" id="articleSearch" placeholder="Search articles by title or category..." style="flex:1;padding:9px 12px;border:1px solid var(--hairline);font-size:0.85rem;" oninput="filterArticles()">
+            <button class="refresh-btn" style="margin:0;" onclick="exportCSV('articles')">Export CSV</button>
+        </div>
+        <div id="articlesTableWrap"></div>
+    </div>
+    <div class="tab-panel" id="panel-contacts"></div>
     <div class="tab-panel" id="panel-users"></div>
     <div class="tab-panel" id="panel-subscribers"></div>
 </div>
@@ -92,18 +131,36 @@ async function apiGet(path) {
     if (res.status === 403) throw new Error('WRONG_SECRET');
     return data;
 }
+async function apiCall(path, method) {
+    const res = await fetch(`${API_BASE}${path}${path.includes('?') ? '&' : '?'}secret=${encodeURIComponent(SECRET)}`, { method });
+    return res.json();
+}
+
+async function runAction(path, statusMsg) {
+    const statusEl = document.getElementById('qaStatus');
+    statusEl.textContent = statusMsg;
+    try {
+        const data = await apiGet(path);
+        statusEl.textContent = data.message || 'Done.';
+        setTimeout(loadAll, 2000);
+    } catch (e) {
+        statusEl.textContent = 'Something went wrong.';
+    }
+}
 
 async function loadAll() {
     try {
         const stats = await apiGet('/api/admin/stats');
         if (!stats.success) throw new Error(stats.message || 'Failed');
-        renderStats(stats.stats);
+        renderStats(stats.stats, stats.perCategory, stats.gemini);
 
-        const [contacts, users, subs] = await Promise.all([
+        const [articles, contacts, users, subs] = await Promise.all([
+            apiGet('/api/admin/articles'),
             apiGet('/api/admin/contacts'),
             apiGet('/api/admin/users'),
             apiGet('/api/admin/subscribers')
         ]);
+        renderArticles(articles.articles || []);
         renderContacts(contacts.messages || []);
         renderUsers(users.users || []);
         renderSubscribers(subs.subscribers || []);
@@ -119,32 +176,113 @@ async function loadAll() {
     }
 }
 
-function renderStats(s) {
+function renderStats(s, perCategory, gemini) {
     document.getElementById('statsRow').innerHTML = `
         <div class="stat-card"><div class="num">${s.articleCount}</div><div class="label">Articles</div></div>
         <div class="stat-card"><div class="num">${s.userCount}</div><div class="label">Users</div></div>
         <div class="stat-card"><div class="num">${s.subscriberCount}</div><div class="label">Newsletter Subs</div></div>
         <div class="stat-card"><div class="num">${s.contactCount}</div><div class="label">Contact Messages</div></div>
     `;
+    if (gemini) {
+        const pct = Math.min(100, Math.round((gemini.callsToday / gemini.maxPerDay) * 100));
+        document.getElementById('geminiText').textContent = `${gemini.callsToday} / ${gemini.maxPerDay} calls used today`;
+        document.getElementById('geminiBar').style.width = pct + '%';
+    }
+    if (perCategory) {
+        document.getElementById('categoryPills').innerHTML = perCategory
+            .sort((a, b) => b.count - a.count)
+            .map(c => `<span class="category-pill">${c._id}: ${c.count}</span>`).join('');
+    }
+}
+
+let allArticlesData = [];
+let allContactsData = [];
+let allUsersData = [];
+let allSubscribersData = [];
+
+function renderArticles(items) {
+    allArticlesData = items;
+    filterArticles();
+}
+function filterArticles() {
+    const q = (document.getElementById('articleSearch')?.value || '').toLowerCase();
+    const items = allArticlesData.filter(a => a.title.toLowerCase().includes(q) || a.category.toLowerCase().includes(q));
+    const el = document.getElementById('articlesTableWrap');
+    if (!items.length) { el.innerHTML = '<p style="color:var(--muted)">No articles found.</p>'; return; }
+    el.innerHTML = `<table><thead><tr><th>Image</th><th>Title</th><th>Category</th><th>Views</th><th>Breaking</th><th>Date</th><th></th></tr></thead><tbody>
+        ${items.map(a => `<tr>
+            <td><img class="thumb" src="${a.image}" onerror="this.style.display='none'"></td>
+            <td>${a.title}</td>
+            <td>${a.category}</td>
+            <td>${a.views}</td>
+            <td><span class="badge ${a.manualBreaking ? 'yes' : 'no'}">${a.manualBreaking ? 'ON' : 'off'}</span></td>
+            <td>${new Date(a.fetched_at).toLocaleDateString()}</td>
+            <td class="row-actions">
+                <button onclick="window.open('https://newzyy.site/single-post.html?id=${a.id}','_blank')">View</button>
+                <button onclick="toggleBreaking('${a.id}')">${a.manualBreaking ? 'Unmark' : 'Mark'} Breaking</button>
+                <button class="delete" onclick="deleteArticle('${a.id}')">Delete</button>
+            </td>
+        </tr>`).join('')}
+    </tbody></table>`;
+}
+async function toggleBreaking(id) {
+    await apiCall(`/api/admin/article/${id}/toggle-breaking`, 'PATCH');
+    loadAll();
+}
+function exportCSV(type) {
+    const data = type === 'articles' ? allArticlesData : type === 'contacts' ? allContactsData : type === 'users' ? allUsersData : allSubscribersData;
+    if (!data.length) return;
+    const keys = Object.keys(data[0]).filter(k => k !== '__v' && k !== '_id');
+    const rows = [keys.join(',')].concat(data.map(row => keys.map(k => `"${String(row[k] ?? '').replace(/"/g, '""')}"`).join(',')));
+    const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `newzyy-${type}.csv`;
+    a.click();
+}
+async function deleteArticle(id) {
+    if (!confirm('Delete this article?')) return;
+    await apiCall(`/api/admin/article/${id}`, 'DELETE');
+    loadAll();
 }
 
 function renderContacts(items) {
+    allContactsData = items;
     const el = document.getElementById('panel-contacts');
     if (!items.length) { el.innerHTML = '<p style="color:var(--muted)">No messages yet.</p>'; return; }
-    el.innerHTML = `<table><thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th></tr></thead><tbody>
-        ${items.map(m => `<tr><td>${m.name}</td><td>${m.email}</td><td class="msg-body">${m.message}</td><td>${new Date(m.createdAt).toLocaleString()}</td></tr>`).join('')}
+    el.innerHTML = `<table><thead><tr><th>Name</th><th>Email</th><th>Message</th><th>Date</th><th>Read</th><th></th></tr></thead><tbody>
+        ${items.map(m => `<tr>
+            <td>${m.name}</td><td>${m.email}</td><td class="msg-body">${m.message}</td>
+            <td>${new Date(m.createdAt).toLocaleString()}</td>
+            <td><span class="badge ${m.read ? 'yes' : 'no'}">${m.read ? 'Read' : 'New'}</span></td>
+            <td class="row-actions">
+                ${!m.read ? `<button onclick="markRead('${m._id}')">Mark Read</button>` : ''}
+                <button class="delete" onclick="deleteContact('${m._id}')">Delete</button>
+            </td>
+        </tr>`).join('')}
     </tbody></table>`;
 }
+async function markRead(id) { await apiCall(`/api/admin/contact/${id}/read`, 'PATCH'); loadAll(); }
+async function deleteContact(id) { if (!confirm('Delete this message?')) return; await apiCall(`/api/admin/contact/${id}`, 'DELETE'); loadAll(); }
 
 function renderUsers(items) {
+    allUsersData = items;
     const el = document.getElementById('panel-users');
     if (!items.length) { el.innerHTML = '<p style="color:var(--muted)">No users yet.</p>'; return; }
-    el.innerHTML = `<table><thead><tr><th>Name</th><th>Email</th><th>Verified</th><th>Bookmarks</th><th>Joined</th></tr></thead><tbody>
-        ${items.map(u => `<tr><td>${u.name}</td><td>${u.email}</td><td><span class="badge ${u.verified ? 'yes' : 'no'}">${u.verified ? 'Yes' : 'No'}</span></td><td>${(u.bookmarks || []).length}</td><td>${new Date(u.createdAt).toLocaleDateString()}</td></tr>`).join('')}
+    el.innerHTML = `<table><thead><tr><th>Name</th><th>Email</th><th>Verified</th><th>Bookmarks</th><th>Joined</th><th></th></tr></thead><tbody>
+        ${items.map(u => `<tr>
+            <td>${u.name}</td><td>${u.email}</td>
+            <td><span class="badge ${u.verified ? 'yes' : 'no'}">${u.verified ? 'Yes' : 'No'}</span></td>
+            <td>${(u.bookmarks || []).length}</td>
+            <td>${new Date(u.createdAt).toLocaleDateString()}</td>
+            <td class="row-actions"><button class="delete" onclick="deleteUser('${u._id}')">Delete</button></td>
+        </tr>`).join('')}
     </tbody></table>`;
 }
+async function deleteUser(id) { if (!confirm('Delete this user account?')) return; await apiCall(`/api/admin/user/${id}`, 'DELETE'); loadAll(); }
 
 function renderSubscribers(items) {
+    allSubscribersData = items;
     const el = document.getElementById('panel-subscribers');
     if (!items.length) { el.innerHTML = '<p style="color:var(--muted)">No subscribers yet.</p>'; return; }
     el.innerHTML = `<table><thead><tr><th>Email</th><th>Active</th><th>Subscribed</th><th>Last Sent</th></tr></thead><tbody>
