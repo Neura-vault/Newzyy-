@@ -53,11 +53,7 @@
         #readProgress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 999; transition: width 0.1s linear; }
 
         /* ===== TRENDING BAR ===== */
-        .bbc-trending { background: var(--ink); color: #fff; padding: 8px 0; border-bottom: 2px solid var(--red); font-size: 0.85rem; }
-        .bbc-trending .label { background: var(--red); padding: 2px 16px; font-weight: 600; font-size: 0.62rem; text-transform: uppercase; display: inline-block; margin-right: 16px; letter-spacing: 0.6px; }
-        .bbc-trending .track { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: middle; max-width: 80%; }
-        .bbc-trending .track .item { display: inline-block; padding: 0 24px; font-size: 0.8rem; }
-        .bbc-trending .track .item a:hover { text-decoration: underline; }
+        /* ===== TRENDING BAR removed per request ===== */
 
         /* ===== HEADER / NAV (kept consistent with index.html) ===== */
         .bbc-header { background: #fff; border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
@@ -164,12 +160,6 @@
 
 <div id="readProgress"></div>
 
-<div class="bbc-trending">
-    <div class="container">
-        <span class="label">Trending</span>
-        <div class="track" id="trendingTrack"><span class="item">Loading news...</span></div>
-    </div>
-</div>
 
 <header class="bbc-header">
     <div class="container">
@@ -219,6 +209,7 @@
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
+            <a href="author.html">Editorial Team</a>
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
         </div>
@@ -359,7 +350,7 @@ function renderArticle(article) {
         <div class="bbc-article-header">
             <div class="byline-row">
                 <div class="avatar">${initials}</div>
-                <div class="byline-text">By <strong>${article.author || 'Newzyy'}</strong><br>${article.time || 'Just now'}</div>
+                <div class="byline-text">By <a href="author.html" style="color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--hairline);">${article.author || 'Newzyy'}</a><br>${article.time || 'Just now'}</div>
                 <div class="byline-meta">
                     <span>${getReadingTime(article.body || article.excerpt)} min read</span>
                     <span id="viewCountDisplay"><i class="fa fa-eye"></i> ${formatViews(article.views)} views</span>
