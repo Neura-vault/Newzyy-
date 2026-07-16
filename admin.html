@@ -72,7 +72,7 @@
         <button class="qa-btn" onclick="runAction('/manual-fetch', 'Fetching news now...')"><i class="fa fa-refresh"></i> Run News Fetch Now</button>
         <button class="qa-btn" onclick="runAction('/admin/send-newsletter-now', 'Sending newsletter...')"><i class="fa fa-envelope"></i> Send Newsletter Now</button>
         <button class="qa-btn danger" onclick="if(confirm('Delete all non-rewritten articles?')) runAction('/admin/purge-non-rewritten', 'Purging...')">Purge Non-Rewritten</button>
-        <button class="qa-btn danger" onclick="if(confirm('This deletes EVERY article permanently. Are you sure?')) runAction('/admin/purge-all&confirm=YES', 'Purging everything...')">Purge ALL Articles</button>
+        <button class="qa-btn danger" onclick="if(confirm('This deletes EVERY article permanently. Are you sure?')) runAction('/admin/purge-all?confirm=YES', 'Purging everything...')">Purge ALL Articles</button>
     </div>
     <div class="qa-status" id="qaStatus"></div>
 
@@ -81,6 +81,12 @@
         <span id="geminiText" style="font-size:0.8rem;color:var(--muted);float:right;"></span>
         <div class="gemini-bar-track"><div class="gemini-bar-fill" id="geminiBar" style="width:0%"></div></div>
         <div class="category-pills" id="categoryPills"></div>
+    </div>
+
+    <div class="gemini-bar-wrap">
+        <strong style="font-size:0.85rem;">Groq Usage Today (fallback provider)</strong>
+        <span id="groqText" style="font-size:0.8rem;color:var(--muted);float:right;"></span>
+        <div class="gemini-bar-track"><div class="gemini-bar-fill" id="groqBar" style="width:0%;background:#2563eb;"></div></div>
     </div>
 
     <div class="tabs">
@@ -152,7 +158,7 @@ async function loadAll() {
     try {
         const stats = await apiGet('/api/admin/stats');
         if (!stats.success) throw new Error(stats.message || 'Failed');
-        renderStats(stats.stats, stats.perCategory, stats.gemini);
+        renderStats(stats.stats, stats.perCategory, stats.gemini, stats.groq);
 
         const [articles, contacts, users, subs] = await Promise.all([
             apiGet('/api/admin/articles'),
@@ -176,7 +182,7 @@ async function loadAll() {
     }
 }
 
-function renderStats(s, perCategory, gemini) {
+function renderStats(s, perCategory, gemini, groq) {
     document.getElementById('statsRow').innerHTML = `
         <div class="stat-card"><div class="num">${s.articleCount}</div><div class="label">Articles</div></div>
         <div class="stat-card"><div class="num">${s.userCount}</div><div class="label">Users</div></div>
@@ -187,6 +193,13 @@ function renderStats(s, perCategory, gemini) {
         const pct = Math.min(100, Math.round((gemini.callsToday / gemini.maxPerDay) * 100));
         document.getElementById('geminiText').textContent = `${gemini.callsToday} / ${gemini.maxPerDay} calls used today`;
         document.getElementById('geminiBar').style.width = pct + '%';
+    }
+    if (groq) {
+        const pct = Math.min(100, Math.round((groq.callsToday / groq.maxPerDay) * 100));
+        document.getElementById('groqText').textContent = groq.configured
+            ? `${groq.callsToday} / ${groq.maxPerDay} calls used today`
+            : 'Not configured — add GROQ_API_KEY to enable fallback';
+        document.getElementById('groqBar').style.width = pct + '%';
     }
     if (perCategory) {
         document.getElementById('categoryPills').innerHTML = perCategory
