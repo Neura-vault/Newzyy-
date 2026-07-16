@@ -129,11 +129,11 @@
         .section-divider.accent span { color: var(--red); }
 
         /* ===== NEWS GRID ===== */
-        .bbc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin: 0 0 26px; }
-        .bbc-card { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .bbc-grid { display: flex; flex-wrap: wrap; gap: 28px; margin: 0 0 26px; }
+        .bbc-card { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; flex: 1 1 300px; max-width: calc(33.333% - 19px); }
         .bbc-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
         .bbc-card img { width: 100%; height: 170px; object-fit: cover; margin-bottom: 12px; transition: 0.3s; }
-        .bbc-card.featured { grid-column: span 2; }
+        .bbc-card.featured { flex-basis: 620px; max-width: calc(66.666% - 9px); }
         .bbc-card.featured img { height: 300px; }
         .bbc-card.featured .body .title { font-size: 1.55rem; }
         .bbc-card:hover img { opacity: 0.92; }
@@ -149,13 +149,14 @@
         .picks-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
         .picks-header h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; }
         .picks-header a { font-size: 0.75rem; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.4px; }
-        .picks-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+        .picks-grid { display: flex; flex-wrap: wrap; gap: 22px; }
+        .picks-grid .pick-card { flex: 1 1 220px; max-width: calc(25% - 17px); }
         .picks-grid .pick-card { cursor: pointer; }
         .picks-grid .pick-card img { width: 100%; height: 130px; object-fit: cover; margin-bottom: 10px; }
         .picks-grid .pick-card .title { font-family: var(--serif); font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
         .picks-grid .pick-card:hover .title { color: var(--red); }
-        @media (max-width: 992px) { .picks-grid { grid-template-columns: repeat(2, 1fr); } .lead-package { grid-template-columns: 1fr; } .bbc-card.featured { grid-column: span 1; } }
-        @media (max-width: 600px) { .picks-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 992px) { .picks-grid .pick-card { max-width: calc(50% - 11px); } .lead-package { grid-template-columns: 1fr; } .bbc-card.featured { grid-column: span 1; } }
+        @media (max-width: 600px) { .picks-grid .pick-card { max-width: 100%; } }
 
         /* ===== NEWS GRID (base, superseded above where duplicated) ===== */
 
@@ -217,12 +218,13 @@
         @media (max-width: 992px) {
             .bbc-hero { grid-template-columns: 1fr; }
             .bbc-hero .featured img { height: 240px; }
-            .bbc-grid { grid-template-columns: repeat(2, 1fr); }
+            .bbc-card { max-width: calc(50% - 14px); }
+            .bbc-card.featured { flex-basis: 100%; max-width: 100%; }
         }
         @media (max-width: 600px) {
             .search-input { width: 130px; }
             .search-suggestions { width: 260px; }
-            .bbc-grid { grid-template-columns: 1fr; }
+            .bbc-card { max-width: 100%; }
             .util-bar .container { flex-wrap: wrap; gap: 6px; }
         }
     </style>
@@ -530,43 +532,43 @@ async function fetchNews() {
 async function loadEditorsPicks() {
     const root = document.getElementById('editorsPicksRoot');
     if (!root) return;
-    const sections = [
-        { cat: 'technology', label: 'Technology' },
-        { cat: 'business', label: 'Business' }
-    ];
 
-    root.innerHTML = sections.map(s => `
+    // Build one section per category that actually has articles — using the
+    // already-fetched allNews (no extra API calls), skipping empty categories,
+    // and every category (not just 2) gets a shot at showing up here.
+    const grouped = {};
+    allNews.forEach(a => {
+        if (!grouped[a.category]) grouped[a.category] = [];
+        if (grouped[a.category].length < 4) grouped[a.category].push(a);
+    });
+
+    const categoryOrder = ['politics', 'technology', 'ai', 'sports', 'business', 'health',
+        'science', 'entertainment', 'travel', 'environment', 'culture', 'world', 'economy'];
+
+    const sections = categoryOrder.filter(cat => grouped[cat] && grouped[cat].length > 0);
+
+    if (!sections.length) { root.innerHTML = ''; return; }
+
+    root.innerHTML = sections.map(cat => {
+        const label = CATEGORY_NAMES[cat] || cat;
+        const items = grouped[cat];
+        return `
         <div class="picks-section">
-            <div class="section-divider"><span>${s.label}</span></div>
+            <div class="section-divider"><span>${label}</span></div>
             <div class="picks-header" style="margin-top:-14px;">
                 <span></span>
-                <a href="#" onclick="filterCategory('${s.cat}');window.scrollTo({top:0,behavior:'smooth'});return false;">More in ${s.label} →</a>
+                <a href="#" onclick="filterCategory('${cat}');window.scrollTo({top:0,behavior:'smooth'});return false;">More in ${label} →</a>
             </div>
-            <div class="picks-grid" id="picks-${s.cat}">
-                <p style="color:var(--muted);font-size:0.85rem;">Loading...</p>
+            <div class="picks-grid">
+                ${items.map(a => `
+                    <div class="pick-card" onclick="openNews('${a.id}')">
+                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'" loading="lazy">
+                        <div class="title">${a.title}</div>
+                    </div>
+                `).join('')}
             </div>
-        </div>
-    `).join('');
-
-    for (const s of sections) {
-        try {
-            const res = await fetch(`${API_BASE}/api/category/${s.cat}?limit=4`);
-            const data = await res.json();
-            const items = (data.news || []).slice(0, 4);
-            const grid = document.getElementById(`picks-${s.cat}`);
-            if (!grid) continue;
-            if (!items.length) { grid.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">No articles yet.</p>'; continue; }
-            grid.innerHTML = items.map(a => `
-                <div class="pick-card" onclick="openNews('${a.id}')">
-                    <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'" loading="lazy">
-                    <div class="title">${a.title}</div>
-                </div>
-            `).join('');
-        } catch (e) {
-            const grid = document.getElementById(`picks-${s.cat}`);
-            if (grid) grid.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Could not load.</p>';
-        }
-    }
+        </div>`;
+    }).join('');
 }
 
 function updateTrendingBar() {
