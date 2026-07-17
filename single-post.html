@@ -164,7 +164,7 @@
 <header class="bbc-header">
     <div class="container">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="index.html" class="site-logo">Newzy<span>y</span><small>News</small></a>
+            <a href="/" class="site-logo">Newzy<span>y</span><small>News</small></a>
             <div class="d-flex align-items-center gap-3 flex-wrap">
                 <div class="search-wrapper">
                     <i class="fa fa-search"></i>
@@ -180,16 +180,16 @@
 <nav class="bbc-nav">
     <div class="container">
         <div class="d-flex flex-wrap">
-            <a class="nav-link" href="index.html">Home</a>
-            <a class="nav-link" href="index.html?cat=politics">Politics</a>
-            <a class="nav-link" href="index.html?cat=technology">Tech</a>
-            <a class="nav-link" href="index.html?cat=ai">AI</a>
-            <a class="nav-link" href="index.html?cat=sports">Sports</a>
-            <a class="nav-link" href="index.html?cat=business">Business</a>
-            <a class="nav-link" href="index.html?cat=health">Health</a>
-            <a class="nav-link" href="index.html?cat=science">Science</a>
-            <a class="nav-link" href="index.html?cat=entertainment">Entertainment</a>
-            <a class="nav-link" href="index.html?cat=world">World</a>
+            <a class="nav-link" href="/">Home</a>
+            <a class="nav-link" href="/?cat=politics">Politics</a>
+            <a class="nav-link" href="/?cat=technology">Tech</a>
+            <a class="nav-link" href="/?cat=ai">AI</a>
+            <a class="nav-link" href="/?cat=sports">Sports</a>
+            <a class="nav-link" href="/?cat=business">Business</a>
+            <a class="nav-link" href="/?cat=health">Health</a>
+            <a class="nav-link" href="/?cat=science">Science</a>
+            <a class="nav-link" href="/?cat=entertainment">Entertainment</a>
+            <a class="nav-link" href="/?cat=world">World</a>
         </div>
     </div>
 </nav>
@@ -206,7 +206,7 @@
 <footer class="bbc-footer">
     <div class="container">
         <div class="links">
-            <a href="index.html">Home</a>
+            <a href="/">Home</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
             <a href="author.html">Editorial Team</a>
@@ -334,13 +334,13 @@ function renderArticle(article) {
 
     document.getElementById('articleRoot').innerHTML = `
         <div class="bbc-breadcrumb">
-            <a href="index.html">Home</a> &nbsp;›&nbsp;
-            <a href="index.html?cat=${article.category}">${catName}</a>
+            <a href="/">Home</a> &nbsp;›&nbsp;
+            <a href="/?cat=${article.category}">${catName}</a>
         </div>
 
         <div class="bbc-article-header">
             <div class="kicker-row">
-                <a class="kicker" href="index.html?cat=${article.category}" style="color:${catColor}">${catName}</a>
+                <a class="kicker" href="/?cat=${article.category}" style="color:${catColor}">${catName}</a>
                 ${renderLiveKicker(article)}
             </div>
             <h1 class="article-title">${article.title}</h1>
@@ -367,7 +367,7 @@ function renderArticle(article) {
         </div>
 
         <div class="bbc-share-row">
-            <div class="tags"><span>Tags</span><a href="index.html?cat=${article.category}">${catName}</a></div>
+            <div class="tags"><span>Tags</span><a href="/?cat=${article.category}">${catName}</a></div>
             <ul class="share-icons list-unstyled d-flex m-0">
                 <li><button id="bookmarkBtn" onclick="toggleBookmark('${article.id}')" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--hairline);border-radius:50%;background:none;color:var(--ink);cursor:pointer;"><i class="fa fa-bookmark-o" id="bookmarkIcon"></i></button></li>
                 <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
@@ -508,7 +508,7 @@ function renderNotFound() {
         <div class="bbc-state-msg">
             <h4>Article not found</h4>
             <p class="text-muted">This story may have been removed or the link is incorrect.</p>
-            <a href="index.html">← Back to Newzyy home</a>
+            <a href="/">← Back to Newzyy home</a>
         </div>
     `;
 }
