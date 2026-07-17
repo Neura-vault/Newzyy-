@@ -33,7 +33,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="logo">Newzy<span>y</span></a>
+    <a href="/" class="logo">Newzy<span>y</span></a>
 
     <div class="auth-card" id="signupStep">
         <h1>Create your account</h1>
@@ -124,7 +124,7 @@
                     localStorage.setItem('newzyy_logged_in', JSON.stringify(data.user));
                     msgDiv.className = 'message success';
                     msgDiv.textContent = 'Verified! Redirecting...';
-                    setTimeout(() => { window.location.href = 'index.html'; }, 1000);
+                    setTimeout(() => { window.location.href = '/'; }, 1000);
                 } else {
                     msgDiv.className = 'message error';
                     msgDiv.textContent = data.message || 'Incorrect code.';
