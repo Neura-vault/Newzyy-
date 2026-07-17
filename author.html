@@ -62,8 +62,8 @@
 </div>
 
 <div class="bio">
-    <p>Newzyy Staff is the collective byline for articles produced and verified through Newzyy's editorial process — covering politics, technology, business, science, and world affairs. Every story published under this byline follows our standard editorial checks before going live.</p>
-    <p>For more on how our newsroom operates, see our <a href="about.html" style="color:var(--red);font-weight:600">About page</a>. Spotted something that needs a correction? <a href="contact.html" style="color:var(--red);font-weight:600">Let us know</a>.</p>
+    <p><strong>Newzyy Staff</strong> is the collective byline for journalism produced and reviewed by our editorial team. Our reporters and editors cover politics, technology, business, science, and world affairs — with a commitment to accuracy, fairness, and original storytelling.</p>
+    <p>Every article published under this byline has undergone thorough editorial review. We stand behind our work and are accountable to our readers. For more on how we operate, visit our <a href="about.html" style="color:var(--red);font-weight:600">About page</a>. To report an error, please <a href="contact.html" style="color:var(--red);font-weight:600">contact us</a>.</p>
 </div>
 
 <div class="section-title">Recent Articles</div>
@@ -116,18 +116,4 @@ async function loadRecentArticles() {
 
 document.addEventListener('DOMContentLoaded', function() {
     const saved = localStorage.getItem('newzyy_theme') || 'light';
-    document.documentElement.setAttribute('data-theme', saved);
-    const btn = document.getElementById('themeToggle');
-    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
-    btn.addEventListener('click', () => {
-        const cur = document.documentElement.getAttribute('data-theme');
-        const next = cur === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('newzyy_theme', next);
-        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
-    });
-    loadRecentArticles();
-});
-</script>
-</body>
-</html>
+    document.documentElement.setAttribute('data-theme
