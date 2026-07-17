@@ -36,7 +36,7 @@
     </style>
 </head>
 <body>
-    <a href="index.html" class="logo">Newzy<span>y</span></a>
+    <a href="/" class="logo">Newzy<span>y</span></a>
 
     <div class="auth-card" id="loginStep">
         <div id="loginContent">
@@ -76,7 +76,7 @@
             document.getElementById('loginContent').innerHTML = `
                 <div class="logged-in-box">
                     <h3>You're already logged in as ${loggedIn.name}</h3>
-                    <a href="index.html" class="btn-primary" style="display:block;text-decoration:none;text-align:center;">Go to Homepage</a>
+                    <a href="/" class="btn-primary" style="display:block;text-decoration:none;text-align:center;">Go to Homepage</a>
                     <button class="btn-logout" onclick="logoutUser()">Log Out</button>
                 </div>
             `;
@@ -105,7 +105,7 @@
                     localStorage.setItem('newzyy_logged_in', JSON.stringify(data.user));
                     msgDiv.className = 'message success';
                     msgDiv.textContent = 'Welcome back! Redirecting...';
-                    setTimeout(() => { window.location.href = 'index.html'; }, 800);
+                    setTimeout(() => { window.location.href = '/'; }, 800);
                 } else if (data.needsVerification) {
                     pendingEmail = email;
                     document.getElementById('verifyEmailDisplay').textContent = email;
@@ -149,7 +149,7 @@
                     localStorage.setItem('newzyy_logged_in', JSON.stringify(data.user));
                     msgDiv.className = 'message success';
                     msgDiv.textContent = 'Verified! Redirecting...';
-                    setTimeout(() => { window.location.href = 'index.html'; }, 800);
+                    setTimeout(() => { window.location.href = '/'; }, 800);
                 } else {
                     msgDiv.className = 'message error';
                     msgDiv.textContent = data.message || 'Incorrect code.';
