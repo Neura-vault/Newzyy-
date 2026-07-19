@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <title>نیوزی — تازہ ترین خبریں</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="alternate" hreflang="en" href="https://newzyy.site/">
+    <link rel="alternate" hreflang="ur" href="https://newzyy.site/ur/">
+    <link rel="alternate" hreflang="x-default" href="https://newzyy.site/">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --red: #b80000; --ink: #141414; --paper: #ffffff; --canvas: #f7f6f2;
+            --hairline: #e3ded3; --muted: #6e6a62;
+            --sans: 'Inter', sans-serif;
+            --urdu: 'Noto Nastaliq Urdu', 'Inter', sans-serif;
+        }
+        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family: var(--urdu); background: var(--canvas); color: var(--ink); font-size: 1.05rem; }
+        a { text-decoration:none; color:inherit; }
+        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
+        .site-logo { font-family: var(--sans); font-size:1.8rem; font-weight:900; color:var(--ink); }
+        .site-logo span { color:var(--red); }
+        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:32px; height:32px; cursor:pointer; color:var(--ink); }
+        .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
+        .bbc-nav a { font-size:0.95rem; font-weight:600; padding:12px 16px; color:var(--muted); display:inline-block; cursor: pointer; }
+        .bbc-nav a:hover, .bbc-nav a.active { color:var(--red); }
+        .lang-note { background:var(--ink); color:var(--paper); text-align:center; padding:6px; font-family:var(--sans); font-size:0.75rem; }
+        .lang-note a { color:#fff; text-decoration:underline; }
+
+        .lead-package { display:grid; grid-template-columns: 2fr 1fr; gap:32px; margin:28px 0; }
+        .lead-main { cursor:pointer; }
+        .lead-main img { width:100%; height:380px; object-fit:cover; }
+        .lead-main .kicker { color:var(--red); font-weight:700; font-family:var(--sans); font-size:0.8rem; }
+        .lead-main .title { font-size:2rem; font-weight:700; line-height:1.4; margin:10px 0; }
+        .lead-main .title:hover { color:var(--red); }
+        .lead-main .dek { color:var(--muted); font-size:1.05rem; }
+        .lead-side .item { padding:14px 0; border-bottom:1px solid var(--hairline); cursor:pointer; }
+        .lead-side .item .cat { color:var(--red); font-family:var(--sans); font-size:0.7rem; font-weight:700; }
+        .lead-side .item .title { font-weight:600; font-size:1.1rem; margin-top:4px; }
+        .lead-side .item:hover .title { color:var(--red); }
+
+        .section-divider { display:flex; align-items:center; gap:12px; margin:34px 0 20px; }
+        .section-divider span { font-family:var(--sans); font-weight:800; font-size:0.85rem; text-transform:uppercase; white-space:nowrap; }
+        .section-divider::after { content:''; flex:1; height:2px; background:var(--ink); }
+
+        .bbc-grid { display:flex; flex-wrap:wrap; gap:24px; margin-bottom:24px; }
+        .bbc-card { cursor:pointer; flex:1 1 280px; max-width:calc(33.333% - 16px); }
+        .bbc-card img { width:100%; height:160px; object-fit:cover; margin-bottom:10px; }
+        .bbc-card .cat { color:var(--red); font-family:var(--sans); font-size:0.7rem; font-weight:700; }
+        .bbc-card .title { font-size:1.2rem; font-weight:700; margin:6px 0; }
+        .bbc-card:hover .title { color:var(--red); }
+        .bbc-card .excerpt { color:var(--muted); font-size:0.95rem; }
+        .bbc-card .meta { font-family:var(--sans); font-size:0.75rem; color:var(--muted); margin-top:8px; }
+
+        .widget { margin-bottom:26px; padding-bottom:26px; border-bottom:1px solid var(--hairline); }
+        .widget-title { font-family:var(--sans); font-weight:800; font-size:0.85rem; text-transform:uppercase; border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:14px; }
+        .most-read-item { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--hairline); cursor:pointer; }
+        .most-read-item .rank { font-size:1.4rem; font-weight:700; color:var(--hairline); width:26px; }
+        .most-read-item:hover .rank, .most-read-item:hover .title { color:var(--red); }
+        .most-read-item .title { font-weight:600; }
+
+        .bbc-load-more { text-align:center; margin:30px 0; }
+        .bbc-load-more button { padding:12px 40px; background:transparent; border:1.5px solid var(--red); color:var(--red); font-weight:700; cursor:pointer; font-family:var(--sans); }
+        .bbc-load-more button:hover { background:var(--red); color:#fff; }
+
+        .bbc-footer { background:var(--ink); color:#ccc; padding:40px 0 0; margin-top:40px; border-top:3px solid var(--red); font-family:var(--sans); }
+        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:22px; padding-bottom:20px; }
+        .bbc-footer a { color:#ccc; font-size:0.85rem; }
+        .bbc-footer .copyright { font-size:0.75rem; color:#666; text-align:center; padding-bottom:16px; }
+
+        /* Language switcher (BBC-style collapsible) */
+        .lang-switcher-toggle { width:100%; background:#1c1a15; color:#fff; border:none; padding:14px; font-family:var(--sans); font-size:0.85rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; }
+        .lang-switcher-panel { display:none; background:#0b0a08; padding:24px 20px; }
+        .lang-switcher-panel.open { display:block; }
+        .lang-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:700px; margin:0 auto; }
+        .lang-grid a { font-size:0.85rem; padding:8px 4px; text-align:center; border:1px solid #2a2820; }
+        .lang-grid a:hover { border-color:var(--red); color:#fff; }
+        .lang-grid a.current { border-color:var(--red); color:var(--red); }
+
+        @media (max-width:992px) { .lead-package{grid-template-columns:1fr;} .bbc-card{max-width:calc(50% - 12px);} .lang-grid{grid-template-columns:repeat(2,1fr);} }
+        @media (max-width:600px) { .bbc-card{max-width:100%;} .lang-grid{grid-template-columns:1fr;} }
+    </style>
+</head>
+<body>
+
+<div class="lang-note">آپ نیوزی کا اردو ورژن دیکھ رہے ہیں — <a href="/">انگریزی ورژن دیکھیں</a></div>
+
+<header class="bbc-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="/ur/" class="site-logo">Newzy<span>y</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
+    </div>
+</header>
+
+<nav class="bbc-nav">
+    <div class="container d-flex flex-wrap" id="navLinks">
+        <a onclick="filterCategory('all')" class="active">ہوم</a>
+        <a onclick="filterCategory('politics')">سیاست</a>
+        <a onclick="filterCategory('technology')">ٹیکنالوجی</a>
+        <a onclick="filterCategory('ai')">مصنوعی ذہانت</a>
+        <a onclick="filterCategory('sports')">کھیل</a>
+        <a onclick="filterCategory('business')">کاروبار</a>
+        <a onclick="filterCategory('health')">صحت</a>
+        <a onclick="filterCategory('world')">دنیا</a>
+        <a onclick="filterCategory('economy')">معیشت</a>
+    </div>
+</nav>
+
+<main class="container">
+    <div id="heroSection" class="lead-package"></div>
+    <div class="section-divider"><span>اہم خبریں</span></div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div id="newsContainer"><p style="text-align:center;color:var(--muted);padding:40px 0;">لوڈ ہو رہا ہے...</p></div>
+            <div class="bbc-load-more" id="loadMoreBtn" style="display:none;"><button onclick="loadMore()">مزید دیکھیں</button></div>
+        </div>
+        <div class="col-lg-4">
+            <div class="widget">
+                <h4 class="widget-title">زیادہ پڑھی گئی</h4>
+                <div id="mostReadRoot"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer class="bbc-footer">
+    <div class="container">
+        <div class="links">
+            <a href="/ur/">ہوم</a>
+            <a href="/about.html">ہمارے بارے میں</a>
+            <a href="/contact.html">رابطہ</a>
+            <a href="/privacy.html">رازداری</a>
+            <a href="/terms.html">شرائط</a>
+        </div>
+        <div class="copyright">2026 Newzyy — آزاد صحافت</div>
+    </div>
+    <button class="lang-switcher-toggle" onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
+        Newzyy in other languages <i class="fa fa-chevron-down"></i>
+    </button>
+    <div class="lang-switcher-panel" id="langPanel">
+        <div class="lang-grid">
+            <a href="/" >English</a>
+            <a href="/ur/" class="current">اردو (Urdu)</a>
+            <a href="/hi/">हिन्दी (Hindi)</a>
+            <a href="/ar/">العربية (Arabic)</a>
+            <a href="/es/">Español (Spanish)</a>
+            <a href="/fr/">Français (French)</a>
+            <a href="/bn/">বাংলা (Bengali)</a>
+            <a href="/tr/">Türkçe (Turkish)</a>
+            <a href="/id/">Bahasa Indonesia</a>
+            <a href="/pt/">Português (Portuguese)</a>
+        </div>
+    </div>
+</footer>
+
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script>
+const API_BASE = 'https://newzyy.onrender.com';
+const LANG = 'ur';
+let allNews = [], currentDataset = [], categoryCache = {}, currentFilter = 'all', displayCount = 6;
+
+const CAT_UR = { politics:'سیاست', technology:'ٹیکنالوجی', ai:'مصنوعی ذہانت', sports:'کھیل', business:'کاروبار',
+    health:'صحت', science:'سائنس', entertainment:'تفریح', travel:'سفر', environment:'ماحولیات',
+    culture:'ثقافت', world:'دنیا', economy:'معیشت' };
+
+function openNews(id) { window.location.href = '/ur/article.html?id=' + id; }
+
+async function fetchNews() {
+    try {
+        const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=50&lang=${LANG}`);
+        const data = await res.json();
+        allNews = (data.success && data.news) ? data.news : [];
+    } catch (e) { allNews = []; }
+    currentDataset = allNews;
+    renderHero();
+    renderAll();
+    loadMostRead();
+}
+
+function renderHero() {
+    const c = document.getElementById('heroSection');
+    if (!allNews.length) { c.innerHTML = ''; return; }
+    const featured = allNews[0], side = allNews.slice(1, 4);
+    c.innerHTML = `
+        <div class="lead-main" onclick="openNews('${featured.id}')">
+            <img src="${featured.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'">
+            <div class="kicker">${CAT_UR[featured.category] || featured.category}</div>
+            <div class="title">${featured.title}</div>
+            <div class="dek">${(featured.excerpt||'').substring(0,140)}</div>
+        </div>
+        <div class="lead-side">
+            ${side.map(a => `<div class="item" onclick="openNews('${a.id}')"><div class="cat">${CAT_UR[a.category]||a.category}</div><div class="title">${a.title}</div></div>`).join('')}
+        </div>`;
+}
+
+function renderAll() {
+    const container = document.getElementById('newsContainer');
+    if (!currentDataset.length) { container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:40px 0;">فی الحال کوئی خبر دستیاب نہیں</p>'; document.getElementById('loadMoreBtn').style.display='none'; return; }
+    const items = currentDataset.slice(0, displayCount);
+    container.innerHTML = `<div class="bbc-grid">${items.map(a => `
+        <div class="bbc-card" onclick="openNews('${a.id}')">
+            <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'">
+            <div class="cat">${CAT_UR[a.category] || a.category}</div>
+            <div class="title">${a.title}</div>
+            <div class="excerpt">${(a.excerpt||'').substring(0,110)}</div>
+            <div class="meta">${a.time || ''}</div>
+        </div>`).join('')}</div>`;
+    document.getElementById('loadMoreBtn').style.display = currentDataset.length > displayCount ? 'block' : 'none';
+}
+function loadMore() { displayCount += 6; renderAll(); }
+
+async function filterCategory(cat) {
+    currentFilter = cat; displayCount = 6;
+    document.querySelectorAll('#navLinks a').forEach(a => a.classList.remove('active'));
+    event.target.classList.add('active');
+    if (cat === 'all') { currentDataset = allNews; renderAll(); return; }
+    if (categoryCache[cat]) { currentDataset = categoryCache[cat]; renderAll(); return; }
+    try {
+        const res = await fetch(`${API_BASE}/api/category/${cat}?limit=30&lang=${LANG}`);
+        const data = await res.json();
+        categoryCache[cat] = data.news || [];
+        currentDataset = categoryCache[cat];
+    } catch (e) { currentDataset = []; }
+    renderAll();
+}
+
+async function loadMostRead() {
+    const root = document.getElementById('mostReadRoot');
+    try {
+        const res = await fetch(`${API_BASE}/api/most-read?lang=${LANG}`);
+        const data = await res.json();
+        const items = (data.news || []).slice(0, 5);
+        root.innerHTML = items.map((a,i) => `<div class="most-read-item" onclick="openNews('${a.id}')"><div class="rank">${i+1}</div><div class="title">${a.title}</div></div>`).join('') || '<p style="color:var(--muted);font-size:0.85rem;">کوئی ڈیٹا نہیں</p>';
+    } catch (e) { root.innerHTML = ''; }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    btn.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('newzyy_theme', next);
+        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    });
+    fetchNews();
+});
+</script>
+</body>
+</html>
