@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <title id="pageTitle">نیوزی</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
+            --sans:'Inter',sans-serif; --urdu:'Noto Nastaliq Urdu','Inter',sans-serif; }
+        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:var(--urdu); background:var(--canvas); color:var(--ink); font-size:1.1rem; line-height:2; }
+        a { text-decoration:none; color:inherit; }
+        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
+        .site-logo { font-family:var(--sans); font-size:1.8rem; font-weight:900; }
+        .site-logo span { color:var(--red); }
+        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:32px; height:32px; cursor:pointer; }
+        .page-wrap { max-width:760px; margin:0 auto; padding:40px 20px 60px; }
+        .kicker { color:var(--red); font-family:var(--sans); font-weight:700; font-size:0.85rem; }
+        .article-title { font-size:2.1rem; font-weight:700; line-height:1.5; margin:14px 0; }
+        .article-meta { font-family:var(--sans); font-size:0.85rem; color:var(--muted); padding:14px 0; border-top:1px solid var(--hairline); border-bottom:1px solid var(--hairline); margin-bottom:20px; }
+        .article-image img { width:100%; max-height:420px; object-fit:cover; margin-bottom:20px; }
+        .article-body p { margin-bottom:20px; }
+        .bbc-footer { background:var(--ink); color:#ccc; padding:30px 0; margin-top:40px; border-top:3px solid var(--red); font-family:var(--sans); text-align:center; font-size:0.8rem; }
+        .bbc-footer a { color:#ccc; }
+    </style>
+</head>
+<body>
+<header class="bbc-header">
+    <div class="container d-flex justify-content-between align-items-center">
+        <a href="/ur/" class="site-logo">Newzy<span>y</span></a>
+        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
+    </div>
+</header>
+
+<div class="page-wrap" id="articleRoot">
+    <p style="text-align:center;color:var(--muted);padding:60px 0;">لوڈ ہو رہا ہے...</p>
+</div>
+
+<footer class="bbc-footer">2026 Newzyy — <a href="/ur/">ہوم پیج پر واپس جائیں</a></footer>
+
+<script>
+const API_BASE = 'https://newzyy.onrender.com';
+const CAT_UR = { politics:'سیاست', technology:'ٹیکنالوجی', ai:'مصنوعی ذہانت', sports:'کھیل', business:'کاروبار',
+    health:'صحت', science:'سائنس', entertainment:'تفریح', travel:'سفر', environment:'ماحولیات',
+    culture:'ثقافت', world:'دنیا', economy:'معیشت' };
+
+function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+function renderBody(text) {
+    if (!text) return '<p>اس خبر کا مکمل متن ابھی دستیاب نہیں۔</p>';
+    return text.split(/\n\s*\n/).map(p => `<p>${escapeHtml(p.trim())}</p>`).join('');
+}
+
+async function init() {
+    const id = new URLSearchParams(window.location.search).get('id');
+    const root = document.getElementById('articleRoot');
+    if (!id) { root.innerHTML = '<p>خبر نہیں ملی۔</p>'; return; }
+
+    try {
+        const res = await fetch(`${API_BASE}/api/article/${id}?lang=ur`);
+        const data = await res.json();
+        if (!data.success || !data.article) { root.innerHTML = '<p>یہ خبر دستیاب نہیں ہے۔ <a href="/ur/">ہوم پیج پر واپس جائیں</a></p>'; return; }
+        const a = data.article;
+        document.getElementById('pageTitle').textContent = a.title + ' — نیوزی';
+        root.innerHTML = `
+            <div class="kicker">${CAT_UR[a.category] || a.category}</div>
+            <h1 class="article-title">${escapeHtml(a.title)}</h1>
+            <div class="article-meta">${escapeHtml(a.author || 'Newzyy Staff')} — ${escapeHtml(a.time || '')}</div>
+            <div class="article-image"><img src="${a.image}" onerror="this.style.display='none'"></div>
+            <div class="article-body">${renderBody(a.body)}</div>
+        `;
+        fetch(`${API_BASE}/api/article/${id}/view`, { method: 'POST' }).catch(()=>{});
+    } catch (e) {
+        root.innerHTML = '<p>کچھ غلط ہو گیا۔ براہ کرم دوبارہ کوشش کریں۔</p>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    btn.addEventListener('click', () => {
+        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('newzyy_theme', next);
+        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+    });
+    init();
+});
+</script>
+</body>
+</html>
