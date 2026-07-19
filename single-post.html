@@ -372,7 +372,7 @@ function renderArticle(article) {
                 <li><button id="bookmarkBtn" onclick="toggleBookmark('${article.id}')" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--hairline);border-radius:50%;background:none;color:var(--ink);cursor:pointer;"><i class="fa fa-bookmark-o" id="bookmarkIcon"></i></button></li>
                 <li><a href="https://www.facebook.com/profile.php?id=61591713046922=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(article.title)}" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
+                <li><a href="https://whatsapp.com/channel/0029Vb83AtK1t90k8GMzEQ0l=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
             </ul>
         </div>
 
