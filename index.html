@@ -340,25 +340,30 @@
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
         </div>
-        <div class="copyright">2026 Newzyy — Independent Journalism</div>
-    </div>
-    <button style="width:100%;background:#1c1a15;color:#fff;border:none;padding:14px;font-family:var(--sans);font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;"
-            onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
-        Newzyy in other languages <i class="fa fa-chevron-down"></i>
-    </button>
-    <div class="lang-switcher-panel" id="langPanel" style="display:none;background:#0b0a08;padding:24px 20px;">
-        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;max-width:900px;margin:0 auto;">
-            <a href="/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid var(--red);color:var(--red);">English</a>
-            <a href="/ur/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">اردو (Urdu)</a>
-            <a href="/hi/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">हिन्दी (Hindi)</a>
-            <a href="/ar/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">العربية (Arabic)</a>
-            <a href="/es/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">Español (Spanish)</a>
-            <a href="/fr/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">Français (French)</a>
-            <a href="/bn/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">বাংলা (Bengali)</a>
-            <a href="/tr/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">Türkçe (Turkish)</a>
-            <a href="/id/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">Bahasa Indonesia</a>
-            <a href="/pt/" style="font-size:0.85rem;padding:8px 4px;text-align:center;border:1px solid #2a2820;color:#ccc;">Português (Portuguese)</a>
+
+        <div style="text-align:center; margin: 18px 0 0;">
+            <button style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.18);padding:8px 18px;border-radius:4px;font-family:var(--sans);font-size:0.78rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;"
+                    onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
+                Newzyy in other languages <i class="fa fa-chevron-down"></i>
+            </button>
         </div>
+
+        <div class="lang-switcher-panel" id="langPanel" style="display:none;max-width:640px;margin:16px auto 0;">
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
+                <a href="/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid var(--red);color:var(--red);border-radius:3px;">English</a>
+                <a href="/ur/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">اردو</a>
+                <a href="/hi/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">हिन्दी</a>
+                <a href="/ar/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">العربية</a>
+                <a href="/es/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Español</a>
+                <a href="/fr/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Français</a>
+                <a href="/bn/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">বাংলা</a>
+                <a href="/tr/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Türkçe</a>
+                <a href="/id/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Indonesia</a>
+                <a href="/pt/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Português</a>
+            </div>
+        </div>
+
+        <div class="copyright" style="margin-top:18px;">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
 <style>.lang-switcher-panel.open{display:block !important;}</style>
