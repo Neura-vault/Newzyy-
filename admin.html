@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="robots" content="noindex, nofollow">
     <meta charset="utf-8">
     <title>Admin — Newzyy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -231,7 +232,7 @@ function filterArticles() {
             <td><span class="badge ${a.manualBreaking ? 'yes' : 'no'}">${a.manualBreaking ? 'ON' : 'off'}</span></td>
             <td>${new Date(a.fetched_at).toLocaleDateString()}</td>
             <td class="row-actions">
-                <button onclick="window.open('https://newzyy.site/single-post.html?id=${a.id}','_blank')">View</button>
+                <button onclick="window.open('https://newzyy.site/article/?id=${a.id}','_blank')">View</button>
                 <button onclick="toggleBreaking('${a.id}')">${a.manualBreaking ? 'Unmark' : 'Mark'} Breaking</button>
                 <button class="delete" onclick="deleteArticle('${a.id}')">Delete</button>
             </td>
