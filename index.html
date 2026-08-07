@@ -3,10 +3,53 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Newzyy — Top World News</title>
+    <title>Newzyy — Breaking News, World, Politics, Business, Technology and Sports</title>
+    <meta name="description" content="Newzyy brings you breaking news, in-depth analysis and top stories from around the world — politics, business, technology, science, sports and culture, updated around the clock.">
+    <link rel="canonical" href="https://newzyy.site/">
     <link rel="alternate" hreflang="en" href="https://newzyy.site/">
     <link rel="alternate" hreflang="ur" href="https://newzyy.site/ur/">
+    <link rel="alternate" hreflang="hi" href="https://newzyy.site/hi/">
+    <link rel="alternate" hreflang="ar" href="https://newzyy.site/ar/">
+    <link rel="alternate" hreflang="es" href="https://newzyy.site/es/">
+    <link rel="alternate" hreflang="fr" href="https://newzyy.site/fr/">
+    <link rel="alternate" hreflang="bn" href="https://newzyy.site/bn/">
+    <link rel="alternate" hreflang="tr" href="https://newzyy.site/tr/">
+    <link rel="alternate" hreflang="id" href="https://newzyy.site/id/">
+    <link rel="alternate" hreflang="pt" href="https://newzyy.site/pt/">
     <link rel="alternate" hreflang="x-default" href="https://newzyy.site/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Newzyy">
+    <meta property="og:title" content="Newzyy — Breaking News, World, Politics, Business, Technology and Sports">
+    <meta property="og:description" content="Breaking news, in-depth analysis and top stories from around the world — updated around the clock.">
+    <meta property="og:url" content="https://newzyy.site/">
+    <meta property="og:image" content="https://newzyy.site/images/logos/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Newzyy — Breaking News, World, Politics, Business, Technology and Sports">
+    <meta name="twitter:description" content="Breaking news, in-depth analysis and top stories from around the world — updated around the clock.">
+    <meta name="twitter:image" content="https://newzyy.site/images/logos/logo.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "name": "Newzyy",
+        "url": "https://newzyy.site/",
+        "logo": "https://newzyy.site/images/logos/logo.png",
+        "sameAs": []
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Newzyy",
+        "url": "https://newzyy.site/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://newzyy.site/search.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-name" content="Newzyy" />
@@ -18,7 +61,6 @@
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick.css">
     <link rel="stylesheet" href="plugins/slick-carousel/slick-theme.css">
-    <link rel="stylesheet" href="css/style.css?v=3">
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
 
@@ -61,7 +103,7 @@
 
         /* ===== HEADER ===== */
         .bbc-header { background: var(--paper); border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
+        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 700; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
         .bbc-header .site-logo span { color: var(--red); }
         .bbc-header .site-logo small { font-size: 0.55rem; font-weight: 400; color: var(--muted); letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
 
@@ -132,11 +174,11 @@
         .section-divider.accent span { color: var(--red); }
 
         /* ===== NEWS GRID ===== */
-        .bbc-grid { display: flex; flex-wrap: wrap; gap: 28px; margin: 0 0 26px; }
-        .bbc-card { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; flex: 1 1 300px; max-width: calc(33.333% - 19px); }
+        .bbc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0 0 26px; }
+        .bbc-card { cursor: pointer; transition: transform 0.25s ease, box-shadow 0.25s ease; min-width: 0; }
         .bbc-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
         .bbc-card img { width: 100%; height: 170px; object-fit: cover; margin-bottom: 12px; transition: 0.3s; }
-        .bbc-card.featured { flex-basis: 620px; max-width: calc(66.666% - 9px); }
+        .bbc-card.featured { grid-column: span 2; }
         .bbc-card.featured img { height: 300px; }
         .bbc-card.featured .body .title { font-size: 1.55rem; }
         .bbc-card:hover img { opacity: 0.92; }
@@ -152,14 +194,13 @@
         .picks-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px; }
         .picks-header h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; }
         .picks-header a { font-size: 0.75rem; font-weight: 700; color: var(--red); text-transform: uppercase; letter-spacing: 0.4px; }
-        .picks-grid { display: flex; flex-wrap: wrap; gap: 22px; }
-        .picks-grid .pick-card { flex: 1 1 220px; max-width: calc(25% - 17px); }
-        .picks-grid .pick-card { cursor: pointer; }
+        .picks-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; }
+        .picks-grid .pick-card { cursor: pointer; min-width: 0; }
         .picks-grid .pick-card img { width: 100%; height: 130px; object-fit: cover; margin-bottom: 10px; }
         .picks-grid .pick-card .title { font-family: var(--serif); font-size: 0.92rem; font-weight: 600; line-height: 1.3; }
         .picks-grid .pick-card:hover .title { color: var(--red); }
-        @media (max-width: 992px) { .picks-grid .pick-card { max-width: calc(50% - 11px); } .lead-package { grid-template-columns: 1fr; } .bbc-card.featured { grid-column: span 1; } }
-        @media (max-width: 600px) { .picks-grid .pick-card { max-width: 100%; } }
+        @media (max-width: 992px) { .picks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bbc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .lead-package { grid-template-columns: 1fr; } .bbc-card.featured { grid-column: span 2; } }
+        @media (max-width: 600px) { .picks-grid { grid-template-columns: 1fr; } .bbc-grid { grid-template-columns: 1fr; } .bbc-card.featured { grid-column: span 1; } }
 
         /* ===== NEWS GRID (base, superseded above where duplicated) ===== */
 
@@ -218,16 +259,9 @@
         .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
         .bbc-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
 
-        @media (max-width: 992px) {
-            .bbc-hero { grid-template-columns: 1fr; }
-            .bbc-hero .featured img { height: 240px; }
-            .bbc-card { max-width: calc(50% - 14px); }
-            .bbc-card.featured { flex-basis: 100%; max-width: 100%; }
-        }
         @media (max-width: 600px) {
             .search-input { width: 130px; }
             .search-suggestions { width: 260px; }
-            .bbc-card { max-width: 100%; }
             .util-bar .container { flex-wrap: wrap; gap: 6px; }
         }
     </style>
@@ -334,11 +368,11 @@
     <div class="container">
         <div class="links">
             <a href="/">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="author.html">Editorial Team</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/author/">Editorial Team</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
         </div>
 
         <div style="text-align:center; margin: 18px 0 0;">
@@ -469,13 +503,13 @@ function updateAccountLinks() {
                 <div class="avatar">${initials}</div>
                 <div class="name-block">
                     <a href="/" class="uname" style="text-decoration:none;color:inherit;">${loggedIn.name}</a>
-                    <a href="bookmarks.html" class="bookmarks-link">My Bookmarks</a>
+                    <a href="/bookmarks/" class="bookmarks-link">My Bookmarks</a>
                 </div>
                 <div class="divider"></div>
                 <button class="btn-logout" onclick="logoutUser()">Logout</button>
             </div>`;
     } else {
-        container.innerHTML = `<a href="account.html" class="btn-login">Log In</a> <a href="signup.html" class="btn-signup">Register</a>`;
+        container.innerHTML = `<a href="/account/" class="btn-login">Log In</a> <a href="/signup/" class="btn-signup">Register</a>`;
     }
 }
 function logoutUser() {
@@ -843,7 +877,7 @@ async function submitNewsletter() {
 
 // ===== OPEN NEWS =====
 function openNews(id) {
-    window.location.href = 'single-post.html?id=' + id;
+    window.location.href = '/article/?id=' + id;
 }
 
 // ===== INIT =====
