@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <title>Newzyy — Últimas Notícias</title>
+    <link rel="canonical" href="https://newzyy.site/pt/">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="alternate" hreflang="en" href="https://newzyy.site/">
@@ -24,7 +25,7 @@
         body { font-family: var(--portuguese); background: var(--canvas); color: var(--ink); font-size: 1.05rem; }
         a { text-decoration:none; color:inherit; }
         .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
-        .site-logo { font-family: var(--sans); font-size:1.8rem; font-weight:900; color:var(--ink); }
+        .site-logo { font-family: var(--sans); font-size:1.8rem; font-weight:700; color:var(--ink); }
         .site-logo span { color:var(--red); }
         .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:32px; height:32px; cursor:pointer; color:var(--ink); }
         .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
@@ -49,8 +50,8 @@
         .section-divider span { font-family:var(--sans); font-weight:800; font-size:0.85rem; text-transform:uppercase; white-space:nowrap; }
         .section-divider::after { content:''; flex:1; height:2px; background:var(--ink); }
 
-        .bbc-grid { display:flex; flex-wrap:wrap; gap:24px; margin-bottom:24px; }
-        .bbc-card { cursor:pointer; flex:1 1 280px; max-width:calc(33.333% - 16px); }
+        .bbc-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-bottom:24px; }
+        .bbc-card { cursor:pointer; min-width:0; }
         .bbc-card img { width:100%; height:160px; object-fit:cover; margin-bottom:10px; }
         .bbc-card .cat { color:var(--red); font-family:var(--sans); font-size:0.7rem; font-weight:700; }
         .bbc-card .title { font-size:1.2rem; font-weight:700; margin:6px 0; }
@@ -83,8 +84,8 @@
         .lang-grid a:hover { border-color:var(--red); color:#fff; }
         .lang-grid a.current { border-color:var(--red); color:var(--red); }
 
-        @media (max-width:992px) { .lead-package{grid-template-columns:1fr;} .bbc-card{max-width:calc(50% - 12px);} .lang-grid{grid-template-columns:repeat(2,1fr);} }
-        @media (max-width:600px) { .bbc-card{max-width:100%;} .lang-grid{grid-template-columns:1fr;} }
+        @media (max-width:992px) { .lead-package{grid-template-columns:1fr;} .bbc-grid{grid-template-columns:repeat(2, minmax(0,1fr));} .lang-grid{grid-template-columns:repeat(2,1fr);} }
+        @media (max-width:600px) { .bbc-grid{grid-template-columns:1fr;} .lang-grid{grid-template-columns:1fr;} }
     </style>
 </head>
 <body>
@@ -139,10 +140,10 @@
     <div class="container">
         <div class="links">
             <a href="/pt/">Início</a>
-            <a href="/about.html">Sobre Nós</a>
-            <a href="/contact.html">Contato</a>
-            <a href="/privacy.html">Privacidade</a>
-            <a href="/terms.html">Termos</a>
+            <a href="/about/">Sobre Nós</a>
+            <a href="/contact/">Contato</a>
+            <a href="/privacy/">Privacidade</a>
+            <a href="/terms/">Termos</a>
         </div>
         <div class="copyright">2026 Newzyy — Jornalismo Independente</div>
     </div>
@@ -176,7 +177,7 @@ const CAT_PT = { politics:'Política', technology:'Tecnologia', ai:'IA', sports:
     health:'Saúde', science:'Ciência', entertainment:'Entretenimento', travel:'Viagens', environment:'Meio Ambiente',
     culture:'Cultura', world:'Mundo', economy:'Economia' };
 
-function openNews(id) { window.location.href = '/pt/article.html?id=' + id; }
+function openNews(id) { window.location.href = '/pt/article/?id=' + id; }
 
 async function fetchNews() {
     try {
