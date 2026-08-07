@@ -3,9 +3,12 @@
 <head>
     <meta charset="utf-8">
     <title>My Bookmarks — Newzyy</title>
+    <link rel="canonical" href="https://newzyy.site/bookmarks/">
+    <meta name="description" content="View the stories you have saved on Newzyy.">
+    <meta name="robots" content="noindex, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
     <style>
         :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
@@ -15,7 +18,7 @@
         body { font-family:var(--sans); background:var(--canvas); color:var(--ink); }
         a { text-decoration:none; color:inherit; }
         .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
-        .site-logo { font-size:1.8rem; font-weight:900; color:var(--ink); }
+        .site-logo { font-size:1.8rem; font-weight:700; color:var(--ink); }
         .site-logo span { color:var(--red); }
         .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
         .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
@@ -43,11 +46,11 @@
 
 <header class="bbc-header">
     <div class="container d-flex justify-content-between align-items-center" style="display:flex;justify-content:space-between;align-items:center;">
-        <a href="index.html" class="site-logo">Newzy<span>y</span></a>
+        <a href="/" class="site-logo">Newzy<span>y</span></a>
         <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
     </div>
 </header>
-<nav class="bbc-nav"><div class="container"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a></div></nav>
+<nav class="bbc-nav"><div class="container"><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a></div></nav>
 
 <div class="page-wrap">
     <h1>My Bookmarks</h1>
@@ -57,8 +60,8 @@
 <footer class="bbc-footer">
     <div class="container">
         <div class="links">
-            <a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a>
-            <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+            <a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a>
+            <a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
         </div>
         <div class="copyright">2026 Newzyy — Independent Journalism</div>
     </div>
@@ -73,14 +76,14 @@ const CATEGORY_NAMES = { politics:'Politics', technology:'Technology', ai:'AI', 
     health:'Health', science:'Science', entertainment:'Entertainment', travel:'Travel', environment:'Earth',
     culture:'Culture', world:'World', economy:'Economy' };
 
-function openNews(id) { window.location.href = 'single-post.html?id=' + id; }
+function openNews(id) { window.location.href = '/article/?id=' + id; }
 
 async function loadBookmarks() {
     const token = localStorage.getItem('newzyy_token');
     const root = document.getElementById('bookmarksRoot');
 
     if (!token) {
-        root.innerHTML = `<div class="empty-state">Please <a href="account.html">log in</a> to see your saved articles.</div>`;
+        root.innerHTML = `<div class="empty-state">Please <a href="/account/">log in</a> to see your saved articles.</div>`;
         return;
     }
 
@@ -89,7 +92,7 @@ async function loadBookmarks() {
         const data = await res.json();
 
         if (!data.success) {
-            root.innerHTML = `<div class="empty-state">Your session expired. Please <a href="account.html">log in</a> again.</div>`;
+            root.innerHTML = `<div class="empty-state">Your session expired. Please <a href="/account/">log in</a> again.</div>`;
             return;
         }
         const items = data.news || [];
