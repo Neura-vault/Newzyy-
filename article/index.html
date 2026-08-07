@@ -7,9 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-name" content="Newzyy" />
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
 
     <!-- ===== SEO / SOCIAL PREVIEW META (filled dynamically once the article loads) ===== -->
     <meta id="metaDescription" name="description" content="Newzyy — breaking news, politics, technology, sport and business.">
@@ -27,9 +27,8 @@
     <script id="newsArticleSchema" type="application/ld+json"></script>
 
     <!-- THEME CSS -->
-    <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/style.css?v=2">
+    <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
 
     <!-- Sans for chrome/nav/meta, Serif for the actual editorial content -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
@@ -57,7 +56,7 @@
 
         /* ===== HEADER / NAV (kept consistent with index.html) ===== */
         .bbc-header { background: #fff; border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 900; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
+        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 700; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
         .bbc-header .site-logo span { color: var(--red); }
         .bbc-header .site-logo small { font-size: 0.55rem; font-weight: 400; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
         .bbc-header .search-input { background: var(--canvas); border: 1px solid var(--hairline); padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--sans); }
@@ -116,7 +115,7 @@
         /* ===== RELATED (understated, hairline dividers, not boxed cards) ===== */
         .bbc-related { max-width: 900px; margin: 0 auto 50px; }
         .section-label { font-family: var(--sans); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink); padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 22px; }
-        .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+        .related-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; }
         .related-item { cursor: pointer; }
         .related-item img { width: 100%; height: 120px; object-fit: cover; margin-bottom: 10px; }
         .related-item .cat { font-family: var(--sans); font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; }
@@ -189,7 +188,11 @@
             <a class="nav-link" href="/?cat=health">Health</a>
             <a class="nav-link" href="/?cat=science">Science</a>
             <a class="nav-link" href="/?cat=entertainment">Entertainment</a>
+            <a class="nav-link" href="/?cat=travel">Travel</a>
+            <a class="nav-link" href="/?cat=environment">Earth</a>
+            <a class="nav-link" href="/?cat=culture">Culture</a>
             <a class="nav-link" href="/?cat=world">World</a>
+            <a class="nav-link" href="/?cat=economy">Economy</a>
         </div>
     </div>
 </nav>
@@ -207,11 +210,11 @@
     <div class="container">
         <div class="links">
             <a href="/">Home</a>
-            <a href="about.html">About</a>
-            <a href="contact.html">Contact</a>
-            <a href="author.html">Editorial Team</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
+            <a href="/about/">About</a>
+            <a href="/contact/">Contact</a>
+            <a href="/author/">Editorial Team</a>
+            <a href="/privacy/">Privacy</a>
+            <a href="/terms/">Terms</a>
         </div>
 
         <div style="text-align:center; margin: 18px 0 0;">
@@ -240,12 +243,10 @@
     </div>
 </footer>
 <style>.lang-switcher-panel.open{display:block !important;}</style>
-</footer>
-<style>.lang-switcher-panel.open{display:block !important;}</style>
 
-<script src="plugins/jquery/jquery.js"></script>
-<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="js/custom.js"></script>
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="../js/custom.js"></script>
 
 <script>
 const API_BASE = 'https://newzyy.onrender.com';
@@ -286,7 +287,7 @@ function updateAccountLinks() {
         const initials = loggedIn.name.charAt(0).toUpperCase();
         container.innerHTML = `<span style="font-weight:600;font-size:0.85rem">${initials} · ${loggedIn.name}</span>`;
     } else {
-        container.innerHTML = `<a href="account.html" class="btn-login">Log In</a> <a href="signup.html" class="btn-signup">Register</a>`;
+        container.innerHTML = `<a href="/account/" class="btn-login">Log In</a> <a href="/signup/" class="btn-signup">Register</a>`;
     }
 }
 
@@ -376,7 +377,7 @@ function renderArticle(article) {
         <div class="bbc-article-header">
             <div class="byline-row">
                 <div class="avatar">${initials}</div>
-                <div class="byline-text">By <a href="author.html" style="color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--hairline);">${article.author || 'Newzyy'}</a><br>${article.time || 'Just now'}</div>
+                <div class="byline-text">By <a href="/author/" style="color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--hairline);">${article.author || 'Newzyy'}</a><br>${article.time || 'Just now'}</div>
                 <div class="byline-meta">
                     <span>${getReadingTime(article.body || article.excerpt)} min read</span>
                     <span id="viewCountDisplay"><i class="fa fa-eye"></i> ${formatViews(article.views)} views</span>
@@ -425,7 +426,7 @@ function renderRelatedGrid(items) {
             <h3 class="section-label">Related Stories</h3>
             <div class="related-grid">
                 ${items.map(a => `
-                    <div class="related-item" onclick="window.location.href='single-post.html?id=${a.id}'">
+                    <div class="related-item" onclick="window.location.href='/article/?id=${a.id}'">
                         <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
                         <div class="cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</div>
                         <div class="title">${a.title}</div>
@@ -457,7 +458,7 @@ async function loadMostRead() {
         const items = (data.news || []).slice(0, 5);
         if (!items.length) { root.innerHTML = '<p class="text-muted small">No data yet.</p>'; return; }
         root.innerHTML = items.map((a, i) => `
-            <div class="most-read-item" onclick="window.location.href='single-post.html?id=${a.id}'">
+            <div class="most-read-item" onclick="window.location.href='/article/?id=${a.id}'">
                 <div class="rank">${i + 1}</div>
                 <div class="title">${a.title}</div>
             </div>
@@ -525,7 +526,7 @@ function updateTrendingBar(items) {
     if (!container) return;
     if (!items.length) { container.innerHTML = '<span class="item">Welcome to Newzyy</span>'; return; }
     container.innerHTML = items.slice(0, 10).map(a => `
-        <span class="item"><a href="single-post.html?id=${a.id}">${a.title}</a></span>
+        <span class="item"><a href="/article/?id=${a.id}">${a.title}</a></span>
     `).join('');
 }
 
