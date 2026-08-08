@@ -67,6 +67,28 @@
 
     <style>
         /* Page-specific tweaks only — shared look lives in css/newzyy-theme.css */
+        
+        /* Fix newsletter widget overflow */
+        .newsletter-widget {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            word-wrap: break-word;
+            box-sizing: border-box;
+        }
+        .newsletter-widget input[type="email"] {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .newsletter-widget button {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .bbc-sidebar .widget {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -346,7 +368,7 @@ function showToast(msg) {
     if (!t) {
         t = document.createElement('div');
         t.id = 'toast';
-        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#b80000;color:white;padding:12px 24px;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;font-family:Inter,sans-serif;';
+        t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:#b80000;color:white;padding:12px 24px;font-size:0.85rem;z-index:1100;opacity:0;transition:0.3s;font-family:Inter,sans-serif;border-radius:8px;';
         document.body.appendChild(t);
     }
     t.textContent = msg;
