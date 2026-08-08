@@ -4,136 +4,129 @@
     <meta charset="utf-8">
     <title>Newzyy — Berita Terbaru</title>
     <link rel="canonical" href="https://newzyy.site/id/">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="alternate" hreflang="en" href="https://newzyy.site/">
     <link rel="alternate" hreflang="ur" href="https://newzyy.site/ur/">
+    <link rel="alternate" hreflang="hi" href="https://newzyy.site/hi/">
+    <link rel="alternate" hreflang="ar" href="https://newzyy.site/ar/">
+    <link rel="alternate" hreflang="es" href="https://newzyy.site/es/">
+    <link rel="alternate" hreflang="fr" href="https://newzyy.site/fr/">
+    <link rel="alternate" hreflang="bn" href="https://newzyy.site/bn/">
+    <link rel="alternate" hreflang="tr" href="https://newzyy.site/tr/">
     <link rel="alternate" hreflang="id" href="https://newzyy.site/id/">
+    <link rel="alternate" hreflang="pt" href="https://newzyy.site/pt/">
     <link rel="alternate" hreflang="x-default" href="https://newzyy.site/">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/newzyy-theme.css">
     <style>
-        :root {
-            --red: #b80000; --ink: #141414; --paper: #ffffff; --canvas: #f7f6f2;
-            --hairline: #e3ded3; --muted: #6e6a62;
-            --sans: 'Inter', sans-serif;
-            --indonesian: 'Inter', 'Inter', sans-serif;
-        }
-        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family: var(--indonesian); background: var(--canvas); color: var(--ink); font-size: 1.05rem; }
-        a { text-decoration:none; color:inherit; }
-        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
-        .site-logo { font-family: var(--sans); font-size:1.8rem; font-weight:700; color:var(--ink); }
-        .site-logo span { color:var(--red); }
-        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:32px; height:32px; cursor:pointer; color:var(--ink); }
-        .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
-        .bbc-nav a { font-size:0.95rem; font-weight:600; padding:12px 16px; color:var(--muted); display:inline-block; cursor: pointer; }
-        .bbc-nav a:hover, .bbc-nav a.active { color:var(--red); }
-        .lang-note { background:var(--ink); color:var(--paper); text-align:center; padding:6px; font-family:var(--sans); font-size:0.75rem; }
-        .lang-note a { color:#fff; text-decoration:underline; }
+        /* Page-specific tweaks only — shared look lives in css/newzyy-theme.css */
 
-        .lead-package { display:grid; grid-template-columns: 2fr 1fr; gap:32px; margin:28px 0; }
-        .lead-main { cursor:pointer; }
-        .lead-main img { width:100%; height:380px; object-fit:cover; }
-        .lead-main .kicker { color:var(--red); font-weight:700; font-family:var(--sans); font-size:0.8rem; }
-        .lead-main .title { font-size:2rem; font-weight:700; line-height:1.4; margin:10px 0; }
-        .lead-main .title:hover { color:var(--red); }
-        .lead-main .dek { color:var(--muted); font-size:1.05rem; }
-        .lead-side .item { padding:14px 0; border-bottom:1px solid var(--hairline); cursor:pointer; }
-        .lead-side .item .cat { color:var(--red); font-family:var(--sans); font-size:0.7rem; font-weight:700; }
-        .lead-side .item .title { font-weight:600; font-size:1.1rem; margin-top:4px; }
-        .lead-side .item:hover .title { color:var(--red); }
-
-        .section-divider { display:flex; align-items:center; gap:12px; margin:34px 0 20px; }
-        .section-divider span { font-family:var(--sans); font-weight:800; font-size:0.85rem; text-transform:uppercase; white-space:nowrap; }
-        .section-divider::after { content:''; flex:1; height:2px; background:var(--ink); }
-
-        .bbc-grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; margin-bottom:24px; }
-        .bbc-card { cursor:pointer; min-width:0; }
-        .bbc-card img { width:100%; height:160px; object-fit:cover; margin-bottom:10px; }
-        .bbc-card .cat { color:var(--red); font-family:var(--sans); font-size:0.7rem; font-weight:700; }
-        .bbc-card .title { font-size:1.2rem; font-weight:700; margin:6px 0; }
-        .bbc-card:hover .title { color:var(--red); }
-        .bbc-card .excerpt { color:var(--muted); font-size:0.95rem; }
-        .bbc-card .meta { font-family:var(--sans); font-size:0.75rem; color:var(--muted); margin-top:8px; }
-
-        .widget { margin-bottom:26px; padding-bottom:26px; border-bottom:1px solid var(--hairline); }
-        .widget-title { font-family:var(--sans); font-weight:800; font-size:0.85rem; text-transform:uppercase; border-bottom:2px solid var(--ink); padding-bottom:8px; margin-bottom:14px; }
-        .most-read-item { display:flex; gap:12px; padding:10px 0; border-bottom:1px solid var(--hairline); cursor:pointer; }
-        .most-read-item .rank { font-size:1.4rem; font-weight:700; color:var(--hairline); width:26px; }
-        .most-read-item:hover .rank, .most-read-item:hover .title { color:var(--red); }
-        .most-read-item .title { font-weight:600; }
-
-        .bbc-load-more { text-align:center; margin:30px 0; }
-        .bbc-load-more button { padding:12px 40px; background:transparent; border:1.5px solid var(--red); color:var(--red); font-weight:700; cursor:pointer; font-family:var(--sans); }
-        .bbc-load-more button:hover { background:var(--red); color:#fff; }
-
-        .bbc-footer { background:var(--ink); color:#ccc; padding:40px 0 0; margin-top:40px; border-top:3px solid var(--red); font-family:var(--sans); }
-        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:22px; padding-bottom:20px; }
-        .bbc-footer a { color:#ccc; font-size:0.85rem; }
-        .bbc-footer .copyright { font-size:0.75rem; color:#666; text-align:center; padding-bottom:16px; }
-
-        /* Language switcher (BBC-style collapsible) */
-        .lang-switcher-toggle { width:100%; background:#1c1a15; color:#fff; border:none; padding:14px; font-family:var(--sans); font-size:0.85rem; font-weight:600; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; }
-        .lang-switcher-panel { display:none; background:#0b0a08; padding:24px 20px; }
-        .lang-switcher-panel.open { display:block; }
-        .lang-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; max-width:700px; margin:0 auto; }
-        .lang-grid a { font-size:0.85rem; padding:8px 4px; text-align:center; border:1px solid #2a2820; }
-        .lang-grid a:hover { border-color:var(--red); color:#fff; }
-        .lang-grid a.current { border-color:var(--red); color:var(--red); }
-
-        @media (max-width:992px) { .lead-package{grid-template-columns:1fr;} .bbc-grid{grid-template-columns:repeat(2, minmax(0,1fr));} .lang-grid{grid-template-columns:repeat(2,1fr);} }
-        @media (max-width:600px) { .bbc-grid{grid-template-columns:1fr;} .lang-grid{grid-template-columns:1fr;} }
     </style>
 </head>
 <body>
 
-<div class="lang-note">Anda sedang melihat versi Bahasa Indonesia dari Newzyy — <a href="/">Lihat versi bahasa Inggris</a></div>
+<div class="lang-note" style="background:var(--ink);color:#fff;text-align:center;padding:7px;font-family:var(--sans);font-size:.75rem;">
+    Anda sedang melihat versi Bahasa Indonesia dari Newzyy — <a href="/" style="color:#fff;text-decoration:underline;">Lihat versi bahasa Inggris</a>
+</div>
 
-<header class="bbc-header">
-    <div class="container d-flex justify-content-between align-items-center">
+<div class="util-bar">
+    <div class="container">
+        <span id="dateDisplay"></span>
+        <div class="d-flex align-items-center gap-3">
+            <span class="weather" id="weatherWidget"><i class="fa fa-spinner fa-spin"></i></span>
+            <button class="theme-toggle" id="themeToggle" title="Dark mode"><i class="fa fa-moon-o"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="ticker-bar">
+    <div class="container">
+        <span class="tag">Berita Terkini</span>
+        <div class="track"><div class="track-inner" id="trendingTrack"><span>Newzyy</span></div></div>
+    </div>
+</div>
+
+<header class="masthead">
+    <div class="container">
         <a href="/id/" class="site-logo">Newzy<span>y</span></a>
-        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
+        <div class="masthead-tools">
+            <div class="search-wrapper">
+                <i class="fa fa-search"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Cari" autocomplete="off">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+            <div class="account-section"><span id="accountLinks"></span></div>
+        </div>
     </div>
 </header>
 
 <nav class="bbc-nav">
-    <div class="container d-flex flex-wrap" id="navLinks">
-        <a onclick="filterCategory('all')" class="active">Beranda</a>
-        <a onclick="filterCategory('politics')">Politik</a>
-        <a onclick="filterCategory('technology')">Teknologi</a>
-        <a onclick="filterCategory('ai')">AI</a>
-        <a onclick="filterCategory('sports')">Olahraga</a>
-        <a onclick="filterCategory('business')">Bisnis</a>
-        <a onclick="filterCategory('health')">Kesehatan</a>
-        <a onclick="filterCategory('science')">Sains</a>
-        <a onclick="filterCategory('entertainment')">Hiburan</a>
-        <a onclick="filterCategory('travel')">Wisata</a>
-        <a onclick="filterCategory('environment')">Lingkungan</a>
-        <a onclick="filterCategory('culture')">Budaya</a>
-        <a onclick="filterCategory('world')">Dunia</a>
-        <a onclick="filterCategory('economy')">Ekonomi</a>
+    <div class="container">
+        <div class="d-flex flex-wrap" id="navLinks">
+            <a class="nav-link active" href="#" onclick="filterCategory('all');return false;">Beranda</a>
+            <a class="nav-link" href="#" onclick="filterCategory('politics');return false;">Politik</a>
+            <a class="nav-link" href="#" onclick="filterCategory('technology');return false;">Teknologi</a>
+            <a class="nav-link" href="#" onclick="filterCategory('ai');return false;">AI</a>
+            <a class="nav-link" href="#" onclick="filterCategory('sports');return false;">Olahraga</a>
+            <a class="nav-link" href="#" onclick="filterCategory('business');return false;">Bisnis</a>
+            <a class="nav-link" href="#" onclick="filterCategory('health');return false;">Kesehatan</a>
+            <a class="nav-link" href="#" onclick="filterCategory('science');return false;">Sains</a>
+            <a class="nav-link" href="#" onclick="filterCategory('entertainment');return false;">Hiburan</a>
+            <a class="nav-link" href="#" onclick="filterCategory('travel');return false;">Wisata</a>
+            <a class="nav-link" href="#" onclick="filterCategory('environment');return false;">Lingkungan</a>
+            <a class="nav-link" href="#" onclick="filterCategory('culture');return false;">Budaya</a>
+            <a class="nav-link" href="#" onclick="filterCategory('world');return false;">Dunia</a>
+            <a class="nav-link" href="#" onclick="filterCategory('economy');return false;">Ekonomi</a>
+        </div>
     </div>
 </nav>
 
 <main class="container">
+    <div id="categoryHero" class="bbc-category-hero" style="display:none;">
+        <span class="cat-title"><span id="catHeroName"></span></span>
+        <span class="cat-count" id="catHeroCount"></span>
+    </div>
+
     <div id="heroSection" class="lead-package"></div>
-    <div class="section-divider"><span>Berita Utama</span></div>
+
+    <div class="section-divider accent" id="gridSectionLabel"><span>Berita Utama</span></div>
 
     <div class="row">
         <div class="col-lg-8">
-            <div id="newsContainer"><p style="text-align:center;color:var(--muted);padding:40px 0;">Memuat...</p></div>
-            <div class="bbc-load-more" id="loadMoreBtn" style="display:none;"><button onclick="loadMore()">Muat Lebih Banyak</button></div>
+            <div id="newsContainer"></div>
+            <div class="bbc-load-more" id="loadMoreBtn" style="display:none;">
+                <button onclick="loadMore()">Muat Lebih Banyak</button>
+            </div>
         </div>
-        <div class="col-lg-4">
+
+        <div class="col-lg-4 bbc-sidebar">
+            <div class="widget">
+                <h4 class="widget-title">Terbaru</h4>
+                <div id="justInRoot"></div>
+            </div>
             <div class="widget">
                 <h4 class="widget-title">Paling Banyak Dibaca</h4>
                 <div id="mostReadRoot"></div>
             </div>
+            <div class="widget">
+                <div class="newsletter-widget">
+                    <h4>Tetap Terinformasi</h4>
+                    <p>Dapatkan berita utama hari ini di email Anda setiap pagi.</p>
+                    <input type="email" id="newsletterEmail" placeholder="Alamat email Anda">
+                    <button onclick="submitNewsletter()">Berlangganan</button>
+                </div>
+            </div>
+            <div class="widget">
+                <h4 class="widget-title">Topik Tren</h4>
+                <div id="trendingTopicsRoot" class="d-flex flex-wrap"></div>
+            </div>
         </div>
     </div>
+
+    <div id="editorsPicksRoot"></div>
 </main>
 
 <footer class="bbc-footer">
@@ -142,125 +135,441 @@
             <a href="/id/">Beranda</a>
             <a href="/about/">Tentang Kami</a>
             <a href="/contact/">Kontak</a>
+            <a href="/author/">Tim Editorial</a>
             <a href="/privacy/">Privasi</a>
             <a href="/terms/">Ketentuan</a>
         </div>
-        <div class="copyright">2026 Newzyy — Jurnalisme Independen</div>
-    </div>
-    <button class="lang-switcher-toggle" onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
-        Newzyy in other languages <i class="fa fa-chevron-down"></i>
-    </button>
-    <div class="lang-switcher-panel" id="langPanel">
-        <div class="lang-grid">
-            <a href="/" >English</a>
-            <a href="/id/" class="current">اردو (Urdu)</a>
-            <a href="/hi/">हिन्दी (Hindi)</a>
-            <a href="/ar/">العربية (Arabic)</a>
-            <a href="/es/">Español (Spanish)</a>
-            <a href="/fr/">Français (French)</a>
-            <a href="/bn/">বাংলা (Bengali)</a>
-            <a href="/tr/">Türkçe (Turkish)</a>
-            <a href="/id/">Bahasa Indonesia</a>
-            <a href="/pt/">Português (Portuguese)</a>
+
+        <div style="text-align:center; margin: 18px 0 0;">
+            <button class="lang-switch-toggle"
+                    onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
+                Newzyy in other languages <i class="fa fa-chevron-down"></i>
+            </button>
         </div>
+
+        <div class="lang-switcher-panel" id="langPanel" style="max-width:640px;margin:16px auto 0;">
+            <div class="lang-grid">
+                <a href="/">English</a>
+                <a href="/ur/">اردو</a>
+                <a href="/hi/">हिन्दी</a>
+                <a href="/ar/">العربية</a>
+                <a href="/es/">Español</a>
+                <a href="/fr/">Français</a>
+                <a href="/bn/">বাংলা</a>
+                <a href="/tr/">Türkçe</a>
+                <a href="/id/" class="current">Indonesia</a>
+                <a href="/pt/">Português</a>
+            </div>
+        </div>
+
+        <div class="copyright" style="margin-top:18px;">2026 Newzyy — Jurnalisme Independen</div>
     </div>
 </footer>
 
 <script src="../plugins/jquery/jquery.js"></script>
 <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+
 <script>
 const API_BASE = 'https://newzyy.onrender.com';
 const LANG = 'id';
-let allNews = [], currentDataset = [], categoryCache = {}, currentFilter = 'all', displayCount = 6;
+let allNews = [], currentDataset = [], categoryCache = {}, categoryTotal = {}, currentFilter = 'all', displayCount = 6;
 
-const CAT_ID = { politics:'Politik', technology:'Teknologi', ai:'AI', sports:'Olahraga', business:'Bisnis',
-    health:'Kesehatan', science:'Sains', entertainment:'Hiburan', travel:'Wisata', environment:'Lingkungan',
-    culture:'Budaya', world:'Dunia', economy:'Ekonomi' };
+const CATEGORY_NAMES = {
+    politics: 'Politik',
+    technology: 'Teknologi',
+    ai: 'AI',
+    sports: 'Olahraga',
+    business: 'Bisnis',
+    health: 'Kesehatan',
+    science: 'Sains',
+    entertainment: 'Hiburan',
+    travel: 'Wisata',
+    environment: 'Lingkungan',
+    culture: 'Budaya',
+    world: 'Dunia',
+    economy: 'Ekonomi'
+};
+const CATEGORY_COLORS = {
+    politics: '#b80000', technology: '#2563eb', ai: '#9333ea', sports: '#16a34a', business: '#7c3aed',
+    health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
+    environment: '#22c55e', culture: '#8b5cf6', world: '#3b82f6', economy: '#f59e0e'
+};
+const T = {
+    home: 'Beranda', topStories: 'Berita Utama', justIn: 'Terbaru', mostRead: 'Paling Banyak Dibaca',
+    noNews: 'Belum ada berita saat ini', moreIn: 'Lainnya di', arrow: '→', articlesSuffix: 'berita',
+    loading: 'Memuat...', couldNotLoad: 'Gagal memuat.', noData: 'Tidak ada data', minRead: 'menit',
+    justNow: 'Baru saja', login: 'Masuk', register: 'Daftar', myBookmarks: 'Simpanan Saya',
+    logout: 'Keluar', logoutConfirm: 'Anda yakin ingin keluar?'
+};
 
-function openNews(id) { window.location.href = '/id/article/?id=' + id; }
+function initTheme() {
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    updateThemeIcon(saved);
+}
+function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('newzyy_theme', next);
+    updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+}
+
+function renderDate() {
+    const el = document.getElementById('dateDisplay');
+    if (el) el.textContent = new Date().toLocaleDateString('id', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+function weatherIcon(code) {
+    if (code === 0) return 'fa-sun-o';
+    if ([1, 2, 3].includes(code)) return 'fa-cloud';
+    if ([45, 48].includes(code)) return 'fa-align-justify';
+    if (code >= 51 && code <= 67) return 'fa-tint';
+    if (code >= 71 && code <= 77) return 'fa-snowflake-o';
+    if (code >= 80 && code <= 82) return 'fa-tint';
+    if (code >= 95) return 'fa-bolt';
+    return 'fa-cloud';
+}
+async function loadWeather(lat, lon, label) {
+    const el = document.getElementById('weatherWidget');
+    try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        const data = await res.json();
+        const w = data.current_weather;
+        if (!w || !el) return;
+        el.innerHTML = `<i class="fa ${weatherIcon(w.weathercode)}"></i> ${Math.round(w.temperature)}&deg;C ${label ? '· ' + label : ''}`;
+    } catch (e) { if (el) el.innerHTML = ''; }
+}
+function initWeather() {
+    loadWeather(33.6844, 73.0479, 'Islamabad');
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+            pos => loadWeather(pos.coords.latitude, pos.coords.longitude, ''),
+            () => {}, { timeout: 8000 }
+        );
+    }
+}
+
+function updateAccountLinks() {
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    const container = document.getElementById('accountLinks');
+    if (!container) return;
+    if (loggedIn) {
+        const initials = loggedIn.name.charAt(0).toUpperCase();
+        container.innerHTML = `
+            <div class="user-profile">
+                <div class="avatar">${initials}</div>
+                <div class="name-block">
+                    <a href="/id/" class="uname" style="text-decoration:none;color:inherit;">${loggedIn.name}</a>
+                    <a href="/bookmarks/" class="bookmarks-link">${T.myBookmarks}</a>
+                </div>
+                <button class="btn-logout" onclick="logoutUser()">${T.logout}</button>
+            </div>`;
+    } else {
+        container.innerHTML = `<a href="/account/" class="btn-login">${T.login}</a> <a href="/signup/" class="btn-signup">${T.register}</a>`;
+    }
+}
+function logoutUser() {
+    if (confirm(T.logoutConfirm)) {
+        localStorage.removeItem('newzyy_logged_in');
+        localStorage.removeItem('newzyy_token');
+        location.reload();
+    }
+}
+
+function getReadingTime(text) {
+    const words = (text || '').split(/\s+/).length;
+    return Math.max(1, Math.ceil(words / 200));
+}
+function formatViews(n) {
+    n = n || 0;
+    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+    return String(n);
+}
+function shortTime(t) { return (t || '').replace(' ago', ''); }
+function showToast(msg) {
+    let t = document.getElementById('toast');
+    if (!t) { t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t); }
+    t.textContent = msg;
+    t.style.transform = 'translateX(-50%) translateY(0)';
+    t.style.opacity = '1';
+    setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(100px)'; }, 2500);
+}
+function renderLiveBadge(a) { return a.breaking ? `<span class="live-kicker"><span class="dot"></span> ${T.breaking || 'Live'}</span>` : ''; }
+function skeletonGrid(count) {
+    let html = '<div class="skeleton-grid">';
+    for (let i = 0; i < count; i++) html += `<div class="skeleton-card"><div class="skeleton img"></div><div class="skeleton line"></div><div class="skeleton line"></div><div class="skeleton line short"></div></div>`;
+    return html + '</div>';
+}
 
 async function fetchNews() {
+    document.getElementById('newsContainer').innerHTML = skeletonGrid(6);
     try {
         const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=50&lang=${LANG}`);
         const data = await res.json();
         allNews = (data.success && data.news) ? data.news : [];
     } catch (e) { allNews = []; }
     currentDataset = allNews;
+    displayCount = 6;
+    updateTrendingBar();
     renderHero();
     renderAll();
+    renderTrendingTopics();
+    renderJustIn();
     loadMostRead();
+    updateCategoryHero();
+    loadEditorsPicks();
 }
 
-function renderHero() {
-    const c = document.getElementById('heroSection');
-    if (!allNews.length) { c.innerHTML = ''; return; }
-    const featured = allNews[0], side = allNews.slice(1, 4);
-    c.innerHTML = `
-        <div class="lead-main" onclick="openNews('${featured.id}')">
-            <img src="${featured.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=800'">
-            <div class="kicker">${CAT_ID[featured.category] || featured.category}</div>
-            <div class="title">${featured.title}</div>
-            <div class="dek">${(featured.excerpt||'').substring(0,140)}</div>
-        </div>
-        <div class="lead-side">
-            ${side.map(a => `<div class="item" onclick="openNews('${a.id}')"><div class="cat">${CAT_ID[a.category]||a.category}</div><div class="title">${a.title}</div></div>`).join('')}
+async function loadEditorsPicks() {
+    const root = document.getElementById('editorsPicksRoot');
+    if (!root) return;
+    const grouped = {};
+    allNews.forEach(a => { if (!grouped[a.category]) grouped[a.category] = []; if (grouped[a.category].length < 4) grouped[a.category].push(a); });
+    const order = Object.keys(CATEGORY_NAMES);
+    const sections = order.filter(cat => grouped[cat] && grouped[cat].length > 0);
+    if (!sections.length) { root.innerHTML = ''; return; }
+    root.innerHTML = sections.map(cat => {
+        const label = CATEGORY_NAMES[cat] || cat;
+        const items = grouped[cat];
+        return `
+        <div class="picks-section">
+            <div class="section-divider"><span>${label}</span></div>
+            <div class="picks-header" style="margin-top:-14px;">
+                <span></span>
+                <a href="#" onclick="filterCategory('${cat}');window.scrollTo({top:0,behavior:'smooth'});return false;">${T.moreIn} ${label} ${T.arrow}</a>
+            </div>
+            <div class="picks-row">
+                ${items.map(a => `
+                    <div class="pick-card" onclick="openNews('${a.id}')">
+                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'" loading="lazy">
+                        <div class="title">${a.title}</div>
+                    </div>
+                `).join('')}
+            </div>
         </div>`;
+    }).join('');
 }
 
-function renderAll() {
-    const container = document.getElementById('newsContainer');
-    if (!currentDataset.length) { container.innerHTML = '<p style="text-align:center;color:var(--muted);padding:40px 0;">Saat ini tidak ada berita yang tersedia</p>'; document.getElementById('loadMoreBtn').style.display='none'; return; }
-    const items = currentDataset.slice(0, displayCount);
-    container.innerHTML = `<div class="bbc-grid">${items.map(a => `
-        <div class="bbc-card" onclick="openNews('${a.id}')">
-            <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'">
-            <div class="cat">${CAT_ID[a.category] || a.category}</div>
+function updateTrendingBar() {
+    const c = document.getElementById('trendingTrack');
+    if (!c) return;
+    const items = allNews.slice(0, 12);
+    if (!items.length) { c.innerHTML = '<span>Newzyy</span>'; return; }
+    c.innerHTML = items.map(a => `<a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a>`).join('');
+}
+
+function renderJustIn() {
+    const root = document.getElementById('justInRoot');
+    if (!root) return;
+    const items = allNews.slice(0, 6);
+    if (!items.length) { root.innerHTML = `<p class="text-muted small">${T.noNews}</p>`; return; }
+    root.innerHTML = items.map(a => `
+        <div class="justin-item" onclick="openNews('${a.id}')">
+            <div class="time">${shortTime(a.time)}</div>
             <div class="title">${a.title}</div>
-            <div class="excerpt">${(a.excerpt||'').substring(0,110)}</div>
-            <div class="meta">${a.time || ''}</div>
-        </div>`).join('')}</div>`;
-    document.getElementById('loadMoreBtn').style.display = currentDataset.length > displayCount ? 'block' : 'none';
-}
-function loadMore() { displayCount += 6; renderAll(); }
-
-async function filterCategory(cat) {
-    currentFilter = cat; displayCount = 6;
-    document.querySelectorAll('#navLinks a').forEach(a => a.classList.remove('active'));
-    event.target.classList.add('active');
-    if (cat === 'all') { currentDataset = allNews; renderAll(); return; }
-    if (categoryCache[cat]) { currentDataset = categoryCache[cat]; renderAll(); return; }
-    try {
-        const res = await fetch(`${API_BASE}/api/category/${cat}?limit=30&lang=${LANG}`);
-        const data = await res.json();
-        categoryCache[cat] = data.news || [];
-        currentDataset = categoryCache[cat];
-    } catch (e) { currentDataset = []; }
-    renderAll();
+        </div>`).join('');
 }
 
 async function loadMostRead() {
     const root = document.getElementById('mostReadRoot');
+    if (!root) return;
     try {
         const res = await fetch(`${API_BASE}/api/most-read?lang=${LANG}`);
         const data = await res.json();
         const items = (data.news || []).slice(0, 5);
-        root.innerHTML = items.map((a,i) => `<div class="most-read-item" onclick="openNews('${a.id}')"><div class="rank">${i+1}</div><div class="title">${a.title}</div></div>`).join('') || '<p style="color:var(--muted);font-size:0.85rem;">Tidak ada data</p>';
-    } catch (e) { root.innerHTML = ''; }
+        if (!items.length) { root.innerHTML = `<p class="text-muted small">${T.noData}</p>`; return; }
+        root.innerHTML = items.map((a, i) => `
+            <div class="most-read-item" onclick="openNews('${a.id}')">
+                <div class="rank">${i + 1}</div>
+                <div class="title">${a.title}</div>
+            </div>`).join('');
+    } catch (e) { root.innerHTML = `<p class="text-muted small">${T.couldNotLoad}</p>`; }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const saved = localStorage.getItem('newzyy_theme') || 'light';
-    document.documentElement.setAttribute('data-theme', saved);
-    const btn = document.getElementById('themeToggle');
-    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
-    btn.addEventListener('click', () => {
-        const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('newzyy_theme', next);
-        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+function updateCategoryHero() {
+    const c = document.getElementById('categoryHero');
+    if (!c) return;
+    if (currentFilter === 'all') { c.style.display = 'none'; return; }
+    c.style.display = 'flex';
+    const name = CATEGORY_NAMES[currentFilter] || currentFilter;
+    const count = categoryTotal[currentFilter] !== undefined ? categoryTotal[currentFilter] : currentDataset.length;
+    document.getElementById('catHeroName').textContent = name;
+    document.getElementById('catHeroCount').textContent = count + ' ' + T.articlesSuffix;
+}
+
+function renderHero() {
+    const c = document.getElementById('heroSection');
+    if (!c) return;
+    if (!allNews.length) { c.innerHTML = ''; return; }
+    const featured = allNews[0];
+    const side = allNews.slice(1, 5);
+    c.innerHTML = `
+        <div class="lead-main" onclick="openNews('${featured.id}')">
+            <img src="${featured.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=900'" loading="lazy">
+            <div class="kicker-row">
+                <span class="kicker" style="color:${CATEGORY_COLORS[featured.category] || '#b80000'}">${CATEGORY_NAMES[featured.category] || featured.category || ''}</span>
+                ${renderLiveBadge(featured)}
+            </div>
+            <h2 class="title">${featured.title}</h2>
+            ${featured.excerpt ? `<p class="dek">${featured.excerpt.substring(0, 160)}</p>` : ''}
+            <div class="meta">
+                ${featured.author || 'Newzyy'} · ${featured.time || T.justNow} ·
+                ${getReadingTime(featured.body || featured.excerpt)} ${T.minRead} ·
+                <i class="fa fa-eye"></i> ${formatViews(featured.views)}
+            </div>
+        </div>
+        <div class="lead-side">
+            ${side.map((a, i) => `
+                <div class="rank-item" onclick="openNews('${a.id}')">
+                    <div class="num">${i + 1}</div>
+                    <div>
+                        <span class="rank-cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || ''}</span>
+                        <div class="rank-title">${a.title}</div>
+                    </div>
+                </div>`).join('')}
+        </div>`;
+}
+
+function renderAll() {
+    let f = currentDataset;
+    const container = document.getElementById('newsContainer');
+    if (!container) return;
+    if (!f.length) {
+        container.innerHTML = `<div class="text-center py-5"><h4 class="text-muted">${T.noNews}</h4></div>`;
+        document.getElementById('loadMoreBtn').style.display = 'none';
+        return;
+    }
+    const pageItems = f.slice(0, displayCount);
+    const lead = pageItems[0];
+    const rest = pageItems.slice(1);
+    let html = `
+        <div class="wide-card" onclick="openNews('${lead.id}')">
+            <img src="${lead.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=500'" loading="lazy">
+            <div>
+                <span class="cat" style="color:${CATEGORY_COLORS[lead.category] || '#b80000'}">${CATEGORY_NAMES[lead.category] || lead.category || ''}</span>
+                ${renderLiveBadge(lead)}
+                <h3>${lead.title}</h3>
+                <p>${(lead.excerpt || lead.description || '').substring(0, 150)}...</p>
+                <div class="meta">${lead.author || 'Newzyy'} · ${lead.time || T.justNow} · ${getReadingTime(lead.body || lead.excerpt)} ${T.minRead} · <i class="fa fa-eye"></i> ${formatViews(lead.views)}</div>
+            </div>
+        </div>`;
+    if (rest.length) {
+        html += '<div class="bbc-grid">';
+        rest.forEach(a => {
+            html += `
+                <div class="bbc-card" onclick="openNews('${a.id}')">
+                    <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
+                    <div class="body">
+                        <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || ''}</span>
+                        ${renderLiveBadge(a)}
+                        <h3 class="title">${a.title}</h3>
+                        <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
+                        <div class="meta">${a.author || 'Newzyy'} · ${a.time || T.justNow} <span class="read-time">${getReadingTime(a.body || a.excerpt)} ${T.minRead}</span> <span><i class="fa fa-eye"></i> ${formatViews(a.views)}</span></div>
+                    </div>
+                </div>`;
+        });
+        html += '</div>';
+    }
+    container.innerHTML = html;
+    document.getElementById('loadMoreBtn').style.display = f.length > displayCount ? 'block' : 'none';
+}
+
+function loadMore() { displayCount += 6; renderAll(); }
+
+function togglePremiumSections(isAll) {
+    const d = isAll ? '' : 'none';
+    const hero = document.getElementById('heroSection'), label = document.getElementById('gridSectionLabel'), picks = document.getElementById('editorsPicksRoot');
+    if (hero) hero.style.display = d;
+    if (label) label.style.display = d;
+    if (picks) picks.style.display = d;
+}
+
+async function filterCategory(cat) {
+    currentFilter = cat; displayCount = 6;
+    togglePremiumSections(cat === 'all');
+    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
+        const text = el.textContent.trim();
+        if ((cat === 'all' && text === T.home) || text === (CATEGORY_NAMES[cat] || cat)) el.classList.add('active');
     });
+    if (cat === 'all') { currentDataset = allNews; renderAll(); updateCategoryHero(); showToast(T.home); return; }
+    if (categoryCache[cat]) { currentDataset = categoryCache[cat]; renderAll(); updateCategoryHero(); showToast(CATEGORY_NAMES[cat] || cat); return; }
+    document.getElementById('newsContainer').innerHTML = skeletonGrid(6);
+    try {
+        const res = await fetch(`${API_BASE}/api/category/${cat}?limit=30&lang=${LANG}`);
+        const data = await res.json();
+        const items = (data.success && data.news) ? data.news : [];
+        categoryCache[cat] = items; categoryTotal[cat] = data.total || items.length; currentDataset = items;
+    } catch (e) { currentDataset = []; }
+    renderAll(); updateCategoryHero(); showToast(CATEGORY_NAMES[cat] || cat);
+}
+
+function renderTrendingTopics() {
+    const c = document.getElementById('trendingTopicsRoot');
+    if (!c) return;
+    c.innerHTML = Object.keys(CATEGORY_NAMES).map(k => `<span class="topic-tag" onclick="filterCategory('${k}')">${CATEGORY_NAMES[k]}</span>`).join('');
+}
+
+let searchDebounce = null;
+document.getElementById('searchInput')?.addEventListener('input', function (e) {
+    const q = e.target.value.trim();
+    clearTimeout(searchDebounce);
+    const box = document.getElementById('searchSuggestions');
+    if (q.length < 2) { box.classList.remove('active'); return; }
+    searchDebounce = setTimeout(async () => {
+        try {
+            const res = await fetch(`${API_BASE}/api/search?q=${encodeURIComponent(q)}&lang=${LANG}`);
+            const data = await res.json();
+            const items = (data.news || []).slice(0, 6);
+            box.innerHTML = items.length ? items.map(a => `
+                <div class="sug-item" onclick="openNews('${a.id}')">
+                    <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=100'">
+                    <div><div class="sug-cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</div><div class="sug-title">${a.title}</div></div>
+                </div>`).join('') : `<div class="sug-empty">${T.noNews}</div>`;
+            box.classList.add('active');
+        } catch (e) { box.classList.remove('active'); }
+    }, 300);
+});
+document.addEventListener('click', (e) => {
+    const wrap = document.querySelector('.search-wrapper');
+    if (wrap && !wrap.contains(e.target)) document.getElementById('searchSuggestions')?.classList.remove('active');
+});
+document.getElementById('searchInput')?.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') window.location.href = '/search.html?q=' + encodeURIComponent(this.value) + '&lang=' + LANG;
+});
+
+async function submitNewsletter() {
+    const email = document.getElementById('newsletterEmail').value.trim();
+    if (!email || !email.includes('@')) { showToast('!'); return; }
+    try {
+        const res = await fetch(`${API_BASE}/api/newsletter/subscribe`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+        const data = await res.json();
+        showToast(data.message || (data.success ? 'OK' : '...'));
+        if (data.success) document.getElementById('newsletterEmail').value = '';
+    } catch (e) { showToast(T.couldNotLoad); }
+}
+
+function openNews(id) { window.location.href = '/id/article/?id=' + id; }
+
+document.addEventListener('DOMContentLoaded', function () {
+    initTheme();
+    document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+    renderDate();
+    initWeather();
+    updateAccountLinks();
     fetchNews();
 });
+window.filterCategory = filterCategory;
+window.openNews = openNews;
+window.loadMore = loadMore;
+window.logoutUser = logoutUser;
+window.submitNewsletter = submitNewsletter;
 </script>
 </body>
 </html>
