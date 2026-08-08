@@ -31,147 +31,34 @@
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
 
     <!-- Sans for chrome/nav/meta, Serif for the actual editorial content -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/newzyy-theme.css">
 
     <style>
-        :root {
-            --red: #b80000;
-            --ink: #141414;
-            --paper: #ffffff;
-            --canvas: #f7f6f2;
-            --hairline: #e3ded3;
-            --muted: #6e6a62;
-            --sans: 'Inter', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-            --serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--sans); background: var(--canvas); color: var(--ink); -webkit-font-smoothing: antialiased; }
-        a { text-decoration: none; color: inherit; }
-
-        /* progress rail */
-        #readProgress { position: fixed; top: 0; left: 0; height: 3px; width: 0%; background: var(--red); z-index: 999; transition: width 0.1s linear; }
-
-        /* ===== TRENDING BAR ===== */
-        /* ===== TRENDING BAR removed per request ===== */
-
-        /* ===== HEADER / NAV (kept consistent with index.html) ===== */
-        .bbc-header { background: #fff; border-bottom: 1px solid var(--hairline); padding: 16px 0; position: sticky; top: 0; z-index: 100; }
-        .bbc-header .site-logo { font-size: 1.8rem; font-weight: 700; color: var(--ink); letter-spacing: -0.5px; display: inline-block; }
-        .bbc-header .site-logo span { color: var(--red); }
-        .bbc-header .site-logo small { font-size: 0.55rem; font-weight: 400; color: #888; letter-spacing: 0.5px; text-transform: uppercase; margin-left: 6px; }
-        .bbc-header .search-input { background: var(--canvas); border: 1px solid var(--hairline); padding: 8px 16px 8px 36px; font-size: 0.85rem; width: 220px; outline: none; font-family: var(--sans); }
-        .bbc-header .search-input:focus { border-color: var(--red); }
-        .bbc-header .search-wrapper { position: relative; }
-        .bbc-header .search-wrapper i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #999; font-size: 0.85rem; }
-        .bbc-header .btn-login { background: transparent; border: 1px solid var(--hairline); color: var(--ink); padding: 6px 20px; font-size: 0.8rem; font-weight: 600; }
-        .bbc-header .btn-signup { background: var(--red); border: 1px solid var(--red); color: #fff; padding: 6px 20px; font-size: 0.8rem; font-weight: 600; }
-        .bbc-nav { background: #fff; border-bottom: 1px solid var(--hairline); }
-        .bbc-nav .nav-link { color: #4a4a4a !important; font-size: 0.72rem; font-weight: 600; padding: 12px 16px !important; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 2px solid transparent; }
-        .bbc-nav .nav-link:hover { color: var(--red) !important; border-bottom-color: var(--red); }
-
-        /* ===== READING LAYOUT ===== */
-        .bbc-article-wrap { padding: 36px 0 60px; }
-        .bbc-breadcrumb { max-width: 700px; margin: 0 auto 22px; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.2px; }
-        .bbc-breadcrumb a:hover { color: var(--red); }
-
-        .bbc-article-header { max-width: 700px; margin: 0 auto; }
-        .kicker-row { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-        .kicker { font-family: var(--sans); font-weight: 800; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.6px; }
-        .live-kicker { display: inline-flex; align-items: center; gap: 6px; font-family: var(--sans); font-weight: 800; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.6px; color: var(--red); }
-        .live-kicker .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); display: inline-block; animation: pulse 1.2s ease-in-out infinite; }
-        @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:0.4; transform:scale(0.75);} }
-
-        .article-title { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; line-height: 1.18; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.3px; }
-        .article-excerpt { font-family: var(--serif); font-size: 1.28rem; font-weight: 400; color: #3a3a3a; line-height: 1.5; margin-bottom: 22px; }
-
-        .byline-row { display: flex; align-items: center; gap: 12px; padding: 18px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); margin-bottom: 26px; }
-        .byline-row .avatar { width: 38px; height: 38px; border-radius: 50%; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; font-family: var(--sans); font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
-        .byline-row .byline-text { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
-        .byline-row .byline-text strong { color: var(--ink); font-weight: 700; }
-        .byline-row .byline-meta { margin-left: auto; display: flex; gap: 14px; align-items: center; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap; text-align: right; }
-
-        .bbc-article-image { max-width: 900px; margin: 0 auto 8px; }
-        .bbc-article-image img { width: 100%; max-height: 520px; object-fit: cover; display: block; }
-        .bbc-article-image .caption { max-width: 700px; margin: 0 auto; font-family: var(--sans); font-size: 0.74rem; font-style: italic; color: var(--muted); padding: 8px 0 0; }
-
-        .bbc-article-body { max-width: 700px; margin: 30px auto 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.85; color: #1e1e1e; }
-        .bbc-article-body p { margin-bottom: 24px; }
-        .bbc-article-body p:first-of-type::first-letter {
-            font-family: var(--serif); font-size: 4.4rem; font-weight: 700; float: left; line-height: 0.82;
-            padding: 6px 10px 0 0; color: var(--red);
-        }
-
-        .bbc-source-line { max-width: 700px; margin: 30px auto; padding: 16px 20px; background: #fff; border-left: 3px solid var(--red); font-family: var(--sans); font-size: 0.85rem; color: var(--muted); }
-        .bbc-source-line a { color: var(--red); font-weight: 700; }
-
-        .bbc-share-row { max-width: 700px; margin: 30px auto 46px; display: flex; justify-content: space-between; align-items: center; padding: 20px 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); flex-wrap: wrap; gap: 14px; font-family: var(--sans); }
-        .bbc-share-row .tags span { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; font-weight: 700; letter-spacing: 0.4px; margin-right: 10px; }
-        .bbc-share-row .tags a { font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-right: 14px; }
-        .bbc-share-row .tags a:hover { color: var(--red); }
-        .bbc-share-row .share-icons { display: flex; gap: 10px; list-style: none; }
-        .bbc-share-row .share-icons a { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--hairline); border-radius: 50%; color: var(--ink); font-size: 0.85rem; }
-        .bbc-share-row .share-icons a:hover { border-color: var(--red); color: var(--red); }
-
-        /* ===== RELATED (understated, hairline dividers, not boxed cards) ===== */
-        .bbc-related { max-width: 900px; margin: 0 auto 50px; }
-        .section-label { font-family: var(--sans); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--ink); padding-bottom: 10px; border-bottom: 2px solid var(--ink); margin-bottom: 22px; }
-        .related-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 26px; }
-        .related-item { cursor: pointer; }
-        .related-item img { width: 100%; height: 120px; object-fit: cover; margin-bottom: 10px; }
-        .related-item .cat { font-family: var(--sans); font-size: 0.62rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4px; }
-        .related-item .title { font-family: var(--serif); font-size: 0.98rem; font-weight: 600; line-height: 1.3; margin-top: 4px; }
-        .related-item:hover .title { color: var(--red); }
-        .related-item .meta { font-family: var(--sans); font-size: 0.68rem; color: var(--muted); margin-top: 8px; }
-
-        /* ===== SIDEBAR — real Most Read, ranked list ===== */
-        .bbc-sidebar { max-width: 700px; margin: 0 auto; }
-        .sidebar-widget { margin-bottom: 30px; }
-        .most-read-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--hairline); cursor: pointer; }
-        .most-read-item:last-child { border-bottom: none; }
-        .most-read-item .rank { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; color: var(--hairline); line-height: 1; width: 30px; flex-shrink: 0; }
-        .most-read-item:hover .rank { color: var(--red); }
-        .most-read-item .title { font-family: var(--sans); font-size: 0.88rem; font-weight: 600; line-height: 1.35; }
-        .most-read-item:hover .title { color: var(--red); }
-
-        /* ===== FOOTER ===== */
-        .bbc-footer { background: var(--ink); color: #ccc; padding: 40px 0 20px; margin-top: 0; border-top: 3px solid var(--red); font-family: var(--sans); }
-        .bbc-footer a { color: #ccc; font-size: 0.85rem; }
-        .bbc-footer a:hover { color: #fff; }
-        .bbc-footer .links { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
-        .bbc-footer .copyright { font-size: 0.75rem; color: #666; margin-top: 20px; text-align: center; }
-
-        .bbc-state-msg { max-width: 700px; margin: 0 auto; text-align: center; padding: 90px 20px; font-family: var(--sans); }
-        .bbc-state-msg h4 { font-weight: 700; margin-bottom: 10px; }
-        .bbc-state-msg a { color: var(--red); font-weight: 700; }
-
-        @media (max-width: 992px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (max-width: 600px) {
-            .article-title { font-size: 1.7rem; }
-            .article-excerpt { font-size: 1.05rem; }
-            .bbc-share-row { flex-direction: column; align-items: flex-start; }
-            .byline-row { flex-wrap: wrap; }
-            .byline-row .byline-meta { margin-left: 0; text-align: left; }
-            .related-grid { grid-template-columns: 1fr; }
-        }
+        /* Page-specific tweaks only — shared look lives in css/newzyy-theme.css */
     </style>
 </head>
 <body>
 
 <div id="readProgress"></div>
 
-
-<header class="bbc-header">
+<div class="ticker-bar">
     <div class="container">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <a href="/" class="site-logo">Newzy<span>y</span><small>News</small></a>
-            <div class="d-flex align-items-center gap-3 flex-wrap">
-                <div class="search-wrapper">
-                    <i class="fa fa-search"></i>
-                    <input type="text" class="search-input" placeholder="Search"
-                           onkeydown="if(event.key==='Enter'){window.location.href='search.html?q='+encodeURIComponent(this.value)}">
-                </div>
-                <div class="account-section"><span id="accountLinks"></span></div>
+        <span class="tag">Breaking</span>
+        <div class="track"><div class="track-inner" id="trendingTrack"><span>Welcome to Newzyy</span></div></div>
+    </div>
+</div>
+
+<header class="masthead">
+    <div class="container">
+        <a href="/" class="site-logo">Newzy<span>y</span><small>News</small></a>
+        <div class="masthead-tools">
+            <div class="search-wrapper">
+                <i class="fa fa-search"></i>
+                <input type="text" class="search-input" placeholder="Search"
+                       onkeydown="if(event.key==='Enter'){window.location.href='/search.html?q='+encodeURIComponent(this.value)}">
             </div>
+            <div class="account-section"><span id="accountLinks"></span></div>
         </div>
     </div>
 </header>
@@ -218,31 +105,30 @@
         </div>
 
         <div style="text-align:center; margin: 18px 0 0;">
-            <button style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.18);padding:8px 18px;border-radius:4px;font-family:var(--sans);font-size:0.78rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;"
+            <button class="lang-switch-toggle"
                     onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
                 Newzyy in other languages <i class="fa fa-chevron-down"></i>
             </button>
         </div>
 
-        <div class="lang-switcher-panel" id="langPanel" style="display:none;max-width:640px;margin:16px auto 0;">
-            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;">
-                <a href="/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid var(--red);color:var(--red);border-radius:3px;">English</a>
-                <a href="/ur/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">اردو</a>
-                <a href="/hi/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">हिन्दी</a>
-                <a href="/ar/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">العربية</a>
-                <a href="/es/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Español</a>
-                <a href="/fr/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Français</a>
-                <a href="/bn/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">বাংলা</a>
-                <a href="/tr/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Türkçe</a>
-                <a href="/id/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Indonesia</a>
-                <a href="/pt/" style="font-size:0.75rem;padding:6px 4px;text-align:center;border:1px solid rgba(255,255,255,0.15);color:#ccc;border-radius:3px;">Português</a>
+        <div class="lang-switcher-panel" id="langPanel" style="max-width:640px;margin:16px auto 0;">
+            <div class="lang-grid">
+                <a href="/" class="current">English</a>
+                <a href="/ur/">اردو</a>
+                <a href="/hi/">हिन्दी</a>
+                <a href="/ar/">العربية</a>
+                <a href="/es/">Español</a>
+                <a href="/fr/">Français</a>
+                <a href="/bn/">বাংলা</a>
+                <a href="/tr/">Türkçe</a>
+                <a href="/id/">Indonesia</a>
+                <a href="/pt/">Português</a>
             </div>
         </div>
 
         <div class="copyright" style="margin-top:18px;">2026 Newzyy — Independent Journalism</div>
     </div>
 </footer>
-<style>.lang-switcher-panel.open{display:block !important;}</style>
 
 <script src="../plugins/jquery/jquery.js"></script>
 <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
@@ -424,7 +310,7 @@ function renderRelatedGrid(items) {
     root.innerHTML = `
         <div class="bbc-related">
             <h3 class="section-label">Related Stories</h3>
-            <div class="related-grid">
+            <div class="related-row">
                 ${items.map(a => `
                     <div class="related-item" onclick="window.location.href='/article/?id=${a.id}'">
                         <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
