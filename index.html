@@ -90,7 +90,6 @@
     </div>
 </div>
 
-<div id="hpMastheadSticky">
 <header id="hpNameplate">
     <div class="nameplate-row">
         <div class="nameplate-meta">Vol. IV — Digital Edition</div>
@@ -105,16 +104,17 @@
     <div class="hp-nav-index" id="navLinks">
         <a class="nav-link active" href="#" onclick="filterCategory('all');return false;">Home</a>
     </div>
-    <div class="hp-nav-tools">
-        <div class="hp-search-wrap">
-            <i class="fa fa-search"></i>
-            <input type="text" id="searchInput" class="hp-search-input" placeholder="Search" autocomplete="off">
-            <div class="search-suggestions" id="searchSuggestions"></div>
+    <div class="hp-nav-sub">
+        <div class="row">
+            <div class="hp-search-wrap">
+                <i class="fa fa-search"></i>
+                <input type="text" id="searchInput" class="hp-search-input" placeholder="Search" autocomplete="off">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+            <span id="accountLinks"></span>
         </div>
-        <span id="accountLinks"></span>
     </div>
 </nav>
-</div>
 
 <main>
     <div class="hp-shell">
@@ -195,20 +195,24 @@
         </div>
         <div class="col hp-footer-sections">
             <h5>Sections</h5>
-            <div class="hp-footer-sections-list">
-                <a href="#" onclick="filterCategory('politics');window.scrollTo({top:0,behavior:'smooth'});return false;">Politics</a>
-                <a href="#" onclick="filterCategory('world');window.scrollTo({top:0,behavior:'smooth'});return false;">World</a>
-                <a href="#" onclick="filterCategory('business');window.scrollTo({top:0,behavior:'smooth'});return false;">Business</a>
-                <a href="#" onclick="filterCategory('technology');window.scrollTo({top:0,behavior:'smooth'});return false;">Technology</a>
-                <a href="#" onclick="filterCategory('sports');window.scrollTo({top:0,behavior:'smooth'});return false;">Sports</a>
-                <a href="#" onclick="filterCategory('ai');window.scrollTo({top:0,behavior:'smooth'});return false;">AI</a>
-                <a href="#" onclick="filterCategory('economy');window.scrollTo({top:0,behavior:'smooth'});return false;">Economy</a>
-                <a href="#" onclick="filterCategory('health');window.scrollTo({top:0,behavior:'smooth'});return false;">Health</a>
-                <a href="#" onclick="filterCategory('science');window.scrollTo({top:0,behavior:'smooth'});return false;">Science</a>
-                <a href="#" onclick="filterCategory('environment');window.scrollTo({top:0,behavior:'smooth'});return false;">Environment</a>
-                <a href="#" onclick="filterCategory('entertainment');window.scrollTo({top:0,behavior:'smooth'});return false;">Entertainment</a>
-                <a href="#" onclick="filterCategory('culture');window.scrollTo({top:0,behavior:'smooth'});return false;">Culture</a>
-                <a href="#" onclick="filterCategory('travel');window.scrollTo({top:0,behavior:'smooth'});return false;">Travel</a>
+            <div class="hp-footer-sections-cols">
+                <div>
+                    <a href="#" onclick="filterCategory('politics');window.scrollTo({top:0,behavior:'smooth'});return false;">Politics</a>
+                    <a href="#" onclick="filterCategory('world');window.scrollTo({top:0,behavior:'smooth'});return false;">World</a>
+                    <a href="#" onclick="filterCategory('business');window.scrollTo({top:0,behavior:'smooth'});return false;">Business</a>
+                    <a href="#" onclick="filterCategory('technology');window.scrollTo({top:0,behavior:'smooth'});return false;">Technology</a>
+                    <a href="#" onclick="filterCategory('sports');window.scrollTo({top:0,behavior:'smooth'});return false;">Sports</a>
+                    <a href="#" onclick="filterCategory('ai');window.scrollTo({top:0,behavior:'smooth'});return false;">AI</a>
+                    <a href="#" onclick="filterCategory('economy');window.scrollTo({top:0,behavior:'smooth'});return false;">Economy</a>
+                </div>
+                <div>
+                    <a href="#" onclick="filterCategory('health');window.scrollTo({top:0,behavior:'smooth'});return false;">Health</a>
+                    <a href="#" onclick="filterCategory('science');window.scrollTo({top:0,behavior:'smooth'});return false;">Science</a>
+                    <a href="#" onclick="filterCategory('environment');window.scrollTo({top:0,behavior:'smooth'});return false;">Environment</a>
+                    <a href="#" onclick="filterCategory('entertainment');window.scrollTo({top:0,behavior:'smooth'});return false;">Entertainment</a>
+                    <a href="#" onclick="filterCategory('culture');window.scrollTo({top:0,behavior:'smooth'});return false;">Culture</a>
+                    <a href="#" onclick="filterCategory('travel');window.scrollTo({top:0,behavior:'smooth'});return false;">Travel</a>
+                </div>
             </div>
         </div>
         <div class="col">
@@ -340,26 +344,6 @@ function logoutUser() {
         location.reload();
     }
 }
-
-/* ---------- sticky-compact nameplate on scroll ----------
-   Two safeguards against jitter: overflow-anchor:none on the sticky
-   wrapper (css) stops the browser's scroll-anchoring from fighting the
-   height change, and a hysteresis gap here (compact at 110, expand at 60)
-   stops any flip-flop right at a single threshold. rAF avoids layout
-   thrashing on fast scroll. */
-let hpTicking = false;
-window.addEventListener('scroll', () => {
-    if (hpTicking) return;
-    hpTicking = true;
-    requestAnimationFrame(() => {
-        const np = document.getElementById('hpNameplate');
-        if (np) {
-            if (window.scrollY > 110) np.classList.add('hp-compact');
-            else if (window.scrollY < 60) np.classList.remove('hp-compact');
-        }
-        hpTicking = false;
-    });
-});
 
 /* ---------- helpers ---------- */
 function getReadingTime(text) { const words = (text || '').split(/\s+/).length; return Math.max(1, Math.ceil(words / 200)); }
