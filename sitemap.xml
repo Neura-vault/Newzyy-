@@ -1,68 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <url>
-        <loc>https://newzyy.site/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/ur/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/hi/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/ar/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/es/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/fr/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/bn/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/tr/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/id/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/pt/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/about/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/contact/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/author/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/privacy/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/terms/</loc>
-    </url>
-
-    <url>
-        <loc>https://newzyy.site/search/</loc>
-    </url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://newzyy.site/</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://newzyy.site/" />
+    <xhtml:link rel="alternate" hreflang="ur" href="https://newzyy.site/ur/" />
+    <xhtml:link rel="alternate" hreflang="hi" href="https://newzyy.site/hi/" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://newzyy.site/ar/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://newzyy.site/es/" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://newzyy.site/fr/" />
+    <xhtml:link rel="alternate" hreflang="bn" href="https://newzyy.site/bn/" />
+    <xhtml:link rel="alternate" hreflang="tr" href="https://newzyy.site/tr/" />
+    <xhtml:link rel="alternate" hreflang="id" href="https://newzyy.site/id/" />
+    <xhtml:link rel="alternate" hreflang="pt" href="https://newzyy.site/pt/" />
+  </url>
+  <url><loc>https://newzyy.site/ur/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/hi/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/ar/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/es/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/fr/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/bn/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/tr/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/id/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/pt/</loc><changefreq>hourly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://newzyy.site/about/</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://newzyy.site/contact/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://newzyy.site/author/</loc><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://newzyy.site/privacy/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://newzyy.site/terms/</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://newzyy.site/search/</loc><changefreq>monthly</changefreq><priority>0.3</priority></url>
 </urlset>
