@@ -90,6 +90,7 @@
     </div>
 </div>
 
+<div id="hpMastheadSticky">
 <header id="hpNameplate">
     <div class="nameplate-row">
         <div class="nameplate-meta">Vol. IV — Digital Edition</div>
@@ -115,6 +116,7 @@
         </div>
     </div>
 </nav>
+</div>
 
 <main>
     <div class="hp-shell">
@@ -193,21 +195,27 @@
             <div class="brand">Newzyy</div>
             <p class="brand-desc">Independent digital journalism covering politics, business, technology and culture — reported and edited around the clock.</p>
         </div>
-        <div class="col">
+        <div class="col hp-footer-sections">
             <h5>Sections</h5>
-            <a href="#" onclick="filterCategory('politics');window.scrollTo({top:0,behavior:'smooth'});return false;">Politics</a>
-            <a href="#" onclick="filterCategory('world');window.scrollTo({top:0,behavior:'smooth'});return false;">World</a>
-            <a href="#" onclick="filterCategory('business');window.scrollTo({top:0,behavior:'smooth'});return false;">Business</a>
-            <a href="#" onclick="filterCategory('technology');window.scrollTo({top:0,behavior:'smooth'});return false;">Technology</a>
-            <a href="#" onclick="filterCategory('sports');window.scrollTo({top:0,behavior:'smooth'});return false;">Sports</a>
-            <a href="#" onclick="filterCategory('ai');window.scrollTo({top:0,behavior:'smooth'});return false;">Ai</a>
-            <a href="#" onclick="filterCategory('economy');window.scrollTo({top:0,behavior:'smooth'});return false;">Economy</a>
-            <a href="#" onclick="filterCategory('health');window.scrollTo({top:0,behavior:'smooth'});return false;">Health</a>
-            <a href="#" onclick="filterCategory('science');window.scrollTo({top:0,behavior:'smooth'});return false;">Science</a>
-            <a href="#" onclick="filterCategory('environment');window.scrollTo({top:0,behavior:'smooth'});return false;">Environment</a>
-            <a href="#" onclick="filterCategory('entertainment');window.scrollTo({top:0,behavior:'smooth'});return false;">Entertainment</a>
-            <a href="#" onclick="filterCategory('culture');window.scrollTo({top:0,behavior:'smooth'});return false;">Culture</a>
-            <a href="#" onclick="filterCategory('travel');window.scrollTo({top:0,behavior:'smooth'});return false;">Travel</a>
+            <div class="hp-footer-sections-cols">
+                <div>
+                    <a href="#" onclick="filterCategory('politics');window.scrollTo({top:0,behavior:'smooth'});return false;">Politics</a>
+                    <a href="#" onclick="filterCategory('world');window.scrollTo({top:0,behavior:'smooth'});return false;">World</a>
+                    <a href="#" onclick="filterCategory('business');window.scrollTo({top:0,behavior:'smooth'});return false;">Business</a>
+                    <a href="#" onclick="filterCategory('technology');window.scrollTo({top:0,behavior:'smooth'});return false;">Technology</a>
+                    <a href="#" onclick="filterCategory('sports');window.scrollTo({top:0,behavior:'smooth'});return false;">Sports</a>
+                    <a href="#" onclick="filterCategory('ai');window.scrollTo({top:0,behavior:'smooth'});return false;">AI</a>
+                    <a href="#" onclick="filterCategory('economy');window.scrollTo({top:0,behavior:'smooth'});return false;">Economy</a>
+                </div>
+                <div>
+                    <a href="#" onclick="filterCategory('health');window.scrollTo({top:0,behavior:'smooth'});return false;">Health</a>
+                    <a href="#" onclick="filterCategory('science');window.scrollTo({top:0,behavior:'smooth'});return false;">Science</a>
+                    <a href="#" onclick="filterCategory('environment');window.scrollTo({top:0,behavior:'smooth'});return false;">Environment</a>
+                    <a href="#" onclick="filterCategory('entertainment');window.scrollTo({top:0,behavior:'smooth'});return false;">Entertainment</a>
+                    <a href="#" onclick="filterCategory('culture');window.scrollTo({top:0,behavior:'smooth'});return false;">Culture</a>
+                    <a href="#" onclick="filterCategory('travel');window.scrollTo({top:0,behavior:'smooth'});return false;">Travel</a>
+                </div>
+            </div>
         </div>
         <div class="col">
             <h5>Company</h5>
@@ -537,14 +545,17 @@ function renderAll() {
 function loadMore() { displayCount += 9; renderAll(); }
 
 /* ---------- editor's picks — loops every category that actually has data,
-   not a fixed number. Add/remove a key in CATEGORY_NAMES and this adapts. ---------- */
+   not a fixed number. Add/remove a key in CATEGORY_NAMES and this adapts.
+   A category needs only 1 article to get its own section: with just 1 item
+   the layout collapses to a single full-width feature card (no empty list
+   column), so nothing ever looks broken or missing. ---------- */
 async function loadEditorsPicks() {
     const root = document.getElementById('editorsPicksRoot');
     if (!root) return;
     const grouped = {};
     allNews.forEach(a => { if (!grouped[a.category]) grouped[a.category] = []; if (grouped[a.category].length < 4) grouped[a.category].push(a); });
     const order = Object.keys(CATEGORY_NAMES);
-    const sections = order.filter(cat => grouped[cat] && grouped[cat].length >= 2);
+    const sections = order.filter(cat => grouped[cat] && grouped[cat].length >= 1);
     if (!sections.length) { root.innerHTML = ''; return; }
     root.innerHTML = sections.map(cat => {
         const label = CATEGORY_NAMES[cat] || cat;
@@ -554,18 +565,19 @@ async function loadEditorsPicks() {
         return `
         <div class="hp-picks-block">
             <div class="hp-head"><h2>${label}</h2><span class="hp-view-all" onclick="filterCategory('${cat}');window.scrollTo({top:0,behavior:'smooth'});">More in ${label} →</span></div>
-            <div class="hp-picks-grid">
+            <div class="hp-picks-grid${list.length ? '' : ' hp-picks-solo'}">
                 <div class="hp-picks-feature" onclick="openNews('${feature.id}')">
                     <img src="${feature.image}" onerror="${fallbackImg(600)}" loading="lazy">
                     <div class="t">${feature.title}</div>
                 </div>
+                ${list.length ? `
                 <div class="hp-picks-list">
                     ${list.map((a, i) => `
                         <div class="pli" onclick="openNews('${a.id}')">
                             <div class="n">${i + 1}</div>
                             <div class="t">${a.title}</div>
                         </div>`).join('')}
-                </div>
+                </div>` : ''}
             </div>
         </div>`;
     }).join('');
