@@ -150,7 +150,7 @@ const CATEGORY_NAMES = {
 };
 
 function getReadingTime(text) {
-    const words = (text || '').split(/\s+/).length;
+    const words = (text || '').replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length;
     return Math.max(1, Math.ceil(words / 200));
 }
 function formatViews(n) {
@@ -177,9 +177,12 @@ function updateAccountLinks() {
     }
 }
 
-// Body comes back as one text blob — split into readable paragraphs.
+// New articles arrive as ready-to-use HTML (<p> tags) straight from the
+// backend — inserted as-is. Older articles published before this change are
+// still plain text, so they fall back to the paragraph-splitting logic.
 function renderBody(bodyText) {
     if (!bodyText) return '<p>Full article text is not available for this story yet.</p>';
+    if (/<p[\s>]/i.test(bodyText)) return bodyText; // already HTML from the backend
     let paras = bodyText.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean);
     if (paras.length <= 1) {
         const sentences = bodyText.match(/[^.!?]+[.!?]+/g) || [bodyText];
