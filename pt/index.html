@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt" dir="ltr">
+
 <head>
     <meta charset="utf-8">
     <title>Newzyy — Últimas Notícias</title>
+    <meta name="description" content="Últimas notícias da Newzyy — política, negócios e esportes.">
     <link rel="canonical" href="https://newzyy.site/pt/">
     <link rel="alternate" hreflang="en" href="https://newzyy.site/">
     <link rel="alternate" hreflang="ur" href="https://newzyy.site/ur/">
@@ -15,154 +17,266 @@
     <link rel="alternate" hreflang="id" href="https://newzyy.site/id/">
     <link rel="alternate" hreflang="pt" href="https://newzyy.site/pt/">
     <link rel="alternate" hreflang="x-default" href="https://newzyy.site/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Newzyy">
+    <meta property="og:title" content="Newzyy — Últimas Notícias">
+    <meta property="og:description" content="Últimas notícias da Newzyy — política, negócios e esportes.">
+    <meta property="og:url" content="https://newzyy.site/pt/">
+    <meta property="og:image" content="https://newzyy.site/images/logos/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Newzyy — Últimas Notícias">
+    <meta name="twitter:description" content="Últimas notícias da Newzyy — política, negócios e esportes.">
+    <meta name="twitter:image" content="https://newzyy.site/images/logos/logo.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "NewsMediaOrganization",
+        "name": "Newzyy",
+        "url": "https://newzyy.site/pt/",
+        "logo": "https://newzyy.site/images/logos/logo.png",
+        "sameAs": []
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Newzyy",
+        "url": "https://newzyy.site/pt/",
+        "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://newzyy.site/search.html?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+        }
+    }
+    </script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-name" content="Newzyy" />
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../plugins/slick-carousel/slick.css">
+    <link rel="stylesheet" href="../plugins/slick-carousel/slick-theme.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/newzyy-theme.css">
+
     <style>
         /* Page-specific tweaks only — shared look lives in css/newzyy-theme.css */
-
     </style>
 </head>
-<body>
+<body class="hp-body">
 
-<div class="lang-note" style="background:var(--ink);color:#fff;text-align:center;padding:7px;font-family:var(--sans);font-size:.75rem;">
-    Você está vendo a versão em português do Newzyy — <a href="/" style="color:#fff;text-decoration:underline;">Ver versão em inglês</a>
-</div>
 
-<div class="util-bar">
+<div class="hp-utility">
     <div class="container">
-        <span id="dateDisplay"></span>
-        <div class="d-flex align-items-center gap-3">
-            <span class="weather" id="weatherWidget"><i class="fa fa-spinner fa-spin"></i></span>
-            <button class="theme-toggle" id="themeToggle" title="Dark mode"><i class="fa fa-moon-o"></i></button>
+        <span class="hp-edition">Edição Paquistão</span>
+        <div class="hp-utility-right">
+            <span id="dateDisplay"></span>
+            <span id="weatherWidget"><i class="fa fa-spinner fa-spin"></i></span>
+            <button class="hp-theme-btn" id="themeToggle" title="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
         </div>
     </div>
 </div>
 
-<div class="ticker-bar">
+<div class="hp-ticker">
     <div class="container">
-        <span class="tag">Urgente</span>
-        <div class="track"><div class="track-inner" id="trendingTrack"><span>Newzyy</span></div></div>
+        <span class="hp-ticker-tag">Urgente</span>
+        <div class="hp-ticker-track"><div class="hp-ticker-inner" id="trendingTrack"><span>Welcome to Newzyy</span></div></div>
     </div>
 </div>
 
-<header class="masthead">
-    <div class="container">
-        <a href="/pt/" class="site-logo">Newzy<span>y</span></a>
-        <div class="masthead-tools">
-            <div class="search-wrapper">
-                <i class="fa fa-search"></i>
-                <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar" autocomplete="off">
-                <div class="search-suggestions" id="searchSuggestions"></div>
-            </div>
-            <div class="account-section"><span id="accountLinks"></span></div>
-        </div>
+<header id="hpNameplate">
+    <div class="nameplate-row">
+        <div class="nameplate-meta">Vol. IV — Edição Digital</div>
+        <a href="/pt/" class="nameplate-brand">Newzyy</a>
+        <div class="nameplate-meta right" id="nameplateDate"></div>
     </div>
+    <div class="nameplate-rule-set"><div class="r1"></div><div class="r2"></div></div>
+    <div class="nameplate-tagline">Verdade · Clareza · Jornalismo Independente</div>
 </header>
 
-<nav class="bbc-nav">
-    <div class="container">
-        <div class="d-flex flex-wrap" id="navLinks">
-            <a class="nav-link active" href="#" onclick="filterCategory('all');return false;">Início</a>
-            <a class="nav-link" href="#" onclick="filterCategory('politics');return false;">Política</a>
-            <a class="nav-link" href="#" onclick="filterCategory('technology');return false;">Tecnologia</a>
-            <a class="nav-link" href="#" onclick="filterCategory('ai');return false;">IA</a>
-            <a class="nav-link" href="#" onclick="filterCategory('sports');return false;">Esportes</a>
-            <a class="nav-link" href="#" onclick="filterCategory('business');return false;">Negócios</a>
-            <a class="nav-link" href="#" onclick="filterCategory('health');return false;">Saúde</a>
-            <a class="nav-link" href="#" onclick="filterCategory('science');return false;">Ciência</a>
-            <a class="nav-link" href="#" onclick="filterCategory('entertainment');return false;">Entretenimento</a>
-            <a class="nav-link" href="#" onclick="filterCategory('travel');return false;">Viagens</a>
-            <a class="nav-link" href="#" onclick="filterCategory('environment');return false;">Meio Ambiente</a>
-            <a class="nav-link" href="#" onclick="filterCategory('culture');return false;">Cultura</a>
-            <a class="nav-link" href="#" onclick="filterCategory('world');return false;">Mundo</a>
-            <a class="nav-link" href="#" onclick="filterCategory('economy');return false;">Economia</a>
+<nav class="primary-nav-v2">
+    <div class="hp-nav-index" id="navLinks">
+        <a class="nav-link active" href="/pt/" onclick="filterCategory('all');return false;">Início</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=politics" onclick="filterCategory('politics');return false;">Política</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=technology" onclick="filterCategory('technology');return false;">Tecnologia</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=ai" onclick="filterCategory('ai');return false;">IA</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=sports" onclick="filterCategory('sports');return false;">Esportes</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=business" onclick="filterCategory('business');return false;">Negócios</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=health" onclick="filterCategory('health');return false;">Saúde</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=science" onclick="filterCategory('science');return false;">Ciência</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=entertainment" onclick="filterCategory('entertainment');return false;">Entretenimento</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=travel" onclick="filterCategory('travel');return false;">Viagens</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=environment" onclick="filterCategory('environment');return false;">Meio Ambiente</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=culture" onclick="filterCategory('culture');return false;">Cultura</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=world" onclick="filterCategory('world');return false;">Mundo</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/pt/?cat=economy" onclick="filterCategory('economy');return false;">Economia</a>
+    </div>
+    <div class="hp-nav-sub">
+        <div class="row">
+            <div class="hp-search-wrap">
+                <i class="fa fa-search"></i>
+                <input type="text" id="searchInput" class="hp-search-input" placeholder="Pesquisar" autocomplete="off">
+                <div class="search-suggestions" id="searchSuggestions"></div>
+            </div>
+            <span id="accountLinks"></span>
         </div>
     </div>
 </nav>
 
-<main class="container">
-    <div id="categoryHero" class="bbc-category-hero" style="display:none;">
-        <span class="cat-title"><span id="catHeroName"></span></span>
-        <span class="cat-count" id="catHeroCount"></span>
-    </div>
-
-    <div id="heroSection" class="lead-package"></div>
-
-    <div class="section-divider accent" id="gridSectionLabel"><span>Principais Notícias</span></div>
-
-    <div class="row">
-        <div class="col-lg-8">
-            <div id="newsContainer"></div>
-            <div class="bbc-load-more" id="loadMoreBtn" style="display:none;">
-                <button onclick="loadMore()">Carregar Mais</button>
-            </div>
+<main>
+    <div class="hp-shell">
+        <div id="categoryHero" class="hp-cat-hero" style="display:none;">
+            <span class="cn" id="catHeroName"></span>
+            <span class="cc" id="catHeroCount"></span>
         </div>
 
-        <div class="col-lg-4 bbc-sidebar">
-            <div class="widget">
-                <h4 class="widget-title">Últimas</h4>
-                <div id="justInRoot"></div>
-            </div>
-            <div class="widget">
-                <h4 class="widget-title">Mais Lidas</h4>
-                <div id="mostReadRoot"></div>
-            </div>
-            <div class="widget">
-                <div class="newsletter-widget">
-                    <h4>Fique Informado</h4>
-                    <p>Receba as principais notícias do dia no seu e-mail toda manhã.</p>
-                    <input type="email" id="newsletterEmail" placeholder="Seu endereço de e-mail">
-                    <button onclick="submitNewsletter()">Inscrever-se</button>
+        <div id="heroBlock"></div>
+        <div id="latestStripBlock"></div>
+
+        <div class="hp-head accent" id="topStoriesHead"><h2>Principais Notícias</h2></div>
+        <div id="topStoriesBlock"></div>
+
+        <div class="hp-head" id="briefsHead"><h2>Breves</h2></div>
+        <div id="briefsBlock"></div>
+    </div>
+
+    <div class="hp-pictures-band" id="picturesBand">
+        <div class="hp-shell">
+            <div class="hp-head light"><h2>Em Imagens</h2></div>
+            <div class="hp-pictures-row" id="picturesRow"></div>
+        </div>
+    </div>
+
+    <div class="hp-shell">
+        <div class="hp-head" id="gridSectionLabel"><h2>Últimas Notícias</h2></div>
+        <div class="hp-content-row">
+            <div>
+                <div class="hp-dense-grid" id="newsContainer"></div>
+                <div class="hp-load-more" id="loadMoreBtn" style="display:none;">
+                    <button onclick="loadMore()">Carregar Mais</button>
                 </div>
             </div>
-            <div class="widget">
-                <h4 class="widget-title">Temas em Alta</h4>
-                <div id="trendingTopicsRoot" class="d-flex flex-wrap"></div>
-            </div>
+            <div class="hp-vrule" id="sidebarRule"></div>
+            <aside id="sidebarBlock">
+                <div class="hp-side-widget">
+                    <span class="hp-side-title">Mais Lidas</span>
+                    <div id="mostReadRoot"></div>
+                </div>
+                <div class="hp-side-widget">
+                    <div class="hp-newsletter">
+                        <span class="lbl">Fique Informado</span>
+                        <h4>Fique Informado</h4>
+                        <p>Receba as principais notícias do dia no seu e-mail toda manhã.</p>
+                        <input type="email" id="newsletterEmail" placeholder="Seu endereço de e-mail">
+                        <button onclick="submitNewsletter()">Inscrever-se</button>
+                    </div>
+                </div>
+                <div class="hp-side-widget">
+                    <span class="hp-side-title">Temas em Alta</span>
+                    <div class="hp-tags" id="trendingTopicsRoot"></div>
+                </div>
+                <div class="hp-side-widget">
+                    <span class="hp-side-title">Siga-nos</span>
+                    <div class="hp-follow">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </aside>
         </div>
-    </div>
 
-    <div id="editorsPicksRoot"></div>
+        <div id="editorsPicksRoot"></div>
+
+        <div id="mostReadFullHead" class="hp-head"><h2>Mais Lidas Esta Semana</h2></div>
+        <div id="mostReadFullBlock"></div>
+    </div>
 </main>
 
-<footer class="bbc-footer">
-    <div class="container">
-        <div class="links">
-            <a href="/pt/">Início</a>
+<footer class="hp-mega-footer">
+    <div class="top">
+        <div>
+            <div class="brand">Newzyy</div>
+            <p class="brand-desc">Jornalismo digital independente cobrindo política, negócios, tecnologia e cultura — reportado e editado 24 horas por dia.</p>
+        </div>
+        <div class="col hp-footer-sections">
+            <h5>Seções</h5>
+            <div class="hp-footer-sections-cols">
+                <div>
+                    <a href="#" onclick="filterCategory('politics');window.scrollTo({top:0,behavior:'smooth'});return false;">Política</a>
+                    <a href="#" onclick="filterCategory('world');window.scrollTo({top:0,behavior:'smooth'});return false;">Mundo</a>
+                    <a href="#" onclick="filterCategory('business');window.scrollTo({top:0,behavior:'smooth'});return false;">Negócios</a>
+                    <a href="#" onclick="filterCategory('technology');window.scrollTo({top:0,behavior:'smooth'});return false;">Tecnologia</a>
+                    <a href="#" onclick="filterCategory('sports');window.scrollTo({top:0,behavior:'smooth'});return false;">Esportes</a>
+                    <a href="#" onclick="filterCategory('ai');window.scrollTo({top:0,behavior:'smooth'});return false;">IA</a>
+                    <a href="#" onclick="filterCategory('economy');window.scrollTo({top:0,behavior:'smooth'});return false;">Economia</a>
+                </div>
+                <div>
+                    <a href="#" onclick="filterCategory('health');window.scrollTo({top:0,behavior:'smooth'});return false;">Saúde</a>
+                    <a href="#" onclick="filterCategory('science');window.scrollTo({top:0,behavior:'smooth'});return false;">Ciência</a>
+                    <a href="#" onclick="filterCategory('environment');window.scrollTo({top:0,behavior:'smooth'});return false;">Meio Ambiente</a>
+                    <a href="#" onclick="filterCategory('entertainment');window.scrollTo({top:0,behavior:'smooth'});return false;">Entretenimento</a>
+                    <a href="#" onclick="filterCategory('culture');window.scrollTo({top:0,behavior:'smooth'});return false;">Cultura</a>
+                    <a href="#" onclick="filterCategory('travel');window.scrollTo({top:0,behavior:'smooth'});return false;">Viagens</a>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <h5>Empresa</h5>
             <a href="/about/">Sobre Nós</a>
             <a href="/contact/">Contato</a>
             <a href="/author/">Equipe Editorial</a>
-            <a href="/privacy/">Privacidade</a>
-            <a href="/terms/">Termos</a>
+            <a href="/privacy/">Política de Privacidade</a>
+            <a href="/terms/">Termos de Uso</a>
         </div>
-
-        <div style="text-align:center; margin: 18px 0 0;">
-            <button class="lang-switch-toggle"
-                    onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
-                Newzyy in other languages <i class="fa fa-chevron-down"></i>
-            </button>
+        <div class="col">
+            <h5>Conta</h5>
+            <a href="/account/">Entrar</a>
+            <a href="/signup/">Registrar</a>
+            <a href="/bookmarks/">Meus Salvos</a>
+            <a href="/search/">Pesquisar</a>
         </div>
-
-        <div class="lang-switcher-panel" id="langPanel" style="max-width:640px;margin:16px auto 0;">
-            <div class="lang-grid">
-                <a href="/">English</a>
-                <a href="/ur/">اردو</a>
-                <a href="/hi/">हिन्दी</a>
-                <a href="/ar/">العربية</a>
-                <a href="/es/">Español</a>
-                <a href="/fr/">Français</a>
-                <a href="/bn/">বাংলা</a>
-                <a href="/tr/">Türkçe</a>
-                <a href="/id/">Indonesia</a>
-                <a href="/pt/" class="current">Português</a>
-            </div>
+    </div>
+    <div class="hp-colophon"><div class="inner">Newzyy é uma publicação digital independente. Fundada em 2022. Editorialmente independente — nenhuma propriedade externa influencia nossa cobertura.</div></div>
+    <div class="langbar">
+        <div class="langbar-inner">
+            <a href="/">English</a>
+            <a href="/ur/">اردو</a>
+            <a href="/hi/">हिन्दी</a>
+            <a href="/ar/">العربية</a>
+            <a href="/es/">Español</a>
+            <a href="/fr/">Français</a>
+            <a href="/bn/">বাংলা</a>
+            <a href="/tr/">Türkçe</a>
+            <a href="/id/">Indonesia</a>
+            <a href="/pt/" class="cur">Português</a>
         </div>
-
-        <div class="copyright" style="margin-top:18px;">2026 Newzyy — Jornalismo Independente</div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-inner">
+            <span>© 2026 Newzyy. Todos os direitos reservados.</span>
+            <span>Jornalismo Independente</span>
+        </div>
     </div>
 </footer>
 
@@ -172,36 +286,19 @@
 <script>
 const API_BASE = 'https://newzyy.onrender.com';
 const LANG = 'pt';
-let allNews = [], currentDataset = [], categoryCache = {}, categoryTotal = {}, currentFilter = 'all', displayCount = 6;
+const DEFAULT_AUTHOR = 'Newzyy Staff';
+let allNews = [], currentDataset = [], categoryCache = {}, categoryTotal = {}, currentFilter = 'all', displayCount = 9;
 
+/* Category order controls the display order of every per-category module
+   (Wire Briefs picks which 3 of these to use; Editor's Picks loops all of
+   them). Add/remove a key here and every section adapts automatically —
+   nothing below is hardcoded to a specific number of categories. */
 const CATEGORY_NAMES = {
-    politics: 'Política',
-    technology: 'Tecnologia',
-    ai: 'IA',
-    sports: 'Esportes',
-    business: 'Negócios',
-    health: 'Saúde',
-    science: 'Ciência',
-    entertainment: 'Entretenimento',
-    travel: 'Viagens',
-    environment: 'Meio Ambiente',
-    culture: 'Cultura',
-    world: 'Mundo',
-    economy: 'Economia'
+    politics: 'Política', technology: 'Tecnologia', ai: 'IA', sports: 'Esportes', business: 'Negócios', health: 'Saúde', science: 'Ciência', entertainment: 'Entretenimento', travel: 'Viagens', environment: 'Meio Ambiente', culture: 'Cultura', world: 'Mundo', economy: 'Economia'
 };
-const CATEGORY_COLORS = {
-    politics: '#b80000', technology: '#2563eb', ai: '#9333ea', sports: '#16a34a', business: '#7c3aed',
-    health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
-    environment: '#22c55e', culture: '#8b5cf6', world: '#3b82f6', economy: '#f59e0e'
-};
-const T = {
-    home: 'Início', topStories: 'Principais Notícias', justIn: 'Últimas', mostRead: 'Mais Lidas',
-    noNews: 'Nenhuma notícia disponível no momento', moreIn: 'Mais em', arrow: '→', articlesSuffix: 'notícias',
-    loading: 'Carregando...', couldNotLoad: 'Não foi possível carregar.', noData: 'Sem dados', minRead: 'min',
-    justNow: 'Agora', login: 'Entrar', register: 'Registrar', myBookmarks: 'Meus Salvos',
-    logout: 'Sair', logoutConfirm: 'Tem certeza que deseja sair?'
-};
+const BRIEF_CATEGORIES = ['world', 'business', 'sports'];
 
+/* ---------- theme / date / weather / account ---------- */
 function initTheme() {
     const saved = localStorage.getItem('newzyy_theme') || 'light';
     document.documentElement.setAttribute('data-theme', saved);
@@ -218,12 +315,11 @@ function updateThemeIcon(theme) {
     const btn = document.getElementById('themeToggle');
     if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
 }
-
 function renderDate() {
-    const el = document.getElementById('dateDisplay');
-    if (el) el.textContent = new Date().toLocaleDateString('pt', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const d = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const el1 = document.getElementById('dateDisplay'); if (el1) el1.textContent = d;
+    const el2 = document.getElementById('nameplateDate'); if (el2) el2.textContent = d;
 }
-
 function weatherIcon(code) {
     if (code === 0) return 'fa-sun-o';
     if ([1, 2, 3].includes(code)) return 'fa-cloud';
@@ -247,113 +343,79 @@ async function loadWeather(lat, lon, label) {
 function initWeather() {
     loadWeather(33.6844, 73.0479, 'Islamabad');
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            pos => loadWeather(pos.coords.latitude, pos.coords.longitude, ''),
-            () => {}, { timeout: 8000 }
-        );
+        navigator.geolocation.getCurrentPosition(pos => loadWeather(pos.coords.latitude, pos.coords.longitude, ''), () => {}, { timeout: 8000 });
     }
 }
-
 function updateAccountLinks() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
-    const container = document.getElementById('accountLinks');
-    if (!container) return;
+    const c = document.getElementById('accountLinks');
+    if (!c) return;
     if (loggedIn) {
-        const initials = loggedIn.name.charAt(0).toUpperCase();
-        container.innerHTML = `
-            <div class="user-profile">
-                <div class="avatar">${initials}</div>
-                <div class="name-block">
-                    <a href="/pt/" class="uname" style="text-decoration:none;color:inherit;">${loggedIn.name}</a>
-                    <a href="/bookmarks/" class="bookmarks-link">${T.myBookmarks}</a>
-                </div>
-                <button class="btn-logout" onclick="logoutUser()">${T.logout}</button>
+        c.innerHTML = `
+            <div class="hp-user">
+                <div class="hp-avatar">${loggedIn.name.charAt(0).toUpperCase()}</div>
+                <a href="/bookmarks/" class="hp-uname">${loggedIn.name}</a>
+                <a href="#" onclick="logoutUser();return false;">Sair</a>
             </div>`;
     } else {
-        container.innerHTML = `<a href="/account/" class="btn-login">${T.login}</a> <a href="/signup/" class="btn-signup">${T.register}</a>`;
+        c.innerHTML = `<a href="/account/">Entrar</a> <a href="/signup/">Registrar</a>`;
     }
 }
 function logoutUser() {
-    if (confirm(T.logoutConfirm)) {
+    if (confirm('Tem certeza que deseja sair?')) {
         localStorage.removeItem('newzyy_logged_in');
         localStorage.removeItem('newzyy_token');
         location.reload();
     }
 }
 
-function getReadingTime(text) {
-    const words = (text || '').split(/\s+/).length;
-    return Math.max(1, Math.ceil(words / 200));
-}
-function formatViews(n) {
-    n = n || 0;
-    if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
-    if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
-    return String(n);
-}
+/* ---------- helpers ---------- */
+function getReadingTime(text) { const words = (text || '').replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length; return Math.max(1, Math.ceil(words / 200)); }
+function formatViews(n) { n = n || 0; if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M'; if (n >= 1000) return (n / 1000).toFixed(1) + 'K'; return String(n); }
 function shortTime(t) { return (t || '').replace(' ago', ''); }
+function authorName(a) { return a.author || DEFAULT_AUTHOR; }
 function showToast(msg) {
     let t = document.getElementById('toast');
     if (!t) { t = document.createElement('div'); t.id = 'toast'; document.body.appendChild(t); }
-    t.textContent = msg;
-    t.style.transform = 'translateX(-50%) translateY(0)';
-    t.style.opacity = '1';
+    t.textContent = msg; t.style.transform = 'translateX(-50%) translateY(0)'; t.style.opacity = '1';
     setTimeout(() => { t.style.opacity = '0'; t.style.transform = 'translateX(-50%) translateY(100px)'; }, 2500);
 }
-function renderLiveBadge(a) { return a.breaking ? `<span class="live-kicker"><span class="dot"></span> ${T.breaking || 'Live'}</span>` : ''; }
-function skeletonGrid(count) {
-    let html = '<div class="skeleton-grid">';
-    for (let i = 0; i < count; i++) html += `<div class="skeleton-card"><div class="skeleton img"></div><div class="skeleton line"></div><div class="skeleton line"></div><div class="skeleton line short"></div></div>`;
-    return html + '</div>';
+function liveBadge(a) { return a.breaking ? `<span class="hp-live"><span class="d"></span> Live</span>` : ''; }
+function catName(a) { return CATEGORY_NAMES[a.category] || a.category || 'News'; }
+function fallbackImg(w) { return `this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=${w}'`; }
+function escAttr(s) { return (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;'); }
+
+/* ---------- skeleton ---------- */
+function skeletonDenseGrid(n) {
+    let h = '';
+    for (let i = 0; i < n; i++) h += `<div class="hp-story-card"><div class="hp-skeleton" style="height:140px;margin-bottom:12px;"></div><div class="hp-skeleton" style="height:9px;width:40%;margin-bottom:8px;"></div><div class="hp-skeleton" style="height:15px;width:90%;margin-bottom:6px;"></div><div class="hp-skeleton" style="height:15px;width:60%;"></div></div>`;
+    return h;
 }
 
+/* ---------- fetch + orchestration ---------- */
 async function fetchNews() {
-    document.getElementById('newsContainer').innerHTML = skeletonGrid(6);
+    document.getElementById('newsContainer').innerHTML = skeletonDenseGrid(9);
     try {
-        const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=50&lang=${LANG}`);
+        const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=60&lang=${LANG}`);
         const data = await res.json();
         allNews = (data.success && data.news) ? data.news : [];
     } catch (e) { allNews = []; }
+
     currentDataset = allNews;
-    displayCount = 6;
+    displayCount = 9;
+
     updateTrendingBar();
     renderHero();
+    renderLatestStrip();
+    renderTopStories();
+    renderBriefs();
+    renderPictures();
     renderAll();
     renderTrendingTopics();
-    renderJustIn();
     loadMostRead();
+    loadMostReadFull();
     updateCategoryHero();
     loadEditorsPicks();
-}
-
-async function loadEditorsPicks() {
-    const root = document.getElementById('editorsPicksRoot');
-    if (!root) return;
-    const grouped = {};
-    allNews.forEach(a => { if (!grouped[a.category]) grouped[a.category] = []; if (grouped[a.category].length < 4) grouped[a.category].push(a); });
-    const order = Object.keys(CATEGORY_NAMES);
-    const sections = order.filter(cat => grouped[cat] && grouped[cat].length > 0);
-    if (!sections.length) { root.innerHTML = ''; return; }
-    root.innerHTML = sections.map(cat => {
-        const label = CATEGORY_NAMES[cat] || cat;
-        const items = grouped[cat];
-        return `
-        <div class="picks-section">
-            <div class="section-divider"><span>${label}</span></div>
-            <div class="picks-header" style="margin-top:-14px;">
-                <span></span>
-                <a href="#" onclick="filterCategory('${cat}');window.scrollTo({top:0,behavior:'smooth'});return false;">${T.moreIn} ${label} ${T.arrow}</a>
-            </div>
-            <div class="picks-row">
-                ${items.map(a => `
-                    <div class="pick-card" onclick="openNews('${a.id}')">
-                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'" loading="lazy">
-                        <div class="title">${a.title}</div>
-                    </div>
-                `).join('')}
-            </div>
-        </div>`;
-    }).join('');
 }
 
 function updateTrendingBar() {
@@ -361,21 +423,182 @@ function updateTrendingBar() {
     if (!c) return;
     const items = allNews.slice(0, 12);
     if (!items.length) { c.innerHTML = '<span>Newzyy</span>'; return; }
-    c.innerHTML = items.map(a => `<a href="#" onclick="openNews('${a.id}'); return false;">${a.title}</a>`).join('');
+    c.innerHTML = items.map(a => `<a href="#" onclick="openNews('${a.id}');return false;">${a.title}</a>`).join('');
 }
 
-function renderJustIn() {
-    const root = document.getElementById('justInRoot');
+/* ---------- hero ---------- */
+function renderHero() {
+    const root = document.getElementById('heroBlock');
     if (!root) return;
-    const items = allNews.slice(0, 6);
-    if (!items.length) { root.innerHTML = `<p class="text-muted small">${T.noNews}</p>`; return; }
+    if (!allNews.length) { root.innerHTML = ''; return; }
+    const feature = allNews[0];
+    const side = allNews.slice(1, 5);
+    root.innerHTML = `
+        <div class="hp-hero">
+            <div class="hp-hero-feature" onclick="openNews('${feature.id}')">
+                <img src="${feature.image}" alt="${escAttr(feature.title)}" onerror="${fallbackImg(1000)}" loading="lazy">
+                <div class="hp-scrim"></div>
+                <div class="hp-hero-text">
+                    <div class="hp-hero-kicker"><span class="k">${catName(feature)}</span>${liveBadge(feature)}</div>
+                    <h1>${feature.title}</h1>
+                    ${feature.excerpt ? `<p class="hp-hero-dek">${feature.excerpt.substring(0, 150)}</p>` : ''}
+                    <div class="hp-hero-meta">${authorName(feature)} · ${feature.time || 'Agora'} · ${getReadingTime(feature.body || feature.excerpt)} min de leitura · <i class="fa fa-eye"></i> ${formatViews(feature.views)}</div>
+                </div>
+            </div>
+            <div class="hp-hero-side">
+                ${side.map((a, i) => `
+                    <div class="hsi" onclick="openNews('${a.id}')">
+                        <div class="n">${i + 1}</div>
+                        <div><span class="k">${catName(a)}</span><div class="t">${a.title}</div></div>
+                    </div>`).join('')}
+            </div>
+        </div>`;
+}
+
+function renderLatestStrip() {
+    const root = document.getElementById('latestStripBlock');
+    if (!root) return;
+    const items = allNews.slice(0, 8);
+    if (!items.length) { root.innerHTML = ''; return; }
+    root.innerHTML = `<div class="hp-latest">${items.map(a => `
+        <div class="li" onclick="openNews('${a.id}')">
+            <div class="tm">${shortTime(a.time)}</div>
+            <div class="tt">${a.title}</div>
+        </div>`).join('')}</div>`;
+}
+
+/* ---------- top stories: 1 feature + text list ---------- */
+function renderTopStories() {
+    const root = document.getElementById('topStoriesBlock');
+    if (!root) return;
+    const items = allNews.slice(5, 9);
+    if (!items.length) { root.innerHTML = ''; return; }
+    const feature = items[0];
+    const list = items.slice(1);
+    root.innerHTML = `
+        <div class="hp-ts">
+            <div class="hp-ts-feature" onclick="openNews('${feature.id}')">
+                <img src="${feature.image}" alt="${escAttr(feature.title)}" onerror="${fallbackImg(700)}" loading="lazy">
+                <span class="k">${catName(feature)}</span>
+                <h3>${feature.title}</h3>
+                <p>${(feature.excerpt || '').substring(0, 140)}...</p>
+                <div class="m">${authorName(feature)} · ${feature.time || 'Agora'}</div>
+            </div>
+            <div class="hp-ts-rule"></div>
+            <div class="hp-ts-list">
+                ${list.map(a => `
+                    <div class="tli" onclick="openNews('${a.id}')">
+                        <img src="${a.image}" alt="${escAttr(a.title)}" onerror="${fallbackImg(200)}" loading="lazy">
+                        <div>
+                            <span class="k">${catName(a)}</span>
+                            <div class="t">${a.title}</div>
+                            <div class="m">${a.time || 'Agora'}</div>
+                        </div>
+                    </div>`).join('')}
+            </div>
+        </div>`;
+}
+
+/* ---------- wire briefs: dense text-only, grouped strictly by category ---------- */
+function renderBriefs() {
+    const root = document.getElementById('briefsBlock');
+    const head = document.getElementById('briefsHead');
+    if (!root) return;
+    const cols = BRIEF_CATEGORIES.map(cat => ({
+        cat, label: CATEGORY_NAMES[cat] || cat,
+        items: allNews.filter(a => a.category === cat).slice(0, 5)
+    })).filter(c => c.items.length >= 2);
+    if (!cols.length) { root.innerHTML = ''; if (head) head.style.display = 'none'; return; }
+    if (head) head.style.display = 'flex';
+    root.innerHTML = `<div class="hp-briefs">${cols.map(c => `
+        <div class="brief-col">
+            <h3>${c.label} em Breve</h3>
+            ${c.items.map(a => `
+                <div class="hp-brief-item" onclick="openNews('${a.id}')">
+                    <div class="t">${a.title}</div>
+                    <div class="m">${a.time || 'Agora'}</div>
+                </div>`).join('')}
+        </div>`).join('')}</div>`;
+}
+
+/* ---------- in pictures ---------- */
+function renderPictures() {
+    const root = document.getElementById('picturesRow');
+    const band = document.getElementById('picturesBand');
+    if (!root) return;
+    const items = allNews.slice(9, 13);
+    if (!items.length) { if (band) band.style.display = 'none'; return; }
+    if (band) band.style.display = 'block';
     root.innerHTML = items.map(a => `
-        <div class="justin-item" onclick="openNews('${a.id}')">
-            <div class="time">${shortTime(a.time)}</div>
-            <div class="title">${a.title}</div>
+        <div class="hp-pic" onclick="openNews('${a.id}')">
+            <img src="${a.image}" alt="${escAttr(a.title)}" onerror="${fallbackImg(500)}" loading="lazy">
+            <div class="cap"><span class="k">${catName(a)}</span><div class="t">${a.title}</div></div>
         </div>`).join('');
 }
 
+/* ---------- dense grid (latest news + load more) ---------- */
+function renderAll() {
+    const container = document.getElementById('newsContainer');
+    if (!container) return;
+    const f = currentDataset;
+    if (!f.length) {
+        container.innerHTML = `<div class="text-center py-5"><h4 class="text-muted">Nenhuma notícia disponível no momento</h4></div>`;
+        document.getElementById('loadMoreBtn').style.display = 'none';
+        return;
+    }
+    const offset = currentFilter === 'all' ? 13 : 0;
+    const pageItems = f.slice(offset, offset + displayCount);
+    container.innerHTML = pageItems.map(a => `
+        <div class="hp-story-card" onclick="openNews('${a.id}')">
+            <img src="${a.image}" alt="${escAttr(a.title)}" onerror="${fallbackImg(400)}" loading="lazy">
+            <span class="k">${catName(a)}</span>
+            <h4>${a.title}</h4>
+            <div class="m">${a.time || 'Agora'} · ${getReadingTime(a.body || a.excerpt)} min · <i class="fa fa-eye"></i> ${formatViews(a.views)}</div>
+        </div>`).join('');
+    document.getElementById('loadMoreBtn').style.display = (offset + displayCount) < f.length ? 'block' : 'none';
+}
+function loadMore() { displayCount += 9; renderAll(); }
+
+/* ---------- editor's picks — loops every category that actually has data,
+   not a fixed number. Add/remove a key in CATEGORY_NAMES and this adapts.
+   A category needs only 1 article to get its own section: with just 1 item
+   the layout collapses to a single full-width feature card (no empty list
+   column), so nothing ever looks broken or missing. ---------- */
+async function loadEditorsPicks() {
+    const root = document.getElementById('editorsPicksRoot');
+    if (!root) return;
+    const grouped = {};
+    allNews.forEach(a => { if (!grouped[a.category]) grouped[a.category] = []; if (grouped[a.category].length < 4) grouped[a.category].push(a); });
+    const order = Object.keys(CATEGORY_NAMES);
+    const sections = order.filter(cat => grouped[cat] && grouped[cat].length >= 1);
+    if (!sections.length) { root.innerHTML = ''; return; }
+    root.innerHTML = sections.map(cat => {
+        const label = CATEGORY_NAMES[cat] || cat;
+        const items = grouped[cat];
+        const feature = items[0];
+        const list = items.slice(1);
+        return `
+        <div class="hp-picks-block">
+            <div class="hp-head"><h2>${label}</h2><span class="hp-view-all" onclick="filterCategory('${cat}');window.scrollTo({top:0,behavior:'smooth'});">Mais em ${label} →</span></div>
+            <div class="hp-picks-grid${list.length ? '' : ' hp-picks-solo'}">
+                <div class="hp-picks-feature" onclick="openNews('${feature.id}')">
+                    <img src="${feature.image}" alt="${escAttr(feature.title)}" onerror="${fallbackImg(600)}" loading="lazy">
+                    <div class="t">${feature.title}</div>
+                </div>
+                ${list.length ? `
+                <div class="hp-picks-list">
+                    ${list.map((a, i) => `
+                        <div class="pli" onclick="openNews('${a.id}')">
+                            <div class="n">${i + 1}</div>
+                            <div class="t">${a.title}</div>
+                        </div>`).join('')}
+                </div>` : ''}
+            </div>
+        </div>`;
+    }).join('');
+}
+
+/* ---------- most read (sidebar, short) + most read full (expanded section) ---------- */
 async function loadMostRead() {
     const root = document.getElementById('mostReadRoot');
     if (!root) return;
@@ -383,15 +606,47 @@ async function loadMostRead() {
         const res = await fetch(`${API_BASE}/api/most-read?lang=${LANG}`);
         const data = await res.json();
         const items = (data.news || []).slice(0, 5);
-        if (!items.length) { root.innerHTML = `<p class="text-muted small">${T.noData}</p>`; return; }
+        if (!items.length) { root.innerHTML = `<p class="text-muted small">Sem dados</p>`; return; }
         root.innerHTML = items.map((a, i) => `
-            <div class="most-read-item" onclick="openNews('${a.id}')">
-                <div class="rank">${i + 1}</div>
-                <div class="title">${a.title}</div>
+            <div class="hp-mostread-item" onclick="openNews('${a.id}')">
+                <div class="n">${i + 1}</div>
+                <div class="t">${a.title}</div>
             </div>`).join('');
-    } catch (e) { root.innerHTML = `<p class="text-muted small">${T.couldNotLoad}</p>`; }
+    } catch (e) { root.innerHTML = `<p class="text-muted small">Não foi possível carregar.</p>`; }
+}
+async function loadMostReadFull() {
+    const root = document.getElementById('mostReadFullBlock');
+    const head = document.getElementById('mostReadFullHead');
+    if (!root) return;
+    try {
+        const res = await fetch(`${API_BASE}/api/most-read?lang=${LANG}&limit=10`);
+        const data = await res.json();
+        const items = (data.news || []).slice(0, 10);
+        if (!items.length) { root.innerHTML = ''; if (head) head.style.display = 'none'; return; }
+        if (head) head.style.display = 'flex';
+        const left = items.slice(0, 5), right = items.slice(5, 10);
+        const row = (a, i) => `
+            <div class="hp-mr-full" onclick="openNews('${a.id}')">
+                <div class="n">${i + 1}</div>
+                <div><span class="k">${catName(a)}</span><div class="t">${a.title}</div><div class="m"><i class="fa fa-eye"></i> ${formatViews(a.views)} visualizações</div></div>
+            </div>`;
+        root.innerHTML = `
+            <div class="hp-mostread-grid">
+                <div>${left.map((a, i) => row(a, i)).join('')}</div>
+                <div class="hp-mostread-rule"></div>
+                <div>${right.map((a, i) => row(a, i + 5)).join('')}</div>
+            </div>`;
+    } catch (e) { root.innerHTML = ''; if (head) head.style.display = 'none'; }
 }
 
+/* ---------- trending tags ---------- */
+function renderTrendingTopics() {
+    const c = document.getElementById('trendingTopicsRoot');
+    if (!c) return;
+    c.innerHTML = Object.keys(CATEGORY_NAMES).map(k => `<span class="hp-tag" onclick="filterCategory('${k}')">${CATEGORY_NAMES[k]}</span>`).join('');
+}
+
+/* ---------- category filtering ---------- */
 function updateCategoryHero() {
     const c = document.getElementById('categoryHero');
     if (!c) return;
@@ -400,107 +655,31 @@ function updateCategoryHero() {
     const name = CATEGORY_NAMES[currentFilter] || currentFilter;
     const count = categoryTotal[currentFilter] !== undefined ? categoryTotal[currentFilter] : currentDataset.length;
     document.getElementById('catHeroName').textContent = name;
-    document.getElementById('catHeroCount').textContent = count + ' ' + T.articlesSuffix;
+    document.getElementById('catHeroCount').textContent = count + ' notícias';
 }
-
-function renderHero() {
-    const c = document.getElementById('heroSection');
-    if (!c) return;
-    if (!allNews.length) { c.innerHTML = ''; return; }
-    const featured = allNews[0];
-    const side = allNews.slice(1, 5);
-    c.innerHTML = `
-        <div class="lead-main" onclick="openNews('${featured.id}')">
-            <img src="${featured.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=900'" loading="lazy">
-            <div class="kicker-row">
-                <span class="kicker" style="color:${CATEGORY_COLORS[featured.category] || '#b80000'}">${CATEGORY_NAMES[featured.category] || featured.category || ''}</span>
-                ${renderLiveBadge(featured)}
-            </div>
-            <h2 class="title">${featured.title}</h2>
-            ${featured.excerpt ? `<p class="dek">${featured.excerpt.substring(0, 160)}</p>` : ''}
-            <div class="meta">
-                ${featured.author || 'Newzyy'} · ${featured.time || T.justNow} ·
-                ${getReadingTime(featured.body || featured.excerpt)} ${T.minRead} ·
-                <i class="fa fa-eye"></i> ${formatViews(featured.views)}
-            </div>
-        </div>
-        <div class="lead-side">
-            ${side.map((a, i) => `
-                <div class="rank-item" onclick="openNews('${a.id}')">
-                    <div class="num">${i + 1}</div>
-                    <div>
-                        <span class="rank-cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || ''}</span>
-                        <div class="rank-title">${a.title}</div>
-                    </div>
-                </div>`).join('')}
-        </div>`;
-}
-
-function renderAll() {
-    let f = currentDataset;
-    const container = document.getElementById('newsContainer');
-    if (!container) return;
-    if (!f.length) {
-        container.innerHTML = `<div class="text-center py-5"><h4 class="text-muted">${T.noNews}</h4></div>`;
-        document.getElementById('loadMoreBtn').style.display = 'none';
-        return;
-    }
-    const pageItems = f.slice(0, displayCount);
-    const lead = pageItems[0];
-    const rest = pageItems.slice(1);
-    let html = `
-        <div class="wide-card" onclick="openNews('${lead.id}')">
-            <img src="${lead.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=500'" loading="lazy">
-            <div>
-                <span class="cat" style="color:${CATEGORY_COLORS[lead.category] || '#b80000'}">${CATEGORY_NAMES[lead.category] || lead.category || ''}</span>
-                ${renderLiveBadge(lead)}
-                <h3>${lead.title}</h3>
-                <p>${(lead.excerpt || lead.description || '').substring(0, 150)}...</p>
-                <div class="meta">${lead.author || 'Newzyy'} · ${lead.time || T.justNow} · ${getReadingTime(lead.body || lead.excerpt)} ${T.minRead} · <i class="fa fa-eye"></i> ${formatViews(lead.views)}</div>
-            </div>
-        </div>`;
-    if (rest.length) {
-        html += '<div class="bbc-grid">';
-        rest.forEach(a => {
-            html += `
-                <div class="bbc-card" onclick="openNews('${a.id}')">
-                    <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                    <div class="body">
-                        <span class="category" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category || ''}</span>
-                        ${renderLiveBadge(a)}
-                        <h3 class="title">${a.title}</h3>
-                        <p class="excerpt">${(a.excerpt || a.description || '').substring(0, 120)}...</p>
-                        <div class="meta">${a.author || 'Newzyy'} · ${a.time || T.justNow} <span class="read-time">${getReadingTime(a.body || a.excerpt)} ${T.minRead}</span> <span><i class="fa fa-eye"></i> ${formatViews(a.views)}</span></div>
-                    </div>
-                </div>`;
-        });
-        html += '</div>';
-    }
-    container.innerHTML = html;
-    document.getElementById('loadMoreBtn').style.display = f.length > displayCount ? 'block' : 'none';
-}
-
-function loadMore() { displayCount += 6; renderAll(); }
-
 function togglePremiumSections(isAll) {
     const d = isAll ? '' : 'none';
-    const hero = document.getElementById('heroSection'), label = document.getElementById('gridSectionLabel'), picks = document.getElementById('editorsPicksRoot');
-    if (hero) hero.style.display = d;
-    if (label) label.style.display = d;
-    if (picks) picks.style.display = d;
-}
-
-async function filterCategory(cat) {
-    currentFilter = cat; displayCount = 6;
-    togglePremiumSections(cat === 'all');
-    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.bbc-nav .nav-link').forEach(el => {
-        const text = el.textContent.trim();
-        if ((cat === 'all' && text === T.home) || text === (CATEGORY_NAMES[cat] || cat)) el.classList.add('active');
+    ['heroBlock', 'latestStripBlock', 'topStoriesHead', 'topStoriesBlock', 'briefsHead', 'briefsBlock',
+     'picturesBand', 'editorsPicksRoot', 'mostReadFullHead', 'mostReadFullBlock'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.style.display = d;
     });
-    if (cat === 'all') { currentDataset = allNews; renderAll(); updateCategoryHero(); showToast(T.home); return; }
+    document.getElementById('gridSectionLabel').querySelector('h2').textContent = isAll ? 'Últimas Notícias' : (CATEGORY_NAMES[currentFilter] || currentFilter);
+}
+async function filterCategory(cat) {
+    currentFilter = cat; displayCount = 9;
+    togglePremiumSections(cat === 'all');
+    document.querySelectorAll('.hp-nav-index .nav-link').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.hp-nav-index .nav-link').forEach(el => {
+        const text = el.textContent.trim();
+        if ((cat === 'all' && text === 'Início') || text === (CATEGORY_NAMES[cat] || cat)) el.classList.add('active');
+    });
+    const newUrl = cat === 'all' ? '/pt/' : ('/pt/?cat=' + cat);
+    if (window.location.pathname + window.location.search !== newUrl) {
+        window.history.pushState({ cat }, '', newUrl);
+    }
+    if (cat === 'all') { currentDataset = allNews; renderAll(); updateCategoryHero(); showToast('Início'); return; }
     if (categoryCache[cat]) { currentDataset = categoryCache[cat]; renderAll(); updateCategoryHero(); showToast(CATEGORY_NAMES[cat] || cat); return; }
-    document.getElementById('newsContainer').innerHTML = skeletonGrid(6);
+    document.getElementById('newsContainer').innerHTML = skeletonDenseGrid(9);
     try {
         const res = await fetch(`${API_BASE}/api/category/${cat}?limit=30&lang=${LANG}`);
         const data = await res.json();
@@ -510,12 +689,7 @@ async function filterCategory(cat) {
     renderAll(); updateCategoryHero(); showToast(CATEGORY_NAMES[cat] || cat);
 }
 
-function renderTrendingTopics() {
-    const c = document.getElementById('trendingTopicsRoot');
-    if (!c) return;
-    c.innerHTML = Object.keys(CATEGORY_NAMES).map(k => `<span class="topic-tag" onclick="filterCategory('${k}')">${CATEGORY_NAMES[k]}</span>`).join('');
-}
-
+/* ---------- search ---------- */
 let searchDebounce = null;
 document.getElementById('searchInput')?.addEventListener('input', function (e) {
     const q = e.target.value.trim();
@@ -529,47 +703,59 @@ document.getElementById('searchInput')?.addEventListener('input', function (e) {
             const items = (data.news || []).slice(0, 6);
             box.innerHTML = items.length ? items.map(a => `
                 <div class="sug-item" onclick="openNews('${a.id}')">
-                    <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=100'">
-                    <div><div class="sug-cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</div><div class="sug-title">${a.title}</div></div>
-                </div>`).join('') : `<div class="sug-empty">${T.noNews}</div>`;
+                    <img src="${a.image}" alt="${escAttr(a.title)}" onerror="${fallbackImg(100)}">
+                    <div><div class="sug-cat">${catName(a)}</div><div class="sug-title">${a.title}</div></div>
+                </div>`).join('') : `<div class="sug-empty">Nenhum resultado encontrado</div>`;
             box.classList.add('active');
         } catch (e) { box.classList.remove('active'); }
     }, 300);
 });
 document.addEventListener('click', (e) => {
-    const wrap = document.querySelector('.search-wrapper');
+    const wrap = document.querySelector('.hp-search-wrap');
     if (wrap && !wrap.contains(e.target)) document.getElementById('searchSuggestions')?.classList.remove('active');
 });
 document.getElementById('searchInput')?.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter') window.location.href = '/search.html?q=' + encodeURIComponent(this.value) + '&lang=' + LANG;
+    if (e.key === 'Enter') window.location.href = '/search.html?q=' + encodeURIComponent(this.value) + '&lang=pt';
 });
 
+/* ---------- newsletter ---------- */
 async function submitNewsletter() {
     const email = document.getElementById('newsletterEmail').value.trim();
-    if (!email || !email.includes('@')) { showToast('!'); return; }
+    if (!email || !email.includes('@')) { showToast('Por favor, insira um e-mail válido'); return; }
     try {
         const res = await fetch(`${API_BASE}/api/newsletter/subscribe`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
         const data = await res.json();
-        showToast(data.message || (data.success ? 'OK' : '...'));
+        showToast(data.message || (data.success ? 'Inscrito!' : 'Algo deu errado'));
         if (data.success) document.getElementById('newsletterEmail').value = '';
-    } catch (e) { showToast(T.couldNotLoad); }
+    } catch (e) { showToast('Não foi possível inscrever-se. Tente novamente.'); }
 }
 
 function openNews(id) { window.location.href = '/pt/article/?id=' + id; }
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     initTheme();
     document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
     renderDate();
     initWeather();
     updateAccountLinks();
-    fetchNews();
+
+    await fetchNews();
+
+    const urlCat = new URLSearchParams(window.location.search).get('cat');
+    if (urlCat && CATEGORY_NAMES[urlCat]) {
+        filterCategory(urlCat);
+    }
 });
 window.filterCategory = filterCategory;
 window.openNews = openNews;
+window.addEventListener('popstate', () => {
+    const urlCat = new URLSearchParams(window.location.search).get('cat');
+    filterCategory(urlCat && CATEGORY_NAMES[urlCat] ? urlCat : 'all');
+});
 window.loadMore = loadMore;
 window.logoutUser = logoutUser;
 window.submitNewsletter = submitNewsletter;
 </script>
+
 </body>
 </html>
