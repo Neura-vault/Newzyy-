@@ -21,6 +21,7 @@
         .gate .error { color:var(--red); font-size:0.85rem; margin-top:10px; }
         #dashboard { display:none; max-width:1200px; margin:0 auto; padding:30px 20px 70px; }
         h1 { font-family:var(--serif); font-size:1.8rem; margin-bottom:24px; }
+        h2.section-title { font-family:var(--serif); font-size:1.15rem; margin:36px 0 14px; }
         .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-bottom:20px; }
         .stat-card { background:var(--paper); border:1px solid var(--hairline); padding:20px; text-align:center; }
         .stat-card .num { font-family:var(--serif); font-size:2rem; font-weight:700; color:var(--red); }
@@ -30,9 +31,30 @@
         .qa-btn:hover { opacity:0.85; }
         .qa-btn.danger { background:var(--red); }
         .qa-status { font-size:0.78rem; color:var(--muted); margin-bottom:20px; }
-        .gemini-bar-wrap { background:var(--paper); border:1px solid var(--hairline); padding:16px 20px; margin-bottom:30px; }
-        .gemini-bar-track { height:10px; background:var(--hairline); border-radius:6px; overflow:hidden; margin-top:8px; }
-        .gemini-bar-fill { height:100%; background:var(--red); }
+
+        .ai-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-bottom:14px; }
+        .ai-card { background:var(--paper); border:1px solid var(--hairline); padding:16px 18px; }
+        .ai-card .name { font-size:0.85rem; font-weight:700; display:flex; justify-content:space-between; align-items:center; }
+        .ai-card .name .provider-badge { font-size:0.62rem; font-weight:700; padding:2px 7px; border-radius:3px; text-transform:uppercase; letter-spacing:0.3px; }
+        .ai-card .name .provider-badge.on { background:#dcfce7; color:#16a34a; }
+        .ai-card .name .provider-badge.off { background:#fee2e2; color:var(--red); }
+        .ai-bar-row { margin-top:10px; }
+        .ai-bar-row .lbl { font-size:0.7rem; color:var(--muted); display:flex; justify-content:space-between; margin-bottom:3px; }
+        .ai-bar-track { height:8px; background:var(--hairline); border-radius:5px; overflow:hidden; }
+        .ai-bar-fill { height:100%; background:var(--red); }
+        .ai-bar-fill.blue { background:#2563eb; }
+        .ai-bar-fill.purple { background:#7c3aed; }
+        .ai-bar-fill.orange { background:#ea580c; }
+        .ai-bar-fill.teal { background:#0d9488; }
+
+        .coverage-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-bottom:20px; }
+        .coverage-card { background:var(--paper); border:1px solid var(--hairline); padding:12px 14px; text-align:center; }
+        .coverage-card .lang { font-size:0.68rem; text-transform:uppercase; letter-spacing:0.3px; color:var(--muted); }
+        .coverage-card .frac { font-family:var(--serif); font-size:1.3rem; font-weight:700; margin-top:4px; }
+        .coverage-card .frac.full { color:#16a34a; }
+        .coverage-card .frac.partial { color:#ea580c; }
+        .coverage-card .frac.low { color:var(--red); }
+
         .category-pills { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
         .category-pill { font-size:0.72rem; padding:4px 10px; background:var(--canvas); border:1px solid var(--hairline); }
         .tabs { display:flex; gap:6px; margin-bottom:20px; border-bottom:1px solid var(--hairline); flex-wrap:wrap; }
@@ -46,6 +68,7 @@
         .badge { padding:2px 8px; font-size:0.66rem; font-weight:700; border-radius:3px; }
         .badge.yes { background:#dcfce7; color:#16a34a; }
         .badge.no { background:#fee2e2; color:var(--red); }
+        .badge.warn { background:#fef3c7; color:#b45309; }
         .msg-body { max-width:280px; white-space:pre-wrap; font-size:0.78rem; color:var(--muted); }
         .row-actions { display:flex; gap:6px; }
         .row-actions button { padding:5px 10px; font-size:0.7rem; border:1px solid var(--hairline); background:var(--paper); cursor:pointer; }
@@ -71,24 +94,19 @@
 
     <div class="quick-actions">
         <button class="qa-btn" onclick="runAction('/manual-fetch', 'Fetching news now...')"><i class="fa fa-refresh"></i> Run News Fetch Now</button>
+        <button class="qa-btn" onclick="runAction('/admin/run-translation-now', 'Running translation cycle...')"><i class="fa fa-language"></i> Run Translation Now</button>
         <button class="qa-btn" onclick="runAction('/admin/send-newsletter-now', 'Sending newsletter...')"><i class="fa fa-envelope"></i> Send Newsletter Now</button>
         <button class="qa-btn danger" onclick="if(confirm('Delete all non-rewritten articles?')) runAction('/admin/purge-non-rewritten', 'Purging...')">Purge Non-Rewritten</button>
         <button class="qa-btn danger" onclick="if(confirm('This deletes EVERY article permanently. Are you sure?')) runAction('/admin/purge-all?confirm=YES', 'Purging everything...')">Purge ALL Articles</button>
     </div>
     <div class="qa-status" id="qaStatus"></div>
 
-    <div class="gemini-bar-wrap">
-        <strong style="font-size:0.85rem;">Gemini Usage Today</strong>
-        <span id="geminiText" style="font-size:0.8rem;color:var(--muted);float:right;"></span>
-        <div class="gemini-bar-track"><div class="gemini-bar-fill" id="geminiBar" style="width:0%"></div></div>
-        <div class="category-pills" id="categoryPills"></div>
-    </div>
+    <h2 class="section-title">AI Provider Quota — Today</h2>
+    <div class="ai-grid" id="aiGrid"></div>
+    <div class="category-pills" id="categoryPills"></div>
 
-    <div class="gemini-bar-wrap">
-        <strong style="font-size:0.85rem;">Groq Usage Today (fallback provider)</strong>
-        <span id="groqText" style="font-size:0.8rem;color:var(--muted);float:right;"></span>
-        <div class="gemini-bar-track"><div class="gemini-bar-fill" id="groqBar" style="width:0%;background:#2563eb;"></div></div>
-    </div>
+    <h2 class="section-title">Translation Coverage <span style="font-size:0.7rem;color:var(--muted);font-weight:400;">— how many published articles have each language</span></h2>
+    <div class="coverage-grid" id="coverageGrid"></div>
 
     <div class="tabs">
         <button class="tab-btn active" onclick="showTab('articles')">Articles</button>
@@ -159,18 +177,20 @@ async function loadAll() {
     try {
         const stats = await apiGet('/api/admin/stats');
         if (!stats.success) throw new Error(stats.message || 'Failed');
-        renderStats(stats.stats, stats.perCategory, stats.gemini, stats.groq);
+        renderStats(stats.stats, stats.perCategory, stats.ai);
 
-        const [articles, contacts, users, subs] = await Promise.all([
+        const [articles, contacts, users, subs, coverage] = await Promise.all([
             apiGet('/api/admin/articles'),
             apiGet('/api/admin/contacts'),
             apiGet('/api/admin/users'),
-            apiGet('/api/admin/subscribers')
+            apiGet('/api/admin/subscribers'),
+            apiGet('/api/admin/translation-coverage')
         ]);
         renderArticles(articles.articles || []);
         renderContacts(contacts.messages || []);
         renderUsers(users.users || []);
         renderSubscribers(subs.subscribers || []);
+        renderCoverage(coverage);
     } catch (e) {
         if (e.message === 'WRONG_SECRET') {
             sessionStorage.removeItem('newzyy_admin_secret');
@@ -183,30 +203,103 @@ async function loadAll() {
     }
 }
 
-function renderStats(s, perCategory, gemini, groq) {
+function renderStats(s, perCategory, ai) {
     document.getElementById('statsRow').innerHTML = `
         <div class="stat-card"><div class="num">${s.articleCount}</div><div class="label">Articles</div></div>
         <div class="stat-card"><div class="num">${s.userCount}</div><div class="label">Users</div></div>
         <div class="stat-card"><div class="num">${s.subscriberCount}</div><div class="label">Newsletter Subs</div></div>
         <div class="stat-card"><div class="num">${s.contactCount}</div><div class="label">Contact Messages</div></div>
     `;
-    if (gemini) {
-        const pct = Math.min(100, Math.round((gemini.callsToday / gemini.maxPerDay) * 100));
-        document.getElementById('geminiText').textContent = `${gemini.callsToday} / ${gemini.maxPerDay} calls used today`;
-        document.getElementById('geminiBar').style.width = pct + '%';
-    }
-    if (groq) {
-        const pct = Math.min(100, Math.round((groq.callsToday / groq.maxPerDay) * 100));
-        document.getElementById('groqText').textContent = groq.configured
-            ? `${groq.callsToday} / ${groq.maxPerDay} calls used today`
-            : 'Not configured — add GROQ_API_KEY to enable fallback';
-        document.getElementById('groqBar').style.width = pct + '%';
-    }
+    renderAiGrid(ai);
     if (perCategory) {
         document.getElementById('categoryPills').innerHTML = perCategory
             .sort((a, b) => b.count - a.count)
             .map(c => `<span class="category-pill">${c._id}: ${c.count}</span>`).join('');
     }
+}
+
+// One card per provider. Gemini/Groq/Mistral show two bars (rewrite quota is
+// separate from translate quota — they can never starve each other). Cerebras
+// and Cohere are rewrite-only, so they get a single bar.
+function aiBar(label, callsToday, maxPerDay, colorClass) {
+    const pct = maxPerDay ? Math.min(100, Math.round((callsToday / maxPerDay) * 100)) : 0;
+    return `
+        <div class="ai-bar-row">
+            <div class="lbl"><span>${label}</span><span>${callsToday} / ${maxPerDay}</span></div>
+            <div class="ai-bar-track"><div class="ai-bar-fill ${colorClass || ''}" style="width:${pct}%"></div></div>
+        </div>`;
+}
+function renderAiGrid(ai) {
+    const grid = document.getElementById('aiGrid');
+    if (!ai) { grid.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Could not load AI quota data.</p>'; return; }
+
+    const cards = [];
+
+    if (ai.gemini) {
+        cards.push(`
+            <div class="ai-card">
+                <div class="name">Gemini <span class="provider-badge ${ai.gemini.configured ? 'on' : 'off'}">${ai.gemini.configured ? 'Active' : 'Not configured'}</span></div>
+                ${aiBar('Rewrite', ai.gemini.rewrite.callsToday, ai.gemini.rewrite.maxPerDay, '')}
+                ${aiBar('Translate', ai.gemini.translate.callsToday, ai.gemini.translate.maxPerDay, 'blue')}
+            </div>`);
+    }
+    if (ai.groq) {
+        cards.push(`
+            <div class="ai-card">
+                <div class="name">Groq <span class="provider-badge ${ai.groq.configured ? 'on' : 'off'}">${ai.groq.configured ? 'Active' : 'Not configured'}</span></div>
+                ${ai.groq.configured ? `
+                    ${aiBar('Rewrite', ai.groq.rewrite.callsToday, ai.groq.rewrite.maxPerDay, '')}
+                    ${aiBar('Translate', ai.groq.translate.callsToday, ai.groq.translate.maxPerDay, 'blue')}
+                ` : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add GROQ_API_KEY on Render to enable.</p>`}
+            </div>`);
+    }
+    if (ai.mistral) {
+        cards.push(`
+            <div class="ai-card">
+                <div class="name">Mistral <span class="provider-badge ${ai.mistral.configured ? 'on' : 'off'}">${ai.mistral.configured ? 'Active' : 'Not configured'}</span></div>
+                ${ai.mistral.configured ? `
+                    ${aiBar('Rewrite', ai.mistral.rewrite.callsToday, ai.mistral.rewrite.maxPerDay, '')}
+                    ${aiBar('Translate', ai.mistral.translate.callsToday, ai.mistral.translate.maxPerDay, 'blue')}
+                ` : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add MISTRAL_API_KEY on Render to enable.</p>`}
+            </div>`);
+    }
+    if (ai.cerebras) {
+        cards.push(`
+            <div class="ai-card">
+                <div class="name">Cerebras <span class="provider-badge ${ai.cerebras.configured ? 'on' : 'off'}">${ai.cerebras.configured ? 'Active' : 'Not configured'}</span></div>
+                ${ai.cerebras.configured
+                    ? aiBar('Rewrite (fallback)', ai.cerebras.callsToday, ai.cerebras.maxPerDay, 'purple')
+                    : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add CEREBRAS_API_KEY on Render to enable.</p>`}
+            </div>`);
+    }
+    if (ai.cohere) {
+        cards.push(`
+            <div class="ai-card">
+                <div class="name">Cohere <span class="provider-badge ${ai.cohere.configured ? 'on' : 'off'}">${ai.cohere.configured ? 'Active' : 'Not configured'}</span></div>
+                ${ai.cohere.configured
+                    ? aiBar('Rewrite (fallback)', ai.cohere.callsToday, ai.cohere.maxPerDay, 'orange')
+                    : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add COHERE_API_KEY on Render to enable.</p>`}
+            </div>`);
+    }
+
+    grid.innerHTML = cards.join('');
+}
+
+function renderCoverage(data) {
+    const grid = document.getElementById('coverageGrid');
+    if (!data || !data.success) { grid.innerHTML = '<p style="color:var(--muted);font-size:0.85rem;">Could not load translation coverage.</p>'; return; }
+    const total = data.total || 0;
+    grid.innerHTML = Object.keys(data.coverage || {}).map(langCode => {
+        const count = data.coverage[langCode];
+        const pct = total ? count / total : 0;
+        const cls = pct >= 0.95 ? 'full' : pct >= 0.6 ? 'partial' : 'low';
+        const name = (data.languages && data.languages[langCode] && data.languages[langCode].name) || langCode;
+        return `
+            <div class="coverage-card">
+                <div class="lang">${name}</div>
+                <div class="frac ${cls}">${count}/${total}</div>
+            </div>`;
+    }).join('');
 }
 
 let allArticlesData = [];
@@ -218,17 +311,25 @@ function renderArticles(items) {
     allArticlesData = items;
     filterArticles();
 }
+function translationBadge(a) {
+    const done = a.translations ? Object.keys(a.translations).length : 0;
+    const expected = 9; // number of ACTIVE_LANGUAGES on the backend
+    if (done >= expected) return `<span class="badge yes">${done}/${expected}</span>`;
+    if (done === 0) return `<span class="badge no">${done}/${expected}</span>`;
+    return `<span class="badge warn">${done}/${expected}</span>`;
+}
 function filterArticles() {
     const q = (document.getElementById('articleSearch')?.value || '').toLowerCase();
     const items = allArticlesData.filter(a => a.title.toLowerCase().includes(q) || a.category.toLowerCase().includes(q));
     const el = document.getElementById('articlesTableWrap');
     if (!items.length) { el.innerHTML = '<p style="color:var(--muted)">No articles found.</p>'; return; }
-    el.innerHTML = `<table><thead><tr><th>Image</th><th>Title</th><th>Category</th><th>Views</th><th>Breaking</th><th>Date</th><th></th></tr></thead><tbody>
+    el.innerHTML = `<table><thead><tr><th>Image</th><th>Title</th><th>Category</th><th>Views</th><th>Translated</th><th>Breaking</th><th>Date</th><th></th></tr></thead><tbody>
         ${items.map(a => `<tr>
             <td><img class="thumb" src="${a.image}" onerror="this.style.display='none'"></td>
             <td>${a.title}</td>
             <td>${a.category}</td>
             <td>${a.views}</td>
+            <td>${translationBadge(a)}</td>
             <td><span class="badge ${a.manualBreaking ? 'yes' : 'no'}">${a.manualBreaking ? 'ON' : 'off'}</span></td>
             <td>${new Date(a.fetched_at).toLocaleDateString()}</td>
             <td class="row-actions">
