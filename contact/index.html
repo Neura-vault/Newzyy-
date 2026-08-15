@@ -9,57 +9,70 @@
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/newzyy-theme.css">
     <style>
-        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
-            --sans:'Inter',-apple-system,BlinkMacSystemFont,Arial,sans-serif; --serif:'Source Serif 4',Georgia,'Times New Roman',serif; }
-        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:var(--sans); background:var(--canvas); color:var(--ink); }
-        a { text-decoration:none; color:inherit; }
-        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
-        .site-logo { font-size:1.8rem; font-weight:700; color:var(--ink); }
-        .site-logo span { color:var(--red); }
-        .site-logo small { font-size:0.55rem; font-weight:400; color:var(--muted); text-transform:uppercase; margin-left:6px; }
-        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
-        .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
-        .bbc-nav a { font-size:0.72rem; font-weight:600; padding:12px 16px; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); display:inline-block; }
-        .bbc-nav a:hover { color:var(--red); }
-        .page-wrap { max-width:760px; margin:0 auto; padding:50px 20px 70px; }
-        .page-wrap h1 { font-family:var(--serif); font-size:2.4rem; margin-bottom:16px; }
-        .page-wrap p { font-size:1.05rem; line-height:1.8; color:#333; margin-bottom:18px; }
-        :root[data-theme="dark"] .page-wrap p { color:#d8d4c8; }
-        .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:30px; }
-        .contact-info .item { margin-bottom:24px; }
-        .contact-info .item .label { font-size:0.7rem; font-weight:800; text-transform:uppercase; color:var(--red); letter-spacing:0.4px; margin-bottom:4px; }
-        .contact-info .item .value { font-size:0.95rem; }
-        .contact-form input, .contact-form textarea { width:100%; padding:12px 14px; border:1px solid var(--hairline); background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:0.9rem; margin-bottom:14px; }
-        .contact-form button { width:100%; padding:13px; background:var(--red); color:#fff; border:none; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; font-size:0.8rem; cursor:pointer; }
-        .contact-form button:hover { opacity:0.9; }
-        #formStatus { margin-top:12px; font-size:0.85rem; }
-        .bbc-footer { background:var(--ink); color:#ccc; padding:40px 0 20px; margin-top:40px; border-top:3px solid var(--red); }
-        .bbc-footer a { color:#ccc; font-size:0.85rem; }
-        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
-        .bbc-footer .copyright { font-size:0.75rem; color:#666; margin-top:20px; text-align:center; }
-        @media (max-width:700px){ .contact-grid{grid-template-columns:1fr;} .page-wrap h1{font-size:1.8rem;} }
+        .hp-contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:40px; margin-top:30px; }
+        .hp-contact-info .item{ margin-bottom:24px; }
+        .hp-contact-info .item .label{ font-family:var(--sans); font-size:.7rem; font-weight:800; text-transform:uppercase; color:var(--hp-red); letter-spacing:.4px; margin-bottom:4px; }
+        .hp-contact-info .item .value{ font-family:var(--sans); font-size:.95rem; }
+        @media (max-width:700px){ .hp-contact-grid{ grid-template-columns:1fr; } }
     </style>
 </head>
-<body>
+<body class="hp-body">
 
-<header class="bbc-header">
-    <div class="container d-flex justify-content-between align-items-center">
-        <a href="/" class="site-logo">Newzy<span>y</span><small>News</small></a>
-        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
+<div id="hpMastheadSticky">
+<div class="hp-utility">
+    <div class="container">
+        <span class="hp-edition">Pakistan Edition</span>
+        <div class="hp-utility-right">
+            <span id="dateDisplay"></span>
+            <button class="hp-theme-btn" id="themeToggle" title="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
+        </div>
     </div>
-</header>
-<nav class="bbc-nav"><div class="container"><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a></div></nav>
+</div>
 
-<div class="page-wrap">
+<header id="hpNameplate">
+    <div class="nameplate-row">
+        <div class="nameplate-meta">Vol. IV — Digital Edition</div>
+        <a href="/" class="nameplate-brand">Newzyy</a>
+        <div class="nameplate-meta right" id="nameplateDate"></div>
+    </div>
+    <div class="nameplate-rule-set"><div class="r1"></div><div class="r2"></div></div>
+    <div class="nameplate-tagline">Truth · Clarity · Independent Journalism</div>
+</header>
+
+<nav class="primary-nav-v2">
+    <div class="hp-nav-index" id="navLinks">
+        <a class="nav-link" href="/">Home</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=politics">Politics</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=technology">Technology</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=business">Business</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=sports">Sports</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=world">World</a>
+    </div>
+    <div class="hp-nav-tools">
+        <div class="hp-search-wrap">
+            <i class="fa fa-search"></i>
+            <input type="text" class="hp-search-input" placeholder="Search" autocomplete="off"
+                   onkeydown="if(event.key==='Enter'){window.location.href='/search.html?q='+encodeURIComponent(this.value)}">
+        </div>
+        <span id="accountLinks"></span>
+    </div>
+</nav>
+</div>
+
+<main class="hp-page-wrap">
     <h1>Contact Us</h1>
     <p>Spotted an error? Have a tip? Want to reach the editorial team? Use the form below or reach us directly — we read every message.</p>
 
-    <div class="contact-grid">
-        <div class="contact-info">
+    <div class="hp-contact-grid">
+        <div class="hp-contact-info">
             <div class="item">
                 <div class="label">Editorial / Corrections</div>
                 <div class="value">newzyyofficial1@gmail.com</div>
@@ -70,72 +83,132 @@
             </div>
         </div>
 
-        <form class="contact-form" id="contactForm">
+        <form class="hp-form" id="contactForm" style="margin:0;max-width:none;">
             <input type="text" id="cName" placeholder="Your name" required>
             <input type="email" id="cEmail" placeholder="Your email" required>
             <textarea id="cMessage" rows="4" placeholder="Your message" required></textarea>
             <button type="submit">Send Message</button>
-            <div id="formStatus"></div>
+            <div id="formStatus" class="hp-form-msg" style="margin-top:12px;"></div>
         </form>
     </div>
-</div>
+</main>
 
-<footer class="bbc-footer">
-    <div class="container">
-        <div class="links">
-            <a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a>
-            <a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
+<footer class="hp-mega-footer">
+    <div class="top">
+        <div>
+            <div class="brand">Newzyy</div>
+            <p class="brand-desc">Independent digital journalism covering politics, business, technology and culture — reported and edited around the clock.</p>
         </div>
-        <div class="copyright">2026 Newzyy — Independent Journalism</div>
+        <div class="col">
+            <h5>Sections</h5>
+            <a href="/?cat=politics">Politics</a>
+            <a href="/?cat=world">World</a>
+            <a href="/?cat=business">Business</a>
+            <a href="/?cat=technology">Technology</a>
+            <a href="/?cat=sports">Sports</a>
+        </div>
+        <div class="col">
+            <h5>Company</h5>
+            <a href="/about/">About Us</a>
+            <a href="/contact/">Contact</a>
+            <a href="/author/">Editorial Team</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Use</a>
+        </div>
+        <div class="col">
+            <h5>Account</h5>
+            <a href="/account/">Sign In</a>
+            <a href="/signup/">Register</a>
+            <a href="/bookmarks/">My Bookmarks</a>
+            <a href="/search/">Search</a>
+        </div>
+    </div>
+    <div class="hp-colophon"><div class="inner">Newzyy is an independent digital publication. Est. 2022. Editorially independent — no outside ownership influences our coverage.</div></div>
+    <div class="langbar">
+        <div class="langbar-inner">
+            <a href="/" class="cur">English</a>
+            <a href="/ur/">اردو</a>
+            <a href="/hi/">हिन्दी</a>
+            <a href="/ar/">العربية</a>
+            <a href="/es/">Español</a>
+            <a href="/fr/">Français</a>
+            <a href="/bn/">বাংলা</a>
+            <a href="/tr/">Türkçe</a>
+            <a href="/id/">Indonesia</a>
+            <a href="/pt/">Português</a>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-inner">
+            <span>© 2026 Newzyy. All rights reserved.</span>
+            <span>Independent Journalism</span>
+        </div>
     </div>
 </footer>
 
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
 <script>
 (function(){
     const saved = localStorage.getItem('newzyy_theme') || 'light';
     document.documentElement.setAttribute('data-theme', saved);
     const btn = document.getElementById('themeToggle');
-    btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
-    btn.addEventListener('click', () => {
-        const cur = document.documentElement.getAttribute('data-theme');
-        const next = cur === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', next);
-        localStorage.setItem('newzyy_theme', next);
-        btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
-    });
+    if (btn) {
+        btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+        btn.addEventListener('click', () => {
+            const cur = document.documentElement.getAttribute('data-theme');
+            const next = cur === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('newzyy_theme', next);
+            btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+        });
+    }
+    document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('nameplateDate') && (document.getElementById('nameplateDate').textContent = document.getElementById('dateDisplay').textContent);
 
-    // Wired to the backend contact endpoint.
-    const API_BASE = 'https://newzyy.onrender.com';
-    document.getElementById('contactForm').addEventListener('submit', async function(e){
-        e.preventDefault();
-        const name = document.getElementById('cName').value.trim();
-        const email = document.getElementById('cEmail').value.trim();
-        const message = document.getElementById('cMessage').value.trim();
-        const statusDiv = document.getElementById('formStatus');
-        const btn = this.querySelector('button[type="submit"]');
-
-        btn.disabled = true; btn.textContent = 'Sending...';
-        statusDiv.innerHTML = '';
-
-        try {
-            const res = await fetch(`${API_BASE}/api/contact`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, message })
-            });
-            const data = await res.json();
-            if (data.success) {
-                statusDiv.innerHTML = '<span style="color:#16a34a">' + data.message + '</span>';
-                document.getElementById('contactForm').reset();
-            } else {
-                statusDiv.innerHTML = '<span style="color:var(--red)">' + (data.message || 'Something went wrong.') + '</span>';
-            }
-        } catch (err) {
-            statusDiv.innerHTML = '<span style="color:var(--red)">Could not reach the server. Please try again.</span>';
-        }
-        btn.disabled = false; btn.textContent = 'Send Message';
-    });
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    const acc = document.getElementById('accountLinks');
+    if (acc) {
+        acc.innerHTML = loggedIn
+            ? `<a href="/bookmarks/" style="font-weight:600;font-size:0.8rem;color:#e8e5da;">${loggedIn.name.charAt(0).toUpperCase()} · ${loggedIn.name}</a>`
+            : `<a href="/account/">Sign In</a> <a href="/signup/">Register</a>`;
+    }
 })();
+</script>
+<script>
+const API_BASE = 'https://newzyy.onrender.com';
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const name = document.getElementById('cName').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const message = document.getElementById('cMessage').value.trim();
+    const statusDiv = document.getElementById('formStatus');
+    const btn = this.querySelector('button[type="submit"]');
+
+    btn.disabled = true; btn.textContent = 'Sending...';
+    statusDiv.className = 'hp-form-msg';
+
+    try {
+        const res = await fetch(`${API_BASE}/api/contact`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message })
+        });
+        const data = await res.json();
+        if (data.success) {
+            statusDiv.textContent = data.message;
+            statusDiv.className = 'hp-form-msg show success';
+            document.getElementById('contactForm').reset();
+        } else {
+            statusDiv.textContent = data.message || 'Something went wrong.';
+            statusDiv.className = 'hp-form-msg show error';
+        }
+    } catch (err) {
+        statusDiv.textContent = 'Could not reach the server. Please try again.';
+        statusDiv.className = 'hp-form-msg show error';
+    }
+    btn.disabled = false; btn.textContent = 'Send Message';
+});
 </script>
 </body>
 </html>
