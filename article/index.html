@@ -26,128 +26,214 @@
     <meta id="twitterImage" name="twitter:image" content="">
     <script id="newsArticleSchema" type="application/ld+json"></script>
 
-    <!-- THEME CSS -->
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-
-    <!-- Sans for chrome/nav/meta, Serif for the actual editorial content -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/newzyy-theme.css">
 
     <style>
         /* Page-specific tweaks only — shared look lives in css/newzyy-theme.css */
     </style>
 </head>
-<body>
+<body class="hp-body">
 
 <div id="readProgress"></div>
 
-<div class="ticker-bar">
+<div id="hpMastheadSticky">
+<div class="hp-utility">
     <div class="container">
-        <span class="tag">Breaking</span>
-        <div class="track"><div class="track-inner" id="trendingTrack"><span>Welcome to Newzyy</span></div></div>
+        <span class="hp-edition">Pakistan Edition</span>
+        <div class="hp-utility-right">
+            <span id="dateDisplay"></span>
+            <span id="weatherWidget"><i class="fa fa-spinner fa-spin"></i></span>
+            <button class="hp-theme-btn" id="themeToggle" title="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
+        </div>
     </div>
 </div>
 
-<header class="masthead">
+<div class="hp-ticker">
     <div class="container">
-        <a href="/" class="site-logo">Newzy<span>y</span><small>News</small></a>
-        <div class="masthead-tools">
-            <div class="search-wrapper">
-                <i class="fa fa-search"></i>
-                <input type="text" class="search-input" placeholder="Search"
-                       onkeydown="if(event.key==='Enter'){window.location.href='/search.html?q='+encodeURIComponent(this.value)}">
-            </div>
-            <div class="account-section"><span id="accountLinks"></span></div>
-        </div>
+        <span class="hp-ticker-tag">Breaking</span>
+        <div class="hp-ticker-track"><div class="hp-ticker-inner" id="trendingTrack"><span>Welcome to Newzyy</span></div></div>
     </div>
+</div>
+
+<header id="hpNameplate">
+    <div class="nameplate-row">
+        <div class="nameplate-meta">Vol. IV — Digital Edition</div>
+        <a href="/" class="nameplate-brand">Newzyy</a>
+        <div class="nameplate-meta right" id="nameplateDate"></div>
+    </div>
+    <div class="nameplate-rule-set"><div class="r1"></div><div class="r2"></div></div>
+    <div class="nameplate-tagline">Truth · Clarity · Independent Journalism</div>
 </header>
 
-<nav class="bbc-nav">
-    <div class="container">
-        <div class="d-flex flex-wrap">
-            <a class="nav-link" href="/">Home</a>
-            <a class="nav-link" href="/?cat=politics">Politics</a>
-            <a class="nav-link" href="/?cat=technology">Tech</a>
-            <a class="nav-link" href="/?cat=ai">AI</a>
-            <a class="nav-link" href="/?cat=sports">Sports</a>
-            <a class="nav-link" href="/?cat=business">Business</a>
-            <a class="nav-link" href="/?cat=health">Health</a>
-            <a class="nav-link" href="/?cat=science">Science</a>
-            <a class="nav-link" href="/?cat=entertainment">Entertainment</a>
-            <a class="nav-link" href="/?cat=travel">Travel</a>
-            <a class="nav-link" href="/?cat=environment">Earth</a>
-            <a class="nav-link" href="/?cat=culture">Culture</a>
-            <a class="nav-link" href="/?cat=world">World</a>
-            <a class="nav-link" href="/?cat=economy">Economy</a>
+<nav class="primary-nav-v2">
+    <div class="hp-nav-index" id="navLinks">
+        <a class="nav-link" href="/">Home</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=politics">Politics</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=technology">Technology</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=ai">AI</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=sports">Sports</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=business">Business</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=health">Health</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=science">Science</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=entertainment">Entertainment</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=travel">Travel</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=environment">Environment</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=culture">Culture</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=world">World</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=economy">Economy</a>
+    </div>
+    <div class="hp-nav-tools">
+        <div class="hp-search-wrap">
+            <i class="fa fa-search"></i>
+            <input type="text" id="searchInput" class="hp-search-input" placeholder="Search" autocomplete="off"
+                   onkeydown="if(event.key==='Enter'){window.location.href='/search.html?q='+encodeURIComponent(this.value)}">
         </div>
+        <span id="accountLinks"></span>
     </div>
 </nav>
+</div>
 
-<main class="container bbc-article-wrap">
+<main class="hp-article-wrap">
     <div id="articleRoot">
-        <div class="bbc-state-msg">
+        <div class="hp-state-msg">
             <div class="spinner-border text-danger" role="status"></div>
             <p class="mt-3 text-muted">Loading article...</p>
         </div>
     </div>
 </main>
 
-<footer class="bbc-footer">
-    <div class="container">
-        <div class="links">
-            <a href="/">Home</a>
-            <a href="/about/">About</a>
+<footer class="hp-mega-footer">
+    <div class="top">
+        <div>
+            <div class="brand">Newzyy</div>
+            <p class="brand-desc">Independent digital journalism covering politics, business, technology and culture — reported and edited around the clock.</p>
+        </div>
+        <div class="col">
+            <h5>Sections</h5>
+            <a href="/?cat=politics">Politics</a>
+            <a href="/?cat=world">World</a>
+            <a href="/?cat=business">Business</a>
+            <a href="/?cat=technology">Technology</a>
+            <a href="/?cat=sports">Sports</a>
+        </div>
+        <div class="col">
+            <h5>Company</h5>
+            <a href="/about/">About Us</a>
             <a href="/contact/">Contact</a>
             <a href="/author/">Editorial Team</a>
-            <a href="/privacy/">Privacy</a>
-            <a href="/terms/">Terms</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Use</a>
         </div>
-
-        <div style="text-align:center; margin: 18px 0 0;">
-            <button class="lang-switch-toggle"
-                    onclick="document.getElementById('langPanel').classList.toggle('open'); this.querySelector('i').classList.toggle('fa-chevron-up'); this.querySelector('i').classList.toggle('fa-chevron-down');">
-                Newzyy in other languages <i class="fa fa-chevron-down"></i>
-            </button>
+        <div class="col">
+            <h5>Account</h5>
+            <a href="/account/">Sign In</a>
+            <a href="/signup/">Register</a>
+            <a href="/bookmarks/">My Bookmarks</a>
+            <a href="/search/">Search</a>
         </div>
-
-        <div class="lang-switcher-panel" id="langPanel" style="max-width:640px;margin:16px auto 0;">
-            <div class="lang-grid">
-                <a href="/" class="current">English</a>
-                <a href="/ur/">اردو</a>
-                <a href="/hi/">हिन्दी</a>
-                <a href="/ar/">العربية</a>
-                <a href="/es/">Español</a>
-                <a href="/fr/">Français</a>
-                <a href="/bn/">বাংলা</a>
-                <a href="/tr/">Türkçe</a>
-                <a href="/id/">Indonesia</a>
-                <a href="/pt/">Português</a>
-            </div>
+    </div>
+    <div class="hp-colophon"><div class="inner">Newzyy is an independent digital publication. Est. 2022. Editorially independent — no outside ownership influences our coverage.</div></div>
+    <div class="langbar">
+        <div class="langbar-inner">
+            <a href="/" class="cur">English</a>
+            <a href="/ur/">اردو</a>
+            <a href="/hi/">हिन्दी</a>
+            <a href="/ar/">العربية</a>
+            <a href="/es/">Español</a>
+            <a href="/fr/">Français</a>
+            <a href="/bn/">বাংলা</a>
+            <a href="/tr/">Türkçe</a>
+            <a href="/id/">Indonesia</a>
+            <a href="/pt/">Português</a>
         </div>
-
-        <div class="copyright" style="margin-top:18px;">2026 Newzyy — Independent Journalism</div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-inner">
+            <span>© 2026 Newzyy. All rights reserved.</span>
+            <span>Independent Journalism</span>
+        </div>
     </div>
 </footer>
 
 <script src="../plugins/jquery/jquery.js"></script>
 <script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
-<script src="../js/custom.js"></script>
 
 <script>
 const API_BASE = 'https://newzyy.onrender.com';
+const LANG = 'en';
+const DEFAULT_AUTHOR = 'Newzyy Staff';
 let currentArticle = null;
 
-const CATEGORY_COLORS = {
-    politics: '#b80000', technology: '#2563eb', ai: '#9333ea', sports: '#16a34a', business: '#7c3aed',
-    health: '#0891b2', science: '#d97706', entertainment: '#dc2626', travel: '#0ea5e9',
-    environment: '#22c55e', culture: '#8b5cf6', world: '#3b82f6', economy: '#f59e0e'
-};
 const CATEGORY_NAMES = {
     politics: 'Politics', technology: 'Technology', ai: 'AI', sports: 'Sports', business: 'Business',
     health: 'Health', science: 'Science', entertainment: 'Entertainment', travel: 'Travel',
-    environment: 'Earth', culture: 'Culture', world: 'World', economy: 'Economy'
+    environment: 'Environment', culture: 'Culture', world: 'World', economy: 'Economy'
 };
+
+/* ---------- theme / date / weather (shared with homepage) ---------- */
+function initTheme() {
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    updateThemeIcon(saved);
+}
+function toggleTheme() {
+    const cur = document.documentElement.getAttribute('data-theme');
+    const next = cur === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('newzyy_theme', next);
+    updateThemeIcon(next);
+}
+function updateThemeIcon(theme) {
+    const btn = document.getElementById('themeToggle');
+    if (btn) btn.innerHTML = theme === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+}
+function renderDate() {
+    const d = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const el1 = document.getElementById('dateDisplay'); if (el1) el1.textContent = d;
+    const el2 = document.getElementById('nameplateDate'); if (el2) el2.textContent = d;
+}
+function weatherIcon(code) {
+    if (code === 0) return 'fa-sun-o';
+    if ([1, 2, 3].includes(code)) return 'fa-cloud';
+    if ([45, 48].includes(code)) return 'fa-align-justify';
+    if (code >= 51 && code <= 67) return 'fa-tint';
+    if (code >= 71 && code <= 77) return 'fa-snowflake-o';
+    if (code >= 80 && code <= 82) return 'fa-tint';
+    if (code >= 95) return 'fa-bolt';
+    return 'fa-cloud';
+}
+async function loadWeather(lat, lon, label) {
+    const el = document.getElementById('weatherWidget');
+    try {
+        const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`);
+        const data = await res.json();
+        const w = data.current_weather;
+        if (!w || !el) return;
+        el.innerHTML = `<i class="fa ${weatherIcon(w.weathercode)}"></i> ${Math.round(w.temperature)}&deg;C ${label ? '· ' + label : ''}`;
+    } catch (e) { if (el) el.innerHTML = ''; }
+}
+function initWeather() {
+    loadWeather(33.6844, 73.0479, 'Islamabad');
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(pos => loadWeather(pos.coords.latitude, pos.coords.longitude, ''), () => {}, { timeout: 8000 });
+    }
+}
 
 function getReadingTime(text) {
     const words = (text || '').replace(/<[^>]*>/g, ' ').split(/\s+/).filter(Boolean).length;
@@ -164,16 +250,16 @@ function escapeHtml(str) {
     div.textContent = str;
     return div.innerHTML;
 }
+function authorName(a) { return a.author || DEFAULT_AUTHOR; }
 
 function updateAccountLinks() {
     const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
     const container = document.getElementById('accountLinks');
     if (!container) return;
     if (loggedIn) {
-        const initials = loggedIn.name.charAt(0).toUpperCase();
-        container.innerHTML = `<span style="font-weight:600;font-size:0.85rem">${initials} · ${loggedIn.name}</span>`;
+        container.innerHTML = `<a href="/bookmarks/" style="font-weight:600;font-size:0.8rem;color:#e8e5da;">${loggedIn.name.charAt(0).toUpperCase()} · ${loggedIn.name}</a>`;
     } else {
-        container.innerHTML = `<a href="/account/" class="btn-login">Log In</a> <a href="/signup/" class="btn-signup">Register</a>`;
+        container.innerHTML = `<a href="/account/">Sign In</a> <a href="/signup/">Register</a>`;
     }
 }
 
@@ -223,7 +309,7 @@ function updateSEOTags(article) {
         "description": desc,
         "image": article.image ? [article.image] : [],
         "datePublished": article.fetched_at,
-        "author": { "@type": "Person", "name": article.author || "Newzyy" },
+        "author": { "@type": "Person", "name": authorName(article) },
         "publisher": {
             "@type": "Organization",
             "name": "Newzyy",
@@ -237,7 +323,7 @@ function updateSEOTags(article) {
 
 function renderLiveKicker(article) {
     if (!article.breaking) return '';
-    return `<span class="live-kicker"><span class="dot"></span> Live</span>`;
+    return `<span class="hp-live"><span class="d"></span> Live</span>`;
 }
 
 function renderArticle(article) {
@@ -245,28 +331,27 @@ function renderArticle(article) {
     updateSEOTags(article);
 
     const catName = CATEGORY_NAMES[article.category] || (article.category || 'News');
-    const catColor = CATEGORY_COLORS[article.category] || '#b80000';
     const initials = (article.author || 'N').charAt(0).toUpperCase();
 
     document.getElementById('articleRoot').innerHTML = `
-        <div class="bbc-breadcrumb">
+        <div class="hp-breadcrumb">
             <a href="/">Home</a> &nbsp;›&nbsp;
             <a href="/?cat=${article.category}">${catName}</a>
         </div>
 
-        <div class="bbc-article-header">
+        <div class="hp-article-header">
             <div class="kicker-row">
-                <a class="kicker" href="/?cat=${article.category}" style="color:${catColor}">${catName}</a>
+                <a class="k" href="/?cat=${article.category}">${catName}</a>
                 ${renderLiveKicker(article)}
             </div>
-            <h1 class="article-title">${article.title}</h1>
-            ${article.excerpt ? `<p class="article-excerpt">${article.excerpt}</p>` : ''}
+            <h1 class="hp-article-title">${article.title}</h1>
+            ${article.excerpt ? `<p class="hp-article-excerpt">${article.excerpt}</p>` : ''}
         </div>
 
-        <div class="bbc-article-header">
-            <div class="byline-row">
+        <div class="hp-article-header">
+            <div class="hp-byline-row">
                 <div class="avatar">${initials}</div>
-                <div class="byline-text">By <a href="/author/" style="color:var(--ink);font-weight:700;text-decoration:none;border-bottom:1px solid var(--hairline);">${article.author || 'Newzyy'}</a><br>${article.time || 'Just now'}</div>
+                <div class="byline-text">By <a href="/author/">${authorName(article)}</a><br>${article.time || 'Just now'}</div>
                 <div class="byline-meta">
                     <span>${getReadingTime(article.body || article.excerpt)} min read</span>
                     <span id="viewCountDisplay"><i class="fa fa-eye"></i> ${formatViews(article.views)} views</span>
@@ -274,28 +359,28 @@ function renderArticle(article) {
             </div>
         </div>
 
-        <div class="bbc-article-image">
-            <img src="${article.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200'" alt="${article.title}">
+        <div class="hp-article-image">
+            <img src="${article.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200'" alt="${escapeHtml(article.title)}">
         </div>
 
-        <div class="bbc-article-body">
+        <div class="hp-article-body">
             ${renderBody(article.body || article.excerpt)}
         </div>
 
-        <div class="bbc-share-row">
+        <div class="hp-share-row">
             <div class="tags"><span>Tags</span><a href="/?cat=${article.category}">${catName}</a></div>
             <ul class="share-icons list-unstyled d-flex m-0">
-                <li><button id="bookmarkBtn" onclick="toggleBookmark('${article.id}')" style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--hairline);border-radius:50%;background:none;color:var(--ink);cursor:pointer;"><i class="fa fa-bookmark-o" id="bookmarkIcon"></i></button></li>
-                <li><a href="https://www.facebook.com/profile.php?id=61591713046922=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
+                <li><button id="bookmarkBtn" onclick="toggleBookmark('${article.id}')"><i class="fa fa-bookmark-o" id="bookmarkIcon"></i></button></li>
+                <li><a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(location.href)}" target="_blank" rel="noopener"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="https://twitter.com/intent/tweet?url=${encodeURIComponent(location.href)}&text=${encodeURIComponent(article.title)}" target="_blank" rel="noopener"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://whatsapp.com/channel/0029Vb83AtK1t90k8GMzEQ0l=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
+                <li><a href="https://api.whatsapp.com/send?text=${encodeURIComponent(article.title + ' ' + location.href)}" target="_blank" rel="noopener"><i class="fa fa-whatsapp"></i></a></li>
             </ul>
         </div>
 
         <div id="relatedRoot"></div>
-        <div class="bbc-sidebar">
-            <div class="sidebar-widget">
-                <h3 class="section-label">Most Read</h3>
+        <div class="hp-article-sidebar">
+            <div class="hp-side-widget">
+                <span class="hp-side-title">Most Read</span>
                 <div id="mostReadRoot"></div>
             </div>
         </div>
@@ -311,15 +396,15 @@ function renderRelatedGrid(items) {
     const root = document.getElementById('relatedRoot');
     if (!root || !items.length) { if (root) root.innerHTML = ''; return; }
     root.innerHTML = `
-        <div class="bbc-related">
-            <h3 class="section-label">Related Stories</h3>
-            <div class="related-row">
+        <div class="hp-related">
+            <div class="hp-head"><h2>Related Stories</h2></div>
+            <div class="hp-related-row">
                 ${items.map(a => `
-                    <div class="related-item" onclick="window.location.href='/article/?id=${a.id}'">
-                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy">
-                        <div class="cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</div>
-                        <div class="title">${a.title}</div>
-                        <div class="meta">${a.time || 'Just now'}</div>
+                    <div class="hp-related-item" onclick="window.location.href='/article/?id=${a.id}'">
+                        <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=400'" loading="lazy" alt="${escapeHtml(a.title)}">
+                        <div class="k">${CATEGORY_NAMES[a.category] || a.category}</div>
+                        <div class="t">${a.title}</div>
+                        <div class="m">${a.time || 'Just now'}</div>
                     </div>
                 `).join('')}
             </div>
@@ -329,7 +414,7 @@ function renderRelatedGrid(items) {
 
 async function loadRelated(article) {
     try {
-        const res = await fetch(`${API_BASE}/api/category/${article.category}?limit=6`);
+        const res = await fetch(`${API_BASE}/api/category/${article.category}?limit=6&lang=${LANG}`);
         const data = await res.json();
         const items = (data.news || []).filter(a => a.id !== article.id).slice(0, 4);
         renderRelatedGrid(items);
@@ -342,14 +427,14 @@ async function loadMostRead() {
     const root = document.getElementById('mostReadRoot');
     if (!root) return;
     try {
-        const res = await fetch(`${API_BASE}/api/most-read`);
+        const res = await fetch(`${API_BASE}/api/most-read?lang=${LANG}`);
         const data = await res.json();
         const items = (data.news || []).slice(0, 5);
         if (!items.length) { root.innerHTML = '<p class="text-muted small">No data yet.</p>'; return; }
         root.innerHTML = items.map((a, i) => `
-            <div class="most-read-item" onclick="window.location.href='/article/?id=${a.id}'">
-                <div class="rank">${i + 1}</div>
-                <div class="title">${a.title}</div>
+            <div class="hp-mostread-item" onclick="window.location.href='/article/?id=${a.id}'">
+                <div class="n">${i + 1}</div>
+                <div class="t">${a.title}</div>
             </div>
         `).join('');
     } catch (e) {
@@ -377,8 +462,8 @@ async function checkBookmarkStatus(articleId) {
         if (data.success && (data.news || []).some(a => a.id === articleId)) {
             currentlyBookmarked = true;
             icon.className = 'fa fa-bookmark';
-            icon.parentElement.style.color = 'var(--red)';
-            icon.parentElement.style.borderColor = 'var(--red)';
+            icon.parentElement.style.color = 'var(--hp-red)';
+            icon.parentElement.style.borderColor = 'var(--hp-red)';
         }
     } catch (e) { /* silent — bookmark button just stays in default state */ }
 }
@@ -387,7 +472,7 @@ async function toggleBookmark(articleId) {
     const token = localStorage.getItem('newzyy_token');
     if (!token) {
         if (confirm('Please log in to save articles. Go to login page now?')) {
-            window.location.href = 'account.html';
+            window.location.href = '/account/';
         }
         return;
     }
@@ -398,14 +483,14 @@ async function toggleBookmark(articleId) {
             await fetch(`${API_BASE}/api/bookmarks/${articleId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
             currentlyBookmarked = false;
             icon.className = 'fa fa-bookmark-o';
-            btn.style.color = 'var(--ink)';
-            btn.style.borderColor = 'var(--hairline)';
+            btn.style.color = 'var(--hp-ink)';
+            btn.style.borderColor = 'var(--hp-rule)';
         } else {
             await fetch(`${API_BASE}/api/bookmarks/${articleId}`, { method: 'POST', headers: { 'Authorization': `Bearer ${token}` } });
             currentlyBookmarked = true;
             icon.className = 'fa fa-bookmark';
-            btn.style.color = 'var(--red)';
-            btn.style.borderColor = 'var(--red)';
+            btn.style.color = 'var(--hp-red)';
+            btn.style.borderColor = 'var(--hp-red)';
         }
     } catch (e) { alert('Could not update bookmark. Please try again.'); }
 }
@@ -413,15 +498,13 @@ async function toggleBookmark(articleId) {
 function updateTrendingBar(items) {
     const container = document.getElementById('trendingTrack');
     if (!container) return;
-    if (!items.length) { container.innerHTML = '<span class="item">Welcome to Newzyy</span>'; return; }
-    container.innerHTML = items.slice(0, 10).map(a => `
-        <span class="item"><a href="/article/?id=${a.id}">${a.title}</a></span>
-    `).join('');
+    if (!items.length) { container.innerHTML = '<span>Welcome to Newzyy</span>'; return; }
+    container.innerHTML = items.slice(0, 10).map(a => `<a href="/article/?id=${a.id}">${a.title}</a>`).join('');
 }
 
 function renderNotFound() {
     document.getElementById('articleRoot').innerHTML = `
-        <div class="bbc-state-msg">
+        <div class="hp-state-msg">
             <h4>Article not found</h4>
             <p class="text-muted">This story may have been removed or the link is incorrect.</p>
             <a href="/">← Back to Newzyy home</a>
@@ -438,12 +521,17 @@ window.addEventListener('scroll', () => {
 });
 
 async function init() {
+    initTheme();
+    document.getElementById('themeToggle')?.addEventListener('click', toggleTheme);
+    renderDate();
+    initWeather();
     updateAccountLinks();
+
     const id = new URLSearchParams(window.location.search).get('id');
     if (!id) { renderNotFound(); return; }
 
     try {
-        const res = await fetch(`${API_BASE}/api/article/${id}`);
+        const res = await fetch(`${API_BASE}/api/article/${id}?lang=${LANG}`);
         if (!res.ok) { renderNotFound(); return; }
         const data = await res.json();
         if (!data.success || !data.article) { renderNotFound(); return; }
@@ -454,7 +542,7 @@ async function init() {
     }
 
     try {
-        const res2 = await fetch(`${API_BASE}/api/all-news?limit=10`);
+        const res2 = await fetch(`${API_BASE}/api/all-news?limit=10&lang=${LANG}`);
         const data2 = await res2.json();
         updateTrendingBar(data2.news || []);
     } catch (e) { /* non-critical */ }
