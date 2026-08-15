@@ -9,87 +9,172 @@
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700;8..60,900&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/newzyy-theme.css">
     <style>
-        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
-            --sans:'Inter',sans-serif; --serif:'Source Serif 4',Georgia,serif; }
-        :root[data-theme="dark"] { --ink:#f0ede6; --paper:#17150f; --canvas:#0f0d09; --hairline:#2c2820; --muted:#9c9689; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:var(--sans); background:var(--canvas); color:var(--ink); }
-        a { text-decoration:none; color:inherit; }
-        .bbc-header { background:var(--paper); border-bottom:1px solid var(--hairline); padding:16px 0; }
-        .site-logo { font-size:1.8rem; font-weight:700; color:var(--ink); }
-        .site-logo span { color:var(--red); }
-        .theme-toggle { background:none; border:1px solid var(--hairline); border-radius:50%; width:30px; height:30px; cursor:pointer; color:var(--ink); }
-        .bbc-nav { background:var(--paper); border-bottom:1px solid var(--hairline); }
-        .bbc-nav a { font-size:0.72rem; font-weight:600; padding:12px 16px; text-transform:uppercase; letter-spacing:0.4px; color:var(--muted); display:inline-block; }
-        .profile-wrap { max-width:760px; margin:0 auto; padding:50px 20px 20px; display:flex; gap:24px; align-items:center; }
-        .avatar { width:90px; height:90px; border-radius:50%; background:var(--ink); color:var(--paper); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:2rem; font-weight:700; flex-shrink:0; }
-        .profile-info h1 { font-family:var(--serif); font-size:1.7rem; }
-        .profile-info .role { font-size:0.85rem; color:var(--red); font-weight:700; text-transform:uppercase; letter-spacing:0.4px; margin-top:4px; }
-        .bio { max-width:760px; margin:24px auto 0; padding:0 20px; }
-        .bio p { font-size:1rem; line-height:1.8; color:#333; margin-bottom:16px; }
-        :root[data-theme="dark"] .bio p { color:#d8d4c8; }
-        .section-title { max-width:900px; margin:40px auto 20px; padding:0 20px 12px; font-size:0.8rem; font-weight:800; text-transform:uppercase; letter-spacing:0.5px; border-bottom:2px solid var(--ink); }
-        .articles-wrap { max-width:900px; margin:0 auto; padding:0 20px 60px; }
-        .article-row { display:flex; gap:18px; padding:16px 0; border-bottom:1px solid var(--hairline); cursor:pointer; }
-        .article-row img { width:110px; height:78px; object-fit:cover; flex-shrink:0; }
-        .article-row .cat { font-size:0.62rem; font-weight:800; text-transform:uppercase; }
-        .article-row .title { font-family:var(--serif); font-size:1rem; font-weight:700; margin-top:4px; }
-        .article-row:hover .title { color:var(--red); }
-        .article-row .meta { font-size:0.7rem; color:var(--muted); margin-top:6px; }
-        .bbc-footer { background:var(--ink); color:#ccc; padding:40px 0 20px; margin-top:40px; border-top:3px solid var(--red); }
-        .bbc-footer a { color:#ccc; font-size:0.85rem; }
-        .bbc-footer .links { display:flex; flex-wrap:wrap; justify-content:center; gap:24px; }
-        .bbc-footer .copyright { font-size:0.75rem; color:#666; margin-top:20px; text-align:center; }
-        @media (max-width:600px){ .profile-wrap{flex-direction:column;text-align:center;} .article-row{flex-direction:column;} .article-row img{width:100%;height:150px;} }
+        .hp-profile-wrap{ max-width:760px; margin:0 auto; padding:50px 20px 20px; display:flex; gap:24px; align-items:center; }
+        .hp-profile-wrap .avatar{ width:90px; height:90px; border-radius:50%; background:var(--hp-ink); color:#fff; display:flex; align-items:center; justify-content:center; font-family:var(--hp-display); font-size:2rem; font-weight:800; flex-shrink:0; }
+        .hp-profile-info h1{ font-family:var(--hp-display); font-weight:800; font-size:1.7rem; }
+        .hp-profile-info .role{ font-family:var(--sans); font-size:.82rem; color:var(--hp-red); font-weight:700; text-transform:uppercase; letter-spacing:.4px; margin-top:4px; }
+        .hp-bio{ max-width:760px; margin:24px auto 0; padding:0 20px; }
+        .hp-bio p{ font-family:var(--serif); font-size:1.02rem; line-height:1.8; margin-bottom:16px; }
+        .hp-section-title{ max-width:900px; margin:40px auto 20px; padding:0 20px 12px; font-family:var(--sans); font-size:.78rem; font-weight:800; text-transform:uppercase; letter-spacing:.5px; border-bottom:2px solid var(--hp-ink); }
+        .hp-articles-wrap{ max-width:900px; margin:0 auto; padding:0 20px 60px; }
+        @media (max-width:600px){ .hp-profile-wrap{ flex-direction:column; text-align:center; } }
     </style>
 </head>
-<body>
+<body class="hp-body">
 
-<header class="bbc-header">
-    <div class="container d-flex justify-content-between align-items-center">
-        <a href="/" class="site-logo">Newzy<span>y</span></a>
-        <button class="theme-toggle" id="themeToggle"><i class="fa fa-moon-o"></i></button>
+<div id="hpMastheadSticky">
+<div class="hp-utility">
+    <div class="container">
+        <span class="hp-edition">Pakistan Edition</span>
+        <div class="hp-utility-right">
+            <span id="dateDisplay"></span>
+            <button class="hp-theme-btn" id="themeToggle" title="Toggle dark mode"><i class="fa fa-moon-o"></i></button>
+        </div>
     </div>
-</header>
-<nav class="bbc-nav"><div class="container"><a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a></div></nav>
+</div>
 
-<div class="profile-wrap">
+<header id="hpNameplate">
+    <div class="nameplate-row">
+        <div class="nameplate-meta">Vol. IV — Digital Edition</div>
+        <a href="/" class="nameplate-brand">Newzyy</a>
+        <div class="nameplate-meta right" id="nameplateDate"></div>
+    </div>
+    <div class="nameplate-rule-set"><div class="r1"></div><div class="r2"></div></div>
+    <div class="nameplate-tagline">Truth · Clarity · Independent Journalism</div>
+</header>
+
+<nav class="primary-nav-v2">
+    <div class="hp-nav-index" id="navLinks">
+        <a class="nav-link" href="/">Home</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=politics">Politics</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=technology">Technology</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=business">Business</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=sports">Sports</a>
+        <span class="pipe">|</span>
+        <a class="nav-link" href="/?cat=world">World</a>
+    </div>
+    <div class="hp-nav-tools">
+        <div class="hp-search-wrap">
+            <i class="fa fa-search"></i>
+            <input type="text" class="hp-search-input" placeholder="Search" autocomplete="off"
+                   onkeydown="if(event.key==='Enter'){window.location.href='/search.html?q='+encodeURIComponent(this.value)}">
+        </div>
+        <span id="accountLinks"></span>
+    </div>
+</nav>
+</div>
+
+<div class="hp-profile-wrap">
     <div class="avatar">N</div>
-    <div class="profile-info">
+    <div class="hp-profile-info">
         <h1>Newzyy Staff</h1>
         <div class="role">Editorial Team</div>
     </div>
 </div>
 
-<div class="bio">
+<div class="hp-bio">
     <p><strong>Newzyy Staff</strong> is the collective byline for journalism produced and reviewed by our editorial team. Our reporters and editors cover politics, technology, business, science, and world affairs — with a commitment to accuracy, fairness, and original storytelling.</p>
-    <p>Every article published under this byline has undergone thorough editorial review. We stand behind our work and are accountable to our readers. For more on how we operate, visit our <a href="/about/" style="color:var(--red);font-weight:600">About page</a>. To report an error, please <a href="/contact/" style="color:var(--red);font-weight:600">contact us</a>.</p>
+    <p>Every article published under this byline has undergone thorough editorial review. We stand behind our work and are accountable to our readers. For more on how we operate, visit our <a href="/about/">About page</a>. To report an error, please <a href="/contact/">contact us</a>.</p>
 </div>
 
-<div class="section-title">Recent Articles</div>
-<div class="articles-wrap" id="articlesWrap">
-    <p style="color:var(--muted);font-size:0.9rem;">Loading articles...</p>
+<div class="hp-section-title">Recent Articles</div>
+<div class="hp-articles-wrap hp-result-list" id="articlesWrap">
+    <p style="color:var(--hp-muted);font-size:0.9rem;font-family:var(--sans);">Loading articles...</p>
 </div>
 
-<footer class="bbc-footer">
-    <div class="container">
-        <div class="links">
-            <a href="/">Home</a><a href="/about/">About</a><a href="/contact/">Contact</a>
-            <a href="/privacy/">Privacy</a><a href="/terms/">Terms</a>
+<footer class="hp-mega-footer">
+    <div class="top">
+        <div>
+            <div class="brand">Newzyy</div>
+            <p class="brand-desc">Independent digital journalism covering politics, business, technology and culture — reported and edited around the clock.</p>
         </div>
-        <div class="copyright">2026 Newzyy — Independent Journalism</div>
+        <div class="col">
+            <h5>Sections</h5>
+            <a href="/?cat=politics">Politics</a>
+            <a href="/?cat=world">World</a>
+            <a href="/?cat=business">Business</a>
+            <a href="/?cat=technology">Technology</a>
+            <a href="/?cat=sports">Sports</a>
+        </div>
+        <div class="col">
+            <h5>Company</h5>
+            <a href="/about/">About Us</a>
+            <a href="/contact/">Contact</a>
+            <a href="/author/">Editorial Team</a>
+            <a href="/privacy/">Privacy Policy</a>
+            <a href="/terms/">Terms of Use</a>
+        </div>
+        <div class="col">
+            <h5>Account</h5>
+            <a href="/account/">Sign In</a>
+            <a href="/signup/">Register</a>
+            <a href="/bookmarks/">My Bookmarks</a>
+            <a href="/search/">Search</a>
+        </div>
+    </div>
+    <div class="hp-colophon"><div class="inner">Newzyy is an independent digital publication. Est. 2022. Editorially independent — no outside ownership influences our coverage.</div></div>
+    <div class="langbar">
+        <div class="langbar-inner">
+            <a href="/" class="cur">English</a>
+            <a href="/ur/">اردو</a>
+            <a href="/hi/">हिन्दी</a>
+            <a href="/ar/">العربية</a>
+            <a href="/es/">Español</a>
+            <a href="/fr/">Français</a>
+            <a href="/bn/">বাংলা</a>
+            <a href="/tr/">Türkçe</a>
+            <a href="/id/">Indonesia</a>
+            <a href="/pt/">Português</a>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottom-inner">
+            <span>© 2026 Newzyy. All rights reserved.</span>
+            <span>Independent Journalism</span>
+        </div>
     </div>
 </footer>
 
+<script src="../plugins/jquery/jquery.js"></script>
+<script src="../plugins/bootstrap/js/bootstrap.min.js"></script>
+<script>
+(function(){
+    const saved = localStorage.getItem('newzyy_theme') || 'light';
+    document.documentElement.setAttribute('data-theme', saved);
+    const btn = document.getElementById('themeToggle');
+    if (btn) {
+        btn.innerHTML = saved === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+        btn.addEventListener('click', () => {
+            const cur = document.documentElement.getAttribute('data-theme');
+            const next = cur === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('newzyy_theme', next);
+            btn.innerHTML = next === 'dark' ? '<i class="fa fa-sun-o"></i>' : '<i class="fa fa-moon-o"></i>';
+        });
+    }
+    document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('nameplateDate') && (document.getElementById('nameplateDate').textContent = document.getElementById('dateDisplay').textContent);
+
+    const loggedIn = JSON.parse(localStorage.getItem('newzyy_logged_in') || 'null');
+    const acc = document.getElementById('accountLinks');
+    if (acc) {
+        acc.innerHTML = loggedIn
+            ? `<a href="/bookmarks/" style="font-weight:600;font-size:0.8rem;color:#e8e5da;">${loggedIn.name.charAt(0).toUpperCase()} · ${loggedIn.name}</a>`
+            : `<a href="/account/">Sign In</a> <a href="/signup/">Register</a>`;
+    }
+})();
+</script>
 <script>
 const API_BASE = 'https://newzyy.onrender.com';
-const CATEGORY_COLORS = { politics:'#b80000', technology:'#2563eb', ai:'#9333ea', sports:'#16a34a', business:'#7c3aed',
-    health:'#0891b2', science:'#d97706', entertainment:'#dc2626', travel:'#0ea5e9', environment:'#22c55e',
-    culture:'#8b5cf6', world:'#3b82f6', economy:'#f59e0e' };
 const CATEGORY_NAMES = { politics:'Politics', technology:'Technology', ai:'AI', sports:'Sports', business:'Business',
-    health:'Health', science:'Science', entertainment:'Entertainment', travel:'Travel', environment:'Earth',
+    health:'Health', science:'Science', entertainment:'Entertainment', travel:'Travel', environment:'Environment',
     culture:'Culture', world:'World', economy:'Economy' };
 
 function openNews(id) { window.location.href = '/article/?id=' + id; }
@@ -100,22 +185,22 @@ async function loadRecentArticles() {
         const res = await fetch(`${API_BASE}/api/all-news?page=1&limit=10`);
         const data = await res.json();
         const items = data.news || [];
-        if (!items.length) { wrap.innerHTML = '<p style="color:var(--muted);font-size:0.9rem;">No articles yet.</p>'; return; }
+        if (!items.length) { wrap.innerHTML = '<p style="color:var(--hp-muted);font-size:0.9rem;">No articles yet.</p>'; return; }
         wrap.innerHTML = items.map(a => `
-            <div class="article-row" onclick="openNews('${a.id}')">
-                <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'">
+            <div class="hp-result-item" onclick="openNews('${a.id}')">
+                <img src="${a.image}" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?w=300'" alt="${a.title}">
                 <div>
-                    <span class="cat" style="color:${CATEGORY_COLORS[a.category] || '#b80000'}">${CATEGORY_NAMES[a.category] || a.category}</span>
-                    <div class="title">${a.title}</div>
-                    <div class="meta">${a.time || 'Just now'}</div>
+                    <span class="k">${CATEGORY_NAMES[a.category] || a.category}</span>
+                    <div class="t">${a.title}</div>
+                    <div class="m">${a.time || 'Just now'}</div>
                 </div>
             </div>
         `).join('');
     } catch (e) {
-        wrap.innerHTML = '<p style="color:var(--muted);font-size:0.9rem;">Could not load articles.</p>';
+        wrap.innerHTML = '<p style="color:var(--hp-muted);font-size:0.9rem;">Could not load articles.</p>';
     }
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-    const saved = localStorage.getItem('newzyy_theme') || 'light';
-    document.documentElement.setAttribute('data-theme
+loadRecentArticles();
+</script>
+</body>
+</html>
