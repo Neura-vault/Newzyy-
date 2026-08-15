@@ -3,30 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>Page Not Found — Newzyy</title>
+    <meta name="robots" content="noindex, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="plugins/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Source+Serif+4:opsz,wght@8..60,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/newzyy-theme.css">
     <style>
-        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
-            --sans:'Inter',sans-serif; --serif:'Source Serif 4',Georgia,serif; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:var(--sans); background:var(--canvas); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
-        a { color:var(--red); font-weight:700; text-decoration:none; }
-        .code { font-family:var(--serif); font-size:6rem; font-weight:700; color:var(--red); line-height:1; }
-        h1 { font-family:var(--serif); font-size:1.6rem; margin:14px 0 10px; }
-        p { color:var(--muted); margin-bottom:24px; max-width:400px; }
-        .btn { display:inline-block; padding:12px 32px; border:1.5px solid var(--red); text-transform:uppercase; font-size:0.8rem; letter-spacing:0.5px; }
-        .btn:hover { background:var(--red); color:#fff; }
-        .logo { position:absolute; top:24px; left:24px; font-size:1.3rem; font-weight:700; }
-        .logo span { color:var(--red); }
+        body.hp-body{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:20px; }
+        .nf-code{ font-family:var(--hp-display); font-size:6rem; font-weight:800; color:var(--hp-red); line-height:1; }
+        .nf-h1{ font-family:var(--hp-display); font-weight:800; font-size:1.6rem; margin:14px 0 10px; }
+        .nf-p{ font-family:var(--sans); color:var(--hp-muted); margin-bottom:24px; max-width:400px; }
+        .nf-btn{ display:inline-block; padding:12px 32px; border:1.5px solid var(--hp-red); color:var(--hp-red); text-transform:uppercase; font-size:.8rem; letter-spacing:.5px; font-family:var(--sans); font-weight:700; text-decoration:none; }
+        .nf-btn:hover{ background:var(--hp-red); color:#fff; }
+        .nf-logo{ position:absolute; top:24px; left:24px; font-family:var(--hp-display); font-size:1.4rem; font-weight:900; color:var(--hp-ink); text-decoration:none; }
+        .nf-logo span{ color:var(--hp-red); }
     </style>
 </head>
-<body>
-    <a href="/" class="logo">Newzyy<span>y</span></a>
-    <div class="code">404</div>
-    <h1>This page doesn't exist</h1>
-    <p>The story or page you're looking for may have been moved, renamed, or never existed. Let's get you back to the news.</p>
-    <a href="/" class="btn">← Back to Newzyy Home</a>
+<body class="hp-body">
+    <a href="/" class="nf-logo">Newzy<span>y</span></a>
+    <div class="nf-code">404</div>
+    <h1 class="nf-h1">This page doesn't exist</h1>
+    <p class="nf-p">The story or page you're looking for may have been moved, renamed, or never existed. Let's get you back to the news.</p>
+    <a href="/" class="nf-btn">← Back to Newzyy Home</a>
 </body>
 </html>
