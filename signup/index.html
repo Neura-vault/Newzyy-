@@ -9,34 +9,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../plugins/font-awesome/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/newzyy-theme.css">
     <style>
-        :root { --red:#b80000; --ink:#141414; --paper:#ffffff; --canvas:#f7f6f2; --hairline:#e3ded3; --muted:#6e6a62;
-            --sans:'Inter',sans-serif; --serif:'Source Serif 4',Georgia,serif; }
-        * { margin:0; padding:0; box-sizing:border-box; }
-        body { font-family:var(--sans); background:var(--canvas); color:var(--ink); min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; }
-        .logo { font-size:1.6rem; font-weight:700; margin-bottom:30px; text-decoration:none; color:var(--ink); }
-        .logo span { color:var(--red); }
-        .auth-card { background:var(--paper); border:1px solid var(--hairline); padding:36px 32px; width:100%; max-width:380px; }
-        .auth-card h1 { font-family:var(--serif); font-size:1.5rem; margin-bottom:6px; }
-        .auth-card .sub { font-size:0.85rem; color:var(--muted); margin-bottom:24px; }
-        .auth-card label { font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.4px; display:block; margin-bottom:6px; }
-        .auth-card input { width:100%; padding:11px 13px; border:1px solid var(--hairline); font-size:0.9rem; margin-bottom:16px; font-family:var(--sans); }
-        .code-input { text-align:center; font-size:1.4rem; letter-spacing:8px; font-weight:700; }
-        .btn-primary { width:100%; padding:12px; background:var(--red); color:#fff; border:none; font-weight:700; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.5px; cursor:pointer; }
-        .btn-primary:hover { opacity:0.9; }
-        .btn-primary:disabled { opacity:0.6; cursor:not-allowed; }
-        .btn-text { background:none; border:none; color:var(--red); font-weight:600; font-size:0.82rem; cursor:pointer; margin-top:12px; display:block; width:100%; text-align:center; }
-        .footer-text { text-align:center; font-size:0.85rem; margin-top:18px; color:var(--muted); }
-        .footer-text a { color:var(--red); font-weight:600; }
-        .message { margin-top:14px; font-size:0.85rem; text-align:center; }
-        .message.success { color:#16a34a; }
-        .message.error { color:var(--red); }
-        #verifyStep { display:none; }
+        body.hp-body{ min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:20px; }
+        .auth-logo{ font-family:var(--hp-display); font-weight:900; font-size:1.9rem; margin-bottom:28px; text-decoration:none; color:var(--hp-ink); }
+        .auth-logo span{ color:var(--hp-red); }
+        .auth-card{ background:var(--hp-paper); border:1px solid var(--hp-rule); padding:36px 32px; width:100%; max-width:380px; }
+        .auth-card h1{ font-family:var(--hp-display); font-weight:800; font-size:1.5rem; margin-bottom:6px; }
+        .auth-card .sub{ font-family:var(--sans); font-size:.85rem; color:var(--hp-muted); margin-bottom:24px; }
+        .auth-card label{ font-family:var(--sans); font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.4px; display:block; margin-bottom:6px; color:var(--hp-muted); }
+        .auth-card input{ width:100%; padding:11px 13px; border:1px solid var(--hp-rule); font-size:.9rem; margin-bottom:16px; font-family:var(--sans); background:var(--hp-paper); color:var(--hp-ink); }
+        .auth-card input:focus{ outline:none; border-color:var(--hp-red); }
+        .code-input{ text-align:center; font-size:1.4rem; letter-spacing:8px; font-weight:700; }
+        .btn-primary{ width:100%; padding:12px; background:var(--hp-ink); color:#fff; border:none; font-weight:700; text-transform:uppercase; font-size:.8rem; letter-spacing:.5px; cursor:pointer; font-family:var(--sans); }
+        .btn-primary:hover{ background:var(--hp-red); }
+        .btn-primary:disabled{ opacity:.6; cursor:not-allowed; }
+        .btn-text{ background:none; border:none; color:var(--hp-red); font-weight:600; font-size:.82rem; cursor:pointer; margin-top:12px; display:block; width:100%; text-align:center; font-family:var(--sans); }
+        .footer-text{ text-align:center; font-family:var(--sans); font-size:.85rem; margin-top:18px; color:var(--hp-muted); }
+        .footer-text a{ color:var(--hp-red); font-weight:700; }
+        .message{ margin-top:14px; font-family:var(--sans); font-size:.85rem; text-align:center; }
+        .message.success{ color:#16a34a; }
+        .message.error{ color:var(--hp-red); }
+        #verifyStep{ display:none; }
     </style>
 </head>
-<body>
-    <a href="/" class="logo">Newzy<span>y</span></a>
+<body class="hp-body">
+    <a href="/" class="auth-logo">Newzy<span>y</span></a>
 
     <div class="auth-card" id="signupStep">
         <h1>Create your account</h1>
