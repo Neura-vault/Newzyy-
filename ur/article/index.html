@@ -501,6 +501,15 @@ function updateTrendingBar(items) {
     container.innerHTML = items.slice(0, 10).map(a => `<a href="/ur/article/?id=${a.id}">${a.title}</a>`).join('');
 }
 
+function renderTranslationPending(id) {
+    document.getElementById('articleRoot').innerHTML = `
+        <div class="hp-state-msg">
+            <h4>یہ خبر ابھی اردو میں ترجمہ نہیں ہوئی۔</h4>
+            <a href="/article/?id=${id}">انگریزی میں پڑھیں ←</a>
+        </div>
+    `;
+}
+
 function renderNotFound() {
     document.getElementById('articleRoot').innerHTML = `
         <div class="hp-state-msg">
@@ -533,6 +542,7 @@ async function init() {
         const res = await fetch(`${API_BASE}/api/article/${id}?lang=${LANG}`);
         if (!res.ok) { renderNotFound(); return; }
         const data = await res.json();
+        if (data.translationPending) { renderTranslationPending(id); return; }
         if (!data.success || !data.article) { renderNotFound(); return; }
         renderArticle(data.article);
     } catch (e) {
