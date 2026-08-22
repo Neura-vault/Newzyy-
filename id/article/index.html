@@ -500,6 +500,15 @@ function updateTrendingBar(items) {
     container.innerHTML = items.slice(0, 10).map(a => `<a href="/id/article/?id=${a.id}">${a.title}</a>`).join('');
 }
 
+function renderTranslationPending(id) {
+    document.getElementById('articleRoot').innerHTML = `
+        <div class="hp-state-msg">
+            <h4>Berita ini belum diterjemahkan ke Bahasa Indonesia.</h4>
+            <a href="/article/?id=${id}">Baca dalam Bahasa Inggris →</a>
+        </div>
+    `;
+}
+
 function renderNotFound() {
     document.getElementById('articleRoot').innerHTML = `
         <div class="hp-state-msg">
@@ -532,6 +541,7 @@ async function init() {
         const res = await fetch(`${API_BASE}/api/article/${id}?lang=${LANG}`);
         if (!res.ok) { renderNotFound(); return; }
         const data = await res.json();
+        if (data.translationPending) { renderTranslationPending(id); return; }
         if (!data.success || !data.article) { renderNotFound(); return; }
         renderArticle(data.article);
     } catch (e) {
