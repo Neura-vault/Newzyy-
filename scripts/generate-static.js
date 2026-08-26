@@ -2,27 +2,28 @@
 //
 // Purpose: gives Google, AI chatbots, and any crawler that doesn't run
 // JavaScript a real, fully-formed HTML page for every article — without
-// touching the live SPA experience or the backend at all.
+// touching the live SPA experience or the backend at all. Also mirrors the
+// backend's RSS feed onto the site's own domain.
 //
 // How it works:
 //   1. Asks the backend (already live on Render) for the full article list.
 //   2. For every article that doesn't already have a static file, asks the
 //      backend's existing /render/article/:id endpoint for real server-
-//      rendered HTML (this endpoint already existed — this script is the
-//      first thing that actually calls it).
-//   3. Saves that HTML to news/<id>/index.html — a real, permanent URL any
-//      crawler can fetch with zero JavaScript.
-//   4. Regenerates sitemap.xml so both the static mirror and the live
+//      rendered HTML and saves it to news/<id>/index.html — a real,
+//      permanent URL any crawler can fetch with zero JavaScript.
+//   3. Regenerates sitemap.xml so both the static mirror and the live
 //      article link are discoverable.
+//   4. Copies the backend's /rss.xml content into rss.xml at the repo root,
+//      so the feed is reachable at https://newzyy.site/rss.xml instead of
+//      only at the Render domain — same content, refreshed every run.
 //
-// The static pages are NOT the canonical URL — /article/?id=<id> (the live
-// site) stays canonical, and every static page says so via <link
-// rel="canonical">. This is a standard, safe pattern: it gives crawlers
-// real content to read without creating duplicate-content problems or
-// changing any link anyone has already shared.
+// The static article pages are NOT the canonical URL — /article/?id=<id>
+// (the live site) stays canonical, and every static page says so via
+// <link rel="canonical">. This is a standard, safe pattern.
 //
-// Runs incrementally: articles that already have a static file are
-// skipped, so a normal run only does a few API calls, not thousands.
+// Runs incrementally for articles: ones that already have a static file are
+// skipped, so a normal run only does a few API calls, not thousands. The
+// RSS mirror is small, so it's simply refetched and overwritten every run.
 
 const fs = require('fs');
 const path = require('path');
@@ -31,6 +32,7 @@ const API_BASE = 'https://newzyy.onrender.com';
 const SITE_URL = 'https://newzyy.site';
 const OUT_DIR = path.join(__dirname, '..', 'news');
 const SITEMAP_PATH = path.join(__dirname, '..', 'sitemap.xml');
+const RSS_PATH = path.join(__dirname, '..', 'rss.xml');
 const STATIC_PAGES = [
     '', 'about/', 'contact/', 'privacy/', 'terms/', 'author/', 'search/',
     'account/', 'signup/', 'bookmarks/'
@@ -91,15 +93,12 @@ function buildSitemap(articles) {
     const now = new Date().toISOString().split('T')[0];
     const urls = [];
 
-    // static pages, English + every language
     for (const page of STATIC_PAGES) {
         urls.push(`  <url><loc>${SITE_URL}/${page}</loc><changefreq>daily</changefreq><priority>${page === '' ? '1.0' : '0.5'}</priority></url>`);
     }
     for (const lang of LANG_CODES) {
         urls.push(`  <url><loc>${SITE_URL}/${lang}/</loc><changefreq>daily</changefreq><priority>0.9</priority></url>`);
     }
-
-    // every article: live SPA URL (canonical) + its static mirror
     for (const a of articles) {
         const lastmod = a.fetched_at ? new Date(a.fetched_at).toISOString().split('T')[0] : now;
         urls.push(`  <url><loc>${SITE_URL}/article/?id=${a.id}</loc><lastmod>${lastmod}</lastmod><changefreq>never</changefreq><priority>0.7</priority></url>`);
@@ -111,10 +110,27 @@ function buildSitemap(articles) {
     log(`sitemap.xml written with ${urls.length} URLs`);
 }
 
+// Mirrors the backend's live RSS feed onto the site's own domain — same
+// content, just reachable at newzyy.site/rss.xml instead of only at the
+// Render domain. Refreshed every time this script runs.
+async function mirrorRSS() {
+    try {
+        const res = await fetch(`${API_BASE}/rss.xml`);
+        if (!res.ok) { log(`RSS mirror skipped — backend returned ${res.status}`); return; }
+        const xml = await res.text();
+        fs.writeFileSync(RSS_PATH, xml, 'utf8');
+        log('rss.xml mirrored from backend');
+    } catch (e) {
+        log(`RSS mirror failed: ${e.message} — leaving existing rss.xml untouched`);
+    }
+}
+
 async function main() {
     log('fetching article list from backend...');
     const articles = await fetchAllArticles();
     log(`backend returned ${articles.length} published articles`);
+
+    await mirrorRSS();
 
     if (!articles.length) {
         log('no articles returned — leaving existing static files and sitemap untouched');
