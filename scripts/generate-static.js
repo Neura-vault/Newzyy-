@@ -6,7 +6,7 @@
 // backend's RSS feed onto the site's own domain.
 //
 // How it works:
-//   1. Asks the backend (already live on Render) for the full article list.
+//   1. Ask the backend (already live on Render) for the full article list.
 //   2. For every article that doesn't already have a static file, asks the
 //      backend's existing /render/article/:id endpoint for real server-
 //      rendered HTML and saves it to news/<id>/index.html — a real,
