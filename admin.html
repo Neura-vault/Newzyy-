@@ -308,6 +308,7 @@ function renderAiGrid(ai) {
                 <div class="name">Gemini <span class="provider-badge ${ai.gemini.configured ? 'on' : 'off'}">${geminiLabel}</span></div>
                 ${aiBar('Rewrite', ai.gemini.rewrite.callsToday, ai.gemini.rewrite.maxPerDay, '')}
                 ${aiBar('Translate', ai.gemini.translate.callsToday, ai.gemini.translate.maxPerDay, 'blue')}
+                ${ai.gemini.image ? aiBar('Images', ai.gemini.image.callsToday, ai.gemini.image.maxPerDay, 'purple') : ''}
             </div>`);
     }
     if (ai.groq) {
