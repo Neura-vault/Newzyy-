@@ -75,6 +75,23 @@
         .row-actions button.delete { color:var(--red); border-color:var(--red); }
         .refresh-btn { padding:8px 16px; background:none; border:1px solid var(--hairline); font-size:0.78rem; cursor:pointer; margin-bottom:16px; }
         .thumb { width:60px; height:42px; object-fit:cover; }
+        .write-form { background:var(--paper); border:1px solid var(--hairline); padding:20px; max-width:720px; }
+        .write-form label { display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.3px; color:var(--muted); margin:14px 0 5px; }
+        .write-form label:first-child { margin-top:0; }
+        .write-form input[type=text], .write-form select, .write-form textarea { width:100%; padding:10px 12px; border:1px solid var(--hairline); font-family:var(--sans); font-size:0.88rem; background:var(--canvas); }
+        .write-form textarea { resize:vertical; min-height:70px; }
+        .write-form textarea#waBody { min-height:220px; }
+        .write-form .hint { font-size:0.72rem; color:var(--muted); margin-top:4px; }
+        .write-form .checkbox-row { display:flex; align-items:center; gap:8px; margin-top:16px; }
+        .write-form .checkbox-row label { margin:0; text-transform:none; font-size:0.85rem; color:var(--ink); }
+        .write-form .img-preview { max-width:220px; max-height:140px; object-fit:cover; margin-top:8px; display:none; border:1px solid var(--hairline); }
+        .write-form .submit-row { margin-top:20px; display:flex; align-items:center; gap:14px; }
+        .write-form .submit-btn { padding:12px 26px; background:var(--red); color:#fff; border:none; font-weight:700; cursor:pointer; text-transform:uppercase; font-size:0.78rem; letter-spacing:0.4px; }
+        .write-form .submit-btn:disabled { opacity:0.5; cursor:not-allowed; }
+        .write-status { font-size:0.82rem; color:var(--muted); }
+        .write-status.err { color:var(--red); }
+        .write-status.ok { color:#16a34a; }
+        .row-actions button.small-link { border:none; background:none; color:var(--muted); text-decoration:underline; padding:5px 4px; }
         @media (max-width:800px){ .stats-row{grid-template-columns:repeat(2,1fr);} }
     </style>
 </head>
@@ -110,6 +127,7 @@
 
     <div class="tabs">
         <button class="tab-btn active" onclick="showTab('articles')">Articles</button>
+        <button class="tab-btn" onclick="showTab('write')">Write Article</button>
         <button class="tab-btn" onclick="showTab('contacts')">Contact Messages</button>
         <button class="tab-btn" onclick="showTab('users')">Users</button>
         <button class="tab-btn" onclick="showTab('subscribers')">Newsletter Subscribers</button>
@@ -123,6 +141,46 @@
             <button class="refresh-btn" style="margin:0;" onclick="exportCSV('articles')">Export CSV</button>
         </div>
         <div id="articlesTableWrap"></div>
+    </div>
+    <div class="tab-panel" id="panel-write">
+        <div class="write-form">
+            <h2 class="section-title" style="margin-top:0;" id="waFormTitle">Write a New Article</h2>
+            <input type="hidden" id="waEditingId" value="">
+
+            <label>Title</label>
+            <input type="text" id="waTitle" placeholder="Headline">
+
+            <label>Category</label>
+            <select id="waCategory"></select>
+
+            <label>Image URL <span style="text-transform:none;">(direct link to a public image, e.g. ending in .jpg/.png)</span></label>
+            <input type="text" id="waImage" placeholder="https://..." oninput="previewWaImage()">
+            <img class="img-preview" id="waImagePreview">
+
+            <label>Excerpt <span style="text-transform:none;">(optional — short summary shown in article lists; auto-generated from the body if left blank)</span></label>
+            <textarea id="waExcerpt" placeholder="One or two sentence summary..."></textarea>
+
+            <label>Body <span style="text-transform:none;">(separate paragraphs with a blank line)</span></label>
+            <textarea id="waBody" placeholder="Write the full article here..."></textarea>
+
+            <label>Author <span style="text-transform:none;">(optional — defaults to "Newzyy Staff")</span></label>
+            <input type="text" id="waAuthor" placeholder="Newzyy Staff">
+
+            <div class="checkbox-row">
+                <input type="checkbox" id="waAutoTranslate" checked>
+                <label for="waAutoTranslate">Auto-translate into all 9 languages using AI (recommended — leave off only for a quick edit that doesn't change the text)</label>
+            </div>
+            <div class="checkbox-row">
+                <input type="checkbox" id="waBreaking">
+                <label for="waBreaking">Mark as Breaking</label>
+            </div>
+
+            <div class="submit-row">
+                <button class="submit-btn" id="waSubmitBtn" onclick="submitWriteArticle()">Publish Article</button>
+                <button class="qa-btn" style="background:var(--muted);display:none;" id="waCancelBtn" onclick="resetWaForm()">Cancel Edit</button>
+                <span class="write-status" id="waStatus"></span>
+            </div>
+        </div>
     </div>
     <div class="tab-panel" id="panel-contacts"></div>
     <div class="tab-panel" id="panel-users"></div>
@@ -158,6 +216,14 @@ async function apiGet(path) {
 }
 async function apiCall(path, method) {
     const res = await fetch(`${API_BASE}${path}${path.includes('?') ? '&' : '?'}secret=${encodeURIComponent(SECRET)}`, { method });
+    return res.json();
+}
+async function apiPost(path, method, bodyObj) {
+    const res = await fetch(`${API_BASE}${path}${path.includes('?') ? '&' : '?'}secret=${encodeURIComponent(SECRET)}`, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bodyObj)
+    });
     return res.json();
 }
 
@@ -236,9 +302,10 @@ function renderAiGrid(ai) {
     const cards = [];
 
     if (ai.gemini) {
+        const geminiLabel = ai.gemini.configured ? `Active (${ai.gemini.keysConfigured} key${ai.gemini.keysConfigured === 1 ? '' : 's'})` : 'Not configured';
         cards.push(`
             <div class="ai-card">
-                <div class="name">Gemini <span class="provider-badge ${ai.gemini.configured ? 'on' : 'off'}">${ai.gemini.configured ? 'Active' : 'Not configured'}</span></div>
+                <div class="name">Gemini <span class="provider-badge ${ai.gemini.configured ? 'on' : 'off'}">${geminiLabel}</span></div>
                 ${aiBar('Rewrite', ai.gemini.rewrite.callsToday, ai.gemini.rewrite.maxPerDay, '')}
                 ${aiBar('Translate', ai.gemini.translate.callsToday, ai.gemini.translate.maxPerDay, 'blue')}
             </div>`);
@@ -324,7 +391,9 @@ function filterArticles() {
     const el = document.getElementById('articlesTableWrap');
     if (!items.length) { el.innerHTML = '<p style="color:var(--muted)">No articles found.</p>'; return; }
     el.innerHTML = `<table><thead><tr><th>Image</th><th>Title</th><th>Category</th><th>Views</th><th>Translated</th><th>Breaking</th><th>Date</th><th></th></tr></thead><tbody>
-        ${items.map(a => `<tr>
+        ${items.map(a => {
+            const done = a.translations ? Object.keys(a.translations).length : 0;
+            return `<tr>
             <td><img class="thumb" src="${a.image}" onerror="this.style.display='none'"></td>
             <td>${a.title}</td>
             <td>${a.category}</td>
@@ -334,15 +403,144 @@ function filterArticles() {
             <td>${new Date(a.fetched_at).toLocaleDateString()}</td>
             <td class="row-actions">
                 <button onclick="window.open('https://newzyy.site/article/?id=${a.id}','_blank')">View</button>
+                <button onclick="editArticle('${a.id}')">Edit</button>
+                ${done < 9 ? `<button onclick="retranslateMissing('${a.id}')">Fill Translations</button>` : ''}
                 <button onclick="toggleBreaking('${a.id}')">${a.manualBreaking ? 'Unmark' : 'Mark'} Breaking</button>
                 <button class="delete" onclick="deleteArticle('${a.id}')">Delete</button>
             </td>
-        </tr>`).join('')}
+        </tr>`;
+        }).join('')}
     </tbody></table>`;
 }
 async function toggleBreaking(id) {
     await apiCall(`/api/admin/article/${id}/toggle-breaking`, 'PATCH');
     loadAll();
+}
+
+// ----- Write / Edit Article -----
+// Same category slugs as CATEGORIES in server.js — keep this list in sync if
+// a category is ever added or renamed on the backend.
+const WA_CATEGORIES = ['politics', 'technology', 'ai', 'sports', 'business', 'health', 'science', 'entertainment', 'travel', 'environment', 'culture', 'world', 'economy'];
+(function populateWaCategories() {
+    const sel = document.getElementById('waCategory');
+    if (!sel) return;
+    sel.innerHTML = WA_CATEGORIES.map(c => `<option value="${c}">${c.charAt(0).toUpperCase() + c.slice(1)}</option>`).join('');
+})();
+
+function previewWaImage() {
+    const url = document.getElementById('waImage').value.trim();
+    const img = document.getElementById('waImagePreview');
+    if (!url) { img.style.display = 'none'; return; }
+    img.src = url;
+    img.onload = () => { img.style.display = 'block'; };
+    img.onerror = () => { img.style.display = 'none'; };
+}
+
+function htmlBodyToPlainText(html) {
+    return (html || '').replace(/<\/p>\s*<p>/gi, '\n\n').replace(/<\/?p>/gi, '').trim();
+}
+
+function resetWaForm() {
+    document.getElementById('waEditingId').value = '';
+    document.getElementById('waFormTitle').textContent = 'Write a New Article';
+    document.getElementById('waTitle').value = '';
+    document.getElementById('waCategory').selectedIndex = 0;
+    document.getElementById('waImage').value = '';
+    document.getElementById('waImagePreview').style.display = 'none';
+    document.getElementById('waExcerpt').value = '';
+    document.getElementById('waBody').value = '';
+    document.getElementById('waAuthor').value = '';
+    document.getElementById('waAutoTranslate').checked = true;
+    document.getElementById('waBreaking').checked = false;
+    document.getElementById('waSubmitBtn').textContent = 'Publish Article';
+    document.getElementById('waCancelBtn').style.display = 'none';
+    document.getElementById('waStatus').textContent = '';
+    document.getElementById('waStatus').className = 'write-status';
+}
+
+function editArticle(id) {
+    const a = allArticlesData.find(x => x.id === id);
+    if (!a) return;
+    document.getElementById('waEditingId').value = a.id;
+    document.getElementById('waFormTitle').textContent = 'Edit Article';
+    document.getElementById('waTitle').value = a.title || '';
+    document.getElementById('waCategory').value = a.category || WA_CATEGORIES[0];
+    document.getElementById('waImage').value = a.image || '';
+    previewWaImage();
+    document.getElementById('waExcerpt').value = a.excerpt || '';
+    document.getElementById('waBody').value = htmlBodyToPlainText(a.body);
+    document.getElementById('waAuthor').value = a.author || '';
+    document.getElementById('waAutoTranslate').checked = false; // editing: off by default, don't re-burn AI quota unless asked
+    document.getElementById('waBreaking').checked = Boolean(a.manualBreaking);
+    document.getElementById('waSubmitBtn').textContent = 'Save Changes';
+    document.getElementById('waCancelBtn').style.display = 'inline-block';
+    document.getElementById('waStatus').textContent = '';
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-write').classList.add('active');
+    [...document.querySelectorAll('.tab-btn')].find(b => b.textContent === 'Write Article')?.classList.add('active');
+}
+
+async function submitWriteArticle() {
+    const editingId = document.getElementById('waEditingId').value;
+    const title = document.getElementById('waTitle').value.trim();
+    const category = document.getElementById('waCategory').value;
+    const image = document.getElementById('waImage').value.trim();
+    const excerpt = document.getElementById('waExcerpt').value.trim();
+    const body = document.getElementById('waBody').value.trim();
+    const author = document.getElementById('waAuthor').value.trim();
+    const autoTranslate = document.getElementById('waAutoTranslate').checked;
+    const manualBreaking = document.getElementById('waBreaking').checked;
+
+    const statusEl = document.getElementById('waStatus');
+    if (!title) { statusEl.textContent = 'Title is required.'; statusEl.className = 'write-status err'; return; }
+    if (!editingId && !body) { statusEl.textContent = 'Body is required.'; statusEl.className = 'write-status err'; return; }
+
+    const btn = document.getElementById('waSubmitBtn');
+    btn.disabled = true;
+    statusEl.className = 'write-status';
+    statusEl.textContent = autoTranslate
+        ? 'Publishing and translating into 9 languages — this can take up to a minute...'
+        : 'Saving...';
+
+    try {
+        let data;
+        if (editingId) {
+            data = await apiPost(`/api/admin/article/${editingId}`, 'PATCH', {
+                title, category, excerpt, body, image, author, manualBreaking, retranslate: autoTranslate
+            });
+        } else {
+            data = await apiPost('/api/admin/article/manual', 'POST', {
+                title, category, excerpt, body, image, author, manualBreaking, autoTranslate
+            });
+        }
+        if (data.success) {
+            statusEl.textContent = data.message || 'Done.';
+            statusEl.className = 'write-status ok';
+            resetWaForm();
+            loadAll();
+        } else {
+            statusEl.textContent = data.message || 'Something went wrong.';
+            statusEl.className = 'write-status err';
+        }
+    } catch (e) {
+        statusEl.textContent = 'Network error — please try again.';
+        statusEl.className = 'write-status err';
+    } finally {
+        btn.disabled = false;
+    }
+}
+
+async function retranslateMissing(id) {
+    const el = document.getElementById('qaStatus');
+    el.textContent = 'Filling missing translations...';
+    try {
+        const data = await apiPost(`/api/admin/article/${id}/retranslate-missing`, 'POST', {});
+        el.textContent = data.message || 'Done.';
+        loadAll();
+    } catch (e) {
+        el.textContent = 'Something went wrong.';
+    }
 }
 function exportCSV(type) {
     const data = type === 'articles' ? allArticlesData : type === 'contacts' ? allContactsData : type === 'users' ? allUsersData : allSubscribersData;
