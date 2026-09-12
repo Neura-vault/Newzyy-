@@ -153,8 +153,9 @@
             <label>Category</label>
             <select id="waCategory"></select>
 
-            <label>Image URL <span style="text-transform:none;">(direct link to a public image, e.g. ending in .jpg/.png)</span></label>
-            <input type="text" id="waImage" placeholder="https://..." oninput="previewWaImage()">
+            <label>Image <span style="text-transform:none;">(upload a PNG, JPG, or WEBP — max 5MB)</span></label>
+            <input type="file" id="waImageFile" accept="image/png,image/jpeg,image/jpg,image/webp" onchange="handleWaImageUpload(event)">
+            <div class="hint" id="waImageHint"></div>
             <img class="img-preview" id="waImagePreview">
 
             <label>Excerpt <span style="text-transform:none;">(optional — short summary shown in article lists; auto-generated from the body if left blank)</span></label>
@@ -427,13 +428,40 @@ const WA_CATEGORIES = ['politics', 'technology', 'ai', 'sports', 'business', 'he
     sel.innerHTML = WA_CATEGORIES.map(c => `<option value="${c}">${c.charAt(0).toUpperCase() + c.slice(1)}</option>`).join('');
 })();
 
-function previewWaImage() {
-    const url = document.getElementById('waImage').value.trim();
+// Holds the currently selected image as a base64 data URI. Empty string
+// means "no new file chosen" — on edit, that means keep the existing image;
+// on create, it means no image at all.
+let waImageDataUri = '';
+const WA_MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 5MB
+
+function handleWaImageUpload(event) {
+    const file = event.target.files[0];
+    const hint = document.getElementById('waImageHint');
     const img = document.getElementById('waImagePreview');
-    if (!url) { img.style.display = 'none'; return; }
-    img.src = url;
-    img.onload = () => { img.style.display = 'block'; };
-    img.onerror = () => { img.style.display = 'none'; };
+    if (!file) return;
+
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+        hint.textContent = 'Please choose a PNG, JPG, or WEBP file.';
+        event.target.value = '';
+        return;
+    }
+    if (file.size > WA_MAX_IMAGE_BYTES) {
+        hint.textContent = 'That file is too large — please choose an image under 5MB.';
+        event.target.value = '';
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+        waImageDataUri = reader.result; // "data:image/png;base64,...."
+        img.src = waImageDataUri;
+        img.style.display = 'block';
+        hint.textContent = `Selected: ${file.name} (${(file.size / 1024).toFixed(0)}KB)`;
+    };
+    reader.onerror = () => {
+        hint.textContent = 'Could not read that file — please try another image.';
+    };
+    reader.readAsDataURL(file);
 }
 
 function htmlBodyToPlainText(html) {
@@ -445,8 +473,10 @@ function resetWaForm() {
     document.getElementById('waFormTitle').textContent = 'Write a New Article';
     document.getElementById('waTitle').value = '';
     document.getElementById('waCategory').selectedIndex = 0;
-    document.getElementById('waImage').value = '';
+    document.getElementById('waImageFile').value = '';
+    document.getElementById('waImageHint').textContent = '';
     document.getElementById('waImagePreview').style.display = 'none';
+    waImageDataUri = '';
     document.getElementById('waExcerpt').value = '';
     document.getElementById('waBody').value = '';
     document.getElementById('waAuthor').value = '';
@@ -465,8 +495,11 @@ function editArticle(id) {
     document.getElementById('waFormTitle').textContent = 'Edit Article';
     document.getElementById('waTitle').value = a.title || '';
     document.getElementById('waCategory').value = a.category || WA_CATEGORIES[0];
-    document.getElementById('waImage').value = a.image || '';
-    previewWaImage();
+    document.getElementById('waImageFile').value = '';
+    waImageDataUri = ''; // empty = "keep existing image unless a new file is chosen below"
+    const img = document.getElementById('waImagePreview');
+    if (a.image) { img.src = a.image; img.style.display = 'block'; } else { img.style.display = 'none'; }
+    document.getElementById('waImageHint').textContent = a.image ? 'Current image shown above — choose a file only if you want to replace it.' : '';
     document.getElementById('waExcerpt').value = a.excerpt || '';
     document.getElementById('waBody').value = htmlBodyToPlainText(a.body);
     document.getElementById('waAuthor').value = a.author || '';
@@ -485,7 +518,7 @@ async function submitWriteArticle() {
     const editingId = document.getElementById('waEditingId').value;
     const title = document.getElementById('waTitle').value.trim();
     const category = document.getElementById('waCategory').value;
-    const image = document.getElementById('waImage').value.trim();
+    const image = waImageDataUri; // '' means "no new upload" — create: no image, edit: keep existing
     const excerpt = document.getElementById('waExcerpt').value.trim();
     const body = document.getElementById('waBody').value.trim();
     const author = document.getElementById('waAuthor').value.trim();
