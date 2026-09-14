@@ -285,9 +285,9 @@ function renderStats(s, perCategory, ai) {
     }
 }
 
-// One card per provider. Gemini/Groq/Mistral show two bars (rewrite quota is
-// separate from translate quota — they can never starve each other). Cerebras
-// and Cohere are rewrite-only, so they get a single bar.
+// One card per provider. Gemini/Groq/Mistral each show two bars (rewrite
+// quota is separate from translate quota — they can never starve each
+// other).
 function aiBar(label, callsToday, maxPerDay, colorClass) {
     const pct = maxPerDay ? Math.min(100, Math.round((callsToday / maxPerDay) * 100)) : 0;
     return `
@@ -329,24 +329,6 @@ function renderAiGrid(ai) {
                     ${aiBar('Rewrite', ai.mistral.rewrite.callsToday, ai.mistral.rewrite.maxPerDay, '')}
                     ${aiBar('Translate', ai.mistral.translate.callsToday, ai.mistral.translate.maxPerDay, 'blue')}
                 ` : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add MISTRAL_API_KEY on Render to enable.</p>`}
-            </div>`);
-    }
-    if (ai.cerebras) {
-        cards.push(`
-            <div class="ai-card">
-                <div class="name">Cerebras <span class="provider-badge ${ai.cerebras.configured ? 'on' : 'off'}">${ai.cerebras.configured ? 'Active' : 'Not configured'}</span></div>
-                ${ai.cerebras.configured
-                    ? aiBar('Rewrite (fallback)', ai.cerebras.callsToday, ai.cerebras.maxPerDay, 'purple')
-                    : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add CEREBRAS_API_KEY on Render to enable.</p>`}
-            </div>`);
-    }
-    if (ai.cohere) {
-        cards.push(`
-            <div class="ai-card">
-                <div class="name">Cohere <span class="provider-badge ${ai.cohere.configured ? 'on' : 'off'}">${ai.cohere.configured ? 'Active' : 'Not configured'}</span></div>
-                ${ai.cohere.configured
-                    ? aiBar('Rewrite (fallback)', ai.cohere.callsToday, ai.cohere.maxPerDay, 'orange')
-                    : `<p style="font-size:0.75rem;color:var(--muted);margin-top:8px;">Add COHERE_API_KEY on Render to enable.</p>`}
             </div>`);
     }
 
